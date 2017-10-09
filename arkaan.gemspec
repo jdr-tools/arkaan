@@ -1,6 +1,6 @@
 Gem::Specification.new do |spec|
   spec.name        = 'Arkaan'
-  spec.version     = '0.1.0'
+  spec.version     = '0.1.1'
   spec.date        = '2017-09-19'
   spec.summary     = 'The model layer for my table-RPG application'
   spec.description = 'This gem holds the model layer for my table-top RPG games application.'
@@ -14,6 +14,7 @@ Gem::Specification.new do |spec|
   spec.license     = 'MIT'
 
   spec.add_development_dependency 'rspec', '3.6.0'
+  spec.add_development_dependency 'yard' , '0.9.9'
 
   spec.add_runtime_dependency 'mongoid'    , '7.0.0.beta'
   spec.add_runtime_dependency 'activemodel', '5.1.4'
