@@ -1,7 +1,10 @@
 require 'bundler/setup'
 Bundler.setup
 
+require 'factory_girl'
 require 'arkaan'
+
+require 'support/factory_girl'
 
 Mongoid.load!(File.join(File.dirname(__FILE__), 'config/mongoid.yml'))
 

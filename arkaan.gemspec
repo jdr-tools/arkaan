@@ -13,8 +13,10 @@ Gem::Specification.new do |spec|
   spec.homepage    = 'https://rubygems.org/gems/arkaan'
   spec.license     = 'MIT'
 
-  spec.add_development_dependency 'rspec', '3.6.0'
-  spec.add_development_dependency 'yard' , '0.9.9'
+  spec.add_development_dependency 'rspec'       , '3.6.0'
+  spec.add_development_dependency 'factory_girl', '4.8.1'
+  spec.add_development_dependency 'yard'        , '0.9.9'
+  spec.add_development_dependency 'pry'         , '0.11.1'
 
   spec.add_runtime_dependency 'mongoid'    , '7.0.0.beta'
   spec.add_runtime_dependency 'activemodel', '5.1.4'

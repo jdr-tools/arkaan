@@ -12,8 +12,22 @@ module Arkaan
     # @!attribute [r] password_digest
     #   @return [String] the password of the user, encrypted with the Blowfish algorithm.
     field :password_digest, type: String
+    # @!attribute [rw] lastname
+    #   @return [String] the last name (family name) of the user.
+    field :lastname, type: String, default: ''
+    # @!attribute [rw] firstname
+    #   @return [String] the first name of the user.
+    field :firstname, type: String, default: ''
+    # @!attribute [rw] birthdate
+    #   @return [DateTime] the day of birth of the user, as an ISO-8601.
+    field :birthdate, type: DateTime
+    # @!attribute [rw] email
+    #   @return [String] the email address of the user, useful to contact them.
+    field :email, type: String
 
     validates :username, length: {minimum: 6}, uniqueness: true
+
+    validates :email, presence: true, format: {with: /\A[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}\z/}
 
     # @!attribute [rw] password
     #   @return [String] password, in clear, of the user ; do not attempt to get the value, just set it when changing the password.
