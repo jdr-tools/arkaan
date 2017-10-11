@@ -1,2 +1,8 @@
-lib/arkaan.rb b64203c9d58600969c2a53c6269a3080990687bb
-lib/arkaan/account.rb 3ab4ddad2356e323a65423620f42a8148bba07b4
+lib/arkaan.rb 65c6b24a30fdf1c9ccfd4e3af5c45591582fd47b
+lib/arkaan/account.rb b493a9d365c4101ea65635cf52cdac0dc0c1de0f
+lib/arkaan/concerns.rb cfb932e25630ce632b8e50b39dc6a4d55427e923
+lib/arkaan/permissions.rb f856f5faed49c4350d9db87bdf64d2faa68a1352
+lib/arkaan/permissions/group.rb 23bb53530157fee6f5c00d828e163009c2d5eb01
+lib/arkaan/permissions/right.rb 2531078532d7d5dae312119118bb09770f0abd30
+lib/arkaan/concerns/sluggable.rb 4a071c93fdd49066068a664fdce6a06e24eb6c7b
+lib/arkaan/permissions/category.rb 6ace734fda7b98e9185cf58b7642f4e4a92eca71

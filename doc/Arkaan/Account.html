@@ -187,7 +187,8 @@ informations about a designated user.</p>
 
   
     <span class="summary_desc"><div class='inline'>
-<p>The email address of the user, useful to contact them.</p>
+<p>The email address of the user, useful to contact them ; it must be given,
+unique, and have an email format.</p>
 </div></span>
   
 </li>
@@ -223,6 +224,33 @@ informations about a designated user.</p>
       <li class="public ">
   <span class="summary_signature">
     
+      <a href="#groups-instance_method" title="#groups (instance method)">#<strong>groups</strong>  &#x21d2; Array&lt;Arkaan::Permissions::Group&gt; </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>The groups giving their corresponding rights to the current account.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
       <a href="#lastname-instance_method" title="#lastname (instance method)">#<strong>lastname</strong>  &#x21d2; String </a>
     
 
@@ -250,7 +278,7 @@ informations about a designated user.</p>
       <li class="public ">
   <span class="summary_signature">
     
-      <a href="#password-instance_method" title="#password (instance method)">#<strong>password</strong>  &#x21d2; String </a>
+      <a href="#password=-instance_method" title="#password= (instance method)">#<strong>password</strong>  &#x21d2; String </a>
     
 
     
@@ -259,6 +287,8 @@ informations about a designated user.</p>
   
   
     
+    
+      <span class="note title writeonly">writeonly</span>
     
   
   
@@ -278,7 +308,7 @@ it when changing the password.</p>
       <li class="public ">
   <span class="summary_signature">
     
-      <a href="#password_confirmation-instance_method" title="#password_confirmation (instance method)">#<strong>password_confirmation</strong>  &#x21d2; String </a>
+      <a href="#password_confirmation=-instance_method" title="#password_confirmation= (instance method)">#<strong>password_confirmation</strong>  &#x21d2; String </a>
     
 
     
@@ -287,6 +317,8 @@ it when changing the password.</p>
   
   
     
+    
+      <span class="note title writeonly">writeonly</span>
     
   
   
@@ -353,8 +385,8 @@ same as the password.</p>
 
   
     <span class="summary_desc"><div class='inline'>
-<p>The nickname the user chose at subscription, must be given, and 6 or more
-characters long.</p>
+<p>The nickname the user chose at subscription, must be given, unique, and 6
+or more characters long.</p>
 </div></span>
   
 </li>
@@ -443,7 +475,8 @@ characters long.</p>
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Returns the email address of the user, useful to contact them.</p>
+<p>Returns the email address of the user, useful to contact them ; it must be
+given, unique, and have an email format.</p>
 
 
   </div>
@@ -462,7 +495,8 @@ characters long.</p>
       
         &mdash;
         <div class='inline'>
-<p>the email address of the user, useful to contact them.</p>
+<p>the email address of the user, useful to contact them ; it must be given,
+unique, and have an email format.</p>
 </div>
       
     </li>
@@ -544,6 +578,64 @@ characters long.</p>
 </div>
     
       
+      <span id="groups=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="groups-instance_method">
+  
+    #<strong>groups</strong>  &#x21d2; <tt>Array&lt;<span class='object_link'><a href="Permissions/Group.html" title="Arkaan::Permissions::Group (class)">Arkaan::Permissions::Group</a></span>&gt;</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the groups giving their corresponding rights to the current
+account.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array&lt;<span class='object_link'><a href="Permissions/Group.html" title="Arkaan::Permissions::Group (class)">Arkaan::Permissions::Group</a></span>&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the groups giving their corresponding rights to the current account.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+30</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/arkaan/account.rb', line 30</span>
+
+<span class='id identifier rubyid_has_and_belongs_to_many'>has_and_belongs_to_many</span> <span class='symbol'>:groups</span><span class='comma'>,</span> <span class='label'>class_name:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Arkaan::Permissions::Group</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='label'>inverse_of:</span> <span class='symbol'>:accounts</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
       <span id="lastname=-instance_method"></span>
       <div class="method_details ">
   <h3 class="signature " id="lastname-instance_method">
@@ -601,11 +693,11 @@ characters long.</p>
 </div>
     
       
-      <span id="password=-instance_method"></span>
+      <span id=""></span>
       <div class="method_details ">
-  <h3 class="signature " id="password-instance_method">
+  <h3 class="signature " id="password=-instance_method">
   
-    #<strong>password</strong>  &#x21d2; <tt>String</tt> 
+    #<strong>password=</strong>(value)  &#x21d2; <tt>String</tt>  <span class="extras">(writeonly)</span>
   
 
   
@@ -648,10 +740,10 @@ it when changing the password.</p>
       <pre class="lines">
 
 
-36</pre>
+40</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/arkaan/account.rb', line 36</span>
+      <pre class="code"><span class="info file"># File 'lib/arkaan/account.rb', line 40</span>
 
 <span class='id identifier rubyid_has_secure_password'>has_secure_password</span></pre>
     </td>
@@ -660,11 +752,11 @@ it when changing the password.</p>
 </div>
     
       
-      <span id="password_confirmation=-instance_method"></span>
+      <span id=""></span>
       <div class="method_details ">
-  <h3 class="signature " id="password_confirmation-instance_method">
+  <h3 class="signature " id="password_confirmation=-instance_method">
   
-    #<strong>password_confirmation</strong>  &#x21d2; <tt>String</tt> 
+    #<strong>password_confirmation=</strong>(value)  &#x21d2; <tt>String</tt>  <span class="extras">(writeonly)</span>
   
 
   
@@ -707,10 +799,10 @@ same as the password.</p>
       <pre class="lines">
 
 
-36</pre>
+40</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/arkaan/account.rb', line 36</span>
+      <pre class="code"><span class="info file"># File 'lib/arkaan/account.rb', line 40</span>
 
 <span class='id identifier rubyid_has_secure_password'>has_secure_password</span></pre>
     </td>
@@ -789,8 +881,8 @@ same as the password.</p>
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Returns the nickname the user chose at subscription, must be given, and 6
-or more characters long.</p>
+<p>Returns the nickname the user chose at subscription, must be given, unique,
+and 6 or more characters long.</p>
 
 
   </div>
@@ -809,8 +901,8 @@ or more characters long.</p>
       
         &mdash;
         <div class='inline'>
-<p>the nickname the user chose at subscription, must be given, and 6 or more
-characters long.</p>
+<p>the nickname the user chose at subscription, must be given, unique, and 6
+or more characters long.</p>
 </div>
       
     </li>
@@ -840,7 +932,7 @@ characters long.</p>
 </div>
 
       <div id="footer">
-  Generated on Wed Oct 11 02:16:11 2017 by
+  Generated on Wed Oct 11 05:45:07 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.9 (ruby-2.3.1).
 </div>

@@ -7,7 +7,7 @@ module Arkaan
     include ActiveModel::SecurePassword
 
     # @!attribute [rw] username
-    #   @return [String] the nickname the user chose at subscription, must be given, and 6 or more characters long.
+    #   @return [String] the nickname the user chose at subscription, must be given, unique, and 6 or more characters long.
     field :username, type: String
     # @!attribute [r] password_digest
     #   @return [String] the password of the user, encrypted with the Blowfish algorithm.
@@ -22,16 +22,20 @@ module Arkaan
     #   @return [DateTime] the day of birth of the user, as an ISO-8601.
     field :birthdate, type: DateTime
     # @!attribute [rw] email
-    #   @return [String] the email address of the user, useful to contact them.
+    #   @return [String] the email address of the user, useful to contact them ; it must be given, unique, and have an email format.
     field :email, type: String
+
+    # @!attribute [rw] groups
+    #   @return [Array<Arkaan::Permissions::Group>] the groups giving their corresponding rights to the current account.
+    has_and_belongs_to_many :groups, class_name: 'Arkaan::Permissions::Group', inverse_of: :accounts
 
     validates :username, length: {minimum: 6}, uniqueness: true
 
-    validates :email, presence: true, format: {with: /\A[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}\z/}
+    validates :email, presence: true, format: {with: /\A[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}\z/}, uniqueness: true
 
-    # @!attribute [rw] password
+    # @!attribute [w] password
     #   @return [String] password, in clear, of the user ; do not attempt to get the value, just set it when changing the password.
-    # @!attribute [rw] password_confirmation
+    # @!attribute [w] password_confirmation
     #   @return [String] the confirmation of the password, do not get, just set it ; it must be the same as the password.
     has_secure_password
   end

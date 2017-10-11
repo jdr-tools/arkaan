@@ -1,9 +1,11 @@
 RSpec.describe Arkaan::Account do
+
   describe 'validity of a correctly built account' do
-    it 'Validates an account with all the parameters correctly given.' do
+    it 'validates an account with all the parameters correctly given.' do
       expect(build(:account).valid?).to be true
     end
   end
+
   describe :username do
     it 'has a username set at creation' do
       expect(build(:account).username).to eq('Babausse')
@@ -13,6 +15,10 @@ RSpec.describe Arkaan::Account do
     end
     it 'invalidates the account if the username is not given' do
       expect(build(:account, username: nil).valid?).to be false
+    end
+    it 'invalidates the account if the username is already taken' do
+      create(:conflicting_username_account)
+      expect(build(:account).valid?).to be false
     end
   end
 
@@ -58,6 +64,22 @@ RSpec.describe Arkaan::Account do
     end
     it 'invalidates the account if the email has the wrong format' do
       expect(build(:account, email: 'test').valid?).to be false
+    end
+    it 'invalidates the account if the email is not given' do
+      expect(build(:account, email: nil).valid?).to be false
+    end
+    it 'invalidates the account if the email is already in the database' do
+      create(:conflicting_email_account)
+      expect(build(:account).valid?).to be false
+    end
+  end
+
+  describe :groups do
+    it 'returns the right number of groups for a given account account' do
+      expect(create(:account_with_groups).groups.count).to be 1
+    end
+    it 'returns the right group for an account with a group' do
+      expect(create(:account_with_groups).groups.first.slug).to eq 'test_group'
     end
   end
 end
