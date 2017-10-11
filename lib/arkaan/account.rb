@@ -25,18 +25,21 @@ module Arkaan
     #   @return [String] the email address of the user, useful to contact them ; it must be given, unique, and have an email format.
     field :email, type: String
 
-    # @!attribute [rw] groups
-    #   @return [Array<Arkaan::Permissions::Group>] the groups giving their corresponding rights to the current account.
-    has_and_belongs_to_many :groups, class_name: 'Arkaan::Permissions::Group', inverse_of: :accounts
-
-    validates :username, length: {minimum: 6}, uniqueness: true
-
-    validates :email, presence: true, format: {with: /\A[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}\z/}, uniqueness: true
-
     # @!attribute [w] password
     #   @return [String] password, in clear, of the user ; do not attempt to get the value, just set it when changing the password.
     # @!attribute [w] password_confirmation
     #   @return [String] the confirmation of the password, do not get, just set it ; it must be the same as the password.
     has_secure_password
+
+    # @!attribute [rw] groups
+    #   @return [Array<Arkaan::Permissions::Group>] the groups giving their corresponding rights to the current account.
+    has_and_belongs_to_many :groups, class_name: 'Arkaan::Permissions::Group', inverse_of: :accounts
+    # @!attribute [rw] applications
+    #   @¶eturn [Array<Arkaan::OAuth::Application] the applications this user has created and owns.
+    has_many :applications, class_name: 'Arkaan::OAuth::Application', inverse_of: :creator
+
+    validates :username, length: {minimum: 6}, uniqueness: true
+
+    validates :email, presence: true, format: {with: /\A[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}\z/}, uniqueness: true
   end
 end

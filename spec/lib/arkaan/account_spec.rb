@@ -75,11 +75,20 @@ RSpec.describe Arkaan::Account do
   end
 
   describe :groups do
-    it 'returns the right number of groups for a given account account' do
+    it 'returns the right number of groups for a given account' do
       expect(create(:account_with_groups).groups.count).to be 1
     end
     it 'returns the right group for an account with a group' do
       expect(create(:account_with_groups).groups.first.slug).to eq 'test_group'
+    end
+  end
+
+  describe :applications do
+    it 'returns the right number of applications for a given account' do
+      expect(create(:account_with_applications).applications.count).to be 1
+    end
+    it 'returns the right application for an acocunt with an application' do
+      expect(create(:account_with_applications).applications.first.name).to eq 'My wonderful test application'
     end
   end
 end

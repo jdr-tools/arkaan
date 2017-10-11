@@ -8,4 +8,5 @@ module Arkaan
   autoload :Account    , 'arkaan/account'
   autoload :Permissions, 'arkaan/permissions'
   autoload :Concerns   , 'arkaan/concerns'
+  autoload :OAuth      , 'arkaan/oauth'
 end

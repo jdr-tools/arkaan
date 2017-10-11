@@ -21,6 +21,12 @@ FactoryGirl.define do
           create_list(:group, 1, accounts: [account])
         end
       end
+
+      factory :account_with_applications do
+        after :create do |account, evaluator|
+          create_list(:application, 1, creator: account)
+        end
+      end
     end
   end
 end
