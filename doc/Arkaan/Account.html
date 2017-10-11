@@ -142,6 +142,114 @@ informations about a designated user.</p>
       <li class="public ">
   <span class="summary_signature">
     
+      <a href="#birthdate-instance_method" title="#birthdate (instance method)">#<strong>birthdate</strong>  &#x21d2; DateTime </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>The day of birth of the user, as an ISO-8601.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#email-instance_method" title="#email (instance method)">#<strong>email</strong>  &#x21d2; String </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>The email address of the user, useful to contact them.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#firstname-instance_method" title="#firstname (instance method)">#<strong>firstname</strong>  &#x21d2; String </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>The first name of the user.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#lastname-instance_method" title="#lastname (instance method)">#<strong>lastname</strong>  &#x21d2; String </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>The last name (family name) of the user.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
       <a href="#password-instance_method" title="#password (instance method)">#<strong>password</strong>  &#x21d2; String </a>
     
 
@@ -265,9 +373,237 @@ characters long.</p>
     <h2>Instance Attribute Details</h2>
     
       
-      <span id="password=-instance_method"></span>
+      <span id="birthdate=-instance_method"></span>
       <div class="method_details first">
-  <h3 class="signature first" id="password-instance_method">
+  <h3 class="signature first" id="birthdate-instance_method">
+  
+    #<strong>birthdate</strong>  &#x21d2; <tt>DateTime</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the day of birth of the user, as an ISO-8601.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>DateTime</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the day of birth of the user, as an ISO-8601.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+23</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/arkaan/account.rb', line 23</span>
+
+<span class='id identifier rubyid_field'>field</span> <span class='symbol'>:birthdate</span><span class='comma'>,</span> <span class='label'>type:</span> <span class='const'>DateTime</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="email=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="email-instance_method">
+  
+    #<strong>email</strong>  &#x21d2; <tt>String</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the email address of the user, useful to contact them.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the email address of the user, useful to contact them.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+26</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/arkaan/account.rb', line 26</span>
+
+<span class='id identifier rubyid_field'>field</span> <span class='symbol'>:email</span><span class='comma'>,</span> <span class='label'>type:</span> <span class='const'>String</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="firstname=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="firstname-instance_method">
+  
+    #<strong>firstname</strong>  &#x21d2; <tt>String</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the first name of the user.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the first name of the user.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+20</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/arkaan/account.rb', line 20</span>
+
+<span class='id identifier rubyid_field'>field</span> <span class='symbol'>:firstname</span><span class='comma'>,</span> <span class='label'>type:</span> <span class='const'>String</span><span class='comma'>,</span> <span class='label'>default:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="lastname=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="lastname-instance_method">
+  
+    #<strong>lastname</strong>  &#x21d2; <tt>String</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the last name (family name) of the user.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the last name (family name) of the user.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+17</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/arkaan/account.rb', line 17</span>
+
+<span class='id identifier rubyid_field'>field</span> <span class='symbol'>:lastname</span><span class='comma'>,</span> <span class='label'>type:</span> <span class='const'>String</span><span class='comma'>,</span> <span class='label'>default:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="password=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="password-instance_method">
   
     #<strong>password</strong>  &#x21d2; <tt>String</tt> 
   
@@ -312,10 +648,10 @@ it when changing the password.</p>
       <pre class="lines">
 
 
-22</pre>
+36</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/arkaan/account.rb', line 22</span>
+      <pre class="code"><span class="info file"># File 'lib/arkaan/account.rb', line 36</span>
 
 <span class='id identifier rubyid_has_secure_password'>has_secure_password</span></pre>
     </td>
@@ -371,10 +707,10 @@ same as the password.</p>
       <pre class="lines">
 
 
-22</pre>
+36</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/arkaan/account.rb', line 22</span>
+      <pre class="code"><span class="info file"># File 'lib/arkaan/account.rb', line 36</span>
 
 <span class='id identifier rubyid_has_secure_password'>has_secure_password</span></pre>
     </td>
@@ -504,7 +840,7 @@ characters long.</p>
 </div>
 
       <div id="footer">
-  Generated on Mon Oct  9 15:09:05 2017 by
+  Generated on Wed Oct 11 02:16:11 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.9 (ruby-2.3.1).
 </div>
