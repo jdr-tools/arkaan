@@ -6,37 +6,12 @@
         1,
         1,
         null,
-        1,
-        null,
-        1,
-        1,
-        1,
-        1,
-        1,
-        null,
-        null,
-        null,
-        1,
-        null,
-        null
-      ],
-      "/home/vincent/workspace/arkaan/lib/arkaan/concerns/sluggable.rb": [
-        1,
-        1,
         null,
         null,
         1,
         1,
-        null,
         1,
-        null,
-        null,
-        3,
-        null,
-        3,
-        null,
-        null,
-        null,
+        1,
         null
       ],
       "/home/vincent/workspace/arkaan/lib/arkaan/account.rb": [
@@ -89,6 +64,49 @@
         null,
         null,
         1,
+        1,
+        1,
+        1,
+        null,
+        null
+      ],
+      "/home/vincent/workspace/arkaan/lib/arkaan/permissions/category.rb": [
+        1,
+        1,
+        null,
+        null,
+        1,
+        1,
+        1,
+        1,
+        null,
+        null,
+        null
+      ],
+      "/home/vincent/workspace/arkaan/lib/arkaan/concerns.rb": [
+        1,
+        null,
+        null,
+        1,
+        1,
+        null,
+        null
+      ],
+      "/home/vincent/workspace/arkaan/lib/arkaan/concerns/sluggable.rb": [
+        1,
+        1,
+        null,
+        null,
+        1,
+        1,
+        null,
+        1,
+        null,
+        null,
+        3,
+        null,
+        3,
+        null,
         null,
         null,
         null
@@ -129,21 +147,8 @@
         null,
         null,
         null
-      ],
-      "/home/vincent/workspace/arkaan/lib/arkaan/permissions/category.rb": [
-        1,
-        1,
-        null,
-        null,
-        1,
-        1,
-        1,
-        1,
-        null,
-        null,
-        null
       ]
     },
-    "timestamp": 1507694073
+    "timestamp": 1507694830
   }
 }
