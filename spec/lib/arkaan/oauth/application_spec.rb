@@ -31,6 +31,15 @@ RSpec.describe Arkaan::OAuth::Application do
     end
   end
 
+  describe :premium do
+    it 'returns the premium status of the application' do
+      expect(build(:application, premium: true).premium).to be true
+    end
+    it 'assigns a default value for an application, making it not premium' do
+      expect(build(:application).premium).to be false
+    end
+  end
+
   describe :creator do
     it 'returns the correct creator for a built application' do
       expect(build(:application).creator.username).to eq 'Babausse'
