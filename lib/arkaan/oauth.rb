@@ -5,5 +5,6 @@ module Arkaan
     autoload :Application  , 'arkaan/oauth/application'
     autoload :Authorization, 'arkaan/oauth/authorization'
     autoload :AccessToken  , 'arkaan/oauth/access_token'
+    autoload :RefreshToken , 'arkaan/oauth/refresh_token'
   end
 end
