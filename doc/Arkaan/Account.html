@@ -142,6 +142,62 @@ informations about a designated user.</p>
       <li class="public ">
   <span class="summary_signature">
     
+      <a href="#applications-instance_method" title="#applications (instance method)">#<strong>applications</strong>  &#x21d2; Array&lt;Arkaan::OAuth::Application] the applications this user has created and owns. </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Array&lt;Arkaan::OAuth::Application] the applications this user has created
+and owns.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#authorizations-instance_method" title="#authorizations (instance method)">#<strong>authorizations</strong>  &#x21d2; Array&lt;Arkaan::OAuth::Authorization&gt; </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>The authorization issued by this account to third-party applications to
+access its data.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
       <a href="#birthdate-instance_method" title="#birthdate (instance method)">#<strong>birthdate</strong>  &#x21d2; DateTime </a>
     
 
@@ -405,9 +461,127 @@ or more characters long.</p>
     <h2>Instance Attribute Details</h2>
     
       
-      <span id="birthdate=-instance_method"></span>
+      <span id="applications=-instance_method"></span>
       <div class="method_details first">
-  <h3 class="signature first" id="birthdate-instance_method">
+  <h3 class="signature first" id="applications-instance_method">
+  
+    #<strong>applications</strong>  &#x21d2; <tt>Array&lt;<span class='object_link'><a href="OAuth/Application.html" title="Arkaan::OAuth::Application (class)">Arkaan::OAuth::Application</a></span>] the <span class='object_link'><a href="#applications-instance_method" title="Arkaan::Account#applications (method)">applications</a></span> this user has created and owns.</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns Array&lt;Arkaan::OAuth::Application] the applications this user has
+created and owns.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array&lt;<span class='object_link'><a href="OAuth/Application.html" title="Arkaan::OAuth::Application (class)">Arkaan::OAuth::Application</a></span>] the <span class='object_link'><a href="#applications-instance_method" title="Arkaan::Account#applications (method)">applications</a></span> this user has created and owns.</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Array&lt;Arkaan::OAuth::Application] the applications this user has created
+and owns.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+39</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/arkaan/account.rb', line 39</span>
+
+<span class='id identifier rubyid_has_many'>has_many</span> <span class='symbol'>:applications</span><span class='comma'>,</span> <span class='label'>class_name:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Arkaan::OAuth::Application</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='label'>inverse_of:</span> <span class='symbol'>:creator</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="authorizations=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="authorizations-instance_method">
+  
+    #<strong>authorizations</strong>  &#x21d2; <tt>Array&lt;<span class='object_link'><a href="OAuth/Authorization.html" title="Arkaan::OAuth::Authorization (class)">Arkaan::OAuth::Authorization</a></span>&gt;</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the authorization issued by this account to third-party
+applications to access its data.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array&lt;<span class='object_link'><a href="OAuth/Authorization.html" title="Arkaan::OAuth::Authorization (class)">Arkaan::OAuth::Authorization</a></span>&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the authorization issued by this account to third-party applications to
+access its data.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+42</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/arkaan/account.rb', line 42</span>
+
+<span class='id identifier rubyid_has_many'>has_many</span> <span class='symbol'>:authorizations</span><span class='comma'>,</span> <span class='label'>class_name:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Arkaan::OAuth::Authorization</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='label'>inverse_of:</span> <span class='symbol'>:account</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="birthdate=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="birthdate-instance_method">
   
     #<strong>birthdate</strong>  &#x21d2; <tt>DateTime</tt> 
   
@@ -624,10 +798,10 @@ account.</p>
       <pre class="lines">
 
 
-30</pre>
+36</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/arkaan/account.rb', line 30</span>
+      <pre class="code"><span class="info file"># File 'lib/arkaan/account.rb', line 36</span>
 
 <span class='id identifier rubyid_has_and_belongs_to_many'>has_and_belongs_to_many</span> <span class='symbol'>:groups</span><span class='comma'>,</span> <span class='label'>class_name:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Arkaan::Permissions::Group</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='label'>inverse_of:</span> <span class='symbol'>:accounts</span></pre>
     </td>
@@ -740,10 +914,10 @@ it when changing the password.</p>
       <pre class="lines">
 
 
-40</pre>
+32</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/arkaan/account.rb', line 40</span>
+      <pre class="code"><span class="info file"># File 'lib/arkaan/account.rb', line 32</span>
 
 <span class='id identifier rubyid_has_secure_password'>has_secure_password</span></pre>
     </td>
@@ -799,10 +973,10 @@ same as the password.</p>
       <pre class="lines">
 
 
-40</pre>
+32</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/arkaan/account.rb', line 40</span>
+      <pre class="code"><span class="info file"># File 'lib/arkaan/account.rb', line 32</span>
 
 <span class='id identifier rubyid_has_secure_password'>has_secure_password</span></pre>
     </td>
@@ -932,7 +1106,7 @@ or more characters long.</p>
 </div>
 
       <div id="footer">
-  Generated on Wed Oct 11 05:45:07 2017 by
+  Generated on Fri Oct 13 02:42:21 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.9 (ruby-2.3.1).
 </div>

@@ -1,8 +1,12 @@
-lib/arkaan.rb 65c6b24a30fdf1c9ccfd4e3af5c45591582fd47b
-lib/arkaan/account.rb b493a9d365c4101ea65635cf52cdac0dc0c1de0f
-lib/arkaan/concerns.rb cfb932e25630ce632b8e50b39dc6a4d55427e923
-lib/arkaan/permissions.rb f856f5faed49c4350d9db87bdf64d2faa68a1352
+lib/arkaan.rb 3755e8a3528c5ff90e4ec6c4c1518a7c0d0274ac
+lib/arkaan/oauth.rb a20f532bbde39ce8b355fcd00d111e235ba6b3a9
+lib/arkaan/account.rb e5698a72298c54c92f3991b9e748373d42f8670d
+lib/arkaan/concerns.rb 21a03a9a58be1fc8661ae8cc8c18537b1d04d70f
+lib/arkaan/permissions.rb fc95e4ade00f4bc59cbd06d1cab633c90e866c65
+lib/arkaan/oauth/application.rb c1e7f2f6de0d2b02346c850fa82308ba466922a4
 lib/arkaan/permissions/group.rb 23bb53530157fee6f5c00d828e163009c2d5eb01
 lib/arkaan/permissions/right.rb 2531078532d7d5dae312119118bb09770f0abd30
 lib/arkaan/concerns/sluggable.rb 4a071c93fdd49066068a664fdce6a06e24eb6c7b
+lib/arkaan/oauth/access_token.rb 4d7cd07c528933f53321b95e30f71964374a549c
+lib/arkaan/oauth/authorization.rb 33c825d5e366667239b611b367cd15127087281c
 lib/arkaan/permissions/category.rb 6ace734fda7b98e9185cf58b7642f4e4a92eca71

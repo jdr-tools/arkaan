@@ -39,4 +39,13 @@ RSpec.describe Arkaan::OAuth::Application do
       expect(build(:application, creator: nil).valid?).to be false
     end
   end
+
+  describe :accounts do
+    it 'returns the right accounts for a given application' do
+      expect(create(:application_with_authorizations).authorizations.count).to be 1
+    end
+    it 'returns the right account for an application with an authorization' do
+      expect(create(:application_with_authorizations).authorizations.first.code).to eq 'test_code'
+    end
+  end
 end

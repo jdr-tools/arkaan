@@ -87,8 +87,17 @@ RSpec.describe Arkaan::Account do
     it 'returns the right number of applications for a given account' do
       expect(create(:account_with_applications).applications.count).to be 1
     end
-    it 'returns the right application for an acocunt with an application' do
+    it 'returns the right application for an account with an application' do
       expect(create(:account_with_applications).applications.first.name).to eq 'My wonderful test application'
+    end
+  end
+
+  describe :authorizations do
+    it 'returns the right authorizations for a given account' do
+      expect(create(:account_with_authorizations).authorizations.count).to be 1
+    end
+    it 'returns the right authorization for an account with an authorization' do
+      expect(create(:account_with_authorizations).authorizations.first.code).to eq 'test_code'
     end
   end
 end

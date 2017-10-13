@@ -35,8 +35,11 @@ module Arkaan
     #   @return [Array<Arkaan::Permissions::Group>] the groups giving their corresponding rights to the current account.
     has_and_belongs_to_many :groups, class_name: 'Arkaan::Permissions::Group', inverse_of: :accounts
     # @!attribute [rw] applications
-    #   @¶eturn [Array<Arkaan::OAuth::Application] the applications this user has created and owns.
+    #   @return [Array<Arkaan::OAuth::Application] the applications this user has created and owns.
     has_many :applications, class_name: 'Arkaan::OAuth::Application', inverse_of: :creator
+    # @!attribute [rw] authorizations
+    #   @return [Array<Arkaan::OAuth::Authorization>] the authorization issued by this account to third-party applications to access its data.
+    has_many :authorizations, class_name: 'Arkaan::OAuth::Authorization', inverse_of: :account
 
     validates :username, length: {minimum: 6}, uniqueness: true
 

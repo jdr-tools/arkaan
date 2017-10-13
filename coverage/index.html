@@ -14,7 +14,7 @@
       <img src="./assets/0.10.2/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2017-10-11T14:38:24-07:00">2017-10-11T14:38:24-07:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2017-10-13T02:20:06+02:00">2017-10-13T02:20:06+02:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -25,15 +25,15 @@
      covered at
      <span class="covered_strength">
        <span class="green">
-         1.25
+         1.81
        </span>
     </span> hits/line)
   </h2>
   <a name="AllFiles"></a>
   <div>
-    <b>10</b> files in total.
-    <b>73</b> relevant lines. 
-    <span class="green"><b>73</b> lines covered</span> and
+    <b>12</b> files in total.
+    <b>96</b> relevant lines. 
+    <span class="green"><b>96</b> lines covered</span> and
     <span class="red"><b>0</b> lines missed </span>
   </div>
   <table class="file_list">
@@ -63,9 +63,9 @@
       <tr>
         <td class="strong"><a href="#091e4846e4a42d9c8563fdced1bee7f604bdc5f2" class="src_link" title="lib/arkaan/account.rb">lib/arkaan/account.rb</a></td>
         <td class="green strong">100.0 %</td>
-        <td>45</td>
-        <td>16</td>
-        <td>16</td>
+        <td>48</td>
+        <td>17</td>
+        <td>17</td>
         <td>0</td>
         <td>1.0</td>
       </tr>
@@ -93,21 +93,41 @@
       <tr>
         <td class="strong"><a href="#efc42b22c43ad8e1070df1f111128b999e199cb6" class="src_link" title="lib/arkaan/oauth.rb">lib/arkaan/oauth.rb</a></td>
         <td class="green strong">100.0 %</td>
-        <td>7</td>
-        <td>3</td>
-        <td>3</td>
+        <td>9</td>
+        <td>5</td>
+        <td>5</td>
         <td>0</td>
         <td>1.0</td>
       </tr>
       
       <tr>
+        <td class="strong"><a href="#83cc44a09146c0bb47c7a9cf22b9f596995bae8f" class="src_link" title="lib/arkaan/oauth/access_token.rb">lib/arkaan/oauth/access_token.rb</a></td>
+        <td class="green strong">100.0 %</td>
+        <td>23</td>
+        <td>9</td>
+        <td>9</td>
+        <td>0</td>
+        <td>2.1</td>
+      </tr>
+      
+      <tr>
         <td class="strong"><a href="#8fba8148fc732f19754739afbb676540914597e2" class="src_link" title="lib/arkaan/oauth/application.rb">lib/arkaan/oauth/application.rb</a></td>
         <td class="green strong">100.0 %</td>
-        <td>25</td>
+        <td>27</td>
+        <td>11</td>
+        <td>11</td>
+        <td>0</td>
+        <td>4.5</td>
+      </tr>
+      
+      <tr>
+        <td class="strong"><a href="#75c546bc8d72553f0bcbb7c2701b6d549ed08825" class="src_link" title="lib/arkaan/oauth/authorization.rb">lib/arkaan/oauth/authorization.rb</a></td>
+        <td class="green strong">100.0 %</td>
+        <td>26</td>
         <td>10</td>
         <td>10</td>
         <td>0</td>
-        <td>2.4</td>
+        <td>3.5</td>
       </tr>
       
       <tr>
@@ -262,8 +282,8 @@
     <h3>lib/arkaan/account.rb</h3>
     <h4><span class="green">100.0 %</span> covered</h4>
     <div>
-      <b>16</b> relevant lines. 
-      <span class="green"><b>16</b> lines covered</span> and
+      <b>17</b> relevant lines. 
+      <span class="green"><b>17</b> lines covered</span> and
       <span class="red"><b>0</b> lines missed.</span>
     </div>
   </div>
@@ -496,7 +516,7 @@
         <li class="never" data-hits="" data-linenumber="38">
           
           
-          <code class="ruby">    #   @¶eturn [Array&lt;Arkaan::OAuth::Application] the applications this user has created and owns.</code>
+          <code class="ruby">    #   @return [Array&lt;Arkaan::OAuth::Application] the applications this user has created and owns.</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="39">
@@ -508,34 +528,52 @@
         <li class="never" data-hits="" data-linenumber="40">
           
           
+          <code class="ruby">    # @!attribute [rw] authorizations</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="41">
+          
+          
+          <code class="ruby">    #   @return [Array&lt;Arkaan::OAuth::Authorization&gt;] the authorization issued by this account to third-party applications to access its data.</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="42">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    has_many :authorizations, class_name: &#39;Arkaan::OAuth::Authorization&#39;, inverse_of: :account</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="43">
+          
+          
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="41">
+        <li class="covered" data-hits="1" data-linenumber="44">
           <span class="hits">1</span>
           
           <code class="ruby">    validates :username, length: {minimum: 6}, uniqueness: true</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="42">
+        <li class="never" data-hits="" data-linenumber="45">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="43">
+        <li class="covered" data-hits="1" data-linenumber="46">
           <span class="hits">1</span>
           
           <code class="ruby">    validates :email, presence: true, format: {with: /\A[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}\z/}, uniqueness: true</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="44">
+        <li class="never" data-hits="" data-linenumber="47">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="45">
+        <li class="never" data-hits="" data-linenumber="48">
           
           
           <code class="ruby">end</code>
@@ -733,8 +771,8 @@
     <h3>lib/arkaan/oauth.rb</h3>
     <h4><span class="green">100.0 %</span> covered</h4>
     <div>
-      <b>3</b> relevant lines. 
-      <span class="green"><b>3</b> lines covered</span> and
+      <b>5</b> relevant lines. 
+      <span class="green"><b>5</b> lines covered</span> and
       <span class="red"><b>0</b> lines missed.</span>
     </div>
   </div>
@@ -769,16 +807,185 @@
         <li class="covered" data-hits="1" data-linenumber="5">
           <span class="hits">1</span>
           
-          <code class="ruby">    autoload :Application, &#39;arkaan/oauth/application&#39;</code>
+          <code class="ruby">    autoload :Application  , &#39;arkaan/oauth/application&#39;</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="6">
+        <li class="covered" data-hits="1" data-linenumber="6">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    autoload :Authorization, &#39;arkaan/oauth/authorization&#39;</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="7">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    autoload :AccessToken  , &#39;arkaan/oauth/access_token&#39;</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="8">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="7">
+        <li class="never" data-hits="" data-linenumber="9">
+          
+          
+          <code class="ruby">end</code>
+        </li>
+      
+    </ol>
+  </pre>
+</div>
+
+      
+        <div class="source_table" id="83cc44a09146c0bb47c7a9cf22b9f596995bae8f">
+  <div class="header">
+    <h3>lib/arkaan/oauth/access_token.rb</h3>
+    <h4><span class="green">100.0 %</span> covered</h4>
+    <div>
+      <b>9</b> relevant lines. 
+      <span class="green"><b>9</b> lines covered</span> and
+      <span class="red"><b>0</b> lines missed.</span>
+    </div>
+  </div>
+  
+  <pre>
+    <ol>
+      
+        <li class="covered" data-hits="1" data-linenumber="1">
+          <span class="hits">1</span>
+          
+          <code class="ruby">module Arkaan</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="2">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  module OAuth</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="3">
+          
+          
+          <code class="ruby">    # An access token is the value assigned to the application to access the private data of an account.</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="4">
+          
+          
+          <code class="ruby">    # @author Vincent Courtois &lt;courtois.vincent@outlook.com&gt;</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="5">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    class AccessToken</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="6">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      include Mongoid::Document</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="7">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      include Mongoid::Timestamps</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="8">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="9">
+          
+          
+          <code class="ruby">      # @!attribute [rw] value</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="10">
+          
+          
+          <code class="ruby">      #   @return [String] the value of the token, returned to the application when built.</code>
+        </li>
+      
+        <li class="covered" data-hits="11" data-linenumber="11">
+          <span class="hits">11</span>
+          
+          <code class="ruby">      field :value, type: String, default: -&gt;{ SecureRandom.hex }</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="12">
+          
+          
+          <code class="ruby">      # @!attribute [rw] expiration</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="13">
+          
+          
+          <code class="ruby">      #   @return [Integer] the time, in seconds, after which the token is declared expired, and thus can&#39;t be used anymore.</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="14">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      field :expiration, type: Integer, default: 86400</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="15">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="16">
+          
+          
+          <code class="ruby">      # @!attribute [rw] authorization</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="17">
+          
+          
+          <code class="ruby">      #   @return [Arkaan::OAuth::Authorization] the authorization code that issued this token to the application for this user.</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="18">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      belongs_to :authorization, class_name: &#39;Arkaan::OAuth::Authorization&#39;, inverse_of: :access_token</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="19">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="20">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      validates :value, presence: true, uniqueness: true</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="21">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="22">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="23">
           
           
           <code class="ruby">end</code>
@@ -794,8 +1001,8 @@
     <h3>lib/arkaan/oauth/application.rb</h3>
     <h4><span class="green">100.0 %</span> covered</h4>
     <div>
-      <b>10</b> relevant lines. 
-      <span class="green"><b>10</b> lines covered</span> and
+      <b>11</b> relevant lines. 
+      <span class="green"><b>11</b> lines covered</span> and
       <span class="red"><b>0</b> lines missed.</span>
     </div>
   </div>
@@ -881,8 +1088,8 @@
           <code class="ruby">      #   @return [String] the unique key for the application, identifying it when requesting a token for the API.</code>
         </li>
       
-        <li class="covered" data-hits="15" data-linenumber="14">
-          <span class="hits">15</span>
+        <li class="covered" data-hits="39" data-linenumber="14">
+          <span class="hits">39</span>
           
           <code class="ruby">      field :key, type: String, default: -&gt;{ SecureRandom.hex }</code>
         </li>
@@ -920,7 +1127,7 @@
         <li class="covered" data-hits="1" data-linenumber="20">
           <span class="hits">1</span>
           
-          <code class="ruby">      validates :name, presence: true, length: {minimum: 6}, uniqueness: true</code>
+          <code class="ruby">      has_many :authorizations, class_name: &#39;Arkaan::OAuth::Authorization&#39;, inverse_of: :application</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="21">
@@ -932,22 +1139,209 @@
         <li class="covered" data-hits="1" data-linenumber="22">
           <span class="hits">1</span>
           
-          <code class="ruby">      validates :key, presence: true, uniqueness: true</code>
+          <code class="ruby">      validates :name, presence: true, length: {minimum: 6}, uniqueness: true</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="23">
           
           
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="24">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      validates :key, presence: true, uniqueness: true</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="25">
+          
+          
           <code class="ruby">    end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="24">
+        <li class="never" data-hits="" data-linenumber="26">
           
           
           <code class="ruby">  end</code>
         </li>
       
+        <li class="never" data-hits="" data-linenumber="27">
+          
+          
+          <code class="ruby">end</code>
+        </li>
+      
+    </ol>
+  </pre>
+</div>
+
+      
+        <div class="source_table" id="75c546bc8d72553f0bcbb7c2701b6d549ed08825">
+  <div class="header">
+    <h3>lib/arkaan/oauth/authorization.rb</h3>
+    <h4><span class="green">100.0 %</span> covered</h4>
+    <div>
+      <b>10</b> relevant lines. 
+      <span class="green"><b>10</b> lines covered</span> and
+      <span class="red"><b>0</b> lines missed.</span>
+    </div>
+  </div>
+  
+  <pre>
+    <ol>
+      
+        <li class="covered" data-hits="1" data-linenumber="1">
+          <span class="hits">1</span>
+          
+          <code class="ruby">module Arkaan</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="2">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  module OAuth</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="3">
+          
+          
+          <code class="ruby">    # An OAuth authorization is granted by a user to an application to access its personal data.</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="4">
+          
+          
+          <code class="ruby">    # @author Vincent Courtois &lt;courtois.vincent@outlook.com&gt;</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="5">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    class Authorization</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="6">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      include Mongoid::Document</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="7">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      include Mongoid::Timestamps</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="8">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="9">
+          
+          
+          <code class="ruby">      # @!attribute [rw] code</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="10">
+          
+          
+          <code class="ruby">      #   @return [String] the value corresponding to the authentication code in the RFC of OAuth2.0, kep for historic purpose.</code>
+        </li>
+      
+        <li class="covered" data-hits="26" data-linenumber="11">
+          <span class="hits">26</span>
+          
+          <code class="ruby">      field :code, type: String, default: -&gt;{ SecureRandom.hex }</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="12">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="13">
+          
+          
+          <code class="ruby">      # @!attribute [rw] account</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="14">
+          
+          
+          <code class="ruby">      #   @return [Arkaaan::Account] the account granting the authorization to access its data to the application.</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="15">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      belongs_to :account, class_name: &#39;Arkaan::Account&#39;, inverse_of: :authorizations</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="16">
+          
+          
+          <code class="ruby">      # @!attribute [rw] application</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="17">
+          
+          
+          <code class="ruby">      #   @return [Arkaan::OAuth::Application] the application asking to access account&#39;s data.</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="18">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      belongs_to :application, class_name: &#39;Arkaan::OAuth::Application&#39;, inverse_of: :authorizations</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="19">
+          
+          
+          <code class="ruby">      # @!attribute [rw] token</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="20">
+          
+          
+          <code class="ruby">      #   @return [Arkaan::OAuth::AccessToken] the access token used further in the application process to access private data of the account.</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="21">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      has_one :token, class_name: &#39;Arkaan::OAuth::AccessToken&#39;, inverse_of: :authorization</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="22">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="23">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      validates :code, presence: true, uniqueness: true</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="24">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
         <li class="never" data-hits="" data-linenumber="25">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="26">
           
           
           <code class="ruby">end</code>

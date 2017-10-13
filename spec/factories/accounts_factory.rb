@@ -27,6 +27,12 @@ FactoryGirl.define do
           create_list(:application, 1, creator: account)
         end
       end
+
+      factory :account_with_authorizations do
+        after :create do |account, evaluator|
+          create_list(:authorization, 1, account: account, application: create(:application))
+        end
+      end
     end
   end
 end

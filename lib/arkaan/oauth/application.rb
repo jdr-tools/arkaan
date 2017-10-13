@@ -17,6 +17,8 @@ module Arkaan
       #   @return [Arkaan::Account] the account that has created this application, considered its owner.
       belongs_to :creator, class_name: 'Arkaan::Account', inverse_of: :applications
 
+      has_many :authorizations, class_name: 'Arkaan::OAuth::Authorization', inverse_of: :application
+
       validates :name, presence: true, length: {minimum: 6}, uniqueness: true
 
       validates :key, presence: true, uniqueness: true
