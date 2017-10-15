@@ -1,6 +1,6 @@
 lib/arkaan.rb 3755e8a3528c5ff90e4ec6c4c1518a7c0d0274ac
 lib/arkaan/oauth.rb 6368031644a79f79734f69ad2d2a6df63fa50d5b
-lib/arkaan/account.rb e5698a72298c54c92f3991b9e748373d42f8670d
+lib/arkaan/account.rb 766d1a6d99d28ce097843d9364d85bef99fde6c9
 lib/arkaan/concerns.rb 21a03a9a58be1fc8661ae8cc8c18537b1d04d70f
 lib/arkaan/permissions.rb fc95e4ade00f4bc59cbd06d1cab633c90e866c65
 lib/arkaan/oauth/application.rb 68f15deba4290f0c0230e6b4d6d9140a38bc96df

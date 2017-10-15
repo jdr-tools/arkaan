@@ -23,11 +23,17 @@ RSpec.describe Arkaan::Account do
   end
 
   describe :password do
+    it 'fails to build a user if the password is not given' do
+      expect(build(:account, password: nil).valid?).to be false
+    end
+  end
+
+  describe :password_confirmation do
     it 'fails to build a user if the password confirmation is not the same as the password' do
       expect(build(:account, password_confirmation: 'test').valid?).to be false
     end
-    it 'fails to build a user if the password is not given' do
-      expect(build(:account, password: nil).valid?).to be false
+    it 'invalidates the account if the password is given but not its confirmation' do
+      expect(build(:account, password: 'test', password_confirmation: nil).valid?).to be false
     end
   end
 
@@ -98,6 +104,53 @@ RSpec.describe Arkaan::Account do
     end
     it 'returns the right authorization for an account with an authorization' do
       expect(create(:account_with_authorizations).authorizations.first.code).to eq 'test_code'
+    end
+  end
+
+  describe :messages do
+
+    let(:invalid_account) { build(:empty_account) }
+    let(:account) { build(:account) }
+
+    before do
+      invalid_account.validate
+    end
+
+    it 'returns the right message if the username is not given' do
+      expect(invalid_account.errors.messages[:username]).to include('account.username.blank')
+    end
+    it 'returns the right message if the username is less than six characters' do
+      expect(invalid_account.errors.messages[:username]).to include('account.username.short')
+    end
+    it 'returns the right message if the password is not given' do
+      expect(invalid_account.errors.messages[:password]).to include('account.password.blank')
+    end
+    it 'returns the right message if the password confirmation is not given and the password has been changed' do
+      invalid_account.password = 'password'
+      invalid_account.validate
+      expect(invalid_account.errors.messages[:password_confirmation]).to include('account.password_confirmation.blank')
+    end
+    it 'returns the right message if the password confirmation is not the same as the password' do
+      invalid_account.password = 'password'
+      invalid_account.password_confirmation = 'test'
+      invalid_account.validate
+      expect(invalid_account.errors.messages[:password_confirmation]).to include('account.password.confirmation')
+    end
+    it 'returns the right message if the email is not given' do
+      expect(invalid_account.errors.messages[:email]).to include('account.email.blank')
+    end
+    it 'returns the right message if the email was the wrong format' do
+      expect(invalid_account.errors.messages[:email]).to include('account.email.format')
+    end
+    it 'returns the right message if the username is already taken' do
+      create(:account)
+      account.validate
+      expect(account.errors.messages[:username]).to include('account.username.uniq')
+    end
+    it 'returns the right message if the email is already taken' do
+      create(:account)
+      account.validate
+      expect(account.errors.messages[:email]).to include('account.email.uniq')
     end
   end
 end

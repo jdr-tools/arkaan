@@ -14,7 +14,7 @@
       <img src="./assets/0.10.2/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2017-10-12T11:22:42-07:00">2017-10-12T11:22:42-07:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2017-10-15T06:42:09-07:00">2017-10-15T06:42:09-07:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -25,15 +25,15 @@
      covered at
      <span class="covered_strength">
        <span class="green">
-         1.86
+         1.84
        </span>
     </span> hits/line)
   </h2>
   <a name="AllFiles"></a>
   <div>
     <b>13</b> files in total.
-    <b>105</b> relevant lines. 
-    <span class="green"><b>105</b> lines covered</span> and
+    <b>107</b> relevant lines. 
+    <span class="green"><b>107</b> lines covered</span> and
     <span class="red"><b>0</b> lines missed </span>
   </div>
   <table class="file_list">
@@ -63,9 +63,9 @@
       <tr>
         <td class="strong"><a href="#091e4846e4a42d9c8563fdced1bee7f604bdc5f2" class="src_link" title="lib/arkaan/account.rb">lib/arkaan/account.rb</a></td>
         <td class="green strong">100.0 %</td>
-        <td>48</td>
-        <td>17</td>
-        <td>17</td>
+        <td>61</td>
+        <td>19</td>
+        <td>19</td>
         <td>0</td>
         <td>1.0</td>
       </tr>
@@ -292,8 +292,8 @@
     <h3>lib/arkaan/account.rb</h3>
     <h4><span class="green">100.0 %</span> covered</h4>
     <div>
-      <b>17</b> relevant lines. 
-      <span class="green"><b>17</b> lines covered</span> and
+      <b>19</b> relevant lines. 
+      <span class="green"><b>19</b> lines covered</span> and
       <span class="red"><b>0</b> lines missed.</span>
     </div>
   </div>
@@ -490,7 +490,7 @@
         <li class="covered" data-hits="1" data-linenumber="32">
           <span class="hits">1</span>
           
-          <code class="ruby">    has_secure_password</code>
+          <code class="ruby">    has_secure_password validations: false</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="33">
@@ -562,28 +562,106 @@
         <li class="covered" data-hits="1" data-linenumber="44">
           <span class="hits">1</span>
           
-          <code class="ruby">    validates :username, length: {minimum: 6}, uniqueness: true</code>
+          <code class="ruby">    validates :username,</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="45">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">      presence: {message: &#39;account.username.blank&#39;},</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="46">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="46">
           
-          <code class="ruby">    validates :email, presence: true, format: {with: /\A[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}\z/}, uniqueness: true</code>
+          
+          <code class="ruby">      length: {minimum: 6, message: &#39;account.username.short&#39;},</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="47">
           
           
-          <code class="ruby">  end</code>
+          <code class="ruby">      uniqueness: {message: &#39;account.username.uniq&#39;}</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="48">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="49">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    validates :email,</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="50">
+          
+          
+          <code class="ruby">      presence: {message: &#39;account.email.blank&#39;},</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="51">
+          
+          
+          <code class="ruby">      format: {with: /\A[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}\z/, message: &#39;account.email.format&#39;},</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="52">
+          
+          
+          <code class="ruby">      uniqueness: {message: &#39;account.email.uniq&#39;}</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="53">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="54">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    validates :password,</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="55">
+          
+          
+          <code class="ruby">      presence: {message: &#39;account.password.blank&#39;},</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="56">
+          
+          
+          <code class="ruby">      confirmation: {message: &#39;account.password.confirmation&#39;, if: :password_digest_changed?}</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="57">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="58">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    validates :password_confirmation,</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="59">
+          
+          
+          <code class="ruby">      presence: {message: &#39;account.password_confirmation.blank&#39;, if: :password_digest_changed?}</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="60">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="61">
           
           
           <code class="ruby">end</code>

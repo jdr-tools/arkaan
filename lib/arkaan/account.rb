@@ -29,7 +29,7 @@ module Arkaan
     #   @return [String] password, in clear, of the user ; do not attempt to get the value, just set it when changing the password.
     # @!attribute [w] password_confirmation
     #   @return [String] the confirmation of the password, do not get, just set it ; it must be the same as the password.
-    has_secure_password
+    has_secure_password validations: false
 
     # @!attribute [rw] groups
     #   @return [Array<Arkaan::Permissions::Group>] the groups giving their corresponding rights to the current account.
@@ -41,8 +41,21 @@ module Arkaan
     #   @return [Array<Arkaan::OAuth::Authorization>] the authorization issued by this account to third-party applications to access its data.
     has_many :authorizations, class_name: 'Arkaan::OAuth::Authorization', inverse_of: :account
 
-    validates :username, length: {minimum: 6}, uniqueness: true
+    validates :username,
+      presence: {message: 'account.username.blank'},
+      length: {minimum: 6, message: 'account.username.short'},
+      uniqueness: {message: 'account.username.uniq'}
 
-    validates :email, presence: true, format: {with: /\A[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}\z/}, uniqueness: true
+    validates :email,
+      presence: {message: 'account.email.blank'},
+      format: {with: /\A[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}\z/, message: 'account.email.format'},
+      uniqueness: {message: 'account.email.uniq'}
+
+    validates :password,
+      presence: {message: 'account.password.blank'},
+      confirmation: {message: 'account.password.confirmation', if: :password_digest_changed?}
+
+    validates :password_confirmation,
+      presence: {message: 'account.password_confirmation.blank', if: :password_digest_changed?}
   end
 end
