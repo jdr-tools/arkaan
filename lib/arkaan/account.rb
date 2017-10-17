@@ -43,13 +43,13 @@ module Arkaan
 
     validates :username,
       presence: {message: 'account.username.blank'},
-      length: {minimum: 6, message: 'account.username.short'},
-      uniqueness: {message: 'account.username.uniq'}
+      length: {minimum: 6, message: 'account.username.short', if: :username?},
+      uniqueness: {message: 'account.username.uniq', if: :username?}
 
     validates :email,
       presence: {message: 'account.email.blank'},
-      format: {with: /\A[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}\z/, message: 'account.email.format'},
-      uniqueness: {message: 'account.email.uniq'}
+      format: {with: /\A[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}\z/, message: 'account.email.format', if: :email?},
+      uniqueness: {message: 'account.email.uniq', if: :email?}
 
     validates :password,
       presence: {message: 'account.password.blank'},

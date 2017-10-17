@@ -14,7 +14,7 @@
       <img src="./assets/0.10.2/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2017-10-15T06:42:09-07:00">2017-10-15T06:42:09-07:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2017-10-17T11:29:20+02:00">2017-10-17T11:29:20+02:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -574,13 +574,13 @@
         <li class="never" data-hits="" data-linenumber="46">
           
           
-          <code class="ruby">      length: {minimum: 6, message: &#39;account.username.short&#39;},</code>
+          <code class="ruby">      length: {minimum: 6, message: &#39;account.username.short&#39;, if: :username?},</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="47">
           
           
-          <code class="ruby">      uniqueness: {message: &#39;account.username.uniq&#39;}</code>
+          <code class="ruby">      uniqueness: {message: &#39;account.username.uniq&#39;, if: :username?}</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="48">
@@ -604,13 +604,13 @@
         <li class="never" data-hits="" data-linenumber="51">
           
           
-          <code class="ruby">      format: {with: /\A[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}\z/, message: &#39;account.email.format&#39;},</code>
+          <code class="ruby">      format: {with: /\A[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}\z/, message: &#39;account.email.format&#39;, if: :email?},</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="52">
           
           
-          <code class="ruby">      uniqueness: {message: &#39;account.email.uniq&#39;}</code>
+          <code class="ruby">      uniqueness: {message: &#39;account.email.uniq&#39;, if: :email?}</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="53">
