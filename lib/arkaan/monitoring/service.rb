@@ -12,6 +12,9 @@ module Arkaan
       # @!attribute [rw] url
       #   @return [String] the URL of the service, where the requests will be issued.
       field :url, type: String
+      # @!attribute [rw] path
+      #   @return [String] the path the service will be mapped on in the API.
+      field :path, type: String, default: '/'
 
       # @!attribute [rw] creator
       #   @return [Arkaan::Account] the creator of this service.
@@ -22,6 +25,8 @@ module Arkaan
       validates :url,
         presence: {message: 'service.url.blank'},
         format: {with: /\A(https?:\/\/)([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?\z/, message: 'service.url.format', if: :url?}
+
+      validates :path, format: {with: /\A(\/:?[a-z]+)+\z/, message: 'service.path.format'}
     end
   end
 end

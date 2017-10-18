@@ -3,6 +3,7 @@ FactoryGirl.define do
     factory :service do
       key 'test.service'
       url 'https://test-service.com/'
+      path '/example'
     end
   end
 end

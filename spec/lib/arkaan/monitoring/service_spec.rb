@@ -21,6 +21,18 @@ RSpec.describe Arkaan::Monitoring::Service do
     end
   end
 
+  describe :path do
+    it 'has a path set at creation' do
+      expect(build(:service).path).to eq '/example'
+    end
+    it 'has a default value that is the root path' do
+      expect(build(:empty_service).path).to eq '/'
+    end
+    it 'invalidates the path if it\'s in a wrong format' do
+      expect(build(:service, path: 'essai').valid?).to be false
+    end
+  end
+
   describe :creator do
     it 'has a creator set at creation' do
       expect(build(:service, creator: create(:account)).creator.username).to eq 'Babausse'
@@ -30,19 +42,24 @@ RSpec.describe Arkaan::Monitoring::Service do
   describe :messages do
     it 'returns the right message if the key is already taken' do
       create(:service)
-      account = build(:service)
-      account.validate
-      expect(account.errors.messages[:key]).to eq ['service.key.uniq']
+      service = build(:service)
+      service.validate
+      expect(service.errors.messages[:key]).to eq ['service.key.uniq']
     end
     it 'returns the right message if the URL is not given' do
-      account = build(:service, url: nil)
-      account.validate
-      expect(account.errors.messages[:url]).to eq ['service.url.blank']
+      service = build(:service, url: nil)
+      service.validate
+      expect(service.errors.messages[:url]).to eq ['service.url.blank']
     end
     it 'returns the right message if the URL is given in the wrong format' do
-      account = build(:service, url: 'test')
-      account.validate
-      expect(account.errors.messages[:url]).to eq ['service.url.format']
+      service = build(:service, url: 'test')
+      service.validate
+      expect(service.errors.messages[:url]).to eq ['service.url.format']
+    end
+    it 'returns the right message if the path is not in the right format' do
+      service = build(:service, path: 'essai')
+      service.validate
+      expect(service.errors.messages[:path]).to eq ['service.path.format']
     end
   end
 end

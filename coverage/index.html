@@ -14,7 +14,7 @@
       <img src="./assets/0.10.2/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2017-10-19T03:33:27+02:00">2017-10-19T03:33:27+02:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2017-10-18T11:58:06-07:00">2017-10-18T11:58:06-07:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -25,15 +25,15 @@
      covered at
      <span class="covered_strength">
        <span class="green">
-         1.73
+         1.72
        </span>
     </span> hits/line)
   </h2>
   <a name="AllFiles"></a>
   <div>
     <b>15</b> files in total.
-    <b>123</b> relevant lines. 
-    <span class="green"><b>123</b> lines covered</span> and
+    <b>125</b> relevant lines. 
+    <span class="green"><b>125</b> lines covered</span> and
     <span class="red"><b>0</b> lines missed </span>
   </div>
   <table class="file_list">
@@ -103,9 +103,9 @@
       <tr>
         <td class="strong"><a href="#984297e3afb3ebf13000fd4f105067c92adb93cd" class="src_link" title="lib/arkaan/monitoring/service.rb">lib/arkaan/monitoring/service.rb</a></td>
         <td class="green strong">100.0 %</td>
-        <td>27</td>
-        <td>10</td>
-        <td>10</td>
+        <td>31</td>
+        <td>12</td>
+        <td>12</td>
         <td>0</td>
         <td>1.0</td>
       </tr>
@@ -976,8 +976,8 @@
     <h3>lib/arkaan/monitoring/service.rb</h3>
     <h4><span class="green">100.0 %</span> covered</h4>
     <div>
-      <b>10</b> relevant lines. 
-      <span class="green"><b>10</b> lines covered</span> and
+      <b>12</b> relevant lines. 
+      <span class="green"><b>12</b> lines covered</span> and
       <span class="red"><b>0</b> lines missed.</span>
     </div>
   </div>
@@ -1075,34 +1075,34 @@
           <code class="ruby"></code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="16">
+        <li class="covered" data-hits="1" data-linenumber="16">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">      # @!attribute [rw] creator</code>
+          <code class="ruby">      field :path, type: String, default: &#39;/&#39;</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="17">
           
           
-          <code class="ruby">      #   @return [Arkaan::Account] the creator of this service.</code>
+          <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="18">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="18">
           
-          <code class="ruby">      belongs_to :creator, class_name: &#39;Arkaan::Account&#39;, optional: true, inverse_of: :services</code>
+          
+          <code class="ruby">      # @!attribute [rw] creator</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="19">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">      #   @return [Arkaan::Account] the creator of this service.</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="20">
           <span class="hits">1</span>
           
-          <code class="ruby">      validates :key, uniqueness: {message: &#39;service.key.uniq&#39;}</code>
+          <code class="ruby">      belongs_to :creator, class_name: &#39;Arkaan::Account&#39;, optional: true, inverse_of: :services</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="21">
@@ -1114,34 +1114,58 @@
         <li class="covered" data-hits="1" data-linenumber="22">
           <span class="hits">1</span>
           
-          <code class="ruby">      validates :url,</code>
+          <code class="ruby">      validates :key, uniqueness: {message: &#39;service.key.uniq&#39;}</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="23">
           
           
-          <code class="ruby">        presence: {message: &#39;service.url.blank&#39;},</code>
+          <code class="ruby"></code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="24">
+        <li class="covered" data-hits="1" data-linenumber="24">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">        format: {with: /\A(https?:\/\/)([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?\z/, message: &#39;service.url.format&#39;, if: :url?}</code>
+          <code class="ruby">      validates :url,</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="25">
           
           
-          <code class="ruby">    end</code>
+          <code class="ruby">        presence: {message: &#39;service.url.blank&#39;},</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="26">
           
           
-          <code class="ruby">  end</code>
+          <code class="ruby">        format: {with: /\A(https?:\/\/)([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?\z/, message: &#39;service.url.format&#39;, if: :url?}</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="27">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="28">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      validates :path, format: {with: /\A(\/:?[a-z]+)+\z/, message: &#39;service.path.format&#39;}</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="29">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="30">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="31">
           
           
           <code class="ruby">end</code>
