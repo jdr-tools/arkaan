@@ -9,4 +9,5 @@ module Arkaan
   autoload :Permissions, 'arkaan/permissions'
   autoload :Concerns   , 'arkaan/concerns'
   autoload :OAuth      , 'arkaan/oauth'
+  autoload :Monitoring , 'arkaan/monitoring'
 end

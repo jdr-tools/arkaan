@@ -423,6 +423,33 @@ same as the password.</p>
       <li class="public ">
   <span class="summary_signature">
     
+      <a href="#services-instance_method" title="#services (instance method)">#<strong>services</strong>  &#x21d2; Array&lt;Arkaan::Monitoring::Service] the services created by this user. </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Array&lt;Arkaan::Monitoring::Service] the services created by this user.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
       <a href="#username-instance_method" title="#username (instance method)">#<strong>username</strong>  &#x21d2; String </a>
     
 
@@ -1042,6 +1069,64 @@ same as the password.</p>
 </div>
     
       
+      <span id="services=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="services-instance_method">
+  
+    #<strong>services</strong>  &#x21d2; <tt>Array&lt;<span class='object_link'><a href="Monitoring/Service.html" title="Arkaan::Monitoring::Service (class)">Arkaan::Monitoring::Service</a></span>] the <span class='object_link'><a href="#services-instance_method" title="Arkaan::Account#services (method)">services</a></span> created by this user.</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns Array&lt;Arkaan::Monitoring::Service] the services created by this
+user.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array&lt;<span class='object_link'><a href="Monitoring/Service.html" title="Arkaan::Monitoring::Service (class)">Arkaan::Monitoring::Service</a></span>] the <span class='object_link'><a href="#services-instance_method" title="Arkaan::Account#services (method)">services</a></span> created by this user.</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Array&lt;Arkaan::Monitoring::Service] the services created by this user.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+45</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/arkaan/account.rb', line 45</span>
+
+<span class='id identifier rubyid_has_many'>has_many</span> <span class='symbol'>:services</span><span class='comma'>,</span> <span class='label'>class_name:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Arkaan::Monitoring::Service</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='label'>inverse_of:</span> <span class='symbol'>:creator</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
       <span id="username=-instance_method"></span>
       <div class="method_details ">
   <h3 class="signature " id="username-instance_method">
@@ -1106,7 +1191,7 @@ or more characters long.</p>
 </div>
 
       <div id="footer">
-  Generated on Sun Oct 15 06:46:22 2017 by
+  Generated on Thu Oct 19 03:33:48 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.9 (ruby-2.3.1).
 </div>

@@ -40,6 +40,11 @@ module Arkaan
     # @!attribute [rw] authorizations
     #   @return [Array<Arkaan::OAuth::Authorization>] the authorization issued by this account to third-party applications to access its data.
     has_many :authorizations, class_name: 'Arkaan::OAuth::Authorization', inverse_of: :account
+    # @!attribute [rw] services
+    #   @return [Array<Arkaan::Monitoring::Service] the services created by this user.
+    has_many :services, class_name: 'Arkaan::Monitoring::Service', inverse_of: :creator
+
+    attr_readonly :password_digest
 
     validates :username,
       presence: {message: 'account.username.blank'},

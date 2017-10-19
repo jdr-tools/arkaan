@@ -107,6 +107,15 @@ RSpec.describe Arkaan::Account do
     end
   end
 
+  describe :services do
+    it 'returns the right services for a given account' do
+      expect(create(:account_with_services).services.count).to be 1
+    end
+    it 'returns the right service for an account with a service' do
+      expect(create(:account_with_services).services.first.key).to eq 'test.service'
+    end
+  end
+
   describe :messages do
 
     let(:invalid_account) { build(:empty_account) }
