@@ -90,6 +90,27 @@
         null,
         1,
         1,
+        1,
+        null,
+        null
+      ],
+      "/home/vincent/workspace/arkaan/lib/arkaan/monitoring/instance.rb": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        null,
+        null,
+        null,
+        1,
+        null,
+        1,
+        null,
+        1,
+        null,
+        null,
+        null,
         null,
         null
       ],
@@ -109,8 +130,6 @@
         null,
         1,
         null,
-        1,
-        null,
         null,
         null,
         1,
@@ -118,8 +137,6 @@
         1,
         null,
         1,
-        null,
-        null,
         null,
         1,
         null,
@@ -335,6 +352,6 @@
         null
       ]
     },
-    "timestamp": 1508353086
+    "timestamp": 1508693812
   }
 }

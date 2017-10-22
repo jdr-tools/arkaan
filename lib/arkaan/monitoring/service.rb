@@ -9,9 +9,6 @@ module Arkaan
       # @!attribute [rw] key
       #   @return [String] the name, or title of the service, optionally given to identify it more easily.
       field :key, type: String
-      # @!attribute [rw] url
-      #   @return [String] the URL of the service, where the requests will be issued.
-      field :url, type: String
       # @!attribute [rw] path
       #   @return [String] the path the service will be mapped on in the API.
       field :path, type: String, default: '/'
@@ -19,12 +16,11 @@ module Arkaan
       # @!attribute [rw] creator
       #   @return [Arkaan::Account] the creator of this service.
       belongs_to :creator, class_name: 'Arkaan::Account', optional: true, inverse_of: :services
+      # @!attribute [rw] instances
+      #   @return [Array<Arkaan::Monitoring::Instance>] the instances of this service currently deployed.
+      embeds_many :instances, class_name: 'Arkaan::Monitoring::Instance', inverse_of: :service
 
       validates :key, uniqueness: {message: 'service.key.uniq'}
-
-      validates :url,
-        presence: {message: 'service.url.blank'},
-        format: {with: /\A(https?:\/\/)([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?\z/, message: 'service.url.format', if: :url?}
 
       validates :path, format: {with: /\A(\/:?[a-z]+)+\z/, message: 'service.path.format'}
     end

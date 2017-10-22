@@ -169,6 +169,33 @@ API.</p>
       <li class="public ">
   <span class="summary_signature">
     
+      <a href="#instances-instance_method" title="#instances (instance method)">#<strong>instances</strong>  &#x21d2; Array&lt;Arkaan::Monitoring::Instance&gt; </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>The instances of this service currently deployed.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
       <a href="#key-instance_method" title="#key (instance method)">#<strong>key</strong>  &#x21d2; String </a>
     
 
@@ -197,7 +224,7 @@ easily.</p>
       <li class="public ">
   <span class="summary_signature">
     
-      <a href="#url-instance_method" title="#url (instance method)">#<strong>url</strong>  &#x21d2; String </a>
+      <a href="#path-instance_method" title="#path (instance method)">#<strong>path</strong>  &#x21d2; String </a>
     
 
     
@@ -215,7 +242,7 @@ easily.</p>
 
   
     <span class="summary_desc"><div class='inline'>
-<p>The URL of the service, where the requests will be issued.</p>
+<p>The path the service will be mapped on in the API.</p>
 </div></span>
   
 </li>
@@ -290,6 +317,63 @@ easily.</p>
 </div>
     
       
+      <span id="instances=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="instances-instance_method">
+  
+    #<strong>instances</strong>  &#x21d2; <tt>Array&lt;<span class='object_link'><a href="Instance.html" title="Arkaan::Monitoring::Instance (class)">Arkaan::Monitoring::Instance</a></span>&gt;</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the instances of this service currently deployed.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array&lt;<span class='object_link'><a href="Instance.html" title="Arkaan::Monitoring::Instance (class)">Arkaan::Monitoring::Instance</a></span>&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the instances of this service currently deployed.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+21</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/arkaan/monitoring/service.rb', line 21</span>
+
+<span class='id identifier rubyid_embeds_many'>embeds_many</span> <span class='symbol'>:instances</span><span class='comma'>,</span> <span class='label'>class_name:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Arkaan::Monitoring::Instance</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='label'>inverse_of:</span> <span class='symbol'>:service</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
       <span id="key=-instance_method"></span>
       <div class="method_details ">
   <h3 class="signature " id="key-instance_method">
@@ -349,11 +433,11 @@ easily.</p>
 </div>
     
       
-      <span id="url=-instance_method"></span>
+      <span id="path=-instance_method"></span>
       <div class="method_details ">
-  <h3 class="signature " id="url-instance_method">
+  <h3 class="signature " id="path-instance_method">
   
-    #<strong>url</strong>  &#x21d2; <tt>String</tt> 
+    #<strong>path</strong>  &#x21d2; <tt>String</tt> 
   
 
   
@@ -362,7 +446,7 @@ easily.</p>
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Returns the URL of the service, where the requests will be issued.</p>
+<p>Returns the path the service will be mapped on in the API.</p>
 
 
   </div>
@@ -381,7 +465,7 @@ easily.</p>
       
         &mdash;
         <div class='inline'>
-<p>the URL of the service, where the requests will be issued.</p>
+<p>the path the service will be mapped on in the API.</p>
 </div>
       
     </li>
@@ -399,7 +483,7 @@ easily.</p>
     <td>
       <pre class="code"><span class="info file"># File 'lib/arkaan/monitoring/service.rb', line 14</span>
 
-<span class='id identifier rubyid_field'>field</span> <span class='symbol'>:url</span><span class='comma'>,</span> <span class='label'>type:</span> <span class='const'>String</span></pre>
+<span class='id identifier rubyid_field'>field</span> <span class='symbol'>:path</span><span class='comma'>,</span> <span class='label'>type:</span> <span class='const'>String</span><span class='comma'>,</span> <span class='label'>default:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>/</span><span class='tstring_end'>&#39;</span></span></pre>
     </td>
   </tr>
 </table>
@@ -411,7 +495,7 @@ easily.</p>
 </div>
 
       <div id="footer">
-  Generated on Thu Oct 19 03:33:48 2017 by
+  Generated on Sun Oct 22 11:41:08 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.9 (ruby-2.3.1).
 </div>
