@@ -5,10 +5,16 @@ module Arkaan
     class Instance
       include Mongoid::Document
       include Mongoid::Timestamps
+      include Arkaan::Concerns::Activable
 
       # @!attribute [rw] url
       #   @return [String] the URL of the instance, where the requests will be issued.
       field :url, type: String
+      # @!attribute [rw] running
+      #   @return [Boolean] the running status of the instance, indicating if it can be used or not.
+      field :running, type: Boolean, default: false
+
+      scope :running , ->{ where(running: true) }
 
       # @!attribute [r] service
       #   @return [Arkaan::Monitoring::Service] the service this instance is linked to.

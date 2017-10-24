@@ -5,6 +5,7 @@ module Arkaan
     class Service
       include Mongoid::Document
       include Mongoid::Timestamps
+      include Arkaan::Concerns::Activable
 
       # @!attribute [rw] key
       #   @return [String] the name, or title of the service, optionally given to identify it more easily.

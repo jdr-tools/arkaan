@@ -3,5 +3,6 @@ module Arkaan
   # @authro Vincent Courtois <courtois.vincent@outlook.com>
   module Concerns
     autoload :Sluggable, 'arkaan/concerns/sluggable'
+    autoload :Activable, 'arkaan/concerns/activable'
   end
 end

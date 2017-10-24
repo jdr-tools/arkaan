@@ -27,6 +27,37 @@ RSpec.describe Arkaan::Monitoring::Service do
     end
   end
 
+  describe :active do
+    it 'has an active status set at creation' do
+      expect(build(:service).active).to be false
+    end
+  end
+
+  describe :scopes do
+    describe :active do
+      before(:each) do
+        create(:service, active: true)
+      end
+      it 'has a scope giving the currently active instances' do
+        expect(Arkaan::Monitoring::Service.active.count).to be 1
+      end
+      it 'returns the currently active instances' do
+        expect(Arkaan::Monitoring::Service.active.first.key).to eq 'test.service'
+      end
+    end
+    describe :inactive do
+      before(:each) do
+        create(:service, active: false)
+      end
+      it 'has a scope giving the currently inactive instances' do
+        expect(Arkaan::Monitoring::Service.inactive.count).to be 1
+      end
+      it 'returns the currently inactive instances' do
+        expect(Arkaan::Monitoring::Service.inactive.first.key).to eq 'test.service'
+      end
+    end
+  end
+
   describe :messages do
     it 'returns the right message if the key is already taken' do
       create(:service)

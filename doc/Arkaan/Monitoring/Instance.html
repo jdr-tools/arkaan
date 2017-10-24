@@ -89,7 +89,7 @@
   
   <dl>
       <dt>Includes:</dt>
-      <dd>Mongoid::Document, Mongoid::Timestamps</dd>
+      <dd><span class='object_link'><a href="../Concerns/Activable.html" title="Arkaan::Concerns::Activable (module)">Concerns::Activable</a></span>, Mongoid::Document, Mongoid::Timestamps</dd>
   </dl>
   
   
@@ -122,6 +122,33 @@ have many instances to balance the load between them all.</p>
 
   <h2>Instance Attribute Summary <small><a href="#" class="summary_toggle">collapse</a></small></h2>
   <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#running-instance_method" title="#running (instance method)">#<strong>running</strong>  &#x21d2; Boolean </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>The running status of the instance, indicating if it can be used or not.</p>
+</div></span>
+  
+</li>
+
     
       <li class="public ">
   <span class="summary_signature">
@@ -187,13 +214,78 @@ have many instances to balance the load between them all.</p>
 
   
   
+  
+  
+  
+  
+  
+  
+  
   <div id="instance_attr_details" class="attr_details">
     <h2>Instance Attribute Details</h2>
     
       
-      <span id=""></span>
+      <span id="running=-instance_method"></span>
       <div class="method_details first">
-  <h3 class="signature first" id="service-instance_method">
+  <h3 class="signature first" id="running-instance_method">
+  
+    #<strong>running</strong>  &#x21d2; <tt>Boolean</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the running status of the instance, indicating if it can be used or
+not.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the running status of the instance, indicating if it can be used or not.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+15</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/arkaan/monitoring/instance.rb', line 15</span>
+
+<span class='id identifier rubyid_field'>field</span> <span class='symbol'>:running</span><span class='comma'>,</span> <span class='label'>type:</span> <span class='const'>Boolean</span><span class='comma'>,</span> <span class='label'>default:</span> <span class='kw'>false</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="service-instance_method">
   
     #<strong>service</strong>  &#x21d2; <tt><span class='object_link'><a href="Service.html" title="Arkaan::Monitoring::Service (class)">Arkaan::Monitoring::Service</a></span></tt>  <span class="extras">(readonly)</span>
   
@@ -236,10 +328,10 @@ have many instances to balance the load between them all.</p>
       <pre class="lines">
 
 
-15</pre>
+21</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/arkaan/monitoring/instance.rb', line 15</span>
+      <pre class="code"><span class="info file"># File 'lib/arkaan/monitoring/instance.rb', line 21</span>
 
 <span class='id identifier rubyid_embedded_in'>embedded_in</span> <span class='symbol'>:service</span><span class='comma'>,</span> <span class='label'>class_name:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Arkaan::Monitoring::Service</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='label'>inverse_of:</span> <span class='symbol'>:instances</span></pre>
     </td>
@@ -293,10 +385,10 @@ have many instances to balance the load between them all.</p>
       <pre class="lines">
 
 
-11</pre>
+12</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/arkaan/monitoring/instance.rb', line 11</span>
+      <pre class="code"><span class="info file"># File 'lib/arkaan/monitoring/instance.rb', line 12</span>
 
 <span class='id identifier rubyid_field'>field</span> <span class='symbol'>:url</span><span class='comma'>,</span> <span class='label'>type:</span> <span class='const'>String</span></pre>
     </td>
@@ -310,7 +402,7 @@ have many instances to balance the load between them all.</p>
 </div>
 
       <div id="footer">
-  Generated on Sun Oct 22 11:41:08 2017 by
+  Generated on Wed Oct 25 00:02:39 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.9 (ruby-2.3.1).
 </div>
