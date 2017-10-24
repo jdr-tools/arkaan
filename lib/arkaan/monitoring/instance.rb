@@ -1,7 +1,7 @@
 module Arkaan
   module Monitoring
     # An instance is one of the services, deployed on one server. A service may have many instances to balance the load between them all.
-    # @param Vincent Courtois <courtois.vincent@outlook.com>
+    # @author Vincent Courtois <courtois.vincent@outlook.com>
     class Instance
       include Mongoid::Document
       include Mongoid::Timestamps

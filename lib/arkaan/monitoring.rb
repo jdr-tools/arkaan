@@ -4,5 +4,6 @@ module Arkaan
   module Monitoring
     autoload :Service , 'arkaan/monitoring/service'
     autoload :Instance, 'arkaan/monitoring/instance'
+    autoload :Gateway , 'arkaan/monitoring/gateway'
   end
 end
