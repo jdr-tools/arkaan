@@ -13,6 +13,8 @@ module Arkaan
       # @!attribute [rw] rights
       #   @return [Array<Arkaan::Permissions::Right>] the rights granted by belonging to this group.
       has_and_belongs_to_many :rights, class_name: 'Arkaan::Permissions::Right', inverse_of: :groups
+
+      make_sluggable 'group'
     end
   end
 end

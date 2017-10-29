@@ -6,6 +6,7 @@ module Arkaan
       include Mongoid::Document
       include Mongoid::Timestamps
       include Arkaan::Concerns::Activable
+      include Arkaan::Concerns::Diagnosticable
 
       # @!attribute [rw] key
       #   @return [String] the name, or title of the service, optionally given to identify it more easily.
@@ -13,6 +14,8 @@ module Arkaan
       # @!attribute [rw] path
       #   @return [String] the path the service will be mapped on in the API.
       field :path, type: String, default: '/'
+      
+      make_diagnosticable 'service'
 
       # @!attribute [rw] creator
       #   @return [Arkaan::Account] the creator of this service.

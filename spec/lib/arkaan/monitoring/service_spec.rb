@@ -1,4 +1,7 @@
 RSpec.describe Arkaan::Monitoring::Service do
+
+  include_examples 'diagnostic', :service, '/status'
+
   describe :key do
     it 'has a key set at creation' do
       expect(build(:service).key).to eq 'test.service'

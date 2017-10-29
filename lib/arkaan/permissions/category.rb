@@ -6,6 +6,8 @@ module Arkaan
       include Mongoid::Document
       include Mongoid::Timestamps
       include Arkaan::Concerns::Sluggable
+
+      make_sluggable 'category'
     end
   end
 end

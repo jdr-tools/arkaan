@@ -1,4 +1,7 @@
 RSpec.describe Arkaan::Monitoring::Gateway do
+
+  include_examples 'diagnostic', :gateway, '/status'
+
   describe :url do
     it 'has a url set at creation' do
       expect(build(:gateway).url).to eq 'https://gateway.test/'

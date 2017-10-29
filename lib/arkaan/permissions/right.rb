@@ -10,6 +10,8 @@ module Arkaan
       # @!attribute [rw] groups
       #   @return [Array<Arkaan::Permissions::Group>] the groups granted with the permission to access features opened by this right.
       has_and_belongs_to_many :groups, class_name: 'Arkaan::Permissions::Group', inverse_of: :rights
+
+      make_sluggable 'right'
     end
   end
 end

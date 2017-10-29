@@ -3,6 +3,7 @@ FactoryGirl.define do
     factory :service do
       key 'test.service'
       path '/example'
+      diagnostic '/status'
 
       factory :service_with_running_instances do
         key 'test.services.instances.running'
