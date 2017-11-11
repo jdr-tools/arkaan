@@ -44,6 +44,8 @@ module Arkaan
     #   @return [Array<Arkaan::Monitoring::Service] the services created by this user.
     has_many :services, class_name: 'Arkaan::Monitoring::Service', inverse_of: :creator
 
+    has_many :sessions, class_name: 'Arkaan::Authentication::Session', inverse_of: :account
+
     attr_readonly :password_digest
 
     validates :username,

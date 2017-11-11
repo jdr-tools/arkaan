@@ -116,6 +116,15 @@ RSpec.describe Arkaan::Account do
     end
   end
 
+  describe :sessions do
+    it 'returns the right sessions for a given account' do
+      expect(create(:account_with_sessions).sessions.count).to be 1
+    end
+    it 'returns the right session for an account with a session' do
+      expect(create(:account_with_sessions).sessions.first.token).to eq 'session_token'
+    end
+  end
+
   describe :messages do
 
     let(:invalid_account) { build(:empty_account) }
