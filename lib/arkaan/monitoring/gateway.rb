@@ -14,6 +14,9 @@ module Arkaan
       # @!attribute [rw] running
       #   @return [Boolean] the running status of the gateway, indicating if it can be used or not.
       field :running, type: Boolean, default: false
+      # @!attribute [rw] gateways
+      #   @return [String] the uniq token for this gateway, identifying it in the micro services.
+      field :token, type: String
 
       scope :running , ->{ where(running: true) }
 
@@ -22,6 +25,10 @@ module Arkaan
       validates :url,
         presence: {message: 'gateway.url.blank'},
         format: {with: /\A(https?:\/\/)([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?\z/, message: 'gateway.url.format', if: :url?}
+
+      validates :token,
+        presence: {message: 'gateway.token.blank'},
+        uniqueness: {message: 'gateway.token.uniq'}
     end
   end
 end

@@ -142,6 +142,33 @@ application suite.</p>
       <li class="public ">
   <span class="summary_signature">
     
+      <a href="#gateways-instance_method" title="#gateways (instance method)">#<strong>gateways</strong>  &#x21d2; String </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>The uniq token for this gateway, identifying it in the micro services.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
       <a href="#running-instance_method" title="#running (instance method)">#<strong>running</strong>  &#x21d2; Boolean </a>
     
 
@@ -219,9 +246,67 @@ application suite.</p>
     <h2>Instance Attribute Details</h2>
     
       
-      <span id="running=-instance_method"></span>
+      <span id="gateways=-instance_method"></span>
       <div class="method_details first">
-  <h3 class="signature first" id="running-instance_method">
+  <h3 class="signature first" id="gateways-instance_method">
+  
+    #<strong>gateways</strong>  &#x21d2; <tt>String</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the uniq token for this gateway, identifying it in the micro
+services.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the uniq token for this gateway, identifying it in the micro services.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+19</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/arkaan/monitoring/gateway.rb', line 19</span>
+
+<span class='id identifier rubyid_field'>field</span> <span class='symbol'>:token</span><span class='comma'>,</span> <span class='label'>type:</span> <span class='const'>String</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="running=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="running-instance_method">
   
     #<strong>running</strong>  &#x21d2; <tt>Boolean</tt> 
   
@@ -339,7 +424,7 @@ not.</p>
 </div>
 
       <div id="footer">
-  Generated on Sun Nov 26 14:03:01 2017 by
+  Generated on Sun Nov 26 18:11:04 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.9 (ruby-2.3.1).
 </div>

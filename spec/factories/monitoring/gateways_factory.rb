@@ -3,6 +3,7 @@ FactoryGirl.define do
     factory :gateway do
       url 'https://gateway.test/'
       diagnostic '/status'
+      token 'test_token'
     end
   end
 end

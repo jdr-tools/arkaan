@@ -26,6 +26,19 @@ RSpec.describe Arkaan::Monitoring::Gateway do
     end
   end
 
+  describe :token do
+    it 'has a token set at creation' do
+      expect(build(:gateway).token).to eq 'test_token'
+    end
+    it 'invalidates the gateway if the token is not given' do
+      expect(build(:gateway, token: nil).valid?).to be false
+    end
+    it 'invalidates the gateway if the token is already existing' do
+      create(:gateway)
+      expect(build(:gateway).valid?).to be false
+    end
+  end
+
   describe :scopes do
     describe :running do
       before(:each) do
@@ -72,6 +85,17 @@ RSpec.describe Arkaan::Monitoring::Gateway do
       gateway = build(:gateway, url: 'test')
       gateway.validate
       expect(gateway.errors.messages[:url]).to eq ['gateway.url.format']
+    end
+    it 'returns the right message if the token is not given' do
+      gateway = build(:gateway, token: nil)
+      gateway.validate
+      expect(gateway.errors.messages[:token]).to eq ['gateway.token.blank']
+    end
+    it 'returns the right message if the token already exists' do
+      create(:gateway)
+      gateway = build(:gateway)
+      gateway.validate
+      expect(gateway.errors.messages[:token]).to eq ['gateway.token.uniq']
     end
   end
 end

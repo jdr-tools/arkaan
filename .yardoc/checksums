@@ -10,7 +10,7 @@ lib/arkaan/permissions/group.rb 72797f8f3596ef4168082ca8dcf8dd3443ab083e
 lib/arkaan/permissions/right.rb d5c435ec036d96c04b9f8c424d599d0ec7f4614d
 lib/arkaan/concerns/activable.rb 758038fbbfe88f718097aa8fe886baeb5e133700
 lib/arkaan/concerns/sluggable.rb 18f0812b7634bee9012aeaf82282c65833d69777
-lib/arkaan/monitoring/gateway.rb 72a294800145ee5972cf18a2d54f5fc149751f89
+lib/arkaan/monitoring/gateway.rb b31148aea1801484cf721fe2b6db2835ff089525
 lib/arkaan/monitoring/service.rb a0dfa0c5e510df9693affe083376560b4918565d
 lib/arkaan/oauth/access_token.rb 4d7cd07c528933f53321b95e30f71964374a549c
 lib/arkaan/monitoring/instance.rb 3d4e317a87f2e8c7d8ea1bf61ed5d389efe755ec

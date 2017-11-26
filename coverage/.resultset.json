@@ -89,6 +89,8 @@
       ],
       "/home/vincent/workspace/arkaan/lib/arkaan/authentication.rb": [
         1,
+        null,
+        null,
         1,
         1,
         null,
@@ -97,13 +99,22 @@
       "/home/vincent/workspace/arkaan/lib/arkaan/authentication/session.rb": [
         1,
         1,
+        null,
+        null,
+        null,
+        null,
         1,
         1,
         1,
         null,
-        1,
+        null,
         null,
         1,
+        null,
+        null,
+        1,
+        null,
+        null,
         null,
         1,
         null,
@@ -147,9 +158,15 @@
         null,
         1,
         null,
+        1,
+        null,
         3,
         null,
         1,
+        null,
+        1,
+        null,
+        null,
         null,
         1,
         null,
@@ -497,6 +514,6 @@
         null
       ]
     },
-    "timestamp": 1510403557
+    "timestamp": 1511716163
   }
 }

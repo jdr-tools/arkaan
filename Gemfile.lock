@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    arkaan (0.5.8)
+    arkaan (0.5.10)
       activemodel (= 5.1.4)
       activesupport (= 5.1.4)
       bcrypt (= 3.1.11)
@@ -74,4 +74,4 @@ DEPENDENCIES
   yard (= 0.9.9)
 
 BUNDLED WITH
-   1.16.0.pre.2
+   1.16.0
