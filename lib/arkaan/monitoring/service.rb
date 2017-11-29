@@ -23,6 +23,9 @@ module Arkaan
       # @!attribute [rw] instances
       #   @return [Array<Arkaan::Monitoring::Instance>] the instances of this service currently deployed.
       embeds_many :instances, class_name: 'Arkaan::Monitoring::Instance', inverse_of: :service
+      # @!attribute [rw] routes
+      #   @return [Array<Arkaan::Monitoring::Route>] the routes associated to this service, accessible from the gateway.
+      embeds_many :routes, class_name: 'Arkaan::Monitoring::Route', inverse_of: :service
 
       validates :key, uniqueness: {message: 'service.key.uniq'}
 

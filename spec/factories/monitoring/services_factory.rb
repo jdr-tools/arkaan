@@ -32,6 +32,13 @@ FactoryGirl.define do
           service.instances << build(:instance, active: false)
         end
       end
+
+      factory :service_with_routes do
+        key 'test.services.routes'
+        after :create do |service, evaluator|
+          service.routes << build(:route)
+        end
+      end
     end
   end
 end

@@ -248,6 +248,33 @@ easily.</p>
 </li>
 
     
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#routes-instance_method" title="#routes (instance method)">#<strong>routes</strong>  &#x21d2; Array&lt;Arkaan::Monitoring::Route&gt; </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>The routes associated to this service, accessible from the gateway.</p>
+</div></span>
+  
+</li>
+
+    
   </ul>
 
 
@@ -503,13 +530,70 @@ easily.</p>
 </table>
 </div>
     
+      
+      <span id="routes=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="routes-instance_method">
+  
+    #<strong>routes</strong>  &#x21d2; <tt>Array&lt;<span class='object_link'><a href="Route.html" title="Arkaan::Monitoring::Route (class)">Arkaan::Monitoring::Route</a></span>&gt;</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the routes associated to this service, accessible from the gateway.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array&lt;<span class='object_link'><a href="Route.html" title="Arkaan::Monitoring::Route (class)">Arkaan::Monitoring::Route</a></span>&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the routes associated to this service, accessible from the gateway.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+28</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/arkaan/monitoring/service.rb', line 28</span>
+
+<span class='id identifier rubyid_embeds_many'>embeds_many</span> <span class='symbol'>:routes</span><span class='comma'>,</span> <span class='label'>class_name:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Arkaan::Monitoring::Route</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='label'>inverse_of:</span> <span class='symbol'>:service</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
   </div>
 
 
 </div>
 
       <div id="footer">
-  Generated on Sun Nov 26 18:11:04 2017 by
+  Generated on Wed Nov 29 23:26:11 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.9 (ruby-2.3.1).
 </div>

@@ -4,7 +4,7 @@
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>
-  Class: Arkaan::Monitoring::Instance
+  Class: Arkaan::Monitoring::Route
   
     &mdash; Documentation by YARD 0.9.9
   
@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="../../css/common.css" type="text/css" charset="utf-8" />
 
 <script type="text/javascript" charset="utf-8">
-  pathId = "Arkaan::Monitoring::Instance";
+  pathId = "Arkaan::Monitoring::Route";
   relpath = '../../';
 </script>
 
@@ -36,10 +36,10 @@
       <div id="header">
         <div id="menu">
   
-    <a href="../../_index.html">Index (I)</a> &raquo;
+    <a href="../../_index.html">Index (R)</a> &raquo;
     <span class='title'><span class='object_link'><a href="../../Arkaan.html" title="Arkaan (module)">Arkaan</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../Monitoring.html" title="Arkaan::Monitoring (module)">Monitoring</a></span></span>
      &raquo; 
-    <span class="title">Instance</span>
+    <span class="title">Route</span>
   
 </div>
 
@@ -59,7 +59,7 @@
         <div class="clear"></div>
       </div>
 
-      <div id="content"><h1>Class: Arkaan::Monitoring::Instance
+      <div id="content"><h1>Class: Arkaan::Monitoring::Route
   
   
   
@@ -74,7 +74,7 @@
         <ul class="fullTree">
           <li>Object</li>
           
-            <li class="next">Arkaan::Monitoring::Instance</li>
+            <li class="next">Arkaan::Monitoring::Route</li>
           
         </ul>
         <a href="#" class="inheritanceTree">show all</a>
@@ -89,7 +89,7 @@
   
   <dl>
       <dt>Includes:</dt>
-      <dd><span class='object_link'><a href="../Concerns/Activable.html" title="Arkaan::Concerns::Activable (module)">Concerns::Activable</a></span>, Mongoid::Document, Mongoid::Timestamps</dd>
+      <dd>Mongoid::Document, Mongoid::Timestamps</dd>
   </dl>
   
   
@@ -99,7 +99,7 @@
   
   <dl>
     <dt>Defined in:</dt>
-    <dd>lib/arkaan/monitoring/instance.rb</dd>
+    <dd>lib/arkaan/monitoring/route.rb</dd>
   </dl>
   
 </div>
@@ -107,30 +107,14 @@
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
     
-<p>An instance is one of the services, deployed on one server. A service may
-have many instances to balance the load between them all.</p>
+<p>A route is an endpoint accessible in a service. Each route has to have an
+associated endpoint in the deeeeployed instances.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
-<p class="tag_title">Author:</p>
-<ul class="author">
-  
-    <li>
-      
-      
-      
-      
-        
-        <div class='inline'>
-<p>Vincent Courtois &lt;courtois.vincent@outlook.com&gt;</p>
-</div>
-      
-    </li>
-  
-</ul>
 
 </div>
 
@@ -142,7 +126,7 @@ have many instances to balance the load between them all.</p>
       <li class="public ">
   <span class="summary_signature">
     
-      <a href="#running-instance_method" title="#running (instance method)">#<strong>running</strong>  &#x21d2; Boolean </a>
+      <a href="#path-instance_method" title="#path (instance method)">#<strong>path</strong>  &#x21d2; String </a>
     
 
     
@@ -160,7 +144,7 @@ have many instances to balance the load between them all.</p>
 
   
     <span class="summary_desc"><div class='inline'>
-<p>The running status of the instance, indicating if it can be used or not.</p>
+<p>The path (URI) of the route in the service?.</p>
 </div></span>
   
 </li>
@@ -178,8 +162,6 @@ have many instances to balance the load between them all.</p>
   
   
     
-      <span class="note title readonly">readonly</span>
-    
     
   
   
@@ -189,7 +171,7 @@ have many instances to balance the load between them all.</p>
 
   
     <span class="summary_desc"><div class='inline'>
-<p>The service this instance is linked to.</p>
+<p>The service in which this route is declared.</p>
 </div></span>
   
 </li>
@@ -198,7 +180,7 @@ have many instances to balance the load between them all.</p>
       <li class="public ">
   <span class="summary_signature">
     
-      <a href="#url-instance_method" title="#url (instance method)">#<strong>url</strong>  &#x21d2; String </a>
+      <a href="#verb-instance_method" title="#verb (instance method)">#<strong>verb</strong>  &#x21d2; String </a>
     
 
     
@@ -216,7 +198,7 @@ have many instances to balance the load between them all.</p>
 
   
     <span class="summary_desc"><div class='inline'>
-<p>The URL of the instance, where the requests will be issued.</p>
+<p>The verb (HTTP method) of this route in the service.</p>
 </div></span>
   
 </li>
@@ -230,80 +212,15 @@ have many instances to balance the load between them all.</p>
 
   
   
-  
-  
-  
-  
-  
-  
-  
   <div id="instance_attr_details" class="attr_details">
     <h2>Instance Attribute Details</h2>
     
       
-      <span id="running=-instance_method"></span>
+      <span id="path=-instance_method"></span>
       <div class="method_details first">
-  <h3 class="signature first" id="running-instance_method">
+  <h3 class="signature first" id="path-instance_method">
   
-    #<strong>running</strong>  &#x21d2; <tt>Boolean</tt> 
-  
-
-  
-
-  
-</h3><div class="docstring">
-  <div class="discussion">
-    
-<p>Returns the running status of the instance, indicating if it can be used or
-not.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Boolean</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>the running status of the instance, indicating if it can be used or not.</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-15</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'lib/arkaan/monitoring/instance.rb', line 15</span>
-
-<span class='id identifier rubyid_field'>field</span> <span class='symbol'>:running</span><span class='comma'>,</span> <span class='label'>type:</span> <span class='const'>Boolean</span><span class='comma'>,</span> <span class='label'>default:</span> <span class='kw'>false</span></pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      
-      <span id=""></span>
-      <div class="method_details ">
-  <h3 class="signature " id="service-instance_method">
-  
-    #<strong>service</strong>  &#x21d2; <tt><span class='object_link'><a href="Service.html" title="Arkaan::Monitoring::Service (class)">Arkaan::Monitoring::Service</a></span></tt>  <span class="extras">(readonly)</span>
+    #<strong>path</strong>  &#x21d2; <tt>String</tt> 
   
 
   
@@ -312,64 +229,7 @@ not.</p>
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Returns the service this instance is linked to.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="Service.html" title="Arkaan::Monitoring::Service (class)">Arkaan::Monitoring::Service</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>the service this instance is linked to.</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-21</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'lib/arkaan/monitoring/instance.rb', line 21</span>
-
-<span class='id identifier rubyid_embedded_in'>embedded_in</span> <span class='symbol'>:service</span><span class='comma'>,</span> <span class='label'>class_name:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Arkaan::Monitoring::Service</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='label'>inverse_of:</span> <span class='symbol'>:instances</span></pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      
-      <span id="url=-instance_method"></span>
-      <div class="method_details ">
-  <h3 class="signature " id="url-instance_method">
-  
-    #<strong>url</strong>  &#x21d2; <tt>String</tt> 
-  
-
-  
-
-  
-</h3><div class="docstring">
-  <div class="discussion">
-    
-<p>Returns the URL of the instance, where the requests will be issued.</p>
+<p>Returns the path (URI) of the route in the service?</p>
 
 
   </div>
@@ -388,7 +248,7 @@ not.</p>
       
         &mdash;
         <div class='inline'>
-<p>the URL of the instance, where the requests will be issued.</p>
+<p>the path (URI) of the route in the service?</p>
 </div>
       
     </li>
@@ -401,12 +261,126 @@ not.</p>
       <pre class="lines">
 
 
-12</pre>
+11</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/arkaan/monitoring/instance.rb', line 12</span>
+      <pre class="code"><span class="info file"># File 'lib/arkaan/monitoring/route.rb', line 11</span>
 
-<span class='id identifier rubyid_field'>field</span> <span class='symbol'>:url</span><span class='comma'>,</span> <span class='label'>type:</span> <span class='const'>String</span></pre>
+<span class='id identifier rubyid_field'>field</span> <span class='symbol'>:path</span><span class='comma'>,</span> <span class='label'>type:</span> <span class='const'>String</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="service=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="service-instance_method">
+  
+    #<strong>service</strong>  &#x21d2; <tt><span class='object_link'><a href="Service.html" title="Arkaan::Monitoring::Service (class)">Arkaan::Monitoring::Service</a></span></tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the service in which this route is declared.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Service.html" title="Arkaan::Monitoring::Service (class)">Arkaan::Monitoring::Service</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the service in which this route is declared.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+18</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/arkaan/monitoring/route.rb', line 18</span>
+
+<span class='id identifier rubyid_embedded_in'>embedded_in</span> <span class='symbol'>:service</span><span class='comma'>,</span> <span class='label'>class_name:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Arkaan::Monitoring::Service</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='label'>inverse_of:</span> <span class='symbol'>:routes</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="verb=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="verb-instance_method">
+  
+    #<strong>verb</strong>  &#x21d2; <tt>String</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the verb (HTTP method) of this route in the service.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the verb (HTTP method) of this route in the service.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+14</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/arkaan/monitoring/route.rb', line 14</span>
+
+<span class='id identifier rubyid_field'>field</span> <span class='symbol'>:verb</span><span class='comma'>,</span> <span class='label'>type:</span> <span class='const'>String</span></pre>
     </td>
   </tr>
 </table>
@@ -418,7 +392,7 @@ not.</p>
 </div>
 
       <div id="footer">
-  Generated on Wed Nov 29 23:26:12 2017 by
+  Generated on Wed Nov 29 23:26:11 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.9 (ruby-2.3.1).
 </div>
