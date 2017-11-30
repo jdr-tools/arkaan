@@ -36,15 +36,36 @@ RSpec.describe Arkaan::Monitoring::Service do
     end
   end
 
+  describe :premium do
+    it 'has a premium only flag set at creation' do
+      expect(build(:service, premium: true).premium).to be true
+    end
+    it 'sets the premium flag to false by default' do
+      expect(build(:service).premium).to be false
+    end
+  end
+
   describe :routes do
     it 'has routes set up at creation' do
       expect(create(:service_with_routes).routes.count).to be 1
     end
-    it 'returns the correct routes paths for a created service' do
-      expect(create(:service_with_routes).routes.first.path).to eq '/route'
+    describe :path do
+      it 'returns the correct routes paths for a created service' do
+        expect(create(:service_with_routes).routes.first.path).to eq '/route'
+      end
     end
-    it 'returns the correct routes method for a created service' do
-      expect(create(:service_with_routes).routes.first.verb).to eq 'get'
+    describe :verb do
+      it 'returns the correct routes method for a created service' do
+        expect(create(:service_with_routes).routes.first.verb).to eq 'get'
+      end
+    end
+    describe :premium do
+      it 'returns the right premium flag wfor a created route' do
+        expect(create(:service_with_premium_routes).routes.first.premium).to be true
+      end
+      it 'creates the route with a default value of false for the premium flag' do
+        expect(create(:service_with_routes).routes.first.premium).to be false
+      end
     end
   end
 

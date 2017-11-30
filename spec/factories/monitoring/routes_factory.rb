@@ -3,6 +3,10 @@ FactoryGirl.define do
     factory :route do
       path '/route'
       verb 'get'
+
+      factory :premium_route do
+        premium true
+      end
     end
   end
 end

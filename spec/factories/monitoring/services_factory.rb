@@ -39,6 +39,13 @@ FactoryGirl.define do
           service.routes << build(:route)
         end
       end
+
+      factory :service_with_premium_routes do
+        key 'test.services.routes'
+        after :create do |service, evaluator|
+          service.routes << build(:premium_route)
+        end
+      end
     end
   end
 end

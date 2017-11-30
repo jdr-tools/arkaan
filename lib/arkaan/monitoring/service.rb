@@ -7,6 +7,7 @@ module Arkaan
       include Mongoid::Timestamps
       include Arkaan::Concerns::Activable
       include Arkaan::Concerns::Diagnosticable
+      include Arkaan::Concerns::Premiumable
 
       # @!attribute [rw] key
       #   @return [String] the name, or title of the service, optionally given to identify it more easily.
@@ -16,6 +17,8 @@ module Arkaan
       field :path, type: String, default: '/'
       
       make_diagnosticable 'service'
+
+      make_premiumable
 
       # @!attribute [rw] creator
       #   @return [Arkaan::Account] the creator of this service.

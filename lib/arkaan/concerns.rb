@@ -5,5 +5,6 @@ module Arkaan
     autoload :Sluggable, 'arkaan/concerns/sluggable'
     autoload :Activable, 'arkaan/concerns/activable'
     autoload :Diagnosticable, 'arkaan/concerns/diagnosticable'
+    autoload :Premiumable, 'arkaan/concerns/premiumable'
   end
 end
