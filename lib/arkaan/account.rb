@@ -59,7 +59,7 @@ module Arkaan
       uniqueness: {message: 'account.email.uniq', if: :email?}
 
     validates :password,
-      presence: {message: 'account.password.blank'},
+      presence: {message: 'account.password.blank', if: ->{ !persisted? || password_digest_changed? }},
       confirmation: {message: 'account.password.confirmation', if: :password_digest_changed?}
 
     validates :password_confirmation,

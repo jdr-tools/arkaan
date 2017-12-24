@@ -1,7 +1,7 @@
 {
   "RSpec": {
     "coverage": {
-      "/home/vincent/workspace/arkaan/lib/arkaan.rb": [
+      "/home/vincent/workspace/jdr-tools/arkaan/lib/arkaan.rb": [
         1,
         1,
         1,
@@ -17,7 +17,7 @@
         1,
         null
       ],
-      "/home/vincent/workspace/arkaan/lib/arkaan/account.rb": [
+      "/home/vincent/workspace/jdr-tools/arkaan/lib/arkaan/account.rb": [
         1,
         null,
         null,
@@ -79,7 +79,7 @@
         null,
         null,
         1,
-        null,
+        46,
         null,
         null,
         1,
@@ -87,7 +87,7 @@
         null,
         null
       ],
-      "/home/vincent/workspace/arkaan/lib/arkaan/authentication.rb": [
+      "/home/vincent/workspace/jdr-tools/arkaan/lib/arkaan/authentication.rb": [
         1,
         null,
         null,
@@ -96,7 +96,7 @@
         null,
         null
       ],
-      "/home/vincent/workspace/arkaan/lib/arkaan/authentication/session.rb": [
+      "/home/vincent/workspace/jdr-tools/arkaan/lib/arkaan/authentication/session.rb": [
         1,
         1,
         null,
@@ -129,7 +129,7 @@
         null,
         null
       ],
-      "/home/vincent/workspace/arkaan/lib/arkaan/monitoring.rb": [
+      "/home/vincent/workspace/jdr-tools/arkaan/lib/arkaan/monitoring.rb": [
         1,
         null,
         null,
@@ -141,7 +141,7 @@
         null,
         null
       ],
-      "/home/vincent/workspace/arkaan/lib/arkaan/monitoring/gateway.rb": [
+      "/home/vincent/workspace/jdr-tools/arkaan/lib/arkaan/monitoring/gateway.rb": [
         1,
         1,
         null,
@@ -177,7 +177,7 @@
         null,
         null
       ],
-      "/home/vincent/workspace/arkaan/lib/arkaan/concerns.rb": [
+      "/home/vincent/workspace/jdr-tools/arkaan/lib/arkaan/concerns.rb": [
         1,
         null,
         null,
@@ -189,7 +189,7 @@
         null,
         null
       ],
-      "/home/vincent/workspace/arkaan/lib/arkaan/concerns/activable.rb": [
+      "/home/vincent/workspace/jdr-tools/arkaan/lib/arkaan/concerns/activable.rb": [
         1,
         1,
         null,
@@ -209,7 +209,7 @@
         null,
         null
       ],
-      "/home/vincent/workspace/arkaan/lib/arkaan/concerns/diagnosticable.rb": [
+      "/home/vincent/workspace/jdr-tools/arkaan/lib/arkaan/concerns/diagnosticable.rb": [
         1,
         1,
         null,
@@ -237,7 +237,7 @@
         null,
         null
       ],
-      "/home/vincent/workspace/arkaan/lib/arkaan/monitoring/instance.rb": [
+      "/home/vincent/workspace/jdr-tools/arkaan/lib/arkaan/monitoring/instance.rb": [
         1,
         1,
         null,
@@ -267,7 +267,7 @@
         null,
         null
       ],
-      "/home/vincent/workspace/arkaan/lib/arkaan/monitoring/service.rb": [
+      "/home/vincent/workspace/jdr-tools/arkaan/lib/arkaan/monitoring/service.rb": [
         1,
         1,
         null,
@@ -307,7 +307,7 @@
         null,
         null
       ],
-      "/home/vincent/workspace/arkaan/lib/arkaan/concerns/premiumable.rb": [
+      "/home/vincent/workspace/jdr-tools/arkaan/lib/arkaan/concerns/premiumable.rb": [
         1,
         1,
         null,
@@ -319,8 +319,9 @@
         null,
         1,
         null,
-        null,
         1,
+        null,
+        null,
         2,
         null,
         null,
@@ -328,7 +329,7 @@
         null,
         null
       ],
-      "/home/vincent/workspace/arkaan/lib/arkaan/oauth.rb": [
+      "/home/vincent/workspace/jdr-tools/arkaan/lib/arkaan/oauth.rb": [
         1,
         null,
         null,
@@ -340,7 +341,7 @@
         null,
         null
       ],
-      "/home/vincent/workspace/arkaan/lib/arkaan/oauth/access_token.rb": [
+      "/home/vincent/workspace/jdr-tools/arkaan/lib/arkaan/oauth/access_token.rb": [
         1,
         1,
         null,
@@ -365,7 +366,7 @@
         null,
         null
       ],
-      "/home/vincent/workspace/arkaan/lib/arkaan/oauth/application.rb": [
+      "/home/vincent/workspace/jdr-tools/arkaan/lib/arkaan/oauth/application.rb": [
         1,
         1,
         null,
@@ -398,7 +399,7 @@
         null,
         null
       ],
-      "/home/vincent/workspace/arkaan/lib/arkaan/oauth/authorization.rb": [
+      "/home/vincent/workspace/jdr-tools/arkaan/lib/arkaan/oauth/authorization.rb": [
         1,
         1,
         null,
@@ -426,7 +427,7 @@
         null,
         null
       ],
-      "/home/vincent/workspace/arkaan/lib/arkaan/oauth/refresh_token.rb": [
+      "/home/vincent/workspace/jdr-tools/arkaan/lib/arkaan/oauth/refresh_token.rb": [
         1,
         1,
         null,
@@ -446,7 +447,7 @@
         null,
         null
       ],
-      "/home/vincent/workspace/arkaan/lib/arkaan/permissions.rb": [
+      "/home/vincent/workspace/jdr-tools/arkaan/lib/arkaan/permissions.rb": [
         1,
         null,
         null,
@@ -458,7 +459,7 @@
         null,
         null
       ],
-      "/home/vincent/workspace/arkaan/lib/arkaan/permissions/category.rb": [
+      "/home/vincent/workspace/jdr-tools/arkaan/lib/arkaan/permissions/category.rb": [
         1,
         1,
         null,
@@ -473,7 +474,7 @@
         null,
         null
       ],
-      "/home/vincent/workspace/arkaan/lib/arkaan/concerns/sluggable.rb": [
+      "/home/vincent/workspace/jdr-tools/arkaan/lib/arkaan/concerns/sluggable.rb": [
         1,
         1,
         null,
@@ -502,7 +503,7 @@
         null,
         null
       ],
-      "/home/vincent/workspace/arkaan/lib/arkaan/permissions/group.rb": [
+      "/home/vincent/workspace/jdr-tools/arkaan/lib/arkaan/permissions/group.rb": [
         1,
         1,
         null,
@@ -524,7 +525,7 @@
         null,
         null
       ],
-      "/home/vincent/workspace/arkaan/lib/arkaan/permissions/right.rb": [
+      "/home/vincent/workspace/jdr-tools/arkaan/lib/arkaan/permissions/right.rb": [
         1,
         1,
         null,
@@ -543,7 +544,7 @@
         null,
         null
       ],
-      "/home/vincent/workspace/arkaan/lib/arkaan/monitoring/route.rb": [
+      "/home/vincent/workspace/jdr-tools/arkaan/lib/arkaan/monitoring/route.rb": [
         1,
         1,
         null,
@@ -570,6 +571,6 @@
         null
       ]
     },
-    "timestamp": 1512082904
+    "timestamp": 1514121088
   }
 }
