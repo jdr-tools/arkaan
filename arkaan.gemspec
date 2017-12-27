@@ -11,6 +11,7 @@ Gem::Specification.new do |spec|
   spec.license     = 'MIT'
 
   spec.add_development_dependency 'rspec'           , '3.6.0'
+  spec.add_development_dependency 'rack-test'       , '0.7.0'
   spec.add_development_dependency 'factory_girl'    , '4.8.1'
   spec.add_development_dependency 'database_cleaner', '1.6.1'
   spec.add_development_dependency 'simplecov'       , '0.15.1'
@@ -21,4 +22,5 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency 'activemodel'  , '5.1.4'
   spec.add_runtime_dependency 'activesupport', '5.1.4'
   spec.add_runtime_dependency 'bcrypt'       , '3.1.11'
+  spec.add_runtime_dependency 'sinatra'      , '2.0.0'
 end
