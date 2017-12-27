@@ -548,6 +548,8 @@
       ],
       "/home/vincent/workspace/jdr-tools/arkaan/lib/arkaan/utils.rb": [
         1,
+        null,
+        null,
         1,
         1,
         null,
@@ -556,6 +558,8 @@
       "/home/vincent/workspace/jdr-tools/arkaan/lib/arkaan/utils/controller.rb": [
         1,
         1,
+        null,
+        null,
         1,
         1,
         14,
@@ -570,6 +574,9 @@
         2,
         null,
         2,
+        null,
+        null,
+        null,
         null,
         null,
         null,
@@ -607,6 +614,6 @@
         null
       ]
     },
-    "timestamp": 1514341622
+    "timestamp": 1514345727
   }
 }
