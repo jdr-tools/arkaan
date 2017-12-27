@@ -1,6 +1,7 @@
 require 'mongoid'
 require 'active_model'
 require 'active_support'
+require 'sinatra/base'
 
 # Main module of the application, holding all the subsequent classes.
 # @author Vincent Courtois <courtois.vincent@outlook.com>
@@ -11,4 +12,5 @@ module Arkaan
   autoload :Monitoring    , 'arkaan/monitoring'
   autoload :OAuth         , 'arkaan/oauth'
   autoload :Permissions   , 'arkaan/permissions'
+  autoload :Utils         , 'arkaan/utils'
 end

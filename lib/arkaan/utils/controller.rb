@@ -1,32 +1,39 @@
 module Arkaan
   module Utils
-    # Base controller used in all services to handle general errors concerning the application and the gateway.
-    # @author Vincent Courtois <courtois.vincent@outlook.com>
+    # Base controller to handle the standard error when accessing the API.
+    # @author Vincent Courtois <courtois.vincenet@outlook.com>
     class Controller < Sinatra::Base
-      @@required_attributes = ['token', 'app_key']
 
       before do
-        @parameters = JSON.parse(request.body.read.to_s) rescue {}
+        add_body_to_params
+        check_presence('token', 'app_key')
 
-        check_required_attributes('token', 'app_key')
-        @gateway = Arkaan::Monitoring::Gateway.where(token: @parameters['token']).first
-        @application = Arkaan::OAuth::Application.where(key: @parameters['app_key']).first
-        if @gateway.nil?
-          halt 404, 'gateway_not_found'
-        if @application.nil?
-          halt 404, 'application_not_found'
-        elsif !@application.premium?
-          halt 401, 'application_not_authorized'
+        gateway = Arkaan::Monitoring::Gateway.where(token: params['token']).first
+        application = Arkaan::OAuth::Application.where(key: params['app_key']).first
+
+        if gateway.nil?
+          halt 404, {message: 'gateway_not_found'}.to_json
+        elsif application.nil?
+          halt 404, {message: 'application_not_found'}.to_json
+        elsif !application.premium?
+          halt 401, {message: 'application_not_authorized'}.to_json
         end
       end
 
-      # Checks a list of attributes for them to exist. If one attribute does not exist, the application halts.
-      # @param {Array<String>} attributes - a list of attributes names to check the presence of.
-      def check_required_attributes(*attributes)
-        attributes.each do |attribute|
-          if @parameters[attribute].nil? && params[attribute].nil?
-            halt 400, {message: 'bad_request'}.to_json
-          end
+      # Checks the presence of several fields given as parameters and halts the execution if it's not present.
+      # @param fields [Array<String>] an array of fields names to search in the parameters
+      def check_presence(*fields)
+        fields.each do |field|
+          halt 400, {message: 'bad_request'}.to_json if params[field].nil?
+        end
+      end
+
+      # Adds the parsed body to the parameters, overwriting the parameters of the querystring with the values
+      # of the SON body if they have similar keys.
+      def add_body_to_params
+        parsed_body = JSON.parse(request.body.read.to_s) rescue {}
+        parsed_body.keys.each do |key|
+          params[key] = parsed_body[key]
         end
       end
     end
