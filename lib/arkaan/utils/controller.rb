@@ -3,13 +3,14 @@ module Arkaan
     # Base controller to handle the standard error when accessing the API.
     # @author Vincent Courtois <courtois.vincenet@outlook.com>
     class Controller < Sinatra::Base
+
       before do
-        @parameters = JSON.parse(request.body.read.to_s) rescue {}
-        if get_param('app_key').nil? || get_param('token').nil?
-          halt 400, {message: 'bad_request'}.to_json
-        end
-        gateway = Arkaan::Monitoring::Gateway.where(token: get_param('token')).first
-        application = Arkaan::OAuth::Application.where(key: get_param('app_key')).first
+        add_body_to_params
+        check_presence('token', 'app_key')
+
+        gateway = Arkaan::Monitoring::Gateway.where(token: params['token']).first
+        application = Arkaan::OAuth::Application.where(key: params['app_key']).first
+
         if gateway.nil?
           halt 404, {message: 'gateway_not_found'}.to_json
         elsif application.nil?
@@ -19,11 +20,21 @@ module Arkaan
         end
       end
 
-      # Gets a parameters from the parsed body hash, or the parsed querystring hash.
-      # @param [String] key - the key of the parameter to get.
-      # @return [any] the value associated with the key.
-      def get_param(key)
-        return (params.nil? || params[key].nil? ? @parameters[key] : params[key])
+      # Checks the presence of several fields given as parameters and halts the execution if it's not present.
+      # @param fields [Array<String>] an array of fields names to search in the parameters
+      def check_presence(*fields)
+        fields.each do |field|
+          halt 400, {message: 'bad_request'}.to_json if params[field].nil?
+        end
+      end
+
+      # Adds the parsed body to the parameters, overwriting the parameters of the querystring with the values
+      # of the SON body if they have similar keys.
+      def add_body_to_params
+        parsed_body = JSON.parse(request.body.read.to_s) rescue {}
+        parsed_body.keys.each do |key|
+          params[key] = parsed_body[key]
+        end
       end
     end
   end
