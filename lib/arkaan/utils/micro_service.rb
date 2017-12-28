@@ -46,7 +46,7 @@ module Arkaan
       # Require all the files from a folder iteratively by assembling the parts given as parameters.
       # @param paths_elements [Array<String>] the elements to assemble to form the path of the folder.
       def require_folder(*paths_elements)
-        File.join(paths_elements, '**', '*.rb').each { |filename| block.call(filename) }
+        Dir[File.join(paths_elements, '**', '*.rb')].each { |filename| block.call(filename) }
       end
 
       # Requires and loads the mongoid configuration from its default location.
