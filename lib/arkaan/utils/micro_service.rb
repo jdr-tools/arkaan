@@ -18,6 +18,7 @@ module Arkaan
       def initialize(name:, root:, test_mode: false)
         @root = test_mode ? File.join(root, '..') : root
         @name = name
+        @test_mode = test_mode
       end
 
       # Loads the necessary components for the application by requiring the needed files.
