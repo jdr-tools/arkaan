@@ -1,11 +1,14 @@
 ENV['SERVICE_URL'] = 'https://mon-service.com/'
 
-RSpec.describe Arkaan::Utils::Seeder do
-  let!(:seeder) { Arkaan::Utils::Seeder.instance }
-  describe :create_service do
+RSpec.describe Arkaan::Utils::MicroService do
+
+  let!(:application) { Arkaan::Utils::MicroService.new(root: '/', name: 'test') }
+  let!(:micro_service) { application.registered_service }
+
+  describe :registered_service do
     describe 'When the service does not already exist' do
       before do
-        seeder.create_service('test')
+        application.registered_service
       end
       describe 'Service attributes' do
         let!(:service) { Arkaan::Monitoring::Service.first }
@@ -46,8 +49,9 @@ RSpec.describe Arkaan::Utils::Seeder do
     end
     describe 'When the service already exists but not the instance' do
       before do
+        DatabaseCleaner.clean
         Arkaan::Monitoring::Service.create!(key: 'test', path: '/test', premium: true, active: true)
-        seeder.create_service('test')
+        application.registered_service
       end
       describe 'Service attributes' do
         let!(:service) { Arkaan::Monitoring::Service.first }
@@ -76,9 +80,10 @@ RSpec.describe Arkaan::Utils::Seeder do
     end
     describe 'when the service and the instance already exist' do
       before do
+        DatabaseCleaner.clean
         service = Arkaan::Monitoring::Service.create!(key: 'test', path: '/test', premium: true, active: true)
         Arkaan::Monitoring::Instance.create!(url: 'https://mon-service.com/', running: true, service: service, active: true)
-        seeder.create_service('test')
+        application.registered_service
       end
       describe 'Service attributes' do
         let!(:service) { Arkaan::Monitoring::Service.first }

@@ -1,6 +1,6 @@
 lib/arkaan.rb 7dac64d74c0c7a088c6855804830c75a63ac1819
 lib/arkaan/oauth.rb 6368031644a79f79734f69ad2d2a6df63fa50d5b
-lib/arkaan/utils.rb 44b20311043e787a737cdf2e652f3186e10266c2
+lib/arkaan/utils.rb 6b25994cd4ed0843931a980b02eab72fdab1dd46
 lib/arkaan/account.rb 15d3c6693603decea310eaa02e9ed0688c4974b7
 lib/arkaan/concerns.rb ea0f93c5405690b5775a26d63e6f64cb756963dc
 lib/arkaan/monitoring.rb f14ce3d478c4b96477ef3c9905a3ed70d9f48126
@@ -20,6 +20,7 @@ lib/arkaan/oauth/access_token.rb 4d7cd07c528933f53321b95e30f71964374a549c
 lib/arkaan/monitoring/instance.rb 3d4e317a87f2e8c7d8ea1bf61ed5d389efe755ec
 lib/arkaan/oauth/authorization.rb 33c825d5e366667239b611b367cd15127087281c
 lib/arkaan/oauth/refresh_token.rb bd83b113e643ae7e123db3bd63e0b00d042adf82
+lib/arkaan/utils/micro_service.rb cb9dc800642fd09c457eef3112d2edf52e0a6d15
 lib/arkaan/concerns/premiumable.rb 618ba5898a44575b63b8ac06c23daad983fa7b7e
 lib/arkaan/permissions/category.rb d83a04faa88e7e1051ca5bc68c3b4ef91ad748f9
 lib/arkaan/authentication/session.rb 5dc5aa6a14951ed35efee27ce65cd0e8c3e62281
