@@ -10,17 +10,19 @@ module Arkaan
 
       attr_reader :name
 
+      attr_reader :test_mode
+
       # loads the application by requiring the files from the folders they're supposed to be in.
       # @param name [String] the snake-cased name of the application, for service registration purpose mainly.
       # @param root [String]
-      def initialize(name:, root:)
-        @root = root
+      def initialize(name:, root:, test_mode: false)
+        @root = test_mode ? File.join(root, '..') : root
         @name = name
       end
 
       # Loads the necessary components for the application by requiring the needed files.
       # @param test_mode [Boolean] TRUE if the application i supposed to be launched from the spec_helper, FALSE otherwise.
-      def load(test_mode: false)
+      def load!
         self.require_mongoid_config(root)
         self.require_folder(root, 'decorators')
         self.require_folder(root, 'controllers')
@@ -28,6 +30,7 @@ module Arkaan
           self.require_folder(root, 'spec', 'support')
           self.require_folder(root, 'spec', 'shared')
         end
+        return self
       end
 
       # Creates the service instance if necessary, and returns it.
