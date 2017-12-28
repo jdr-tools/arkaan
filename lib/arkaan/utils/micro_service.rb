@@ -52,7 +52,7 @@ module Arkaan
       # Requires and loads the mongoid configuration from its default location.
       # @param root [String] the root folder of the application from where require the configuration path;
       def require_mongoid_config(root)
-        Mongoid.load!(File.join(root, 'config', 'mongoid.yml'))
+        Mongoid.load!(File.join(root, '..', 'config', 'mongoid.yml'))
       end
     end
   end
