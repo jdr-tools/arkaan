@@ -47,7 +47,7 @@ RSpec.describe Arkaan::Monitoring::Service do
 
   describe :routes do
     it 'has routes set up at creation' do
-      expect(create(:service_with_routes).routes.count).to be 1
+      expect(create(:service_with_routes).routes.to_a.count).to be 1
     end
     describe :path do
       it 'returns the correct routes paths for a created service' do
@@ -56,7 +56,7 @@ RSpec.describe Arkaan::Monitoring::Service do
     end
     describe :verb do
       it 'returns the correct routes method for a created service' do
-        expect(create(:service_with_routes).routes.first.verb).to eq 'get'
+        expect(create(:service_with_routes).routes.first.verb).to eq 'post'
       end
     end
     describe :premium do
