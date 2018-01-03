@@ -7,10 +7,15 @@ module Arkaan
       # @!attribute [r] root
       #   @return [String] the root path of the application, from where each path is deduced.
       attr_reader :root
-
+      # @!attribute [r] name
+      #   @return [String] the name of the service, given when initializing it.
       attr_reader :name
-
+      # @!attribute [r] test_mode
+      #   @return [Boolean] TRUE if the micro service is initialized from a test suite, FALSE otherwise.
       attr_reader :test_mode
+      # @!attribute [r] service
+      #   @return [Arkaan::Monitoring::Service] the service stored in the database corresponding to this application.
+      attr_reader :service
 
       # loads the application by requiring the files from the folders they're supposed to be in.
       # @param name [String] the snake-cased name of the application, for service registration purpose mainly.
@@ -19,6 +24,7 @@ module Arkaan
         @root = test_mode ? File.join(root, '..') : root
         @name = name
         @test_mode = test_mode
+        @service = register_service
       end
 
       # Loads the necessary components for the application by requiring the needed files.
@@ -36,7 +42,7 @@ module Arkaan
 
       # Creates the service instance if necessary, and returns it.
       # @return [Arkaan::Monitoring::Service] the service in the registry corresponding to this micro-service.
-      def registered_service
+      def register_service
         service = Arkaan::Monitoring::Service.where(key: @name).first
         if service.nil?
           service = Arkaan::Monitoring::Service.create!(key: @name, path: "/#{@name}", premium: true, active: true)

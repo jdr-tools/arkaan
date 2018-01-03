@@ -2,16 +2,13 @@ ENV['SERVICE_URL'] = 'https://mon-service.com/'
 
 RSpec.describe Arkaan::Utils::MicroService do
 
-  let!(:application) { Arkaan::Utils::MicroService.new(root: '/', name: 'test') }
-  let!(:micro_service) { application.registered_service }
-
   describe :registered_service do
     describe 'When the service does not already exist' do
       before do
-        application.registered_service
+        Arkaan::Utils::MicroService.new(root: '/', name: 'test')
       end
       describe 'Service attributes' do
-        let!(:service) { Arkaan::Monitoring::Service.first }
+        let(:service) { Arkaan::Monitoring::Service.first }
 
         it 'correctly creates a service' do
           expect(Arkaan::Monitoring::Service.all.count).to be 1
@@ -30,8 +27,8 @@ RSpec.describe Arkaan::Utils::MicroService do
         end
       end
       describe 'Instance attributes' do
-        let!(:service) { Arkaan::Monitoring::Service.first }
-        let!(:instance) { service.instances.first }
+        let(:service) { Arkaan::Monitoring::Service.first }
+        let(:instance) { service.instances.first }
 
         it 'correctly creates an instance for the service' do
           expect(service.instances.count).to be 1
@@ -49,20 +46,17 @@ RSpec.describe Arkaan::Utils::MicroService do
     end
     describe 'When the service already exists but not the instance' do
       before do
-        DatabaseCleaner.clean
         Arkaan::Monitoring::Service.create!(key: 'test', path: '/test', premium: true, active: true)
-        application.registered_service
+        Arkaan::Utils::MicroService.new(root: '/', name: 'test')
       end
       describe 'Service attributes' do
-        let!(:service) { Arkaan::Monitoring::Service.first }
-
         it 'does not create another service' do
           expect(Arkaan::Monitoring::Service.all.count).to be 1
         end
       end
       describe 'Instance attributes' do
-        let!(:service) { Arkaan::Monitoring::Service.first }
-        let!(:instance) { service.instances.first }
+        let(:service) { Arkaan::Monitoring::Service.first }
+        let(:instance) { service.instances.first }
 
         it 'correctly creates an instance for the service' do
           expect(service.instances.count).to be 1
@@ -80,21 +74,19 @@ RSpec.describe Arkaan::Utils::MicroService do
     end
     describe 'when the service and the instance already exist' do
       before do
-        DatabaseCleaner.clean
         service = Arkaan::Monitoring::Service.create!(key: 'test', path: '/test', premium: true, active: true)
         Arkaan::Monitoring::Instance.create!(url: 'https://mon-service.com/', running: true, service: service, active: true)
-        application.registered_service
       end
       describe 'Service attributes' do
-        let!(:service) { Arkaan::Monitoring::Service.first }
+        let(:service) { Arkaan::Monitoring::Service.first }
 
         it 'does not create another service' do
           expect(Arkaan::Monitoring::Service.all.count).to be 1
         end
       end
       describe 'Instance attributes' do
-        let!(:service) { Arkaan::Monitoring::Service.first }
-        let!(:instance) { service.instances.first }
+        let(:service) { Arkaan::Monitoring::Service.first }
+        let(:instance) { service.instances.first }
 
         it 'does not create another instance for the service' do
           expect(service.instances.count).to be 1
