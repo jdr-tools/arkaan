@@ -6,6 +6,9 @@ RSpec.describe Arkaan::Monitoring::Route do
     it 'has a default value that is the root path' do
       expect(build(:empty_route).path).to eq '/'
     end
+    it 'correctly builds a route with the root path explicitly given' do
+      expect(build(:route, path: '/').valid?).to be true
+    end
     it 'invalidates the path if it\'s in a wrong format' do
       expect(build(:route, path: 'essai').valid?).to be false
     end

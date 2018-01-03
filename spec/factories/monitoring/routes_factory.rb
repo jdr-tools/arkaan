@@ -3,6 +3,7 @@ FactoryGirl.define do
     factory :route do
       path '/route'
       verb 'post'
+      association :service, factory: :service, strategy: :build
 
       factory :premium_route do
         premium true

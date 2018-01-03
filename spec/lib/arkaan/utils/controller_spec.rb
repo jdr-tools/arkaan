@@ -17,6 +17,7 @@ RSpec.describe TestController do
   let!(:gateway) { create(:gateway) }
   let!(:premium_application) { create(:premium_application, creator: account) }
   let!(:application) { create(:not_premium_application, creator: account) }
+  let!(:service) { create(:service) }
 
   describe 'GET request' do
     describe 'Nominal case' do
@@ -185,6 +186,170 @@ RSpec.describe TestController do
         end
         it 'Returns the right error message if the application does not exist' do
           expect(JSON.parse(last_response.body)).to eq({'message' => 'application_not_found'})
+        end
+      end
+    end
+  end
+
+  describe :declare_routes do
+    class NonPremiumController < Arkaan::Utils::Controller; end
+
+    before do
+      NonPremiumController.declare_service('test.service')
+    end
+
+    def app
+      NonPremiumController.new
+    end
+
+    describe 'When the route does not already exists' do
+      before do
+        NonPremiumController.declare_route('get', '/') do
+          halt 200, {message: 'test_message'}.to_json
+        end
+      end
+      it 'Has created a route' do
+        expect(Arkaan::Monitoring::Route.all.count).to be 1
+      end
+      describe 'route parameters' do
+        let!(:route) { Arkaan::Monitoring::Route.first }
+
+        it 'has created a route with the correct path' do
+          expect(route.path).to eq '/'
+        end
+        it 'has created a route with the correct verb' do
+          expect(route.verb).to eq 'get'
+        end
+        it 'has created a non-premium route' do
+          expect(route.premium).to be false
+        end
+      end
+      describe 'call to the route' do
+        before do
+          get '/', {app_key: 'test_key', token: 'test_token'}
+        end
+        it 'correctly calls the route when all parameters are rightly given' do
+          expect(last_response.status).to be 200
+        end
+        it 'returns the correct body for the nominal case' do
+          expect(JSON.parse(last_response.body)).to eq({'message' => 'test_message'})
+        end
+      end
+    end
+    describe 'When the route already exists' do
+      before do
+        create(:route, verb: 'post', path: '/', premium: false, service: service)
+        NonPremiumController.declare_route('post', '/') do
+          halt 200, {message: 'test_message'}.to_json
+        end
+      end
+      it 'Has created a route' do
+        expect(Arkaan::Monitoring::Route.all.count).to be 1
+      end
+      describe 'route parameters' do
+        let!(:route) { Arkaan::Monitoring::Route.first }
+
+        it 'has created a route with the correct path' do
+          expect(route.path).to eq '/'
+        end
+        it 'has created a route with the correct verb' do
+          expect(route.verb).to eq 'post'
+        end
+        it 'has created a non-premium route' do
+          expect(route.premium).to be false
+        end
+      end
+      describe 'call to the route' do
+        before do
+          post '/', {app_key: 'test_key', token: 'test_token'}.to_json
+        end
+        it 'correctly calls the route when all parameters are rightly given' do
+          expect(last_response.status).to be 200
+        end
+        it 'returns the correct body for the nominal case' do
+          expect(JSON.parse(last_response.body)).to eq({'message' => 'test_message'})
+        end
+      end
+    end
+  end
+
+  describe :declare_premium_route do
+    class PremiumController < Arkaan::Utils::Controller; end
+
+    before do
+      PremiumController.declare_service('test.service')
+    end
+
+    def app
+      PremiumController.new
+    end
+
+    describe 'When the route does not already exists' do
+      before do
+        PremiumController.declare_premium_route('get', '/') do
+          halt 200, {message: 'test_message'}.to_json
+        end
+      end
+      it 'Has created a route' do
+        expect(Arkaan::Monitoring::Route.all.count).to be 1
+      end
+      describe 'route parameters' do
+        let!(:route) { Arkaan::Monitoring::Route.first }
+
+        it 'has created a route with the correct path' do
+          expect(route.path).to eq '/'
+        end
+        it 'has created a route with the correct verb' do
+          expect(route.verb).to eq 'get'
+        end
+        it 'has created a non-premium route' do
+          expect(route.premium).to be true
+        end
+      end
+      describe 'call to the route' do
+        before do
+          get '/', {app_key: 'test_key', token: 'test_token'}
+        end
+        it 'correctly calls the route when all parameters are rightly given' do
+          expect(last_response.status).to be 200
+        end
+        it 'returns the correct body for the nominal case' do
+          expect(JSON.parse(last_response.body)).to eq({'message' => 'test_message'})
+        end
+      end
+    end
+    describe 'When the route already exists' do
+      before do
+        create(:route, verb: 'post', path: '/', premium: true, service: service)
+        PremiumController.declare_premium_route('post', '/') do
+          halt 200, {message: 'test_message'}.to_json
+        end
+      end
+      it 'Has created a route' do
+        expect(Arkaan::Monitoring::Route.all.count).to be 1
+      end
+      describe 'route parameters' do
+        let!(:route) { Arkaan::Monitoring::Route.first }
+
+        it 'has created a route with the correct path' do
+          expect(route.path).to eq '/'
+        end
+        it 'has created a route with the correct verb' do
+          expect(route.verb).to eq 'post'
+        end
+        it 'has created a non-premium route' do
+          expect(route.premium).to be true
+        end
+      end
+      describe 'call to the route' do
+        before do
+          post '/', {app_key: 'test_key', token: 'test_token'}.to_json
+        end
+        it 'correctly calls the route when all parameters are rightly given' do
+          expect(last_response.status).to be 200
+        end
+        it 'returns the correct body for the nominal case' do
+          expect(JSON.parse(last_response.body)).to eq({'message' => 'test_message'})
         end
       end
     end
