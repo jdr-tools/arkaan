@@ -14,27 +14,27 @@
       <img src="./assets/0.10.2/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2018-01-04T00:33:36+01:00">2018-01-04T00:33:36+01:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2018-01-04T00:58:21+01:00">2018-01-04T00:58:21+01:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
         <div class="file_list_container" id="AllFiles">
   <h2>
     <span class="group_name">All Files</span>
-    (<span class="covered_percent"><span class="green">96.84%</span></span>
+    (<span class="covered_percent"><span class="green">97.88%</span></span>
      covered at
      <span class="covered_strength">
        <span class="green">
-         4.2
+         4.33
        </span>
     </span> hits/line)
   </h2>
   <a name="AllFiles"></a>
   <div>
     <b>26</b> files in total.
-    <b>285</b> relevant lines. 
-    <span class="green"><b>276</b> lines covered</span> and
-    <span class="red"><b>9</b> lines missed </span>
+    <b>283</b> relevant lines. 
+    <span class="green"><b>277</b> lines covered</span> and
+    <span class="red"><b>6</b> lines missed </span>
   </div>
   <table class="file_list">
     <thead>
@@ -302,12 +302,12 @@
       
       <tr>
         <td class="strong"><a href="#42b40c94ea42a4a05f6a5f375cc814f7ab401b73" class="src_link" title="lib/arkaan/utils/micro_service.rb">lib/arkaan/utils/micro_service.rb</a></td>
-        <td class="red strong">71.88 %</td>
-        <td>68</td>
-        <td>32</td>
-        <td>23</td>
-        <td>9</td>
-        <td>4.6</td>
+        <td class="red strong">80.0 %</td>
+        <td>69</td>
+        <td>30</td>
+        <td>24</td>
+        <td>6</td>
+        <td>5.8</td>
       </tr>
       
     </tbody>
@@ -4416,11 +4416,11 @@
         <div class="source_table" id="42b40c94ea42a4a05f6a5f375cc814f7ab401b73">
   <div class="header">
     <h3>lib/arkaan/utils/micro_service.rb</h3>
-    <h4><span class="red">71.88 %</span> covered</h4>
+    <h4><span class="red">80.0 %</span> covered</h4>
     <div>
-      <b>32</b> relevant lines. 
-      <span class="green"><b>23</b> lines covered</span> and
-      <span class="red"><b>9</b> lines missed.</span>
+      <b>30</b> relevant lines. 
+      <span class="green"><b>24</b> lines covered</span> and
+      <span class="red"><b>6</b> lines missed.</span>
     </div>
   </div>
   
@@ -4484,352 +4484,358 @@
         <li class="never" data-hits="" data-linenumber="10">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">      # @!attribute [r] name</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="11">
+        <li class="never" data-hits="" data-linenumber="11">
+          
+          
+          <code class="ruby">      #   @return [String] the name of the service, given when initializing it.</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="12">
           <span class="hits">1</span>
           
           <code class="ruby">      attr_reader :name</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="12">
+        <li class="never" data-hits="" data-linenumber="13">
           
           
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="13">
-          <span class="hits">1</span>
-          
-          <code class="ruby">      attr_reader :test_mode</code>
+          <code class="ruby">      # @!attribute [r] test_mode</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="14">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">      #   @return [Boolean] TRUE if the micro service is initialized from a test suite, FALSE otherwise.</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="15">
           <span class="hits">1</span>
           
-          <code class="ruby">      attr_reader :service</code>
+          <code class="ruby">      attr_reader :test_mode</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="16">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">      # @!attribute [r] service</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="17">
           
           
-          <code class="ruby">      # loads the application by requiring the files from the folders they&#39;re supposed to be in.</code>
+          <code class="ruby">      #   @return [Arkaan::Monitoring::Service] the service stored in the database corresponding to this application.</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="18">
+        <li class="covered" data-hits="1" data-linenumber="18">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">      # @param name [String] the snake-cased name of the application, for service registration purpose mainly.</code>
+          <code class="ruby">      attr_reader :service</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="19">
           
           
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="20">
+          
+          
+          <code class="ruby">      # loads the application by requiring the files from the folders they&#39;re supposed to be in.</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="21">
+          
+          
+          <code class="ruby">      # @param name [String] the snake-cased name of the application, for service registration purpose mainly.</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="22">
+          
+          
           <code class="ruby">      # @param root [String]</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="20">
+        <li class="covered" data-hits="1" data-linenumber="23">
           <span class="hits">1</span>
           
           <code class="ruby">      def initialize(name:, root:, test_mode: false)</code>
         </li>
       
-        <li class="covered" data-hits="14" data-linenumber="21">
+        <li class="covered" data-hits="14" data-linenumber="24">
           <span class="hits">14</span>
           
           <code class="ruby">        @root = test_mode ? File.join(root, &#39;..&#39;) : root</code>
         </li>
       
-        <li class="covered" data-hits="14" data-linenumber="22">
+        <li class="covered" data-hits="14" data-linenumber="25">
           <span class="hits">14</span>
           
           <code class="ruby">        @name = name</code>
         </li>
       
-        <li class="covered" data-hits="14" data-linenumber="23">
+        <li class="covered" data-hits="14" data-linenumber="26">
           <span class="hits">14</span>
           
           <code class="ruby">        @test_mode = test_mode</code>
         </li>
       
-        <li class="covered" data-hits="14" data-linenumber="24">
+        <li class="covered" data-hits="14" data-linenumber="27">
+          <span class="hits">14</span>
+          
+          <code class="ruby">        require_mongoid_config(root)</code>
+        </li>
+      
+        <li class="covered" data-hits="14" data-linenumber="28">
           <span class="hits">14</span>
           
           <code class="ruby">        @service = register_service</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="25">
+        <li class="never" data-hits="" data-linenumber="29">
           
           
           <code class="ruby">      end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="26">
+        <li class="never" data-hits="" data-linenumber="30">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="27">
+        <li class="never" data-hits="" data-linenumber="31">
           
           
           <code class="ruby">      # Loads the necessary components for the application by requiring the needed files.</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="28">
+        <li class="never" data-hits="" data-linenumber="32">
           
           
           <code class="ruby">      # @param test_mode [Boolean] TRUE if the application i supposed to be launched from the spec_helper, FALSE otherwise.</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="29">
+        <li class="covered" data-hits="1" data-linenumber="33">
           <span class="hits">1</span>
           
           <code class="ruby">      def load!</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="30">
-          
-          
-          <code class="ruby">        self.require_mongoid_config(root)</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="31">
-          
-          
-          <code class="ruby">        self.require_folder(root, &#39;decorators&#39;)</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="32">
-          
-          
-          <code class="ruby">        self.require_folder(root, &#39;controllers&#39;)</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="33">
-          
-          
-          <code class="ruby">        if test_mode</code>
-        </li>
-      
         <li class="missed" data-hits="0" data-linenumber="34">
           
           
-          <code class="ruby">          self.require_folder(root, &#39;spec&#39;, &#39;support&#39;)</code>
+          <code class="ruby">        require_folder(root, &#39;decorators&#39;)</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="35">
           
           
-          <code class="ruby">          self.require_folder(root, &#39;spec&#39;, &#39;shared&#39;)</code>
+          <code class="ruby">        require_folder(root, &#39;controllers&#39;)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="36">
+        <li class="missed" data-hits="0" data-linenumber="36">
           
           
-          <code class="ruby">        end</code>
+          <code class="ruby">        if test_mode</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="37">
           
           
-          <code class="ruby">        return self</code>
+          <code class="ruby">          require_folder(root, &#39;spec&#39;, &#39;support&#39;)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="38">
+        <li class="missed" data-hits="0" data-linenumber="38">
           
           
-          <code class="ruby">      end</code>
+          <code class="ruby">          require_folder(root, &#39;spec&#39;, &#39;shared&#39;)</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="39">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">        end</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="40">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="40">
           
-          <code class="ruby">      private</code>
+          
+          <code class="ruby">        return</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="41">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">      end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="42">
           
           
-          <code class="ruby">      # Creates the service instance if necessary, and returns it.</code>
+          <code class="ruby"></code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="43">
           
           
+          <code class="ruby">      # Creates the service instance if necessary, and returns it.</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="44">
+          
+          
           <code class="ruby">      # @return [Arkaan::Monitoring::Service] the service in the registry corresponding to this micro-service.</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="44">
+        <li class="covered" data-hits="1" data-linenumber="45">
           <span class="hits">1</span>
           
           <code class="ruby">      def register_service</code>
         </li>
       
-        <li class="covered" data-hits="14" data-linenumber="45">
+        <li class="covered" data-hits="14" data-linenumber="46">
           <span class="hits">14</span>
           
           <code class="ruby">        service = Arkaan::Monitoring::Service.where(key: @name).first</code>
         </li>
       
-        <li class="covered" data-hits="14" data-linenumber="46">
+        <li class="covered" data-hits="14" data-linenumber="47">
           <span class="hits">14</span>
           
           <code class="ruby">        if service.nil?</code>
         </li>
       
-        <li class="covered" data-hits="9" data-linenumber="47">
+        <li class="covered" data-hits="9" data-linenumber="48">
           <span class="hits">9</span>
           
           <code class="ruby">          service = Arkaan::Monitoring::Service.create!(key: @name, path: &quot;/#{@name}&quot;, premium: true, active: true)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="48">
+        <li class="never" data-hits="" data-linenumber="49">
           
           
           <code class="ruby">        end</code>
-        </li>
-      
-        <li class="covered" data-hits="14" data-linenumber="49">
-          <span class="hits">14</span>
-          
-          <code class="ruby">        if service.instances.where(url: ENV[&#39;SERVICE_URL&#39;]).first.nil?</code>
         </li>
       
         <li class="covered" data-hits="14" data-linenumber="50">
           <span class="hits">14</span>
           
+          <code class="ruby">        if service.instances.where(url: ENV[&#39;SERVICE_URL&#39;]).first.nil?</code>
+        </li>
+      
+        <li class="covered" data-hits="14" data-linenumber="51">
+          <span class="hits">14</span>
+          
           <code class="ruby">          Arkaan::Monitoring::Instance.create!(url: ENV[&#39;SERVICE_URL&#39;], running: true, service: service, active: true)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="51">
+        <li class="never" data-hits="" data-linenumber="52">
           
           
           <code class="ruby">        end</code>
         </li>
       
-        <li class="covered" data-hits="14" data-linenumber="52">
+        <li class="covered" data-hits="14" data-linenumber="53">
           <span class="hits">14</span>
           
           <code class="ruby">        return service</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="53">
-          
-          
-          <code class="ruby">      end</code>
-        </li>
-      
         <li class="never" data-hits="" data-linenumber="54">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">      end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="55">
           
           
-          <code class="ruby">      # Require all the files from a folder iteratively by assembling the parts given as parameters.</code>
+          <code class="ruby"></code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="56">
           
           
+          <code class="ruby">      # Require all the files from a folder iteratively by assembling the parts given as parameters.</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="57">
+          
+          
           <code class="ruby">      # @param paths_elements [Array&lt;String&gt;] the elements to assemble to form the path of the folder.</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="57">
+        <li class="covered" data-hits="1" data-linenumber="58">
           <span class="hits">1</span>
           
           <code class="ruby">      def require_folder(*paths_elements)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="58">
+        <li class="missed" data-hits="0" data-linenumber="59">
           
           
           <code class="ruby">        Dir[File.join(paths_elements, &#39;**&#39;, &#39;*.rb&#39;)].each { |filename| require filename }</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="59">
-          
-          
-          <code class="ruby">      end</code>
-        </li>
-      
         <li class="never" data-hits="" data-linenumber="60">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">      end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="61">
           
           
-          <code class="ruby">      # Requires and loads the mongoid configuration from its default location.</code>
+          <code class="ruby"></code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="62">
           
           
+          <code class="ruby">      # Requires and loads the mongoid configuration from its default location.</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="63">
+          
+          
           <code class="ruby">      # @param root [String] the root folder of the application from where require the configuration path;</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="63">
+        <li class="covered" data-hits="1" data-linenumber="64">
           <span class="hits">1</span>
           
           <code class="ruby">      def require_mongoid_config(root)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="64">
-          
+        <li class="covered" data-hits="14" data-linenumber="65">
+          <span class="hits">14</span>
           
           <code class="ruby">        Mongoid.load!(File.join(root, &#39;config&#39;, &#39;mongoid.yml&#39;))</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="65">
-          
-          
-          <code class="ruby">      end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="66">
           
           
-          <code class="ruby">    end</code>
+          <code class="ruby">      end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="67">
           
           
-          <code class="ruby">  end</code>
+          <code class="ruby">    end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="68">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="69">
           
           
           <code class="ruby">end</code>

@@ -2,10 +2,12 @@ ENV['SERVICE_URL'] = 'https://mon-service.com/'
 
 RSpec.describe Arkaan::Utils::MicroService do
 
+  let!(:root_path) { File.join(File.dirname(__FILE__), '..', '..', '..') }
+
   describe :registered_service do
     describe 'When the service does not already exist' do
       before do
-        Arkaan::Utils::MicroService.new(root: '/', name: 'test')
+        Arkaan::Utils::MicroService.new(root: root_path, name: 'test')
       end
       describe 'Service attributes' do
         let(:service) { Arkaan::Monitoring::Service.first }
@@ -47,7 +49,7 @@ RSpec.describe Arkaan::Utils::MicroService do
     describe 'When the service already exists but not the instance' do
       before do
         Arkaan::Monitoring::Service.create!(key: 'test', path: '/test', premium: true, active: true)
-        Arkaan::Utils::MicroService.new(root: '/', name: 'test')
+        Arkaan::Utils::MicroService.new(root: root_path, name: 'test')
       end
       describe 'Service attributes' do
         it 'does not create another service' do

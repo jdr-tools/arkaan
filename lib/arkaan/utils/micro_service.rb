@@ -24,20 +24,20 @@ module Arkaan
         @root = test_mode ? File.join(root, '..') : root
         @name = name
         @test_mode = test_mode
+        require_mongoid_config(root)
         @service = register_service
       end
 
       # Loads the necessary components for the application by requiring the needed files.
       # @param test_mode [Boolean] TRUE if the application i supposed to be launched from the spec_helper, FALSE otherwise.
       def load!
-        self.require_mongoid_config(root)
-        self.require_folder(root, 'decorators')
-        self.require_folder(root, 'controllers')
+        require_folder(root, 'decorators')
+        require_folder(root, 'controllers')
         if test_mode
-          self.require_folder(root, 'spec', 'support')
-          self.require_folder(root, 'spec', 'shared')
+          require_folder(root, 'spec', 'support')
+          require_folder(root, 'spec', 'shared')
         end
-        return self
+        return
       end
 
       # Creates the service instance if necessary, and returns it.
