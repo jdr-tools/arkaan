@@ -1,68 +1,80 @@
 module Arkaan
   module Utils
-    # The MicroService class is the loader for a micro service in general.
+    # This class is a singleton to load and save parameters for the whole application.
     # @author Vincent Courtois <courtois.vincent@outlook.com>
     class MicroService
+      include Singleton
 
-      # @!attribute [r] root
-      #   @return [String] the root path of the application, from where each path is deduced.
-      attr_reader :root
       # @!attribute [r] name
-      #   @return [String] the name of the service, given when initializing it.
-      attr_reader :name
-      # @!attribute [r] test_mode
-      #   @return [Boolean] TRUE if the micro service is initialized from a test suite, FALSE otherwise.
-      attr_reader :test_mode
-      # @!attribute [r] service
-      #   @return [Arkaan::Monitoring::Service] the service stored in the database corresponding to this application.
+      #   @return [String] the name of the service you want to load.
       attr_reader :service
+      # @!attribute [r] location
+      #   @return [String] the path to the file loading the whole application, used to deduce the loading paths.
+      attr_reader :location
 
-      # loads the application by requiring the files from the folders they're supposed to be in.
-      # @param name [String] the snake-cased name of the application, for service registration purpose mainly.
-      # @param root [String]
-      def initialize(name:, root:, test_mode: false)
-        @root = test_mode ? File.join(root, '..') : root
-        @name = name
-        @test_mode = test_mode
-        require_mongoid_config(root)
-        @service = register_service
+      def initialize
+        @location = false
+        @service = false
       end
 
-      # Loads the necessary components for the application by requiring the needed files.
-      # @param test_mode [Boolean] TRUE if the application i supposed to be launched from the spec_helper, FALSE otherwise.
-      def load!
-        require_folder(root, 'decorators')
-        require_folder(root, 'controllers')
-        if test_mode
-          require_folder(root, 'spec', 'support')
-          require_folder(root, 'spec', 'shared')
+      # Determines if the application can be loaded (all the parameters have been correctly set)
+      # @return [Boolean] TRUE if the application can be safely loaded, FALSE otherwise.
+      def loadable?
+        return !!(service && location)
+      end
+
+      # Getter for the path on which the service is mapped.
+      # @return [String] the absolute path in the URL on which the service is mapped upon.
+      def path
+        return service ? service.path : false
+      end
+
+      # Getter for the name of the service.
+      # @return [String] the name of the service as it is registered in the database.
+      def name
+        return service ? service.key : false
+      end
+
+      def register_as(service_name)
+        @service = Arkaan::Monitoring::Service.where(key: service_name).first
+        return self
+      end
+
+      def from_location(filename)
+        @location = File.dirname(filename)
+        return self
+      end
+
+      def load_app
+        return self
+      end
+
+      def require_folder(folder)
+        Dir[File.join(location, folder)].each do |filename|
+          require filename
         end
-        return
       end
 
-      # Creates the service instance if necessary, and returns it.
-      # @return [Arkaan::Monitoring::Service] the service in the registry corresponding to this micro-service.
-      def register_service
-        service = Arkaan::Monitoring::Service.where(key: @name).first
-        if service.nil?
-          service = Arkaan::Monitoring::Service.create!(key: @name, path: "/#{@name}", premium: true, active: true)
+      # Registers a non premium route in the service, and in the controller of the application simultaneously
+      # @param verb [String] the HTTP method of the route, can be GET, POST, PUT or DELETE.
+      # @param path [String] the path of the route, must start with a /.
+      def self.register_route(verb, path, &block)
+        self.create_or_register_route(verb, path, false, &block)
+      end
+
+      # Registers a premium route in the service, and in the controller of the application simultaneously
+      # @param verb [String] the HTTP method of the route, can be GET, POST, PUT or DELETE.
+      # @param path [String] the path of the route, must start with a /.
+      def self.register_premium_route(verb, path, &block)
+        self.create_or_register_route(verb, path, true, &block)
+      end
+
+      def self.create_or_register_route(verb, path, premium, &block)
+        if self.instance.loadable?
+          route = self.instance.service.routes.where(verb: verb, path: path).first
+          route = Arkaan::Monitoring::Route.create(verb: verb, path: path, premium: premium, service: service) if route.nil?
+          self.instance.send(:verb, path, &block)
         end
-        if service.instances.where(url: ENV['SERVICE_URL']).first.nil?
-          Arkaan::Monitoring::Instance.create!(url: ENV['SERVICE_URL'], running: true, service: service, active: true)
-        end
-        return service
-      end
-
-      # Require all the files from a folder iteratively by assembling the parts given as parameters.
-      # @param paths_elements [Array<String>] the elements to assemble to form the path of the folder.
-      def require_folder(*paths_elements)
-        Dir[File.join(paths_elements, '**', '*.rb')].each { |filename| require filename }
-      end
-
-      # Requires and loads the mongoid configuration from its default location.
-      # @param root [String] the root folder of the application from where require the configuration path;
-      def require_mongoid_config(root)
-        Mongoid.load!(File.join(root, 'config', 'mongoid.yml'))
       end
     end
   end
