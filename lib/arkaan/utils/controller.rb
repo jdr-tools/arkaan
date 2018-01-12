@@ -20,24 +20,28 @@ module Arkaan
         end
       end
 
-      def self.declare_service(key)
-        @@micro_service = Arkaan::Monitoring::Service.find_by(key: key)
-      end
-
+      # Creates a premium route whithin the Sinatra application, and registers it in the database if it does not already exists.
+      # @param verb [String] the HTTP method used to create this route.
+      # @param path [String] the path, beginning with a /, of the route to create.
       def self.declare_route(verb, path, &block)
         self.declare_route_with(verb, path, false, &block)
       end
 
+      # Creates a non premium route whithin the Sinatra application, and registers it in the database if it does not already exists.
+      # @param verb [String] the HTTP method used to create this route.
+      # @param path [String] the path, beginning with a /, of the route to create.
       def self.declare_premium_route(verb, path, &block)
         self.declare_route_with(verb, path, true, &block)
       end
 
+      # Creates a route whithin the Sinatra application, and registers it in the database if it does not already exists.
+      # @param verb [String] the HTTP method used to create this route.
+      # @param path [String] the path, beginning with a /, of the route to create.
+      # @param premium [Boolean] TRUE to make the route premium, FALSE otherwise.
       def self.declare_route_with(verb, path, premium, &block)
-        unless @@micro_service.nil?
-          if @@micro_service.routes.where(path: path, verb: verb).first.nil?
-            @@micro_service.routes << Arkaan::Monitoring::Route.new(path: path, verb: verb, premium: premium)
-            @@micro_service.save!
-          end
+        service = Arkaan::Utils::MicroService.instance.service
+        unless service.nil? || !service.routes.where(path: path, verb: verb).first.nil?
+          Arkaan::Monitoring::Route.create(path: path, verb: verb, premium: premium, service: service)
         end
         self.public_send(verb, path, &block)
       end

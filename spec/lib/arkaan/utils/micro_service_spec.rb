@@ -50,18 +50,4 @@ RSpec.describe Arkaan::Utils::MicroService do
       expect(located.loadable?).to be false
     end
   end
-  describe :lodable? do
-    describe 'When everything has been loaded correctly' do
-      let!(:instance) {
-        Class.new(Arkaan::Utils::MicroService).instance
-          .register_as('test.service')
-          .from_location('path/to/file.rb')
-          .load_app
-      }
-
-      it 'marks the service as loadable if all parameters are correctly set' do
-        expect(instance.loadable?).to be true
-      end
-    end
-  end
 end
