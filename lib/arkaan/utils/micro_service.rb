@@ -107,7 +107,7 @@ module Arkaan
       end
 
       def require_folder(*folders)
-        Dir[File.join(location, folders)].each do |filename|
+        Dir[File.join(location, folders, '**', '*.rb')].each do |filename|
           require filename
         end
       end
