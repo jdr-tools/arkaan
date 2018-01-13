@@ -64,8 +64,8 @@ module Arkaan
 
       private
 
-      def register_service(key)
-        @service = Arkaan::Service.create(key: key, path: "/#{key}")
+      def register_service
+        @service = Arkaan::Service.create(key: @name, path: "/#{key}")
       end
 
       def register_instance
@@ -78,8 +78,8 @@ module Arkaan
 
       def load_application(test_mode: false)
         load_mongoid_configuration
-        if !!(name && location)
-          @service = Arkaan::Monitoring::Service.where(key: service_name).first
+        if !!(@name && location)
+          @service = Arkaan::Monitoring::Service.where(key: @name).first
           register_service if @service.nil?
           register_instance
           if service
