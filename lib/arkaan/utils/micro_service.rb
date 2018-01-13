@@ -65,7 +65,7 @@ module Arkaan
       private
 
       def register_service
-        @service = Arkaan::Service.create(key: @name, path: "/#{key}")
+        @service = Arkaan::Monitoring::Service.create(key: @name, path: "/#{key}")
       end
 
       def register_instance
