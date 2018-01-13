@@ -77,14 +77,16 @@ module Arkaan
       end
 
       def load_application(test_mode: false)
-        if !!(name && service && location)
-          @location = File.join(location, '..') if test_mode
-          load_mongoid_configuration
+        load_mongoid_configuration
+        if !!(name && location)
           @service = Arkaan::Monitoring::Service.where(key: service_name).first
           register_service if @service.nil?
           register_instance
-          load_standard_files
-          load_test_files if test_mode
+          if service
+            @location = File.join(location, '..') if test_mode
+            load_standard_files
+            load_test_files if test_mode
+          end
         end
         return self
       end
