@@ -11,10 +11,14 @@ module Arkaan
       # @!attribute [r] location
       #   @return [String] the path to the file loading the whole application, used to deduce the loading paths.
       attr_reader :location
+      # @!attribute [r] name
+      #   @return [String] the name of the service, used later to instantiate it when the mongoid configuration is fully loaded.
+      attr_reader :name
 
       def initialize
         @location = false
         @service = false
+        @name = false
       end
 
       # Determines if the application can be loaded (all the parameters have been correctly set)
@@ -29,19 +33,11 @@ module Arkaan
         return service ? service.path : false
       end
 
-      # Getter for the name of the service.
-      # @return [String, Boolean] the name of the service as it is registered in the database, or FALSE if it's not set already.
-      def name
-        return service ? service.key : false
-      end
-
       # Look for the service and sets it if it's found in the database, or set it to nil if not found.
       # @param [String] service_name - the name of the service to look for in the database.
       # @return [Arkaan::utils::MicroService] the instance of the micro-service to chain other calls.
       def register_as(service_name)
-        @service = Arkaan::Monitoring::Service.where(key: service_name).first
-        register_service if @service.nil?
-        register_instance
+        @name = service_name
         return self
       end
 
@@ -81,10 +77,15 @@ module Arkaan
       end
 
       def load_application(test_mode: false)
-        @location = File.join(location, '..')
-        load_mongoid_configuration
-        load_standard_files
-        load_test_files if test_mode
+        if !!(name && service && location)
+          @location = File.join(location, '..') if test_mode
+          load_mongoid_configuration
+          @service = Arkaan::Monitoring::Service.where(key: service_name).first
+          register_service if @service.nil?
+          register_instance
+          load_standard_files
+          load_test_files if test_mode
+        end
         return self
       end
 

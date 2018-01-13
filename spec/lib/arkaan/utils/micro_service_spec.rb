@@ -29,9 +29,6 @@ RSpec.describe Arkaan::Utils::MicroService do
     it 'correctly sets the name of the service in the singleton' do
       expect(registered.name).to eq('test.service')
     end
-    it 'correctly sets the path of the service in the singleton' do
-      expect(registered.path).to eq('/example')
-    end
     it 'is still not loadable after that' do
       expect(registered.loadable?).to be false
     end
