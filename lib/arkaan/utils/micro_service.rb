@@ -64,10 +64,13 @@ module Arkaan
 
       private
 
+      # Registers the service in the database if it has not been created already.
       def register_service
         @service = Arkaan::Monitoring::Service.create(key: @name, path: "/#{@name}")
       end
 
+      # Register the instance of the currently deployed service in the database.
+      # @return [Arkaan::Monitoring::Instance] the instance of the micro service currently running.
       def register_instance
         instance = @service.instances.where(url: ENV['SERVICE_URL']).first
         if instance.nil?
@@ -76,6 +79,9 @@ module Arkaan
         return instance
       end
 
+      # Loads the configuration for Mongoid, the files of the application, and registers the service and the instance in the database.
+      # @param test_mode [Boolean] TRUE to run in test mode (from /spec), FALSE otherwise.
+      # @return [Arkaan::Utils::MicroService] the current instance of the micro service to chain other calls.
       def load_application(test_mode: false)
         load_mongoid_configuration
         if !!(@name && location)
@@ -83,7 +89,6 @@ module Arkaan
           register_service if @service.nil?
           register_instance
           if service
-            @location = File.join(location, '..') if test_mode
             load_standard_files
             load_test_files if test_mode
           end

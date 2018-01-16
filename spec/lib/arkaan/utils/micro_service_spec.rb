@@ -47,4 +47,42 @@ RSpec.describe Arkaan::Utils::MicroService do
       expect(located.loadable?).to be false
     end
   end
+  describe 'Standard loading process' do
+    let!(:instance) {
+      tmp_instance = Class.new(Arkaan::Utils::MicroService).instance
+      allow(tmp_instance).to receive(:load_mongoid_configuration).and_return(tmp_instance)
+      tmp_instance.register_as('test.service')
+        .from_location('path/to/file.rb')
+        .in_standard_mode
+    }
+
+    it 'should have the correct name after the loading' do
+      expect(instance.name).to eq('test.service')
+    end
+    it 'should have the correct service stored after the loading' do
+      expect(instance.service.key).to eq('test.service')
+    end
+    it 'should have the correct location after the loading' do
+      expect(instance.location).to eq('path/to')
+    end
+  end
+  describe 'Test loading process' do
+    let!(:instance) {
+      tmp_instance = Class.new(Arkaan::Utils::MicroService).instance
+      allow(tmp_instance).to receive(:load_mongoid_configuration).and_return(tmp_instance)
+      tmp_instance.register_as('test.service')
+        .from_location('path/to/location')
+        .in_test_mode
+    }
+
+    it 'should have the correct name after the loading' do
+      expect(instance.name).to eq('test.service')
+    end
+    it 'should have the correct service stored after the loading' do
+      expect(instance.service.key).to eq('test.service')
+    end
+    it 'should have the correct location after the loading' do
+      expect(instance.location).to eq('path/to/..')
+    end
+  end
 end
