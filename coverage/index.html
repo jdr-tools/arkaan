@@ -14,7 +14,7 @@
       <img src="./assets/0.10.2/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2018-01-16T00:02:15+01:00">2018-01-16T00:02:15+01:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2018-01-16T02:21:10+01:00">2018-01-16T02:21:10+01:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -25,7 +25,7 @@
      covered at
      <span class="covered_strength">
        <span class="green">
-         3.51
+         4.52
        </span>
     </span> hits/line)
   </h2>
@@ -67,7 +67,7 @@
         <td>23</td>
         <td>23</td>
         <td>0</td>
-        <td>5.2</td>
+        <td>6.4</td>
       </tr>
       
       <tr>
@@ -217,7 +217,7 @@
         <td>12</td>
         <td>12</td>
         <td>0</td>
-        <td>13.2</td>
+        <td>17.8</td>
       </tr>
       
       <tr>
@@ -297,7 +297,7 @@
         <td>29</td>
         <td>29</td>
         <td>0</td>
-        <td>16.3</td>
+        <td>24.2</td>
       </tr>
       
       <tr>
@@ -821,8 +821,8 @@
           <code class="ruby">    validates :password,</code>
         </li>
       
-        <li class="covered" data-hits="98" data-linenumber="62">
-          <span class="hits">98</span>
+        <li class="covered" data-hits="126" data-linenumber="62">
+          <span class="hits">126</span>
           
           <code class="ruby">      presence: {message: &#39;account.password.blank&#39;, if: -&gt;{ !persisted? || password_digest_changed? }},</code>
         </li>
@@ -3098,8 +3098,8 @@
           <code class="ruby">      #   @return [String] the unique key for the application, identifying it when requesting a token for the API.</code>
         </li>
       
-        <li class="covered" data-hits="147" data-linenumber="14">
-          <span class="hits">147</span>
+        <li class="covered" data-hits="203" data-linenumber="14">
+          <span class="hits">203</span>
           
           <code class="ruby">      field :key, type: String, default: -&gt;{ SecureRandom.hex }</code>
         </li>
@@ -4084,14 +4084,14 @@
           <code class="ruby">      before do</code>
         </li>
       
-        <li class="covered" data-hits="36" data-linenumber="10">
-          <span class="hits">36</span>
+        <li class="covered" data-hits="64" data-linenumber="10">
+          <span class="hits">64</span>
           
           <code class="ruby">        add_body_to_params</code>
         </li>
       
-        <li class="covered" data-hits="36" data-linenumber="11">
-          <span class="hits">36</span>
+        <li class="covered" data-hits="64" data-linenumber="11">
+          <span class="hits">64</span>
           
           <code class="ruby">        check_presence(&#39;token&#39;, &#39;app_key&#39;)</code>
         </li>
@@ -4102,14 +4102,14 @@
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="24" data-linenumber="13">
-          <span class="hits">24</span>
+        <li class="covered" data-hits="40" data-linenumber="13">
+          <span class="hits">40</span>
           
           <code class="ruby">        gateway = Arkaan::Monitoring::Gateway.where(token: params[&#39;token&#39;]).first</code>
         </li>
       
-        <li class="covered" data-hits="24" data-linenumber="14">
-          <span class="hits">24</span>
+        <li class="covered" data-hits="40" data-linenumber="14">
+          <span class="hits">40</span>
           
           <code class="ruby">        application = Arkaan::OAuth::Application.where(key: params[&#39;app_key&#39;]).first</code>
         </li>
@@ -4120,14 +4120,14 @@
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="24" data-linenumber="16">
-          <span class="hits">24</span>
+        <li class="covered" data-hits="40" data-linenumber="16">
+          <span class="hits">40</span>
           
           <code class="ruby">        if gateway.nil?</code>
         </li>
       
-        <li class="covered" data-hits="4" data-linenumber="17">
-          <span class="hits">4</span>
+        <li class="covered" data-hits="8" data-linenumber="17">
+          <span class="hits">8</span>
           
           <code class="ruby">          halt 404, {message: &#39;gateway_not_found&#39;}.to_json</code>
         </li>
@@ -4138,8 +4138,8 @@
           <code class="ruby">        elsif application.nil?</code>
         </li>
       
-        <li class="covered" data-hits="4" data-linenumber="19">
-          <span class="hits">4</span>
+        <li class="covered" data-hits="8" data-linenumber="19">
+          <span class="hits">8</span>
           
           <code class="ruby">          halt 404, {message: &#39;application_not_found&#39;}.to_json</code>
         </li>
@@ -4150,8 +4150,8 @@
           <code class="ruby">        elsif !application.premium?</code>
         </li>
       
-        <li class="covered" data-hits="4" data-linenumber="21">
-          <span class="hits">4</span>
+        <li class="covered" data-hits="8" data-linenumber="21">
+          <span class="hits">8</span>
           
           <code class="ruby">          halt 401, {message: &#39;application_not_authorized&#39;}.to_json</code>
         </li>
@@ -4348,14 +4348,14 @@
           <code class="ruby">      def check_presence(*fields)</code>
         </li>
       
-        <li class="covered" data-hits="36" data-linenumber="54">
-          <span class="hits">36</span>
+        <li class="covered" data-hits="64" data-linenumber="54">
+          <span class="hits">64</span>
           
           <code class="ruby">        fields.each do |field|</code>
         </li>
       
-        <li class="covered" data-hits="64" data-linenumber="55">
-          <span class="hits">64</span>
+        <li class="covered" data-hits="112" data-linenumber="55">
+          <span class="hits">112</span>
           
           <code class="ruby">          halt 400, {message: &#39;bad_request&#39;}.to_json if params[field].nil?</code>
         </li>
@@ -4396,20 +4396,20 @@
           <code class="ruby">      def add_body_to_params</code>
         </li>
       
-        <li class="covered" data-hits="36" data-linenumber="62">
-          <span class="hits">36</span>
+        <li class="covered" data-hits="64" data-linenumber="62">
+          <span class="hits">64</span>
           
           <code class="ruby">        parsed_body = JSON.parse(request.body.read.to_s) rescue {}</code>
         </li>
       
-        <li class="covered" data-hits="36" data-linenumber="63">
-          <span class="hits">36</span>
+        <li class="covered" data-hits="64" data-linenumber="63">
+          <span class="hits">64</span>
           
           <code class="ruby">        parsed_body.keys.each do |key|</code>
         </li>
       
-        <li class="covered" data-hits="28" data-linenumber="64">
-          <span class="hits">28</span>
+        <li class="covered" data-hits="8" data-linenumber="64">
+          <span class="hits">8</span>
           
           <code class="ruby">          params[key] = parsed_body[key]</code>
         </li>
