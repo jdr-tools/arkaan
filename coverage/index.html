@@ -5,7 +5,7 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <script src='./assets/0.10.2/application.js' type='text/javascript'></script>    
     <link href='./assets/0.10.2/application.css' media='screen, projection, print' rel='stylesheet' type='text/css'>
-    <link rel="shortcut icon" type="image/png" href="./assets/0.10.2/favicon_yellow.png" />
+    <link rel="shortcut icon" type="image/png" href="./assets/0.10.2/favicon_green.png" />
     <link rel="icon" type="image/png" href="./assets/0.10.2/favicon.png" />
   </head>
   
@@ -14,27 +14,27 @@
       <img src="./assets/0.10.2/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2018-01-13T03:32:48+01:00">2018-01-13T03:32:48+01:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2018-01-16T00:02:15+01:00">2018-01-16T00:02:15+01:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
         <div class="file_list_container" id="AllFiles">
   <h2>
     <span class="group_name">All Files</span>
-    (<span class="covered_percent"><span class="yellow">89.58%</span></span>
+    (<span class="covered_percent"><span class="green">91.56%</span></span>
      covered at
      <span class="covered_strength">
        <span class="green">
-         2.88
+         3.51
        </span>
     </span> hits/line)
   </h2>
   <a name="AllFiles"></a>
   <div>
     <b>26</b> files in total.
-    <b>307</b> relevant lines. 
-    <span class="green"><b>275</b> lines covered</span> and
-    <span class="red"><b>32</b> lines missed </span>
+    <b>308</b> relevant lines. 
+    <span class="green"><b>282</b> lines covered</span> and
+    <span class="red"><b>26</b> lines missed </span>
   </div>
   <table class="file_list">
     <thead>
@@ -292,12 +292,12 @@
       
       <tr>
         <td class="strong"><a href="#b7a6ab0a5f98fa28344e26833a17c73fe031c902" class="src_link" title="lib/arkaan/utils/controller.rb">lib/arkaan/utils/controller.rb</a></td>
-        <td class="red strong">78.57 %</td>
-        <td>67</td>
-        <td>28</td>
-        <td>22</td>
-        <td>6</td>
-        <td>9.9</td>
+        <td class="green strong">100.0 %</td>
+        <td>69</td>
+        <td>29</td>
+        <td>29</td>
+        <td>0</td>
+        <td>16.3</td>
       </tr>
       
       <tr>
@@ -4019,11 +4019,11 @@
         <div class="source_table" id="b7a6ab0a5f98fa28344e26833a17c73fe031c902">
   <div class="header">
     <h3>lib/arkaan/utils/controller.rb</h3>
-    <h4><span class="red">78.57 %</span> covered</h4>
+    <h4><span class="green">100.0 %</span> covered</h4>
     <div>
-      <b>28</b> relevant lines. 
-      <span class="green"><b>22</b> lines covered</span> and
-      <span class="red"><b>6</b> lines missed.</span>
+      <b>29</b> relevant lines. 
+      <span class="green"><b>29</b> lines covered</span> and
+      <span class="red"><b>0</b> lines missed.</span>
     </div>
   </div>
   
@@ -4033,400 +4033,412 @@
         <li class="covered" data-hits="1" data-linenumber="1">
           <span class="hits">1</span>
           
+          <code class="ruby">require &#39;pry&#39;</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="2">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="3">
+          <span class="hits">1</span>
+          
           <code class="ruby">module Arkaan</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="2">
+        <li class="covered" data-hits="1" data-linenumber="4">
           <span class="hits">1</span>
           
           <code class="ruby">  module Utils</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="3">
+        <li class="never" data-hits="" data-linenumber="5">
           
           
           <code class="ruby">    # Base controller to handle the standard error when accessing the API.</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="4">
+        <li class="never" data-hits="" data-linenumber="6">
           
           
           <code class="ruby">    # @author Vincent Courtois &lt;courtois.vincenet@outlook.com&gt;</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="5">
+        <li class="covered" data-hits="1" data-linenumber="7">
           <span class="hits">1</span>
           
           <code class="ruby">    class Controller &lt; Sinatra::Base</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="6">
+        <li class="never" data-hits="" data-linenumber="8">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="7">
+        <li class="covered" data-hits="1" data-linenumber="9">
           <span class="hits">1</span>
           
           <code class="ruby">      before do</code>
         </li>
       
-        <li class="covered" data-hits="28" data-linenumber="8">
-          <span class="hits">28</span>
+        <li class="covered" data-hits="36" data-linenumber="10">
+          <span class="hits">36</span>
           
           <code class="ruby">        add_body_to_params</code>
         </li>
       
-        <li class="covered" data-hits="28" data-linenumber="9">
-          <span class="hits">28</span>
+        <li class="covered" data-hits="36" data-linenumber="11">
+          <span class="hits">36</span>
           
           <code class="ruby">        check_presence(&#39;token&#39;, &#39;app_key&#39;)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="10">
+        <li class="never" data-hits="" data-linenumber="12">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="16" data-linenumber="11">
-          <span class="hits">16</span>
+        <li class="covered" data-hits="24" data-linenumber="13">
+          <span class="hits">24</span>
           
           <code class="ruby">        gateway = Arkaan::Monitoring::Gateway.where(token: params[&#39;token&#39;]).first</code>
         </li>
       
-        <li class="covered" data-hits="16" data-linenumber="12">
-          <span class="hits">16</span>
+        <li class="covered" data-hits="24" data-linenumber="14">
+          <span class="hits">24</span>
           
           <code class="ruby">        application = Arkaan::OAuth::Application.where(key: params[&#39;app_key&#39;]).first</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="13">
+        <li class="never" data-hits="" data-linenumber="15">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="16" data-linenumber="14">
-          <span class="hits">16</span>
+        <li class="covered" data-hits="24" data-linenumber="16">
+          <span class="hits">24</span>
           
           <code class="ruby">        if gateway.nil?</code>
-        </li>
-      
-        <li class="covered" data-hits="4" data-linenumber="15">
-          <span class="hits">4</span>
-          
-          <code class="ruby">          halt 404, {message: &#39;gateway_not_found&#39;}.to_json</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="16">
-          
-          
-          <code class="ruby">        elsif application.nil?</code>
         </li>
       
         <li class="covered" data-hits="4" data-linenumber="17">
           <span class="hits">4</span>
           
-          <code class="ruby">          halt 404, {message: &#39;application_not_found&#39;}.to_json</code>
+          <code class="ruby">          halt 404, {message: &#39;gateway_not_found&#39;}.to_json</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="18">
           
           
-          <code class="ruby">        elsif !application.premium?</code>
+          <code class="ruby">        elsif application.nil?</code>
         </li>
       
         <li class="covered" data-hits="4" data-linenumber="19">
           <span class="hits">4</span>
           
-          <code class="ruby">          halt 401, {message: &#39;application_not_authorized&#39;}.to_json</code>
+          <code class="ruby">          halt 404, {message: &#39;application_not_found&#39;}.to_json</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="20">
           
           
-          <code class="ruby">        end</code>
+          <code class="ruby">        elsif !application.premium?</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="21">
+        <li class="covered" data-hits="4" data-linenumber="21">
+          <span class="hits">4</span>
           
-          
-          <code class="ruby">      end</code>
+          <code class="ruby">          halt 401, {message: &#39;application_not_authorized&#39;}.to_json</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="22">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">        end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="23">
           
           
-          <code class="ruby">      # Creates a premium route whithin the Sinatra application, and registers it in the database if it does not already exists.</code>
+          <code class="ruby">      end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="24">
           
           
-          <code class="ruby">      # @param verb [String] the HTTP method used to create this route.</code>
+          <code class="ruby"></code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="25">
           
           
+          <code class="ruby">      # Creates a premium route whithin the Sinatra application, and registers it in the database if it does not already exists.</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="26">
+          
+          
+          <code class="ruby">      # @param verb [String] the HTTP method used to create this route.</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="27">
+          
+          
           <code class="ruby">      # @param path [String] the path, beginning with a /, of the route to create.</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="26">
+        <li class="covered" data-hits="1" data-linenumber="28">
           <span class="hits">1</span>
           
           <code class="ruby">      def self.declare_route(verb, path, &amp;block)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="27">
-          
+        <li class="covered" data-hits="12" data-linenumber="29">
+          <span class="hits">12</span>
           
           <code class="ruby">        self.declare_route_with(verb, path, false, &amp;block)</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="28">
-          
-          
-          <code class="ruby">      end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="29">
-          
-          
-          <code class="ruby"></code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="30">
           
           
-          <code class="ruby">      # Creates a non premium route whithin the Sinatra application, and registers it in the database if it does not already exists.</code>
+          <code class="ruby">      end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="31">
           
           
-          <code class="ruby">      # @param verb [String] the HTTP method used to create this route.</code>
+          <code class="ruby"></code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="32">
           
           
-          <code class="ruby">      # @param path [String] the path, beginning with a /, of the route to create.</code>
+          <code class="ruby">      # Creates a non premium route whithin the Sinatra application, and registers it in the database if it does not already exists.</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="33">
-          <span class="hits">1</span>
-          
-          <code class="ruby">      def self.declare_premium_route(verb, path, &amp;block)</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="34">
-          
-          
-          <code class="ruby">        self.declare_route_with(verb, path, true, &amp;block)</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="35">
-          
-          
-          <code class="ruby">      end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="36">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="37">
-          
-          
-          <code class="ruby">      # Creates a route whithin the Sinatra application, and registers it in the database if it does not already exists.</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="38">
+        <li class="never" data-hits="" data-linenumber="33">
           
           
           <code class="ruby">      # @param verb [String] the HTTP method used to create this route.</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="39">
+        <li class="never" data-hits="" data-linenumber="34">
           
           
           <code class="ruby">      # @param path [String] the path, beginning with a /, of the route to create.</code>
         </li>
       
+        <li class="covered" data-hits="1" data-linenumber="35">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      def self.declare_premium_route(verb, path, &amp;block)</code>
+        </li>
+      
+        <li class="covered" data-hits="12" data-linenumber="36">
+          <span class="hits">12</span>
+          
+          <code class="ruby">        self.declare_route_with(verb, path, true, &amp;block)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="37">
+          
+          
+          <code class="ruby">      end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="38">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="39">
+          
+          
+          <code class="ruby">      # Creates a route whithin the Sinatra application, and registers it in the database if it does not already exists.</code>
+        </li>
+      
         <li class="never" data-hits="" data-linenumber="40">
+          
+          
+          <code class="ruby">      # @param verb [String] the HTTP method used to create this route.</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="41">
+          
+          
+          <code class="ruby">      # @param path [String] the path, beginning with a /, of the route to create.</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="42">
           
           
           <code class="ruby">      # @param premium [Boolean] TRUE to make the route premium, FALSE otherwise.</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="41">
+        <li class="covered" data-hits="1" data-linenumber="43">
           <span class="hits">1</span>
           
           <code class="ruby">      def self.declare_route_with(verb, path, premium, &amp;block)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="42">
-          
+        <li class="covered" data-hits="24" data-linenumber="44">
+          <span class="hits">24</span>
           
           <code class="ruby">        service = Arkaan::Utils::MicroService.instance.service</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="43">
-          
+        <li class="covered" data-hits="24" data-linenumber="45">
+          <span class="hits">24</span>
           
           <code class="ruby">        unless service.nil? || !service.routes.where(path: path, verb: verb).first.nil?</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="44">
-          
+        <li class="covered" data-hits="12" data-linenumber="46">
+          <span class="hits">12</span>
           
           <code class="ruby">          Arkaan::Monitoring::Route.create(path: path, verb: verb, premium: premium, service: service)</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="45">
-          
-          
-          <code class="ruby">        end</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="46">
-          
-          
-          <code class="ruby">        self.public_send(verb, path, &amp;block)</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="47">
           
           
-          <code class="ruby">      end</code>
+          <code class="ruby">        end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="48">
+        <li class="covered" data-hits="24" data-linenumber="48">
+          <span class="hits">24</span>
           
-          
-          <code class="ruby"></code>
+          <code class="ruby">        self.public_send(verb, path, &amp;block)</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="49">
           
           
-          <code class="ruby">      # Checks the presence of several fields given as parameters and halts the execution if it&#39;s not present.</code>
+          <code class="ruby">      end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="50">
           
           
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="51">
+          
+          
+          <code class="ruby">      # Checks the presence of several fields given as parameters and halts the execution if it&#39;s not present.</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="52">
+          
+          
           <code class="ruby">      # @param fields [Array&lt;String&gt;] an array of fields names to search in the parameters</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="51">
+        <li class="covered" data-hits="1" data-linenumber="53">
           <span class="hits">1</span>
           
           <code class="ruby">      def check_presence(*fields)</code>
         </li>
       
-        <li class="covered" data-hits="28" data-linenumber="52">
-          <span class="hits">28</span>
+        <li class="covered" data-hits="36" data-linenumber="54">
+          <span class="hits">36</span>
           
           <code class="ruby">        fields.each do |field|</code>
         </li>
       
-        <li class="covered" data-hits="48" data-linenumber="53">
-          <span class="hits">48</span>
+        <li class="covered" data-hits="64" data-linenumber="55">
+          <span class="hits">64</span>
           
           <code class="ruby">          halt 400, {message: &#39;bad_request&#39;}.to_json if params[field].nil?</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="54">
-          
-          
-          <code class="ruby">        end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="55">
-          
-          
-          <code class="ruby">      end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="56">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">        end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="57">
           
           
-          <code class="ruby">      # Adds the parsed body to the parameters, overwriting the parameters of the querystring with the values</code>
+          <code class="ruby">      end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="58">
           
           
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="59">
+          
+          
+          <code class="ruby">      # Adds the parsed body to the parameters, overwriting the parameters of the querystring with the values</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="60">
+          
+          
           <code class="ruby">      # of the SON body if they have similar keys.</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="59">
+        <li class="covered" data-hits="1" data-linenumber="61">
           <span class="hits">1</span>
           
           <code class="ruby">      def add_body_to_params</code>
         </li>
       
-        <li class="covered" data-hits="28" data-linenumber="60">
-          <span class="hits">28</span>
+        <li class="covered" data-hits="36" data-linenumber="62">
+          <span class="hits">36</span>
           
           <code class="ruby">        parsed_body = JSON.parse(request.body.read.to_s) rescue {}</code>
         </li>
       
-        <li class="covered" data-hits="28" data-linenumber="61">
-          <span class="hits">28</span>
+        <li class="covered" data-hits="36" data-linenumber="63">
+          <span class="hits">36</span>
           
           <code class="ruby">        parsed_body.keys.each do |key|</code>
         </li>
       
-        <li class="covered" data-hits="20" data-linenumber="62">
-          <span class="hits">20</span>
+        <li class="covered" data-hits="28" data-linenumber="64">
+          <span class="hits">28</span>
           
           <code class="ruby">          params[key] = parsed_body[key]</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="63">
-          
-          
-          <code class="ruby">        end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="64">
-          
-          
-          <code class="ruby">      end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="65">
           
           
-          <code class="ruby">    end</code>
+          <code class="ruby">        end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="66">
           
           
-          <code class="ruby">  end</code>
+          <code class="ruby">      end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="67">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="68">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="69">
           
           
           <code class="ruby">end</code>
@@ -4559,20 +4571,20 @@
           <code class="ruby">      def initialize</code>
         </li>
       
-        <li class="covered" data-hits="10" data-linenumber="19">
-          <span class="hits">10</span>
+        <li class="covered" data-hits="11" data-linenumber="19">
+          <span class="hits">11</span>
           
           <code class="ruby">        @location = false</code>
         </li>
       
-        <li class="covered" data-hits="10" data-linenumber="20">
-          <span class="hits">10</span>
+        <li class="covered" data-hits="11" data-linenumber="20">
+          <span class="hits">11</span>
           
           <code class="ruby">        @service = false</code>
         </li>
       
-        <li class="covered" data-hits="10" data-linenumber="21">
-          <span class="hits">10</span>
+        <li class="covered" data-hits="11" data-linenumber="21">
+          <span class="hits">11</span>
           
           <code class="ruby">        @name = false</code>
         </li>
@@ -4850,13 +4862,13 @@
         <li class="covered" data-hits="1" data-linenumber="67">
           <span class="hits">1</span>
           
-          <code class="ruby">      def register_service(key)</code>
+          <code class="ruby">      def register_service</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="68">
           
           
-          <code class="ruby">        @service = Arkaan::Service.create(key: key, path: &quot;/#{key}&quot;)</code>
+          <code class="ruby">        @service = Arkaan::Monitoring::Service.create(key: @name, path: &quot;/#{@name}&quot;)</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="69">
@@ -4934,13 +4946,13 @@
         <li class="missed" data-hits="0" data-linenumber="81">
           
           
-          <code class="ruby">        if !!(name &amp;&amp; location)</code>
+          <code class="ruby">        if !!(@name &amp;&amp; location)</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="82">
           
           
-          <code class="ruby">          @service = Arkaan::Monitoring::Service.where(key: service_name).first</code>
+          <code class="ruby">          @service = Arkaan::Monitoring::Service.where(key: @name).first</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="83">
@@ -5108,7 +5120,7 @@
         <li class="missed" data-hits="0" data-linenumber="110">
           
           
-          <code class="ruby">        Dir[File.join(location, folders)].each do |filename|</code>
+          <code class="ruby">        Dir[File.join(location, folders, &#39;**&#39;, &#39;*.rb&#39;)].each do |filename|</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="111">

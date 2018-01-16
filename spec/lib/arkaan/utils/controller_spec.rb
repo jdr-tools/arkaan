@@ -192,22 +192,22 @@ RSpec.describe TestController do
   end
 
   describe :declare_routes do
-    class NonPremiumController < Arkaan::Utils::Controller; end
-
-    before do
-      NonPremiumController.declare_service('test.service')
-    end
-
-    def app
-      NonPremiumController.new
-    end
 
     describe 'When the route does not already exists' do
       before do
-        NonPremiumController.declare_route('get', '/') do
-          halt 200, {message: 'test_message'}.to_json
+        allow(Arkaan::Utils::MicroService.instance).to receive(:service).and_return(service)
+
+        class NonPremiumTestController < Arkaan::Utils::Controller
+          declare_route('get', '/') do
+            halt 200, {message: 'test_message'}.to_json
+          end
         end
       end
+
+      def app
+        NonPremiumTestController.new
+      end
+
       it 'Has created a route' do
         expect(Arkaan::Monitoring::Route.all.count).to be 1
       end
@@ -238,10 +238,18 @@ RSpec.describe TestController do
     end
     describe 'When the route already exists' do
       before do
+        allow(Arkaan::Utils::MicroService.instance).to receive(:service).and_return(service)
         create(:route, verb: 'post', path: '/', premium: false, service: service)
-        NonPremiumController.declare_route('post', '/') do
-          halt 200, {message: 'test_message'}.to_json
+
+        class NonPremiumTestController < Arkaan::Utils::Controller
+          declare_route('post', '/') do
+            halt 200, {message: 'test_message'}.to_json
+          end
         end
+      end
+
+      def app
+        NonPremiumTestController.new
       end
       it 'Has created a route' do
         expect(Arkaan::Monitoring::Route.all.count).to be 1
@@ -274,22 +282,22 @@ RSpec.describe TestController do
   end
 
   describe :declare_premium_route do
-    class PremiumController < Arkaan::Utils::Controller; end
-
-    before do
-      PremiumController.declare_service('test.service')
-    end
-
-    def app
-      PremiumController.new
-    end
 
     describe 'When the route does not already exists' do
       before do
-        PremiumController.declare_premium_route('get', '/') do
-          halt 200, {message: 'test_message'}.to_json
+        allow(Arkaan::Utils::MicroService.instance).to receive(:service).and_return(service)
+
+        class PremiumTestController < Arkaan::Utils::Controller
+          declare_premium_route('get', '/') do
+            halt 200, {message: 'test_message'}.to_json
+          end
         end
       end
+
+      def app
+        PremiumTestController.new
+      end
+
       it 'Has created a route' do
         expect(Arkaan::Monitoring::Route.all.count).to be 1
       end
@@ -320,11 +328,20 @@ RSpec.describe TestController do
     end
     describe 'When the route already exists' do
       before do
+        allow(Arkaan::Utils::MicroService.instance).to receive(:service).and_return(service)
         create(:route, verb: 'post', path: '/', premium: true, service: service)
-        PremiumController.declare_premium_route('post', '/') do
-          halt 200, {message: 'test_message'}.to_json
+
+        class PremiumTestController < Arkaan::Utils::Controller
+          declare_premium_route('post', '/') do
+            halt 200, {message: 'test_message'}.to_json
+          end
         end
       end
+
+      def app
+        PremiumTestController.new
+      end
+
       it 'Has created a route' do
         expect(Arkaan::Monitoring::Route.all.count).to be 1
       end
