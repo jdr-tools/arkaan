@@ -107,7 +107,6 @@ module Arkaan
 
       def load_test_files
         require_folder('spec', 'support')
-        require_folder('spec', 'factories')
         require_folder('spec', 'shared')
       end
 
