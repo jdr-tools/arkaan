@@ -1,5 +1,3 @@
-require 'pry'
-
 module Arkaan
   module Utils
     # Base controller to handle the standard error when accessing the API.
