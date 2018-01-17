@@ -12,6 +12,9 @@ RSpec.describe Arkaan::Monitoring::Route do
     it 'invalidates the path if it\'s in a wrong format' do
       expect(build(:route, path: 'essai').valid?).to be false
     end
+    it 'validates a composite path with parameters' do
+      expect(build(:route, path: '/test/:parameter').valid?).to be true
+    end
   end
 
   describe :premium do

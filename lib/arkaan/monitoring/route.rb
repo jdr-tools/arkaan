@@ -21,7 +21,7 @@ module Arkaan
       belongs_to :service, class_name: 'Arkaan::Monitoring::Service', inverse_of: :routes
 
       validates :path,
-        format: {with: /\A(\/|((\/[a-zA-Z0-9]+)+))\z/, message: 'route.path.format', if: :path?}
+        format: {with: /\A(\/|((\/:?[a-zA-Z0-9]+)+))\z/, message: 'route.path.format', if: :path?}
 
       validates :verb,
         inclusion: {message: 'route.verb.unknown', in: ['get', 'post', 'put', 'delete', 'patch', 'option']}
