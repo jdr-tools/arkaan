@@ -24,7 +24,11 @@ module Arkaan
 
       validates :url,
         presence: {message: 'gateway.url.blank'},
-        format: {with: /\A(https?:\/\/)([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?\z/, message: 'gateway.url.format', if: :url?}
+        format: {
+          with: /\A(https?:\/\/)((localhost:[0-9]+)|(([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*))\/?\z/,
+          message: 'gateway.url.format',
+          if: :url?
+        }
 
       validates :token,
         presence: {message: 'gateway.token.blank'},
@@ -32,3 +36,6 @@ module Arkaan
     end
   end
 end
+
+
+
