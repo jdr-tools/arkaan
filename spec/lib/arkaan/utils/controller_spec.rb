@@ -25,18 +25,16 @@ RSpec.describe TestController do
   let!(:application) { create(:not_premium_application, creator: account) }
   let!(:service) { create(:service) }
 
+
   describe 'GET request' do
     include_examples 'micro_service route', verb: 'get'
   end
-
   describe 'POST request' do
     include_examples 'micro_service route', verb: 'post', expected_status: 201, expected_body: {'message' => 'created'}
   end
-
   describe 'PUT request' do
     include_examples 'micro_service route', verb: 'put', expected_body: {'message' => 'updated'}
   end
-
   describe 'DELETE request' do
     include_examples 'micro_service route', verb: 'delete', expected_body: {'message' => 'deleted'}
   end
@@ -76,7 +74,7 @@ RSpec.describe TestController do
       end
       describe 'call to the route' do
         before do
-          get '/', {app_key: 'test_key', token: 'test_token'}
+          get '/', {app_key: 'test_key', token: 'test_token'}, {'sinatra.route' => 'GET /'}
         end
         it 'correctly calls the route when all parameters are rightly given' do
           expect(last_response.status).to be 200
@@ -119,7 +117,7 @@ RSpec.describe TestController do
       end
       describe 'call to the route' do
         before do
-          post '/', {app_key: 'test_key', token: 'test_token'}.to_json
+          post '/', {app_key: 'test_key', token: 'test_token'}.to_json, {'sinatra.route' => 'POST /'}
         end
         it 'correctly calls the route when all parameters are rightly given' do
           expect(last_response.status).to be 200
@@ -166,7 +164,7 @@ RSpec.describe TestController do
       end
       describe 'call to the route' do
         before do
-          get '/', {app_key: 'test_key', token: 'test_token'}
+          get '/', {app_key: 'test_key', token: 'test_token'}, {'sinatra.route' => 'GET /'}
         end
         it 'correctly calls the route when all parameters are rightly given' do
           expect(last_response.status).to be 200
@@ -210,7 +208,7 @@ RSpec.describe TestController do
       end
       describe 'call to the route' do
         before do
-          post '/', {app_key: 'test_key', token: 'test_token'}.to_json
+          post '/', {app_key: 'test_key', token: 'test_token'}.to_json, {'sinatra.route' => 'POST /'}
         end
         it 'correctly calls the route when all parameters are rightly given' do
           expect(last_response.status).to be 200

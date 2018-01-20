@@ -10,12 +10,13 @@ module Arkaan
 
         gateway = Arkaan::Monitoring::Gateway.where(token: params['token']).first
         application = Arkaan::OAuth::Application.where(key: params['app_key']).first
+        route = parse_current_route
 
         if gateway.nil?
           halt 404, {message: 'gateway_not_found'}.to_json
         elsif application.nil?
           halt 404, {message: 'application_not_found'}.to_json
-        elsif !application.premium?
+        elsif route && route.premium? && !application.premium?
           halt 401, {message: 'application_not_authorized'}.to_json
         end
       end
@@ -61,6 +62,13 @@ module Arkaan
         parsed_body.keys.each do |key|
           params[key] = parsed_body[key]
         end
+      end
+
+      # Gets the current route in the database from the sinatra route.
+      # @return [Arkaan::Monitoring::Route] the route declared in the services registry.
+      def parse_current_route
+        splitted = request.env['sinatra.route'].split(' ')
+        return Arkaan::Monitoring::Route.where(verb: splitted.first.downcase, path: splitted.last).first
       end
     end
   end

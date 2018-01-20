@@ -1,8 +1,8 @@
 RSpec.shared_examples 'micro_service route' do |verb:, expected_status: 200, expected_body: {'message' => 'test_message'}|
 
   def make_request(verb, url, parameters)
-    parameters = parameters.to_json if ['PUT', 'POST'].include?(verb)
-    public_send(verb, url, parameters)
+    parameters = parameters.to_json if ['put', 'post'].include?(verb)
+    public_send(verb, url, parameters, {'sinatra.route' => "#{verb} /"})
   end
 
   describe 'Nominal case' do
@@ -54,6 +54,7 @@ RSpec.shared_examples 'micro_service route' do |verb:, expected_status: 200, exp
   describe 'Unauthorized errors' do
     describe 'Application not premium error' do
       before do
+        create(:route, verb: verb, path: '/', premium: true)
         make_request(verb, '/', {app_key: 'other_key', token: 'test_token'})
       end
       it 'Returns an unauthorized (401) error if the application is not premium' do
