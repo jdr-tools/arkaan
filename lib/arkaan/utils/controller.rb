@@ -9,15 +9,12 @@ module Arkaan
         check_presence('token', 'app_key')
 
         gateway = Arkaan::Monitoring::Gateway.where(token: params['token']).first
-        application = Arkaan::OAuth::Application.where(key: params['app_key']).first
-        route = parse_current_route
-
+        @application = Arkaan::OAuth::Application.where(key: params['app_key']).first
+        
         if gateway.nil?
           halt 404, {message: 'gateway_not_found'}.to_json
-        elsif application.nil?
+        elsif @application.nil?
           halt 404, {message: 'application_not_found'}.to_json
-        elsif route && route.premium? && !application.premium?
-          halt 401, {message: 'application_not_authorized'}.to_json
         end
       end
 
@@ -44,7 +41,17 @@ module Arkaan
         unless service.nil? || !service.routes.where(path: path, verb: verb).first.nil?
           Arkaan::Monitoring::Route.create(path: path, verb: verb, premium: premium, service: service)
         end
-        self.public_send(verb, path, &block)
+        if premium
+          self.public_send(verb, path) do
+            @sinatra_route = parse_current_route
+            if !@application.premium?
+              halt 401, {message: 'application_not_authorized'}.to_json
+            end
+            instance_eval(&block)
+          end
+        else
+          self.public_send(verb, path, &block)
+        end
       end
 
       # Checks the presence of several fields given as parameters and halts the execution if it's not present.

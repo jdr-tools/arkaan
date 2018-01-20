@@ -1,23 +1,4 @@
-class TestController < Arkaan::Utils::Controller
-  get '/' do
-    halt 200, {message: 'test_message'}.to_json
-  end
-  post '/' do
-    halt 201, {message: 'created'}.to_json
-  end
-  put '/' do
-    halt 200, {message: 'updated'}.to_json
-  end
-  delete '/' do
-    halt 200, {message: 'deleted'}.to_json
-  end
-end
-
-RSpec.describe TestController do
-
-  def app
-    TestController.new
-  end
+RSpec.describe Arkaan::Utils::Controller do
 
   let!(:account) { create(:account) }
   let!(:gateway) { create(:gateway) }
@@ -25,6 +6,28 @@ RSpec.describe TestController do
   let!(:application) { create(:not_premium_application, creator: account) }
   let!(:service) { create(:service) }
 
+  before do
+    allow(Arkaan::Utils::MicroService.instance).to receive(:service).and_return(service)
+
+    class TestController < Arkaan::Utils::Controller
+      declare_premium_route('get', '/') do
+        halt 200, {message: 'test_message'}.to_json
+      end
+      declare_premium_route('post', '/') do
+        halt 201, {message: 'created'}.to_json
+      end
+      declare_premium_route('put', '/') do
+        halt 200, {message: 'updated'}.to_json
+      end
+      declare_premium_route('delete', '/') do
+        halt 200, {message: 'deleted'}.to_json
+      end
+    end
+
+    def app
+      TestController.new
+    end
+  end
 
   describe 'GET request' do
     include_examples 'micro_service route', verb: 'get'
@@ -41,6 +44,10 @@ RSpec.describe TestController do
 
   describe :declare_routes do
 
+    before :each do
+      Arkaan::Monitoring::Route.delete_all
+    end
+
     describe 'When the route does not already exists' do
       before do
         allow(Arkaan::Utils::MicroService.instance).to receive(:service).and_return(service)
@@ -50,10 +57,10 @@ RSpec.describe TestController do
             halt 200, {message: 'test_message'}.to_json
           end
         end
-      end
 
-      def app
-        NonPremiumTestController.new
+        def app
+          NonPremiumTestController.new
+        end
       end
 
       it 'Has created a route' do
@@ -74,7 +81,7 @@ RSpec.describe TestController do
       end
       describe 'call to the route' do
         before do
-          get '/', {app_key: 'test_key', token: 'test_token'}, {'sinatra.route' => 'GET /'}
+          get '/', {app_key: 'test_key', token: 'test_token'}
         end
         it 'correctly calls the route when all parameters are rightly given' do
           expect(last_response.status).to be 200
@@ -94,10 +101,10 @@ RSpec.describe TestController do
             halt 200, {message: 'test_message'}.to_json
           end
         end
-      end
 
-      def app
-        NonPremiumTestController.new
+        def app
+          NonPremiumTestController.new
+        end
       end
       it 'Has created a route' do
         expect(Arkaan::Monitoring::Route.all.count).to be 1
@@ -117,7 +124,7 @@ RSpec.describe TestController do
       end
       describe 'call to the route' do
         before do
-          post '/', {app_key: 'test_key', token: 'test_token'}.to_json, {'sinatra.route' => 'POST /'}
+          post '/', {app_key: 'test_key', token: 'test_token'}.to_json
         end
         it 'correctly calls the route when all parameters are rightly given' do
           expect(last_response.status).to be 200
@@ -131,6 +138,10 @@ RSpec.describe TestController do
 
   describe :declare_premium_route do
 
+    before :each do
+      Arkaan::Monitoring::Route.delete_all
+    end
+
     describe 'When the route does not already exists' do
       before do
         allow(Arkaan::Utils::MicroService.instance).to receive(:service).and_return(service)
@@ -140,10 +151,10 @@ RSpec.describe TestController do
             halt 200, {message: 'test_message'}.to_json
           end
         end
-      end
 
-      def app
-        PremiumTestController.new
+        def app
+          PremiumTestController.new
+        end
       end
 
       it 'Has created a route' do
@@ -164,7 +175,7 @@ RSpec.describe TestController do
       end
       describe 'call to the route' do
         before do
-          get '/', {app_key: 'test_key', token: 'test_token'}, {'sinatra.route' => 'GET /'}
+          get '/', {app_key: 'test_key', token: 'test_token'}
         end
         it 'correctly calls the route when all parameters are rightly given' do
           expect(last_response.status).to be 200
@@ -184,10 +195,10 @@ RSpec.describe TestController do
             halt 200, {message: 'test_message'}.to_json
           end
         end
-      end
 
-      def app
-        PremiumTestController.new
+        def app
+          PremiumTestController.new
+        end
       end
 
       it 'Has created a route' do
@@ -208,7 +219,7 @@ RSpec.describe TestController do
       end
       describe 'call to the route' do
         before do
-          post '/', {app_key: 'test_key', token: 'test_token'}.to_json, {'sinatra.route' => 'POST /'}
+          post '/', {app_key: 'test_key', token: 'test_token'}.to_json
         end
         it 'correctly calls the route when all parameters are rightly given' do
           expect(last_response.status).to be 200

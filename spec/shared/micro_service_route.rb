@@ -2,7 +2,7 @@ RSpec.shared_examples 'micro_service route' do |verb:, expected_status: 200, exp
 
   def make_request(verb, url, parameters)
     parameters = parameters.to_json if ['put', 'post'].include?(verb)
-    public_send(verb, url, parameters, {'sinatra.route' => "#{verb} /"})
+    public_send(verb, url, parameters)
   end
 
   describe 'Nominal case' do
