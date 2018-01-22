@@ -18,8 +18,6 @@ module Arkaan
       
       make_diagnosticable 'service'
 
-      make_premiumable
-
       # @!attribute [rw] creator
       #   @return [Arkaan::Account] the creator of this service.
       belongs_to :creator, class_name: 'Arkaan::Account', optional: true, inverse_of: :services

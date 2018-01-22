@@ -26,6 +26,15 @@ RSpec.describe Arkaan::Monitoring::Route do
     end
   end
 
+  describe :active do
+    it 'gives a default value to the active flag' do
+      expect(build(:empty_route).active).to be false
+    end
+    it 'correctly returns the active value for an active route' do
+      expect(build(:active_route).active).to be true
+    end
+  end
+
   describe :verb do
     it 'has a verb set at creation' do
       expect(build(:route).verb).to eq 'post'

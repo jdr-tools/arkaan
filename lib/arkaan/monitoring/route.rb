@@ -6,6 +6,7 @@ module Arkaan
       include Mongoid::Document
       include Mongoid::Timestamps
       include Arkaan::Concerns::Premiumable
+      include Arkaan::Concerns::Activable
 
       # @!attribute [rw] path
       #   @return [String] the path (URI) of the route in the service?
@@ -13,8 +14,6 @@ module Arkaan
       # @!attribute [rw] verb
       #   @return [String] the verb (HTTP method) of this route in the service.
       field :verb, type: String, default: 'get'
-
-      make_premiumable
 
       # @!attribute [rw] service
       #   @return [Arkaan::Monitoring::Service] the service in which this route is declared.
