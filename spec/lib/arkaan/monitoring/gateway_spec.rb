@@ -22,7 +22,7 @@ RSpec.describe Arkaan::Monitoring::Gateway do
 
   describe :active do
     it 'has an active status set at creation' do
-      expect(build(:gateway).active).to be false
+      expect(build(:gateway).active).to be true
     end
   end
 

@@ -28,10 +28,10 @@ RSpec.describe Arkaan::Monitoring::Route do
 
   describe :active do
     it 'gives a default value to the active flag' do
-      expect(build(:empty_route).active).to be false
+      expect(build(:empty_route).active).to be true
     end
     it 'correctly returns the active value for an active route' do
-      expect(build(:active_route).active).to be true
+      expect(build(:inactive_route).active).to be false
     end
   end
 

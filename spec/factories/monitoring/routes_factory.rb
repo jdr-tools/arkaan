@@ -8,8 +8,8 @@ FactoryGirl.define do
       factory :premium_route do
         premium true
       end
-      factory :active_route do
-        active true
+      factory :inactive_route do
+        active false
       end
     end
   end

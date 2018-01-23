@@ -25,7 +25,7 @@ RSpec.describe Arkaan::Monitoring::Instance do
 
   describe :active do
     it 'has an active status set at creation' do
-      expect(build(:instance).active).to be false
+      expect(build(:instance).active).to be true
     end
   end
 

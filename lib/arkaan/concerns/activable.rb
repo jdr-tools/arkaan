@@ -8,7 +8,7 @@ module Arkaan
       included do
         # @!attribute [rw] active
         #   @return [Boolean] the active status of the instance, indicating if someone has deactivated it or not.
-        field :active, type: Boolean, default: false
+        field :active, type: Boolean, default: true
       
         scope :active  , ->{ where(active: true)  }
         scope :inactive, ->{ where(active: false) }

@@ -32,7 +32,7 @@ RSpec.describe Arkaan::Monitoring::Service do
 
   describe :active do
     it 'has an active status set at creation' do
-      expect(build(:service).active).to be false
+      expect(build(:service).active).to be true
     end
   end
 
