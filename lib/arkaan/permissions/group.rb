@@ -13,6 +13,9 @@ module Arkaan
       # @!attribute [rw] rights
       #   @return [Array<Arkaan::Permissions::Right>] the rights granted by belonging to this group.
       has_and_belongs_to_many :rights, class_name: 'Arkaan::Permissions::Right', inverse_of: :groups
+      # @!attribute [rw] routes
+      #   @return [Array<Arkaan::Monitoring::Route>] the routes this group can access in the API.
+      has_and_belongs_to_many :routes, class_name: 'Arkaan::Monitoring::Route', inverse_of: :groups
 
       make_sluggable 'group'
     end

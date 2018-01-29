@@ -19,6 +19,10 @@ module Arkaan
       #   @return [Arkaan::Monitoring::Service] the service in which this route is declared.
       belongs_to :service, class_name: 'Arkaan::Monitoring::Service', inverse_of: :routes
 
+      # @!attribute [rw] groups
+      #   @return [Array<Arkaan::Permissions::Group>] the groups having permission to access this route.
+      has_and_belongs_to_many :groups, class_name: 'Arkaan::Permissions::Group', inverse_of: :groups
+
       validates :path,
         format: {with: /\A(\/|((\/:?[a-zA-Z0-9]+)+))\z/, message: 'route.path.format', if: :path?}
 
