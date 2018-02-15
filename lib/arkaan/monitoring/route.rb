@@ -14,6 +14,9 @@ module Arkaan
       # @!attribute [rw] verb
       #   @return [String] the verb (HTTP method) of this route in the service.
       field :verb, type: String, default: 'get'
+      # @!attribute [rw] authenticated
+      #   @return [Boolean] if true, the session_id is needed for this route, if false it is not.
+      field :authenticated, type: Boolean, default: true
 
       # @!attribute [rw] service
       #   @return [Arkaan::Monitoring::Service] the service in which this route is declared.
