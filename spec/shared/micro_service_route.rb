@@ -17,17 +17,6 @@ RSpec.shared_examples 'micro_service route' do |verb:, expected_status: 200, exp
     end
   end
   describe 'Bad request errors' do
-    describe 'Empty body error' do
-      before do
-        make_request(verb, '/', {})
-      end
-      it 'Returns a Bad Request (400) error if the body is empty' do
-        expect(last_response.status).to be 400
-      end
-      it 'Returns the right error message if the body is empty' do
-        expect(JSON.parse(last_response.body)).to eq({'message' => 'bad_request'})
-      end
-    end
     describe 'No gateway token error' do
       before do
         make_request(verb, '/', {app_key: 'test_key'})
@@ -36,7 +25,7 @@ RSpec.shared_examples 'micro_service route' do |verb:, expected_status: 200, exp
         expect(last_response.status).to be 400
       end
       it 'Returns the right error message if the gateway token is not given' do
-        expect(JSON.parse(last_response.body)).to eq({'message' => 'bad_request'})
+        expect(JSON.parse(last_response.body)).to eq({'message' => 'missing.token'})
       end
     end
     describe 'No application key error' do
@@ -47,7 +36,7 @@ RSpec.shared_examples 'micro_service route' do |verb:, expected_status: 200, exp
         expect(last_response.status).to be 400
       end
       it 'Returns the right error message if the application key is not given' do
-        expect(JSON.parse(last_response.body)).to eq({'message' => 'bad_request'})
+        expect(JSON.parse(last_response.body)).to eq({'message' => 'missing.app_key'})
       end
     end
   end
