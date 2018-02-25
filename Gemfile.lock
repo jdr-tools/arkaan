@@ -1,12 +1,12 @@
 PATH
   remote: .
   specs:
-    arkaan (0.7.24)
+    arkaan (0.7.25)
       activemodel (= 5.1.4)
       activesupport (= 5.1.4)
       bcrypt (= 3.1.11)
       mongoid (= 7.0.0.beta)
-      sinatra (= 2.0.0)
+      sinatra (= 2.0.1)
 
 GEM
   remote: https://rubygems.org/
@@ -19,7 +19,7 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
     bcrypt (3.1.11)
-    bson (4.2.2)
+    bson (4.3.0)
     coderay (1.1.2)
     concurrent-ruby (1.0.5)
     database_cleaner (1.6.1)
@@ -31,17 +31,17 @@ GEM
     json (2.1.0)
     method_source (0.9.0)
     minitest (5.10.3)
-    mongo (2.4.3)
-      bson (>= 4.2.1, < 5.0.0)
+    mongo (2.5.1)
+      bson (>= 4.3.0, < 5.0.0)
     mongoid (7.0.0.beta)
       activemodel (~> 5.1)
       mongo (>= 2.4.1, < 3.0.0)
-    mustermann (1.0.1)
+    mustermann (1.0.2)
     pry (0.11.1)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
     rack (2.0.3)
-    rack-protection (2.0.0)
+    rack-protection (2.0.1)
       rack
     rack-test (0.7.0)
       rack (>= 1.0, < 3)
@@ -63,10 +63,10 @@ GEM
       json (>= 1.8, < 3)
       simplecov-html (~> 0.10.0)
     simplecov-html (0.10.2)
-    sinatra (2.0.0)
+    sinatra (2.0.1)
       mustermann (~> 1.0)
       rack (~> 2.0)
-      rack-protection (= 2.0.0)
+      rack-protection (= 2.0.1)
       tilt (~> 2.0)
     thread_safe (0.3.6)
     tilt (2.0.8)

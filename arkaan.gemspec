@@ -1,6 +1,6 @@
 Gem::Specification.new do |spec|
   spec.name        = 'arkaan'
-  spec.version     = '0.7.25'
+  spec.version     = '0.7.26'
   spec.date        = '2018-01-24'
   spec.summary     = 'The model layer for my table-RPG application'
   spec.description = 'This gem holds the model layer for my table-top RPG games application.'
@@ -22,5 +22,5 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency 'activemodel'  , '5.1.4'
   spec.add_runtime_dependency 'activesupport', '5.1.4'
   spec.add_runtime_dependency 'bcrypt'       , '3.1.11'
-  spec.add_runtime_dependency 'sinatra'      , '2.0.0'
+  spec.add_runtime_dependency 'sinatra'      , '2.0.1'
 end
