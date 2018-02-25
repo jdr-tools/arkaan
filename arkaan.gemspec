@@ -1,6 +1,6 @@
 Gem::Specification.new do |spec|
   spec.name        = 'arkaan'
-  spec.version     = '0.7.26'
+  spec.version     = '0.7.27'
   spec.date        = '2018-01-24'
   spec.summary     = 'The model layer for my table-RPG application'
   spec.description = 'This gem holds the model layer for my table-top RPG games application.'
@@ -15,7 +15,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'factory_girl'    , '4.8.1'
   spec.add_development_dependency 'database_cleaner', '1.6.1'
   spec.add_development_dependency 'simplecov'       , '0.15.1'
-  spec.add_development_dependency 'yard'            , '0.9.9'
+  spec.add_development_dependency 'yard'            , '0.9.11'
   spec.add_development_dependency 'pry'             , '0.11.1'
 
   spec.add_runtime_dependency 'mongoid'      , '7.0.0.beta'
