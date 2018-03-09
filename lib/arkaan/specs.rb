@@ -5,7 +5,7 @@ module Arkaan
 
     # Includes all the shared examples you could need, describing the basic behaviour of a route.
     def self.include_shared_examples
-      RSpec.shared_examples 'route' do |_verb, _path|
+      RSpec.shared_examples 'a route' do |_verb, _path|
         let(:verb) { _verb }
         let(:path) { _path }
 
