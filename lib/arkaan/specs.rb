@@ -23,7 +23,7 @@ module Arkaan
                 expect(last_response.status).to be 400
               end
               it 'returns the correct response if the parameters do not contain a gateway token' do
-                expect(JSON.parse(last_response.body)).to eq({'message' => 'bad_request'})
+                expect(JSON.parse(last_response.body)).to eq({'message' => 'missing.token'})
               end
             end
             describe 'no application key error' do
@@ -34,7 +34,7 @@ module Arkaan
                 expect(last_response.status).to be 400
               end
               it 'returns the correct response if the parameters do not contain a application key' do
-                expect(JSON.parse(last_response.body)).to eq({'message' => 'bad_request'})
+                expect(JSON.parse(last_response.body)).to eq({'message' => 'missing.app_key'})
               end
             end
           end
