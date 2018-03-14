@@ -1,0 +1,35 @@
+module Arkaan
+  # A campaign is a gathering of accounts playing on the same interface, and interacting in a common game.
+  # @author Vincent Courtois <courtois.vincent@outlook.com>
+  class Campaign
+    include Mongoid::Document
+    include Mongoid::Timestamps
+
+    # @!attribute [rw] title
+    #   @return [String] the title, or name, of the campaign, used to identify it in the list.
+    field :title, type: String
+    # @!attribute [rw] description
+    #   @return [String] a more detailed description, used to give further information about the campaign in general.
+    field :description, type: String
+    # @!attribute [rw] is_private
+    #   @return [Boolean] TRUE if the campaign can be joined only by being invited by the creator, FALSE if it's publicly displayed and accessible.
+    field :is_private, type: Boolean, default: true
+
+    # @!attribute [rw] creator
+    #   @return [Arkaan::Campaign] the account creating the campaign, and considered "game master".
+    belongs_to :creator, class_name: 'Arkaan::Account', inverse_of: :campaigns
+
+    validates :title,
+      presence: {message: 'campaign.title.blank'},
+      length: {minimum: 4, message: 'campaign.title.short', if: :title?}
+
+    validate :title_unicity
+
+    # Adds an error message if the account creating this campaign already has a campaign with the very same name.
+    def title_unicity
+      if title? && creator.campaigns.where(title: title, :id.ne => _id).exists?
+        errors.add(:title, 'campaign.title.uniq')
+      end
+    end
+  end
+end

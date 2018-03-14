@@ -8,6 +8,7 @@ require 'sinatra/base'
 module Arkaan
   autoload :Account       , 'arkaan/account'
   autoload :Authentication, 'arkaan/authentication'
+  autoload :Campaign      , 'arkaan/campaign'
   autoload :Concerns      , 'arkaan/concerns'
   autoload :Monitoring    , 'arkaan/monitoring'
   autoload :OAuth         , 'arkaan/oauth'

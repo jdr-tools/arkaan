@@ -41,10 +41,14 @@ module Arkaan
     #   @return [Array<Arkaan::OAuth::Authorization>] the authorization issued by this account to third-party applications to access its data.
     has_many :authorizations, class_name: 'Arkaan::OAuth::Authorization', inverse_of: :account
     # @!attribute [rw] services
-    #   @return [Array<Arkaan::Monitoring::Service] the services created by this user.
+    #   @return [Array<Arkaan::Monitoring::Service>] the services created by this user.
     has_many :services, class_name: 'Arkaan::Monitoring::Service', inverse_of: :creator
-
+    # @!attribute [rw] sessions
+    #   @return [Array<Arkaan::Authentication::Session>] the sessions on which this account is, or has been logged in.
     has_many :sessions, class_name: 'Arkaan::Authentication::Session', inverse_of: :account
+    # @!attribute [rw] campaigns
+    #   @return [Array<Arkaan::Campaign>] the campaigns this account has created.
+    has_many :campaigns, class_name: 'Arkaan::Campaign', inverse_of: :creator
 
     attr_readonly :password_digest
 
