@@ -27,7 +27,7 @@ module Arkaan
 
     # Adds an error message if the account creating this campaign already has a campaign with the very same name.
     def title_unicity
-      if title? && creator.campaigns.where(title: title, :id.ne => _id).exists?
+      if creator? && title? && creator.campaigns.where(title: title, :id.ne => _id).exists?
         errors.add(:title, 'campaign.title.uniq')
       end
     end
