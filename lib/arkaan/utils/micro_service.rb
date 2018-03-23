@@ -102,6 +102,7 @@ module Arkaan
 
       def load_standard_files
         require_folder('decorators')
+        require_folder('services')
         require_folder('controllers')
       end
 
