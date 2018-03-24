@@ -9,6 +9,7 @@ module Arkaan
   autoload :Account       , 'arkaan/account'
   autoload :Authentication, 'arkaan/authentication'
   autoload :Campaign      , 'arkaan/campaign'
+  autoload :Campaigns     , 'arkaan/campaigns'
   autoload :Concerns      , 'arkaan/concerns'
   autoload :Monitoring    , 'arkaan/monitoring'
   autoload :OAuth         , 'arkaan/oauth'

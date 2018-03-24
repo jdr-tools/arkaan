@@ -36,6 +36,20 @@ RSpec.describe Arkaan::Campaign do
     end
   end
 
+  describe :tags do
+    it 'has a list of tag set empty at creation' do
+      expect(build(:campaign, creator: account).tags).to eq []
+    end
+    it 'is able to insert a new tag in the tag list' do
+      campaign = build(:campaign, creator: account)
+      campaign.tags << 'test_tag'
+      expect(campaign.tags).to eq ['test_tag']
+    end
+    it 'is possible to set the tags at creation' do
+      expect(build(:campaign, tags: ['test_tag'], creator: account).tags).to eq ['test_tag']
+    end
+  end
+
   describe :messages do
     it 'returns the right message if the title is not given' do
       invalid_campaign = build(:campaign, title: nil, creator: account)
