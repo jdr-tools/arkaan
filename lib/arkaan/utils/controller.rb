@@ -58,7 +58,7 @@ module Arkaan
       # @param fields [Array<String>] an array of fields names to search in the parameters
       def check_presence(*fields)
         fields.each do |field|
-          halt 400, {message: "missing.#{field}"}.to_json if params[field].nil?
+          halt 400, {message: "missing.#{field}"}.to_json if params[field].nil? || params[field] == ''
         end
       end
 
