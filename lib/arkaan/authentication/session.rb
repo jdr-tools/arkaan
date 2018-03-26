@@ -11,9 +11,6 @@ module Arkaan
       # @!attribute [rw] token
       #   @return [String] the unique token for this session, used to identify it and be sure the user is connected on this application.
       field :token, type: String
-      # @!attribute [rw] expiration
-      #   @return [Integer] the time of expiration of the session, in seconds.
-      field :expiration, type: Integer, default: 0
 
       # @!attribute [rw] account
       #   @return [Arkaan::Account] the account connected to the application.
@@ -23,9 +20,6 @@ module Arkaan
         presence: {message: 'session.token.blank'},
         uniqueness: {message: 'session.token.uniq', if: :token?},
         length: {minimum: 10, message: 'session.token.short', if: :token?}
-
-      validates :expiration,
-        presence: {message: 'session.expiration.blank'}
     end
   end
 end

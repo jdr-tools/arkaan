@@ -15,18 +15,6 @@ RSpec.describe Arkaan::Authentication::Session do
     end
   end
 
-  describe :expiration do
-    it 'has a default of zero, as the session is not maintained by default' do
-      expect(build(:empty_session).expiration).to be 0
-    end
-    it 'returns the right value for a given session' do
-      expect(build(:maintained_session).expiration).to be 3600
-    end
-    it 'fails at validating the session if the value is not given' do
-      expect(build(:session, expiration: nil).valid?).to be false
-    end
-  end
-
   describe :account do
     it 'returns the right account for a given session' do
       expect(build(:session, account: build(:account)).account.username).to eq 'Babausse'
@@ -49,11 +37,6 @@ RSpec.describe Arkaan::Authentication::Session do
       session = build(:session)
       session.validate
       expect(session.errors.messages[:token]).to eq(['session.token.uniq'])
-    end
-    it 'returns the right message if the expiration is not given' do
-      session = build(:session, expiration: nil)
-      session.validate
-      expect(session.errors.messages[:expiration]).to eq(['session.expiration.blank'])
     end
   end
 end
