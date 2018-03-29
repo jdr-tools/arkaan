@@ -50,8 +50,6 @@ module Arkaan
     #   @return [Array<Arkaan::Campaign>] the campaigns this account has created.
     has_many :campaigns, class_name: 'Arkaan::Campaign', inverse_of: :creator
 
-    attr_readonly :password_digest
-
     validates :username,
       presence: {message: 'account.username.blank'},
       length: {minimum: 6, message: 'account.username.short', if: :username?},

@@ -26,6 +26,13 @@ RSpec.describe Arkaan::Account do
     it 'fails to build a user if the password is not given' do
       expect(build(:account, password: nil).valid?).to be false
     end
+    describe 'Update of the password' do
+      let(:account) { create(:account) }
+      it 'correctly updates the password of an already existing user' do
+        account.update_attributes(password: 'other_password')
+        expect(account.authenticate('other_password')).to be_truthy
+      end
+    end
   end
 
   describe :password_confirmation do
