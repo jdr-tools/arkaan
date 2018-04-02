@@ -22,6 +22,10 @@ module Arkaan
     #   @return [Arkaan::Campaign] the account creating the campaign, and considered "game master".
     belongs_to :creator, class_name: 'Arkaan::Account', inverse_of: :campaigns
 
+    # @!attribute [rw] invitations
+    #   @return [Array<Arkaan::Campaigns::Invitation>] the invitations to players that have been made for this campaign.
+    has_many :invitations, class_name: 'Arkaan::Campaigns::Invitation', inverse_of: :campaign
+
     validates :title,
       presence: {message: 'campaign.title.blank'},
       length: {minimum: 4, message: 'campaign.title.short', if: :title?}

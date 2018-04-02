@@ -34,6 +34,7 @@ module Arkaan
     # @!attribute [rw] groups
     #   @return [Array<Arkaan::Permissions::Group>] the groups giving their corresponding rights to the current account.
     has_and_belongs_to_many :groups, class_name: 'Arkaan::Permissions::Group', inverse_of: :accounts
+    
     # @!attribute [rw] applications
     #   @return [Array<Arkaan::OAuth::Application] the applications this user has created and owns.
     has_many :applications, class_name: 'Arkaan::OAuth::Application', inverse_of: :creator
@@ -49,6 +50,12 @@ module Arkaan
     # @!attribute [rw] campaigns
     #   @return [Array<Arkaan::Campaign>] the campaigns this account has created.
     has_many :campaigns, class_name: 'Arkaan::Campaign', inverse_of: :creator
+    # @!attribute [rw] invitations
+    #   @return [Array<Arkaan::Campaigns::Invitation>] the invitations in campaigns you have been issued.
+    has_many :invitations, class_name: 'Arkaan::Campaigns::Invitation', inverse_of: :account
+    # @!attribute [rw] invitations
+    #   @return [Array<Arkaan::Campaigns::Invitation>] the invitations you've issued yourself to other players.
+    has_many :created_invitations, class_name: 'Arkaan::Campaigns::Invitation', inverse_of: :creator
 
     validates :username,
       presence: {message: 'account.username.blank'},
