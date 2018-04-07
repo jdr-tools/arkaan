@@ -1,6 +1,6 @@
 Gem::Specification.new do |spec|
   spec.name        = 'arkaan'
-  spec.version     = '0.8.10'
+  spec.version     = '0.8.11'
   spec.date        = '2018-04-07'
   spec.summary     = 'The model layer for my table-RPG application'
   spec.description = 'This gem holds the model layer for my table-top RPG games application.'

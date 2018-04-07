@@ -56,14 +56,14 @@ module Arkaan
               it 'Raises a not found (404) error when the key doesn\'t belong to any application' do
                 expect(last_response.status).to be 404
               end
-              it 'returns the correct body when the gateway doesn\'t exist' do
+              it 'returns the correct body when the application doesn\'t exist' do
                 expect(JSON.parse(last_response.body)).to eq({
                   'status' => 404,
-                  'field' => 'token',
+                  'field' => 'app_key',
                   'error' => 'unknown',
-                  'docs' => 'https://github.com/jdr-tools/arkaan/wiki/Errors#gateway-token-not-found'
+                  'docs' => 'https://github.com/jdr-tools/arkaan/wiki/Errors#application-key-not-found'
                 })
-              end
+                end
             end
             describe 'gateway not found' do
               before do
@@ -75,9 +75,9 @@ module Arkaan
               it 'returns the correct body when the gateway doesn\'t exist' do
                 expect(JSON.parse(last_response.body)).to eq({
                   'status' => 404,
-                  'field' => 'app_key',
+                  'field' => 'token',
                   'error' => 'unknown',
-                  'docs' => 'https://github.com/jdr-tools/arkaan/wiki/Errors#application-key-not-found'
+                  'docs' => 'https://github.com/jdr-tools/arkaan/wiki/Errors#gateway-token-not-found'
                 })
               end
             end
