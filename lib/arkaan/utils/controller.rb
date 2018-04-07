@@ -12,9 +12,11 @@ module Arkaan
         @application = Arkaan::OAuth::Application.where(key: params['app_key']).first
         
         if gateway.nil?
-          halt 404, {message: 'gateway_not_found'}.to_json
+          url = 'https://github.com/jdr-tools/arkaan/wiki/Errors#gateway-token-not-found'
+          halt 404, {status: 404, field: 'token', error: 'unknown', docs: url}.to_json
         elsif @application.nil?
-          halt 404, {message: 'application_not_found'}.to_json
+          url = 'https://github.com/jdr-tools/arkaan/wiki/Errors#application-key-not-found'
+          halt 404, {status: 404, field: 'app_key', error: 'unknown', docs: url}.to_json
         end
       end
 
@@ -45,7 +47,8 @@ module Arkaan
           self.public_send(verb, path) do
             @sinatra_route = parse_current_route
             if !@application.premium?
-              halt 401, {message: 'application_not_authorized'}.to_json
+              url = 'https://github.com/jdr-tools/arkaan/wiki/Errors#application-not-premium'
+              halt 403, {status: 403, field: 'app_key', error: 'forbidden', docs: url}.to_json
             end
             instance_eval(&block)
           end
@@ -58,7 +61,10 @@ module Arkaan
       # @param fields [Array<String>] an array of fields names to search in the parameters
       def check_presence(*fields)
         fields.each do |field|
-          halt 400, {message: "missing.#{field}"}.to_json if params[field].nil? || params[field] == ''
+          if params[field].nil? || params[field] == ''
+            url = 'https://github.com/jdr-tools/arkaan/wiki/Errors#parameter-not-given'
+            halt 400, {status: 400, field: field, error: 'required', docs: url}.to_json
+          end
         end
       end
 

@@ -25,7 +25,12 @@ RSpec.shared_examples 'micro_service route' do |verb:, expected_status: 200, exp
         expect(last_response.status).to be 400
       end
       it 'Returns the right error message if the gateway token is not given' do
-        expect(JSON.parse(last_response.body)).to eq({'message' => 'missing.token'})
+        expect(JSON.parse(last_response.body)).to eq({
+          'status' => 400,
+          'field' => 'token',
+          'error' => 'required',
+          'docs' => 'https://github.com/jdr-tools/arkaan/wiki/Errors#parameter-not-given'
+        })
       end
     end
     describe 'No application key error' do
@@ -36,21 +41,31 @@ RSpec.shared_examples 'micro_service route' do |verb:, expected_status: 200, exp
         expect(last_response.status).to be 400
       end
       it 'Returns the right error message if the application key is not given' do
-        expect(JSON.parse(last_response.body)).to eq({'message' => 'missing.app_key'})
+        expect(JSON.parse(last_response.body)).to eq({
+          'status' => 400,
+          'field' => 'app_key',
+          'error' => 'required',
+          'docs' => 'https://github.com/jdr-tools/arkaan/wiki/Errors#parameter-not-given'
+        })
       end
     end
   end
-  describe 'Unauthorized errors' do
+  describe 'Forbidden errors' do
     describe 'Application not premium error' do
       before do
         create(:route, verb: verb, path: '/', premium: true)
         make_request(verb, '/', {app_key: 'other_key', token: 'test_token'})
       end
-      it 'Returns an unauthorized (401) error if the application is not premium' do
-        expect(last_response.status).to be 401
+      it 'Returns an unauthorized (403) error if the application is not premium' do
+        expect(last_response.status).to be 403
       end
       it 'Returns the right error message if the application is not premium' do
-        expect(JSON.parse(last_response.body)).to eq({'message' => 'application_not_authorized'})
+        expect(JSON.parse(last_response.body)).to eq({
+          'status' => 403,
+          'field' => 'app_key',
+          'error' => 'forbidden',
+          'docs' => 'https://github.com/jdr-tools/arkaan/wiki/Errors#application-not-premium'
+        })
       end
     end
   end
@@ -63,7 +78,12 @@ RSpec.shared_examples 'micro_service route' do |verb:, expected_status: 200, exp
         expect(last_response.status).to be 404
       end
       it 'Returns the right error message if the gateway does not exist' do
-        expect(JSON.parse(last_response.body)).to eq({'message' => 'gateway_not_found'})
+        expect(JSON.parse(last_response.body)).to eq({
+          'status' => 404,
+          'field' => 'token',
+          'error' => 'unknown',
+          'docs' => 'https://github.com/jdr-tools/arkaan/wiki/Errors#gateway-token-not-found'
+        })
       end
     end
     describe 'Application not found error' do
@@ -74,7 +94,12 @@ RSpec.shared_examples 'micro_service route' do |verb:, expected_status: 200, exp
         expect(last_response.status).to be 404
       end
       it 'Returns the right error message if the application does not exist' do
-        expect(JSON.parse(last_response.body)).to eq({'message' => 'application_not_found'})
+        expect(JSON.parse(last_response.body)).to eq({
+          'status' => 404,
+          'field' => 'app_key',
+          'error' => 'unknown',
+          'docs' => 'https://github.com/jdr-tools/arkaan/wiki/Errors#application-key-not-found'
+        })
       end
     end
   end
