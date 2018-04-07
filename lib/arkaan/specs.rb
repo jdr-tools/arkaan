@@ -23,7 +23,12 @@ module Arkaan
                 expect(last_response.status).to be 400
               end
               it 'returns the correct response if the parameters do not contain a gateway token' do
-                expect(JSON.parse(last_response.body)).to eq({'message' => 'missing.token'})
+                expect(JSON.parse(last_response.body)).to eq({
+                  'status' => 400,
+                  'field' => 'token',
+                  'error' => 'required',
+                  'docs' => 'https://github.com/jdr-tools/arkaan/wiki/Errors#parameter-not-given'
+                })
               end
             end
             describe 'no application key error' do
@@ -34,7 +39,12 @@ module Arkaan
                 expect(last_response.status).to be 400
               end
               it 'returns the correct response if the parameters do not contain a application key' do
-                expect(JSON.parse(last_response.body)).to eq({'message' => 'missing.app_key'})
+                expect(JSON.parse(last_response.body)).to eq({
+                  'status' => 400,
+                  'field' => 'app_key',
+                  'error' => 'required',
+                  'docs' => 'https://github.com/jdr-tools/arkaan/wiki/Errors#parameter-not-given'
+                })
               end
             end
           end
@@ -47,7 +57,12 @@ module Arkaan
                 expect(last_response.status).to be 404
               end
               it 'returns the correct body when the gateway doesn\'t exist' do
-                expect(JSON.parse(last_response.body)).to eq({'message' => 'application_not_found'})
+                expect(JSON.parse(last_response.body)).to eq({
+                  'status' => 404,
+                  'field' => 'token',
+                  'error' => 'unknown',
+                  'docs' => 'https://github.com/jdr-tools/arkaan/wiki/Errors#gateway-token-not-found'
+                })
               end
             end
             describe 'gateway not found' do
@@ -58,7 +73,12 @@ module Arkaan
                 expect(last_response.status).to be 404
               end
               it 'returns the correct body when the gateway doesn\'t exist' do
-                expect(JSON.parse(last_response.body)).to eq({'message' => 'gateway_not_found'})
+                expect(JSON.parse(last_response.body)).to eq({
+                  'status' => 404,
+                  'field' => 'app_key',
+                  'error' => 'unknown',
+                  'docs' => 'https://github.com/jdr-tools/arkaan/wiki/Errors#application-key-not-found'
+                })
               end
             end
           end
