@@ -16,9 +16,9 @@ module Arkaan
           field :diagnostic, type: String, default: '/status'
 
           validates :diagnostic,
-            presence: {message: "#{entity_type}.diagnostic.blank"},
-            length: {minimum: 4, message: "#{entity_type}.diagnostic.short"},
-            format: {with: /\A(\/[a-z]+)+\z/, message: "#{entity_type}.diagnostic.format"}
+            presence: {message: "required"},
+            length: {minimum: 4, message: "minlength"},
+            format: {with: /\A(\/[a-z]+)+\z/, message: "pattern"}
         end
       end
     end

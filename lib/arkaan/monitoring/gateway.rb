@@ -23,16 +23,12 @@ module Arkaan
       make_diagnosticable 'gateway'
 
       validates :url,
-        presence: {message: 'gateway.url.blank'},
-        format: {
-          with: /\A(https?:\/\/)((localhost:[0-9]+)|(([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*))\/?\z/,
-          message: 'gateway.url.format',
-          if: :url?
-        }
+        presence: {message: 'required'},
+        format: {with: /\A(https?:\/\/)((localhost:[0-9]+)|(([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*))\/?\z/, message: 'pattern', if: :url?}
 
       validates :token,
-        presence: {message: 'gateway.token.blank'},
-        uniqueness: {message: 'gateway.token.uniq'}
+        presence: {message: 'required'},
+        uniqueness: {message: 'uniq'}
     end
   end
 end

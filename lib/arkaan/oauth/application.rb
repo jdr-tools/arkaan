@@ -23,9 +23,14 @@ module Arkaan
       #   @return [Array<Arkaan::OAuth::Authorization>] the authorizations linked to the accounts this application can get the data from.
       has_many :authorizations, class_name: 'Arkaan::OAuth::Authorization', inverse_of: :application
 
-      validates :name, presence: true, length: {minimum: 6}, uniqueness: true
+      validates :name,
+        presence: {message: 'required'},
+        length: {minimum: 6, message: 'minlength'},
+        uniqueness: {message: 'uniq'}
 
-      validates :key, presence: true, uniqueness: true
+      validates :key,
+        presence: {message: 'required'},
+        uniqueness: {message: 'uniq'}
     end
   end
 end

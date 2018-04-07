@@ -142,44 +142,44 @@ RSpec.describe Arkaan::Account do
     end
 
     it 'returns the right message if the username is not given' do
-      expect(invalid_account.errors.messages[:username]).to eq(['account.username.blank'])
+      expect(invalid_account.errors.messages[:username]).to eq(['required'])
     end
     it 'returns the right message if the username is less than six characters' do
       account = build(:empty_account, username: 'test')
       account.validate
-      expect(account.errors.messages[:username]).to eq(['account.username.short'])
+      expect(account.errors.messages[:username]).to eq(['minlength'])
     end
     it 'returns the right message if the password is not given' do
-      expect(invalid_account.errors.messages[:password]).to eq(['account.password.blank'])
+      expect(invalid_account.errors.messages[:password]).to eq(['required'])
     end
     it 'returns the right message if the password confirmation is not given and the password has been changed' do
       invalid_account.password = 'password'
       invalid_account.validate
-      expect(invalid_account.errors.messages[:password_confirmation]).to eq(['account.password_confirmation.blank'])
+      expect(invalid_account.errors.messages[:password_confirmation]).to eq(['required'])
     end
     it 'returns the right message if the password confirmation is not the same as the password' do
       invalid_account.password = 'password'
       invalid_account.password_confirmation = 'test'
       invalid_account.validate
-      expect(invalid_account.errors.messages[:password_confirmation]).to eq(['account.password.confirmation'])
+      expect(invalid_account.errors.messages[:password_confirmation]).to eq(['confirmation'])
     end
     it 'returns the right message if the email is not given' do
-      expect(invalid_account.errors.messages[:email]).to eq(['account.email.blank'])
+      expect(invalid_account.errors.messages[:email]).to eq(['required'])
     end
     it 'returns the right message if the email was the wrong format' do
       account = build(:empty_account, email: 'test')
       account.validate
-      expect(account.errors.messages[:email]).to eq(['account.email.format'])
+      expect(account.errors.messages[:email]).to eq(['pattern'])
     end
     it 'returns the right message if the username is already taken' do
       create(:account)
       account.validate
-      expect(account.errors.messages[:username]).to eq(['account.username.uniq'])
+      expect(account.errors.messages[:username]).to eq(['uniq'])
     end
     it 'returns the right message if the email is already taken' do
       create(:account)
       account.validate
-      expect(account.errors.messages[:email]).to eq(['account.email.uniq'])
+      expect(account.errors.messages[:email]).to eq(['uniq'])
     end
   end
 end

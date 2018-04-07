@@ -69,12 +69,12 @@ RSpec.describe Arkaan::Monitoring::Instance do
     it 'returns the right message if the URL is not given' do
       instance = build(:instance, url: nil)
       instance.validate
-      expect(instance.errors.messages[:url]).to eq ['instance.url.blank']
+      expect(instance.errors.messages[:url]).to eq ['required']
     end
     it 'returns the right message if the URL is given in the wrong format' do
       instance = build(:instance, url: 'test')
       instance.validate
-      expect(instance.errors.messages[:url]).to eq ['instance.url.format']
+      expect(instance.errors.messages[:url]).to eq ['pattern']
     end
   end
 end

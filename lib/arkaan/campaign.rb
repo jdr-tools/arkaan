@@ -27,15 +27,15 @@ module Arkaan
     has_many :invitations, class_name: 'Arkaan::Campaigns::Invitation', inverse_of: :campaign
 
     validates :title,
-      presence: {message: 'campaign.title.blank'},
-      length: {minimum: 4, message: 'campaign.title.short', if: :title?}
+      presence: {message: 'required'},
+      length: {minimum: 4, message: 'minlength', if: :title?}
 
     validate :title_unicity
 
     # Adds an error message if the account creating this campaign already has a campaign with the very same name.
     def title_unicity
       if creator? && title? && creator.campaigns.where(title: title, :id.ne => _id).exists?
-        errors.add(:title, 'campaign.title.uniq')
+        errors.add(:title, 'uniq')
       end
     end
   end

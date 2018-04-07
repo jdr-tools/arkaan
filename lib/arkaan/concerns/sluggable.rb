@@ -16,10 +16,10 @@ module Arkaan
           field :slug, type: String
 
           validates :slug,
-            length: {minimum: 4, message: "#{entity_type}.slug.short"},
-            format: {with: /\A[a-z]+(_[a-z]+)*\z/, message: "#{entity_type}.slug.format"},
-            uniqueness: {message: "#{entity_type}.slug.uniq"},
-            presence: {message: "#{entity_type}.slug.blank"}
+            length: {minimum: 4, message: 'minlength', if: :slug?},
+            format: {with: /\A[a-z]+(_[a-z]+)*\z/, message: 'pattern', if: :slug?},
+            uniqueness: {message: 'uniq', if: :slug?},
+            presence: {message: 'required'}
         end
       end
     end

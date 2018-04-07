@@ -79,23 +79,23 @@ RSpec.describe Arkaan::Monitoring::Gateway do
     it 'returns the right message if the URL is not given' do
       gateway = build(:gateway, url: nil)
       gateway.validate
-      expect(gateway.errors.messages[:url]).to eq ['gateway.url.blank']
+      expect(gateway.errors.messages[:url]).to eq ['required']
     end
     it 'returns the right message if the URL is given in the wrong format' do
       gateway = build(:gateway, url: 'test')
       gateway.validate
-      expect(gateway.errors.messages[:url]).to eq ['gateway.url.format']
+      expect(gateway.errors.messages[:url]).to eq ['pattern']
     end
     it 'returns the right message if the token is not given' do
       gateway = build(:gateway, token: nil)
       gateway.validate
-      expect(gateway.errors.messages[:token]).to eq ['gateway.token.blank']
+      expect(gateway.errors.messages[:token]).to eq ['required']
     end
     it 'returns the right message if the token already exists' do
       create(:gateway)
       gateway = build(:gateway)
       gateway.validate
-      expect(gateway.errors.messages[:token]).to eq ['gateway.token.uniq']
+      expect(gateway.errors.messages[:token]).to eq ['uniq']
     end
   end
 end

@@ -33,12 +33,12 @@ RSpec.describe Arkaan::Campaigns::Tag do
       create(:campaign_tag)
       invalid_tag = build(:campaign_tag)
       invalid_tag.validate
-      expect(invalid_tag.errors.messages[:content]).to eq(['campaign.tag.content.uniq'])
+      expect(invalid_tag.errors.messages[:content]).to eq(['uniq'])
     end
     it 'returns the right message if the content is not given' do
       invalid_tag = build(:campaign_tag, content: nil)
       invalid_tag.validate
-      expect(invalid_tag.errors.messages[:content]).to eq(['campaign.tag.content.blank'])
+      expect(invalid_tag.errors.messages[:content]).to eq(['required'])
     end
   end
 end

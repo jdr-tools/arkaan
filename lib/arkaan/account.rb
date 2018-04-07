@@ -58,20 +58,20 @@ module Arkaan
     has_many :created_invitations, class_name: 'Arkaan::Campaigns::Invitation', inverse_of: :creator
 
     validates :username,
-      presence: {message: 'account.username.blank'},
-      length: {minimum: 6, message: 'account.username.short', if: :username?},
-      uniqueness: {message: 'account.username.uniq', if: :username?}
+      presence: {message: 'required'},
+      length: {minimum: 6, message: 'minlength', if: :username?},
+      uniqueness: {message: 'uniq', if: :username?}
 
     validates :email,
-      presence: {message: 'account.email.blank'},
-      format: {with: /\A[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}\z/, message: 'account.email.format', if: :email?},
-      uniqueness: {message: 'account.email.uniq', if: :email?}
+      presence: {message: 'required'},
+      format: {with: /\A[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}\z/, message: 'pattern', if: :email?},
+      uniqueness: {message: 'uniq', if: :email?}
 
     validates :password,
-      presence: {message: 'account.password.blank', if: ->{ !persisted? || password_digest_changed? }},
-      confirmation: {message: 'account.password.confirmation', if: :password_digest_changed?}
+      presence: {message: 'required', if: ->{ !persisted? || password_digest_changed? }},
+      confirmation: {message: 'confirmation', if: :password_digest_changed?}
 
     validates :password_confirmation,
-      presence: {message: 'account.password_confirmation.blank', if: :password_digest_changed?}
+      presence: {message: 'required', if: :password_digest_changed?}
   end
 end

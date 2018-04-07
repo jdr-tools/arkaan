@@ -27,10 +27,10 @@ module Arkaan
       has_and_belongs_to_many :groups, class_name: 'Arkaan::Permissions::Group', inverse_of: :groups
 
       validates :path,
-        format: {with: /\A(\/|((\/:?[a-zA-Z0-9]+)+))\z/, message: 'route.path.format', if: :path?}
+        format: {with: /\A(\/|((\/:?[a-zA-Z0-9]+)+))\z/, message: 'pattern', if: :path?}
 
       validates :verb,
-        inclusion: {message: 'route.verb.unknown', in: ['get', 'post', 'put', 'delete', 'patch', 'option']}
+        inclusion: {message: 'unknown', in: ['get', 'post', 'put', 'delete', 'patch', 'option']}
     end
   end
 end

@@ -28,9 +28,9 @@ module Arkaan
       #   @return [Array<Arkaan::Monitoring::Route>] the routes associated to this service, accessible from the gateway.
       has_many :routes, class_name: 'Arkaan::Monitoring::Route', inverse_of: :service
 
-      validates :key, uniqueness: {message: 'service.key.uniq'}
+      validates :key, uniqueness: {message: 'uniq'}
 
-      validates :path, format: {with: /\A(\/:?[a-z]+)+\z/, message: 'service.path.format'}
+      validates :path, format: {with: /\A(\/:?[a-z]+)+\z/, message: 'pattern'}
     end
   end
 end

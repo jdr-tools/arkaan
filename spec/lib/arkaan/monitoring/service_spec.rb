@@ -99,12 +99,12 @@ RSpec.describe Arkaan::Monitoring::Service do
       create(:service)
       service = build(:service)
       service.validate
-      expect(service.errors.messages[:key]).to eq ['service.key.uniq']
+      expect(service.errors.messages[:key]).to eq ['uniq']
     end
     it 'returns the right message if the path is not in the right format' do
       service = build(:service, path: 'essai')
       service.validate
-      expect(service.errors.messages[:path]).to eq ['service.path.format']
+      expect(service.errors.messages[:path]).to eq ['pattern']
     end
   end
 end

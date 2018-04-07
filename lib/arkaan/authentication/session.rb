@@ -17,9 +17,9 @@ module Arkaan
       belongs_to :account, class_name: 'Arkaan::Account', inverse_of: :sessions
 
       validates :token,
-        presence: {message: 'session.token.blank'},
-        uniqueness: {message: 'session.token.uniq', if: :token?},
-        length: {minimum: 10, message: 'session.token.short', if: :token?}
+        presence: {message: 'required'},
+        uniqueness: {message: 'uniq', if: :token?},
+        length: {minimum: 10, message: 'minlength', if: :token?}
     end
   end
 end

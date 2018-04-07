@@ -25,18 +25,18 @@ RSpec.describe Arkaan::Authentication::Session do
     it 'returns the right message if the token is not given' do
       session = build(:session, token: nil)
       session.validate
-      expect(session.errors.messages[:token]).to eq(['session.token.blank'])
+      expect(session.errors.messages[:token]).to eq(['required'])
     end
     it 'returns the right message if the token is too short' do
       session = build(:session, token: 'token')
       session.validate
-      expect(session.errors.messages[:token]).to eq(['session.token.short'])
+      expect(session.errors.messages[:token]).to eq(['minlength'])
     end
     it 'returns the right message if the token is already taken' do
       create(:session)
       session = build(:session)
       session.validate
-      expect(session.errors.messages[:token]).to eq(['session.token.uniq'])
+      expect(session.errors.messages[:token]).to eq(['uniq'])
     end
   end
 end

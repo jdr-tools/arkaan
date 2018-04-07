@@ -20,7 +20,9 @@ module Arkaan
       #   @return [Arkaan::OAuth::AccessToken] the access token used further in the application process to access private data of the account.
       has_one :token, class_name: 'Arkaan::OAuth::AccessToken', inverse_of: :authorization
 
-      validates :code, presence: true, uniqueness: true
+      validates :code,
+        presence: {message: 'required'},
+        uniqueness: {message: 'uniq'}
     end
   end
 end

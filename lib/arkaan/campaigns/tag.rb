@@ -14,8 +14,8 @@ module Arkaan
       field :count, type: Integer, default: 1
 
       validates :content,
-        presence: {message: 'campaign.tag.content.blank'},
-        uniqueness: {message: 'campaign.tag.content.uniq'}
+        presence: {message: 'required'},
+        uniqueness: {message: 'uniq'}
     end
   end
 end

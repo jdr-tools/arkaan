@@ -21,8 +21,8 @@ module Arkaan
       embedded_in :service, class_name: 'Arkaan::Monitoring::Service', inverse_of: :instances
 
       validates :url,
-        presence: {message: 'instance.url.blank'},
-        format: {with: /\A(https?:\/\/)([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?\z/, message: 'instance.url.format', if: :url?}
+        presence: {message: 'required'},
+        format: {with: /\A(https?:\/\/)([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?\z/, message: 'pattern', if: :url?}
     end
   end
 end

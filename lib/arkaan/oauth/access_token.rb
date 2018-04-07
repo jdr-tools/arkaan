@@ -17,7 +17,9 @@ module Arkaan
       #   @return [Arkaan::OAuth::Authorization] the authorization code that issued this token to the application for this user.
       belongs_to :authorization, class_name: 'Arkaan::OAuth::Authorization', inverse_of: :access_token
 
-      validates :value, presence: true, uniqueness: true
+      validates :value, 
+        presence: {message: 'required'},
+        uniqueness: {message: 'uniq'}
     end
   end
 end

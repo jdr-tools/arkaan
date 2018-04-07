@@ -54,18 +54,18 @@ RSpec.describe Arkaan::Campaign do
     it 'returns the right message if the title is not given' do
       invalid_campaign = build(:campaign, title: nil, creator: account)
       invalid_campaign.validate
-      expect(invalid_campaign.errors.messages[:title]).to eq(['campaign.title.blank'])
+      expect(invalid_campaign.errors.messages[:title]).to eq(['required'])
     end
     it 'returns the right message if the title is less than four characters' do
       invalid_campaign = build(:campaign, title: 'a', creator: account)
       invalid_campaign.validate
-      expect(invalid_campaign.errors.messages[:title]).to eq(['campaign.title.short'])
+      expect(invalid_campaign.errors.messages[:title]).to eq(['minlength'])
     end
     it 'returns the right message if the title is already used by this user' do
       create(:campaign, creator: account)
       invalid_campaign = build(:campaign, creator: account)
       invalid_campaign.validate
-      expect(invalid_campaign.errors.messages[:title]).to eq(['campaign.title.uniq'])
+      expect(invalid_campaign.errors.messages[:title]).to eq(['uniq'])
     end
   end
 end
