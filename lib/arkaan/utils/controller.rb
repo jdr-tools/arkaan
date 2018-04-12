@@ -93,21 +93,18 @@ module Arkaan
 
       # Halts the application and creates the returned body from the parameters and the errors config file.
       # @param status [Integer] the HTTP status to halt the application with.
-      # @param field [String] the value of the :value key in the returned JSON body, corresponding to the field in error.
-      # @param error [String] the name of the error affecing the field.
-      # @param suffix [String] the eventual suffix of the URL in the doc.
-      def custom_error(status, field, error, suffix: '')
-        url = settings.errors[field][error]
-        halt status, {status: status, field: field, error: error, docs: "#{url}#{suffix}"}.to_json
+      # @param path [String] the path in the configuration file to access the URL.
+      def custom_error(status, path)
+        route, field, error = path.split('.')
+        halt status, {status: status, field: field, error: error, docs: settings.errors[route][field][error]}.to_json
       end
 
       # Halts the application with a Bad Request error affecting a field of a model.
       # @param instance [Mongoid::Document] the document having a field in error.
-      # @param suffix [String] the eventual suffix of the URL in the doc.
-      def model_error(instance, suffix: '')
-        field = instance.errors.messages.keys.first
-        error = instance.errors.messages[field].first
-        custom_error(400, field, error, suffix: suffix)
+      # @param route [String] the type of action you're currently doing (e.g: 'creation')
+      def model_error(instance, route)
+        messages = instance.errors.messages
+        custom_error(400, "#{route}.#{messages.keys.first}.#{messages[field].first}")
       end
     end
   end
