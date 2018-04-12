@@ -58,6 +58,12 @@ module Arkaan
         end
       end
 
+      # Loads the errors configuration file from the config folder.
+      # @param file [String] send __FILE__
+      def self.load_errors_from(file)
+        config_file File.join(File.dirname(file), '..', 'config', 'errors.yml')
+      end
+
       # Checks the presence of several fields given as parameters and halts the execution if it's not present.
       # @param fields [Array<String>] an array of fields names to search in the parameters
       def check_presence(*fields)
@@ -83,12 +89,6 @@ module Arkaan
       def parse_current_route
         splitted = request.env['sinatra.route'].split(' ')
         return Arkaan::Monitoring::Route.where(verb: splitted.first.downcase, path: splitted.last).first
-      end
-
-      # Loads the errors configuration file from the config folder.
-      # @param file [String] send __FILE__
-      def load_errors_from(file)
-        config_file File.join(File.dirname(file), '..', 'config', 'errors.yml')
       end
 
       # Halts the application and creates the returned body from the parameters and the errors config file.
