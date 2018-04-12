@@ -27,7 +27,7 @@ module Arkaan
                   'status' => 400,
                   'field' => 'token',
                   'error' => 'required',
-                  'docs' => 'https://github.com/jdr-tools/arkaan/wiki/Errors#parameter-not-given'
+                  'docs' => 'https://github.com/jdr-tools/wiki/wiki/Common-errors#gateway-token-not-given'
                 })
               end
             end
@@ -43,7 +43,7 @@ module Arkaan
                   'status' => 400,
                   'field' => 'app_key',
                   'error' => 'required',
-                  'docs' => 'https://github.com/jdr-tools/arkaan/wiki/Errors#parameter-not-given'
+                  'docs' => 'https://github.com/jdr-tools/wiki/wiki/Common-errors#application-key-not-given'
                 })
               end
             end
@@ -61,7 +61,7 @@ module Arkaan
                   'status' => 404,
                   'field' => 'app_key',
                   'error' => 'unknown',
-                  'docs' => 'https://github.com/jdr-tools/arkaan/wiki/Errors#application-key-not-found'
+                  'docs' => 'https://github.com/jdr-tools/wiki/wiki/Common-errors#application-key-not-found'
                 })
                 end
             end
@@ -77,7 +77,7 @@ module Arkaan
                   'status' => 404,
                   'field' => 'token',
                   'error' => 'unknown',
-                  'docs' => 'https://github.com/jdr-tools/arkaan/wiki/Errors#gateway-token-not-found'
+                  'docs' => 'https://github.com/jdr-tools/wiki/wiki/Common-errors#gateway-token-not-found'
                 })
               end
             end
