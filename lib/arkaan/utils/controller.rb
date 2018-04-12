@@ -3,6 +3,7 @@ module Arkaan
     # Base controller to handle the standard error when accessing the API.
     # @author Vincent Courtois <courtois.vincenet@outlook.com>
     class Controller < Sinatra::Base
+      register Sinatra::ConfigFile
 
       before do
         add_body_to_params
@@ -82,6 +83,31 @@ module Arkaan
       def parse_current_route
         splitted = request.env['sinatra.route'].split(' ')
         return Arkaan::Monitoring::Route.where(verb: splitted.first.downcase, path: splitted.last).first
+      end
+
+      # Loads the errors configuration file from the config folder.
+      # @param file [String] send __FILE__
+      def load_errors_from(file)
+        config_file File.join(File.dirname(file), '..', 'config', 'errors.yml')
+      end
+
+      # Halts the application and creates the returned body from the parameters and the errors config file.
+      # @param status [Integer] the HTTP status to halt the application with.
+      # @param field [String] the value of the :value key in the returned JSON body, corresponding to the field in error.
+      # @param error [String] the name of the error affecing the field.
+      # @param suffix [String] the eventual suffix of the URL in the doc.
+      def custom_error(status, field, error, suffix: '')
+        url = settings.errors[field][error]
+        halt status, {status: status, field: field, error: error, docs: "#{url}#{suffix}"}.to_json
+      end
+
+      # Halts the application with a Bad Request error affecting a field of a model.
+      # @param instance [Mongoid::Document] the document having a field in error.
+      # @param suffix [String] the eventual suffix of the URL in the doc.
+      def model_error(instance, suffix: '')
+        field = instance.errors.messages.keys.first
+        error = instance.errors.messages[field].first
+        custom_error(400, field, error, suffix: suffix)
       end
     end
   end

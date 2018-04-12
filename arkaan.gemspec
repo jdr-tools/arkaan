@@ -1,7 +1,7 @@
 Gem::Specification.new do |spec|
   spec.name        = 'arkaan'
-  spec.version     = '0.8.12'
-  spec.date        = '2018-04-07'
+  spec.version     = '0.8.13'
+  spec.date        = '2018-04-12'
   spec.summary     = 'The model layer for my table-RPG application'
   spec.description = 'This gem holds the model layer for my table-top RPG games application.'
   spec.authors     = ['Vincent Courtois']
@@ -18,9 +18,10 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'yard'            , '0.9.11'
   spec.add_development_dependency 'pry'             , '0.11.1'
 
-  spec.add_runtime_dependency 'mongoid'      , '7.0.0.beta'
-  spec.add_runtime_dependency 'activemodel'  , '5.1.4'
-  spec.add_runtime_dependency 'activesupport', '5.1.4'
-  spec.add_runtime_dependency 'bcrypt'       , '3.1.11'
-  spec.add_runtime_dependency 'sinatra'      , '2.0.1'
+  spec.add_runtime_dependency 'mongoid'        , '7.0.0.beta'
+  spec.add_runtime_dependency 'activemodel'    , '5.1.4'
+  spec.add_runtime_dependency 'activesupport'  , '5.1.4'
+  spec.add_runtime_dependency 'bcrypt'         , '3.1.11'
+  spec.add_runtime_dependency 'sinatra'        , '2.0.1'
+  spec.add_runtime_dependency 'sinatra-contrib', '2.0.1'
 end
