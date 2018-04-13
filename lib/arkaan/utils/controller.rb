@@ -104,7 +104,8 @@ module Arkaan
       # @param route [String] the type of action you're currently doing (e.g: 'creation')
       def model_error(instance, route)
         messages = instance.errors.messages
-        custom_error(400, "#{route}.#{messages.keys.first}.#{messages[field].first}")
+        field = messages.keys.first
+        custom_error(400, "#{route}.#{}.#{messages[field].first}")
       end
     end
   end
