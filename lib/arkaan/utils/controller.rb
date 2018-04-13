@@ -105,7 +105,7 @@ module Arkaan
       def model_error(instance, route)
         messages = instance.errors.messages
         field = messages.keys.first
-        custom_error(400, "#{route}.#{}.#{messages[field].first}")
+        custom_error(400, "#{route}.#{field}.#{messages[field].first}")
       end
     end
   end
