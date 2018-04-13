@@ -13,11 +13,9 @@ module Arkaan
         @application = Arkaan::OAuth::Application.where(key: params['app_key']).first
         
         if gateway.nil?
-          url = 'https://github.com/jdr-tools/arkaan/wiki/Errors#gateway-token-not-found'
-          halt 404, {status: 404, field: 'token', error: 'unknown', docs: url}.to_json
+          custom_error(404, 'common.token.unknown')
         elsif @application.nil?
-          url = 'https://github.com/jdr-tools/arkaan/wiki/Errors#application-key-not-found'
-          halt 404, {status: 404, field: 'app_key', error: 'unknown', docs: url}.to_json
+          custom_error(404, 'common.app_key.unknown')
         end
       end
 
@@ -48,8 +46,7 @@ module Arkaan
           self.public_send(verb, path) do
             @sinatra_route = parse_current_route
             if !@application.premium?
-              url = 'https://github.com/jdr-tools/arkaan/wiki/Errors#application-not-premium'
-              halt 403, {status: 403, field: 'app_key', error: 'forbidden', docs: url}.to_json
+              custom_error(403, 'common.app_key.forbidden')
             end
             instance_eval(&block)
           end
@@ -104,8 +101,6 @@ module Arkaan
         field = messages.keys.first
         custom_error(400, "#{route}.#{field}.#{messages[field].first}")
       end
-
-      load_errors_from __FILE__
     end
   end
 end

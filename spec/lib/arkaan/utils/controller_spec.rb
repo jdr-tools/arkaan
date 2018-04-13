@@ -10,6 +10,8 @@ RSpec.describe Arkaan::Utils::Controller do
     allow(Arkaan::Utils::MicroService.instance).to receive(:service).and_return(service)
 
     class TestController < Arkaan::Utils::Controller
+      config_file File.join(File.dirname(File.absolute_path(__FILE__)), '..', '..', '..', 'config', 'errors.yml')
+
       declare_premium_route('get', '/') do
         halt 200, {message: 'test_message'}.to_json
       end
