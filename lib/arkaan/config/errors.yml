@@ -1,0 +1,9 @@
+errors:
+  common:
+    app_key:
+      forbidden: 'https://github.com/jdr-tools/arkaan/wiki/Errors#application-not-premium'
+      required: 'https://github.com/jdr-tools/arkaan/wiki/Errors#parameter-not-given'
+      unknown: 'https://github.com/jdr-tools/arkaan/wiki/Errors#application-key-not-found'
+    token:
+      required: 'https://github.com/jdr-tools/arkaan/wiki/Errors#parameter-not-given'
+      unknown: 'https://github.com/jdr-tools/arkaan/wiki/Errors#gateway-token-not-found'

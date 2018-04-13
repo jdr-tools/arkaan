@@ -7,7 +7,7 @@ module Arkaan
 
       before do
         add_body_to_params
-        check_presence('token', 'app_key')
+        check_presence('token', 'app_key', route: 'common')
 
         gateway = Arkaan::Monitoring::Gateway.where(token: params['token']).first
         @application = Arkaan::OAuth::Application.where(key: params['app_key']).first
@@ -66,12 +66,9 @@ module Arkaan
 
       # Checks the presence of several fields given as parameters and halts the execution if it's not present.
       # @param fields [Array<String>] an array of fields names to search in the parameters
-      def check_presence(*fields)
+      def check_presence(*fields, route:)
         fields.each do |field|
-          if params[field].nil? || params[field] == ''
-            url = 'https://github.com/jdr-tools/arkaan/wiki/Errors#parameter-not-given'
-            halt 400, {status: 400, field: field, error: 'required', docs: url}.to_json
-          end
+          custom_error(400, "#{route}.#{field}.required") if params[field].nil? || params[field] == ''
         end
       end
 
@@ -107,6 +104,8 @@ module Arkaan
         field = messages.keys.first
         custom_error(400, "#{route}.#{field}.#{messages[field].first}")
       end
+
+      load_errors_from __FILE__
     end
   end
 end
