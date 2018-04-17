@@ -15,5 +15,6 @@ module Arkaan
   autoload :Monitoring    , 'arkaan/monitoring'
   autoload :OAuth         , 'arkaan/oauth'
   autoload :Permissions   , 'arkaan/permissions'
+  autoload :Phone         , 'arkaan/phone'
   autoload :Utils         , 'arkaan/utils'
 end

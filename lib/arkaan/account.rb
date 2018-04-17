@@ -18,9 +18,6 @@ module Arkaan
     # @!attribute [rw] firstname
     #   @return [String] the first name of the user.
     field :firstname, type: String, default: ''
-    # @!attribute [rw] birthdate
-    #   @return [DateTime] the day of birth of the user, as an ISO-8601.
-    field :birthdate, type: DateTime
     # @!attribute [rw] email
     #   @return [String] the email address of the user, useful to contact them ; it must be given, unique, and have an email format.
     field :email, type: String
@@ -56,6 +53,10 @@ module Arkaan
     # @!attribute [rw] invitations
     #   @return [Array<Arkaan::Campaigns::Invitation>] the invitations you've issued yourself to other players.
     has_many :created_invitations, class_name: 'Arkaan::Campaigns::Invitation', inverse_of: :creator
+
+    # @!attribute [rw] phones
+    #   @return [Array<Arkaan::Phone>] the phone numbers given by the user.
+    embeds_many :phones, class_name: 'Arkaan::Phone', inverse_of: :account
 
     validates :username,
       presence: {message: 'required'},

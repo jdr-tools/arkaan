@@ -62,15 +62,6 @@ RSpec.describe Arkaan::Account do
     end
   end
 
-  describe :birthdate do
-    it 'correctly returns the birth date for a built account' do
-      expect(build(:account).birthdate).to eq DateTime.new(2000, 1, 1)
-    end
-    it 'returns nil if the birth date is not given' do
-      expect(build(:empty_account).birthdate).to eq nil
-    end
-  end
-
   describe :email do
     it 'correctly returns the email for a built account' do
       expect(build(:account).email).to eq 'courtois.vincent@outlook.com'
