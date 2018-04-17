@@ -5,13 +5,11 @@ module Arkaan
     class Invitation
       include Mongoid::Document
       include Mongoid::Timestamps
+      include Arkaan::Concerns::Enumerable
 
-      # @!attribute [rw] accepted
-      #   @return [Boolean] TRUE if the invitation has been accepted, false otherwise.
-      field :accepted, type: Boolean, default: false
-      # @!attribute [rw] accepted_at
-      #   @return [DateTime] the date at which the invitation has been accepted.
-      field :accepted_at, type: DateTime, default: nil
+      # @!attribute [rw] status
+      #   @return [Symbol] the current status of the invitation.
+      enum_field :status, [:accepted, :expelled, :ignored, :pending, :refused], default: :pending
 
       # @!attribute [rw] account
       #   @return [Arkaan::Account] the account the invitation has been issued to.
