@@ -16,14 +16,16 @@ module Arkaan
         def enum_field(field_name, values, options = {})
           field :"enum_#{field_name}", type: Symbol, default: options[:default]
 
-          validates :"enum_#{field_name}", inclusion: {in: values.map(&:to_sym), message: 'inclussion'}
+          validates :"enum_#{field_name}", inclusion: {in: values.map(&:to_sym), message: 'inclusion'}
 
           define_method field_name do
             return self["enum_#{field_name}"]
           end
 
           define_method "#{field_name}=" do |value|
-            self["enum_#{field_name}"] = value.to_sym
+            if values.include? value
+              self["enum_#{field_name}"] = value.to_sym
+            end
           end
 
           values.map(&:to_sym).each do |value|

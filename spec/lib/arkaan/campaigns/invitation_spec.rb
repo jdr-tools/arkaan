@@ -40,6 +40,12 @@ RSpec.describe Arkaan::Campaigns::Invitation do
         expect(invitation.status).to eq(:refused)
       end
     end
+    describe 'unknown value' do
+      let!(:invitation) { create(:invitation, campaign: campaign, account: account, creator: other_account, status: :anything_else) }
+      it 'Has the correct refused status' do
+        expect(invitation.status).to eq(:pending)
+      end
+    end
   end
 
   describe :status_accepted do
