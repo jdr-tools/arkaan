@@ -5,7 +5,10 @@ module Arkaan
     module Enumerable
       extend ActiveSupport::Concern
 
+      # Submodule holding all the static methods add to the current subclass.
+      # @author Vincent Courtois <courtois.vincent@outlook.com>
       module ClassMethods
+        
         # Creates the field with the given name, set of possible values, and options.
         # @param name [String] the name of the enumerated field.
         # @param values [Array<Symbol>] the possible values of the enumerated field.
