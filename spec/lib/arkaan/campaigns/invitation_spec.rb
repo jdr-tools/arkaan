@@ -9,24 +9,101 @@ RSpec.describe Arkaan::Campaigns::Invitation do
     end
   end
 
-  describe :accepted do
-    it 'has a default value for the accepted flag' do
-      expect(build(:invitation, campaign: campaign, account: account, creator: other_account).accepted).to be false
+  describe :status do
+    describe 'accepted invitation' do
+      let!(:invitation) { create(:invitation, campaign: campaign, account: account, creator: other_account, status: :accepted) }
+      it 'Has the correct accepted status' do
+        expect(invitation.status).to eq(:accepted)
+      end
     end
-    it 'returns the correct value for the accepted flag' do
-      expect(build(:invitation, campaign: campaign, account: account, accepted: true, creator: other_account).accepted).to be true
+    describe 'expelled invitation' do
+      let!(:invitation) { create(:invitation, campaign: campaign, account: account, creator: other_account, status: :expelled) }
+      it 'Has the correct expelled status' do
+        expect(invitation.status).to eq(:expelled)
+      end
+    end
+    describe 'ignored invitation' do
+      let!(:invitation) { create(:invitation, campaign: campaign, account: account, creator: other_account, status: :ignored) }
+      it 'Has the correct ignored status' do
+        expect(invitation.status).to eq(:ignored)
+      end
+    end
+    describe 'pending invitation' do
+      let!(:invitation) { create(:invitation, campaign: campaign, account: account, creator: other_account, status: :pending) }
+      it 'Has the correct pending status' do
+        expect(invitation.status).to eq(:pending)
+      end
+    end
+    describe 'refused invitation' do
+      let!(:invitation) { create(:invitation, campaign: campaign, account: account, creator: other_account, status: :refused) }
+      it 'Has the correct refused status' do
+        expect(invitation.status).to eq(:refused)
+      end
     end
   end
 
-  describe :accepted_at do
-    it 'can have a date of acceptation' do
-      date = DateTime.now
-      invitation = build(:invitation, campaign: campaign, account: account, creator: other_account, accepted_at: date)
-      expect(invitation.accepted_at).to eq date
+  describe :status_accepted do
+    let!(:invitation) { create(:invitation, campaign: campaign, account: account, creator: other_account, status: :pending) }
+
+    it 'Sets the status' do
+      invitation.status_accepted!
+      expect(invitation.status).to be :accepted
     end
-    it 'returns nil if the accepted_at datetime has not been set' do
-      invitation = build(:invitation, campaign: campaign, account: account, creator: other_account)
-      expect(invitation.accepted_at).to be nil
+    it 'Returns true with the given accessor' do
+      invitation.status_accepted!
+      expect(invitation.status_accepted?).to be true
+    end
+  end
+
+  describe :status_expelled do
+    let!(:invitation) { create(:invitation, campaign: campaign, account: account, creator: other_account, status: :pending) }
+
+    it 'Sets the status' do
+      invitation.status_expelled!
+      expect(invitation.status).to be :expelled
+    end
+    it 'Returns true with the given accessor' do
+      invitation.status_expelled!
+      expect(invitation.status_expelled?).to be true
+    end
+  end
+
+  describe :status_ignored do
+    let!(:invitation) { create(:invitation, campaign: campaign, account: account, creator: other_account, status: :pending) }
+
+    it 'Sets the status' do
+      invitation.status_ignored!
+      expect(invitation.status).to be :ignored
+    end
+    it 'Returns true with the given accessor' do
+      invitation.status_ignored!
+      expect(invitation.status_ignored?).to be true
+    end
+  end
+
+  describe :status_pending do
+    let!(:invitation) { create(:invitation, campaign: campaign, account: account, creator: other_account, status: :accepted) }
+
+    it 'Sets the status' do
+      invitation.status_pending!
+      expect(invitation.status).to be :pending
+    end
+    it 'Returns true with the given accessor' do
+      invitation.status_pending!
+      expect(invitation.status_pending?).to be true
+    end
+  end
+
+  describe :status_refused do
+    let!(:invitation) { create(:invitation, campaign: campaign, account: account, creator: other_account, status: :pending) }
+
+    it 'Sets the status' do
+      invitation.status_refused!
+      expect(invitation.status).to be :refused
+    end
+    it 'Returns true with the given accessor' do
+      invitation.status_refused!
+      expect(invitation.status_refused?).to be true
     end
   end
 
