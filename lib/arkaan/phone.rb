@@ -11,7 +11,7 @@ module Arkaan
     enum_field :privacy, [:players, :public, :private], default: :private
     # @!attribute [rw] number
     #   @return [Integer] the phone number the user has given.
-    field :number, type: Integer
+    field :number, type: String
 
     # @!attribute [rw] account
     #   @return [Arkaan::Account] the account the phone number is associated to.

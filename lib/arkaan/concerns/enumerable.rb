@@ -23,7 +23,7 @@ module Arkaan
           end
 
           define_method "#{field_name}=" do |value|
-            if values.include? value
+            if values.include? value.to_sym
               self["enum_#{field_name}"] = value.to_sym
             end
           end
