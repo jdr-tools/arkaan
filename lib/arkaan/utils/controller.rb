@@ -69,6 +69,18 @@ module Arkaan
         end
       end
 
+      # Checks if the session ID is given in the parameters and if the session exists.
+      # @param action [String] the action used to get the errors from the errors file.
+      # @return [Arkaan::Authentication::Session] the session when it exists.
+      def check_session(action)
+        check_presence('session_id', route: action)
+        session = Arkaan::Authentication::Session.where(token: params['session_id']).first
+        if session.nil?
+          custom_error(404, "#{action}.session_id.unknown")
+        end
+        return session
+      end
+
       # Adds the parsed body to the parameters, overwriting the parameters of the querystring with the values
       # of the SON body if they have similar keys.
       def add_body_to_params
@@ -100,6 +112,13 @@ module Arkaan
         messages = instance.errors.messages
         field = messages.keys.first
         custom_error(400, "#{route}.#{field}.#{messages[field].first}")
+      end
+
+      # Select parameters in the params hash, by its keys.
+      # @param fields [Array<String>] the keys to select in the params hash.
+      # @return [Hash] the selected chunk of the params hash.
+      def select_params(*fields)
+        return params.select { |key, value| fields.include?(key) }
       end
     end
   end
