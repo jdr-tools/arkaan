@@ -17,9 +17,6 @@ module Arkaan
       # @!attribute [rw] campaign
       #   @return [Arkaan::Campaign] the campaign the invitation has been made in.
       belongs_to :campaign, class_name: 'Arkaan::Campaign', inverse_of: :invitations
-      # @!attribute [rw] creator
-      #   @return [Arkaan::Account] the account creating the invitation.
-      belongs_to :creator, class_name: 'Arkaan::Account', inverse_of: :created_invitations
     end
   end
 end
