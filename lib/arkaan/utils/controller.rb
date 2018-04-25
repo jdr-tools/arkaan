@@ -120,6 +120,22 @@ module Arkaan
       def select_params(*fields)
         return params.select { |key, value| fields.include?(key) }
       end
+
+      def handle_arkaan_exception(exception)
+        custom_error(exception.status, "#{exception.action}.#{exception.field}.#{exception.error}")
+      end
+
+      error Arkaan::Utils::Errors::BadRequest do |exception|
+        handle_arkaan_exception(exception)
+      end
+
+      error Arkaan::Utils::Errors::Forbidden do |exception|
+        handle_arkaan_exception(exception)
+      end
+
+      error Arkaan::Utils::Errors::NotFound do |exception|
+        handle_arkaan_exception(exception)
+      end
     end
   end
 end

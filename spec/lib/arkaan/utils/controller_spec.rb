@@ -24,6 +24,15 @@ RSpec.describe Arkaan::Utils::Controller do
       declare_premium_route('delete', '/') do
         halt 200, {message: 'deleted'}.to_json
       end
+      declare_route('get', '/bad_request') do
+        raise Arkaan::Utils::Errors::BadRequest.new(action: 'test_errors', field: 'test_field', error: 'test_error')
+      end
+      declare_route('get', '/forbidden') do
+        raise Arkaan::Utils::Errors::Forbidden.new(action: 'test_errors', field: 'test_field', error: 'test_error')
+      end
+      declare_route('get', '/not_found') do
+        raise Arkaan::Utils::Errors::NotFound.new(action: 'test_errors', field: 'test_field', error: 'test_error')
+      end
     end
 
     def app
@@ -42,6 +51,57 @@ RSpec.describe Arkaan::Utils::Controller do
   end
   describe 'DELETE request' do
     include_examples 'micro_service route', verb: 'delete', expected_body: {'message' => 'deleted'}
+  end
+
+  describe 'automatic exceptions' do
+    describe 'bad request exception' do
+      before do
+        get '/bad_request', {token: 'test_token', app_key: 'test_key'}
+      end
+      it 'Returns a Bad Request (400) status' do
+        expect(last_response.status).to be 400
+      end
+      it 'Returns the correct body' do
+        expect(last_response.body).to include_json({
+          status: 400,
+          field: 'test_field',
+          error: 'test_error',
+          docs: 'anything'
+        })
+      end
+    end
+    describe 'forbidden exceptions' do
+      before do
+        get '/forbidden', {token: 'test_token', app_key: 'test_key'}
+      end
+      it 'Returns a Forbidden (403) status' do
+        expect(last_response.status).to be 403
+      end
+      it 'Returns the correct body' do
+        expect(last_response.body).to include_json({
+          status: 403,
+          field: 'test_field',
+          error: 'test_error',
+          docs: 'anything'
+        })
+      end
+    end
+    describe 'not found exceptions' do
+      before do
+        get '/not_found', {token: 'test_token', app_key: 'test_key'}
+      end
+      it 'Returns a Not Found (404) status' do
+        expect(last_response.status).to be 404
+      end
+      it 'Returns the correct body' do
+        expect(last_response.body).to include_json({
+          status: 404,
+          field: 'test_field',
+          error: 'test_error',
+          docs: 'anything'
+        })
+      end
+    end
   end
 
   describe :declare_routes do

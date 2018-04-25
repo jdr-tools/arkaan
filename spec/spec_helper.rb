@@ -9,6 +9,7 @@ end
 require 'bundler/setup'
 Bundler.setup
 
+require "rspec/json_expectations"
 require 'factory_girl'
 require 'rack/test'
 require 'database_cleaner'
