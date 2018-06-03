@@ -196,33 +196,6 @@ not.</p>
       <li class="public ">
   <span class="summary_signature">
     
-      <a href="#creator-instance_method" title="#creator (instance method)">#<strong>creator</strong>  &#x21d2; Arkaan::Account </a>
-    
-
-    
-  </span>
-  
-  
-  
-    
-    
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'>
-<p>The account creating the invitation.</p>
-</div></span>
-  
-</li>
-
-    
-      <li class="public ">
-  <span class="summary_signature">
-    
       <a href="#status-instance_method" title="#status (instance method)">#<strong>status</strong>  &#x21d2; Symbol </a>
     
 
@@ -380,63 +353,6 @@ not.</p>
 </div>
     
       
-      <span id="creator=-instance_method"></span>
-      <div class="method_details ">
-  <h3 class="signature " id="creator-instance_method">
-  
-    #<strong>creator</strong>  &#x21d2; <tt><span class='object_link'><a href="../Account.html" title="Arkaan::Account (class)">Arkaan::Account</a></span></tt> 
-  
-
-  
-
-  
-</h3><div class="docstring">
-  <div class="discussion">
-    
-<p>Returns the account creating the invitation.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="../Account.html" title="Arkaan::Account (class)">Arkaan::Account</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>the account creating the invitation.</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-22</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'lib/arkaan/campaigns/invitation.rb', line 22</span>
-
-<span class='id identifier rubyid_belongs_to'>belongs_to</span> <span class='symbol'>:creator</span><span class='comma'>,</span> <span class='label'>class_name:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Arkaan::Account</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='label'>inverse_of:</span> <span class='symbol'>:created_invitations</span></pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      
       <span id="status=-instance_method"></span>
       <div class="method_details ">
   <h3 class="signature " id="status-instance_method">
@@ -487,7 +403,7 @@ not.</p>
     <td>
       <pre class="code"><span class="info file"># File 'lib/arkaan/campaigns/invitation.rb', line 12</span>
 
-<span class='id identifier rubyid_enum_field'>enum_field</span> <span class='symbol'>:status</span><span class='comma'>,</span> <span class='lbracket'>[</span><span class='symbol'>:accepted</span><span class='comma'>,</span> <span class='symbol'>:expelled</span><span class='comma'>,</span> <span class='symbol'>:ignored</span><span class='comma'>,</span> <span class='symbol'>:pending</span><span class='comma'>,</span> <span class='symbol'>:refused</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='label'>default:</span> <span class='symbol'>:pending</span></pre>
+<span class='id identifier rubyid_enum_field'>enum_field</span> <span class='symbol'>:status</span><span class='comma'>,</span> <span class='lbracket'>[</span><span class='symbol'>:accepted</span><span class='comma'>,</span> <span class='symbol'>:blocked</span><span class='comma'>,</span> <span class='symbol'>:expelled</span><span class='comma'>,</span> <span class='symbol'>:ignored</span><span class='comma'>,</span> <span class='symbol'>:left</span><span class='comma'>,</span> <span class='symbol'>:pending</span><span class='comma'>,</span> <span class='symbol'>:refused</span><span class='comma'>,</span> <span class='symbol'>:request</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='label'>default:</span> <span class='symbol'>:pending</span></pre>
     </td>
   </tr>
 </table>
@@ -499,7 +415,7 @@ not.</p>
 </div>
 
       <div id="footer">
-  Generated on Tue Apr 17 20:44:00 2018 by
+  Generated on Sun Jun  3 11:19:19 2018 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.11 (ruby-2.3.4).
 </div>
