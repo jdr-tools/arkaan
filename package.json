@@ -6,9 +6,6 @@
   "directories": {
     "doc": "docs"
   },
-  "scripts": {
-    "postinstall": "yardoc && http-server docs"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jdr-tools/arkaan.git"
