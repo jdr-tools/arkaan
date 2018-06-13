@@ -1,21 +1,12 @@
 module Arkaan
   module Utils
     module Errors
-      class Forbidden < StandardError
-        attr_accessor :field
+      # A forbidden error occurs when a user tries to perform an action he's not allowed to.
+      # @author Vincent Courtois <courtois.vincent@outlook.com>
+      class Forbidden < Arkaan::Utils::Errors::HTTPError
 
-        attr_accessor :action
-
-        attr_accessor :error
-
-        def initialize(action:, field:, error:)
-          @action = action
-          @field = field
-          @error = error
-        end
-
-        def status
-          return 403
+        def initialize (field:, action:, error:)
+          super(action, field, error, 403)
         end
       end
     end

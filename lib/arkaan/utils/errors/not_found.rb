@@ -1,21 +1,12 @@
 module Arkaan
   module Utils
     module Errors
-      class NotFound < StandardError
-        attr_accessor :field
+      # A not found error occurs when a user tries to reach a resource that does not exist.
+      # @author Vincent Courtois <courtois.vincent@outlook.com>
+      class NotFound < Arkaan::Utils::Errors::HTTPError
 
-        attr_accessor :action
-
-        attr_accessor :error
-
-        def initialize(action:, field:, error:)
-          @action = action
-          @field = field
-          @error = error
-        end
-
-        def status
-          return 404
+        def initialize (field:, action:, error:)
+          super(action, field, error, 404)
         end
       end
     end

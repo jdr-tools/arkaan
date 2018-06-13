@@ -121,6 +121,8 @@ module Arkaan
         return params.select { |key, value| fields.include?(key) }
       end
 
+      # Creates a custom error from an existing Arkaan exception class.
+      # @param exception {StandardError} the exception to transform in a usable error.
       def handle_arkaan_exception(exception)
         custom_error(exception.status, "#{exception.action}.#{exception.field}.#{exception.error}")
       end

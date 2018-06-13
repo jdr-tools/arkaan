@@ -1,21 +1,12 @@
 module Arkaan
   module Utils
     module Errors
-      class BadRequest < StandardError
-        attr_accessor :field
-
-        attr_accessor :action
-
-        attr_accessor :error
+      # A bad request error is raised when the data given to a model makes this model invalid.
+      # @author Vincent Courtois <courtois.vincent@outlook.com>
+      class BadRequest < Arkaan::Utils::Errors::HTTPError
 
         def initialize(action:, field:, error:)
-          @action = action
-          @field = field
-          @error = error
-        end
-
-        def status
-          return 400
+          super(action, field, error, 400)
         end
       end
     end
