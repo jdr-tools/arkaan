@@ -17,6 +17,9 @@ module Arkaan
     # @!attribute [rw] tags
     #   @return [Array<String>] an array of tags describing characteristics of this campaign.
     field :tags, type: Array, default: []
+    # @!attributes [rw] max_players
+    #   @return [Integer] the maximum number of players allowed in this campaign.
+    field :max_players, type: Integer, default: 5
 
     # @!attribute [rw] creator
     #   @return [Arkaan::Campaign] the account creating the campaign, and considered "game master".

@@ -50,6 +50,15 @@ RSpec.describe Arkaan::Campaign do
     end
   end
 
+  describe :max_players do
+    it 'has a max number of players set at creation' do
+      expect(build(:campaign, max_players: 10).max_players).to be 10
+    end
+    it 'has a default max number of players' do
+      expect(build(:campaign).max_players).to be 5
+    end
+  end
+
   describe :messages do
     it 'returns the right message if the title is not given' do
       invalid_campaign = build(:campaign, title: nil, creator: account)
