@@ -114,6 +114,15 @@ RSpec.describe Arkaan::Account do
     end
   end
 
+  describe :websockets do
+    it 'returns the right websockets service for a given account' do
+      expect(create(:account_with_websockets).websockets.count).to be 1
+    end
+    it 'returns the right websocket service for an account with a websocket service' do
+      expect(create(:account_with_websockets).websockets.first.url).to eq 'https://test-websocket.com/'
+    end
+  end
+
   describe :sessions do
     it 'returns the right sessions for a given account' do
       expect(create(:account_with_sessions).sessions.count).to be 1

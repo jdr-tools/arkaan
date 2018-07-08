@@ -1,312 +1,174 @@
 <!DOCTYPE html>
+
 <html>
-  <head>
-    <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>
-  Module: Arkaan::Concerns::Enumerable::ClassMethods
-  
-    &mdash; Documentation by YARD 0.9.11
-  
-</title>
+<head>
+<meta charset="UTF-8">
 
-  <link rel="stylesheet" href="../../../css/style.css" type="text/css" charset="utf-8" />
+<title>module Arkaan::Concerns::Enumerable::ClassMethods - RDoc Documentation</title>
 
-  <link rel="stylesheet" href="../../../css/common.css" type="text/css" charset="utf-8" />
-
-<script type="text/javascript" charset="utf-8">
-  pathId = "Arkaan::Concerns::Enumerable::ClassMethods";
-  relpath = '../../../';
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../../../";
 </script>
 
+<script src="../../../js/jquery.js"></script>
+<script src="../../../js/darkfish.js"></script>
 
-  <script type="text/javascript" charset="utf-8" src="../../../js/jquery.js"></script>
+<link href="../../../css/fonts.css" rel="stylesheet">
+<link href="../../../css/rdoc.css" rel="stylesheet">
 
-  <script type="text/javascript" charset="utf-8" src="../../../js/app.js"></script>
 
 
-  </head>
-  <body>
-    <div class="nav_wrap">
-      <iframe id="nav" src="../../../class_list.html?1"></iframe>
-      <div id="resizer"></div>
+<body id="top" role="document" class="module">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../../../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../../../table_of_contents.html#pages">Pages</a>
+    <a href="../../../table_of_contents.html#classes">Classes</a>
+    <a href="../../../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
     </div>
 
-    <div id="main" tabindex="-1">
-      <div id="header">
-        <div id="menu">
-  
-    <a href="../../../_index.html">Index (C)</a> &raquo;
-    <span class='title'><span class='object_link'><a href="../../../Arkaan.html" title="Arkaan (module)">Arkaan</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../../Concerns.html" title="Arkaan::Concerns (module)">Concerns</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../Enumerable.html" title="Arkaan::Concerns::Enumerable (module)">Enumerable</a></span></span>
-     &raquo; 
-    <span class="title">ClassMethods</span>
-  
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
 </div>
 
-        <div id="search">
-  
-    <a class="full_list_link" id="class_list_link"
-        href="../../../class_list.html">
+  </div>
 
-        <svg width="24" height="24">
-          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
-          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
-          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
-        </svg>
-    </a>
   
+
+  <div id="class-metadata">
+    
+    
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-i-enum_field">#enum_field</a>
+    
+  </ul>
 </div>
-        <div class="clear"></div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="module-Arkaan::Concerns::Enumerable::ClassMethods">
+  <h1 id="module-Arkaan::Concerns::Enumerable::ClassMethods" class="module">
+    module Arkaan::Concerns::Enumerable::ClassMethods
+  </h1>
+
+  <section class="description">
+    
+<p>Submodule holding all the static methods add to the current subclass.
+@author Vincent Courtois &lt;courtois.vincent@outlook.com&gt;</p>
+
+  </section>
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-enum_field" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">enum_field</span><span
+            class="method-args">(field_name, values, options = {})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Creates the field with the given name, set of possible values, and options.
+@param field_name [String] the name of the enumerated field. @param values
+[Array&lt;Symbol&gt;] the possible values of the enumerated field. @param
+options [Hash&lt;Symbol, Any&gt;] the possible options for the field.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="enum_field-source">
+            <pre><span class="ruby-comment"># File lib/arkaan/concerns/enumerable.rb, line 16</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">enum_field</span>(<span class="ruby-identifier">field_name</span>, <span class="ruby-identifier">values</span>, <span class="ruby-identifier">options</span> = {})
+  <span class="ruby-identifier">field</span> <span class="ruby-value">:&quot;enum_#{field_name}&quot;</span>, <span class="ruby-identifier">type</span><span class="ruby-operator">:</span> <span class="ruby-constant">Symbol</span>, <span class="ruby-identifier">default</span><span class="ruby-operator">:</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:default</span>]
+
+  <span class="ruby-identifier">validates</span> <span class="ruby-value">:&quot;enum_#{field_name}&quot;</span>, <span class="ruby-identifier">inclusion</span><span class="ruby-operator">:</span> {<span class="ruby-keyword">in</span><span class="ruby-operator">:</span> <span class="ruby-identifier">values</span>.<span class="ruby-identifier">map</span>(<span class="ruby-operator">&amp;</span><span class="ruby-value">:to_sym</span>), <span class="ruby-identifier">message</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;inclusion&#39;</span>}
+
+  <span class="ruby-identifier">define_method</span> <span class="ruby-identifier">field_name</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">self</span>[<span class="ruby-node">&quot;enum_#{field_name}&quot;</span>]
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">define_method</span> <span class="ruby-node">&quot;#{field_name}=&quot;</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">value</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">values</span>.<span class="ruby-identifier">include?</span> <span class="ruby-identifier">value</span>.<span class="ruby-identifier">to_sym</span>
+      <span class="ruby-keyword">self</span>[<span class="ruby-node">&quot;enum_#{field_name}&quot;</span>] = <span class="ruby-identifier">value</span>.<span class="ruby-identifier">to_sym</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">values</span>.<span class="ruby-identifier">map</span>(<span class="ruby-operator">&amp;</span><span class="ruby-value">:to_sym</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">value</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">define_method</span> <span class="ruby-node">&quot;#{field_name}_#{value}!&quot;</span> <span class="ruby-keyword">do</span>
+      <span class="ruby-keyword">self</span>[<span class="ruby-node">&quot;enum_#{field_name}&quot;</span>] = <span class="ruby-identifier">value</span>
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-identifier">define_method</span> <span class="ruby-node">&quot;#{field_name}_#{value}?&quot;</span> <span class="ruby-keyword">do</span>
+      <span class="ruby-keyword">self</span>[<span class="ruby-node">&quot;enum_#{field_name}&quot;</span>] <span class="ruby-operator">==</span> <span class="ruby-identifier">value</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
       </div>
 
-      <div id="content"><h1>Module: Arkaan::Concerns::Enumerable::ClassMethods
-  
-  
-  
-</h1>
-<div class="box_info">
-  
-
-  
-  
-  
-  
-  
-
-  
-
-  
-  <dl>
-    <dt>Defined in:</dt>
-    <dd>lib/arkaan/concerns/enumerable.rb</dd>
-  </dl>
-  
-</div>
-
-<h2>Overview</h2><div class="docstring">
-  <div class="discussion">
     
-<p>Submodule holding all the static methods add to the current subclass.</p>
-
-
-  </div>
-</div>
-<div class="tags">
+    </section>
   
-<p class="tag_title">Author:</p>
-<ul class="author">
-  
-    <li>
-      
-      
-      
-      
-        
-        <div class='inline'>
-<p>Vincent Courtois &lt;courtois.vincent@outlook.com&gt;</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div>
+  </section>
+</main>
 
 
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
 
-
-
-
-  
-    <h2>
-      Instance Method Summary
-      <small><a href="#" class="summary_toggle">collapse</a></small>
-    </h2>
-
-    <ul class="summary">
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#enum_field-instance_method" title="#enum_field (instance method)">#<strong>enum_field</strong>(field_name, values, options = {})  &#x21d2; Object </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'>
-<p>Creates the field with the given name, set of possible values, and options.</p>
-</div></span>
-  
-</li>
-
-      
-    </ul>
-  
-
-
-
-  <div id="instance_method_details" class="method_details_list">
-    <h2>Instance Method Details</h2>
-
-    
-      <div class="method_details first">
-  <h3 class="signature first" id="enum_field-instance_method">
-  
-    #<strong>enum_field</strong>(field_name, values, options = {})  &#x21d2; <tt>Object</tt> 
-  
-
-  
-
-  
-</h3><div class="docstring">
-  <div class="discussion">
-    
-<p>Creates the field with the given name, set of possible values, and options.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  <p class="tag_title">Parameters:</p>
-<ul class="param">
-  
-    <li>
-      
-        <span class='name'>field_name</span>
-      
-      
-        <span class='type'>(<tt>String</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>the name of the enumerated field.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-        <span class='name'>values</span>
-      
-      
-        <span class='type'>(<tt>Array&lt;Symbol&gt;</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>the possible values of the enumerated field.</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-        <span class='name'>options</span>
-      
-      
-        <span class='type'>(<tt>Hash&lt;Symbol, Any&gt;</tt>)</span>
-      
-      
-        <em class="default">(defaults to: <tt>{}</tt>)</em>
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>the possible options for the field.</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-
-</div><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'lib/arkaan/concerns/enumerable.rb', line 16</span>
-
-<span class='kw'>def</span> <span class='id identifier rubyid_enum_field'>enum_field</span><span class='lparen'>(</span><span class='id identifier rubyid_field_name'>field_name</span><span class='comma'>,</span> <span class='id identifier rubyid_values'>values</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_field'>field</span> <span class='symbol'>:enum_</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_field_name'>field_name</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>type:</span> <span class='const'>Symbol</span><span class='comma'>,</span> <span class='label'>default:</span> <span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:default</span><span class='rbracket'>]</span>
-
-  <span class='id identifier rubyid_validates'>validates</span> <span class='symbol'>:enum_</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_field_name'>field_name</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>inclusion:</span> <span class='lbrace'>{</span><span class='label'>in:</span> <span class='id identifier rubyid_values'>values</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='symbol'>:to_sym</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='label'>message:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>inclusion</span><span class='tstring_end'>&#39;</span></span><span class='rbrace'>}</span>
-
-  <span class='id identifier rubyid_define_method'>define_method</span> <span class='id identifier rubyid_field_name'>field_name</span> <span class='kw'>do</span>
-    <span class='kw'>return</span> <span class='kw'>self</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>enum_</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_field_name'>field_name</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span>
-  <span class='kw'>end</span>
-
-  <span class='id identifier rubyid_define_method'>define_method</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_field_name'>field_name</span><span class='embexpr_end'>}</span><span class='tstring_content'>=</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_value'>value</span><span class='op'>|</span>
-    <span class='kw'>if</span> <span class='id identifier rubyid_values'>values</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span> <span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_to_sym'>to_sym</span>
-      <span class='kw'>self</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>enum_</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_field_name'>field_name</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_to_sym'>to_sym</span>
-    <span class='kw'>end</span>
-  <span class='kw'>end</span>
-
-  <span class='id identifier rubyid_values'>values</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='symbol'>:to_sym</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_value'>value</span><span class='op'>|</span>
-    <span class='id identifier rubyid_define_method'>define_method</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_field_name'>field_name</span><span class='embexpr_end'>}</span><span class='tstring_content'>_</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_value'>value</span><span class='embexpr_end'>}</span><span class='tstring_content'>!</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>do</span>
-      <span class='kw'>self</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>enum_</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_field_name'>field_name</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_value'>value</span>
-    <span class='kw'>end</span>
-
-    <span class='id identifier rubyid_define_method'>define_method</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_field_name'>field_name</span><span class='embexpr_end'>}</span><span class='tstring_content'>_</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_value'>value</span><span class='embexpr_end'>}</span><span class='tstring_content'>?</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>do</span>
-      <span class='kw'>self</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>enum_</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_field_name'>field_name</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='id identifier rubyid_value'>value</span>
-    <span class='kw'>end</span>
-  <span class='kw'>end</span>
-<span class='kw'>end</span></pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-  </div>
-
-</div>
-
-      <div id="footer">
-  Generated on Wed Jun 13 23:41:11 2018 by
-  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.11 (ruby-2.3.4).
-</div>
-
-    </div>
-  </body>
-</html>

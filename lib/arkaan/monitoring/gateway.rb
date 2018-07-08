@@ -20,8 +20,6 @@ module Arkaan
 
       scope :running , ->{ where(running: true) }
 
-      make_diagnosticable 'gateway'
-
       validates :url,
         presence: {message: 'required'},
         format: {with: /\A(https?:\/\/)((localhost:[0-9]+)|(([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*))\/?\z/, message: 'pattern', if: :url?}

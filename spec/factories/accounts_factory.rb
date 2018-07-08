@@ -45,6 +45,12 @@ FactoryGirl.define do
           create_list(:session, 1, account: account)
         end
       end
+
+      factory :account_with_websockets do
+        after :create do |account, evaluator|
+          create_list(:websocket, 1, creator: account)
+        end
+      end
     end
   end
 end

@@ -53,6 +53,9 @@ module Arkaan
     # @!attribute [rw] invitations
     #   @return [Array<Arkaan::Campaigns::Invitation>] the invitations you've issued yourself to other players.
     has_many :created_invitations, class_name: 'Arkaan::Campaigns::Invitation', inverse_of: :creator
+    # @!attribute [rw] websockets
+    #   @return [Array<Arkaan::Monitoring::Websocket>] the websockets created by the owner of this account.
+    has_many :websockets, class_name: 'Arkaan::Monitoring::Websocket', inverse_of: :creator
 
     # @!attribute [rw] phones
     #   @return [Array<Arkaan::Phone>] the phone numbers given by the user.
