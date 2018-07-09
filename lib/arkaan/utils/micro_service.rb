@@ -68,7 +68,7 @@ module Arkaan
         load_mongoid_configuration
         load_standard_files
 
-        Arkaan::Monitoring::Websocket.find_or_create_by(url: ENV['WEBSOCKET_URL'])
+        Arkaan::Monitoring::Websocket.find_or_create_by(url: ENV['WEBSOCKET_URL']).save
         return self
       end
 

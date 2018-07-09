@@ -15,7 +15,7 @@ module Arkaan
 
       # @!attribute [rw] creator
       #   @return [Arkaan::Account] the account that created this web socket instance in the database.
-      belongs_to :creator, class_name: 'Arkaan::Account', inverse_of: :web_sockets
+      belongs_to :creator, class_name: 'Arkaan::Account', inverse_of: :web_sockets, optional: true
       
       validates :url,
         presence: {message: 'required'},
