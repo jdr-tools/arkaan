@@ -62,6 +62,16 @@ module Arkaan
         return load_application(test_mode: true)
       end
 
+      # Loads the application as a websockets service. Only the websockets application should use that.
+      # @return [Arkaan::utils::MicroService] the instance of the micro-service to chain other calls.
+      def in_websocket_mode
+        load_mongoid_configuration
+        load_standard_files
+
+        Arkaan::Monitoring::Websocket.find_or_create_by(url: ENV['WEBSOCKET_URL'])
+        return self
+      end
+
       private
 
       # Registers the service in the database if it has not been created already.
