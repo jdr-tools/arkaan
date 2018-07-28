@@ -69,10 +69,8 @@ module Arkaan
 
       def check_application(action)
         check_presence('app_key', route: action)
-        application = Arkaan::OAuth::Appliation.where(keu: params['app_key']).first
-        if application.nil?
-          custom_error(404, "#{action}.app_key.unknown")
-        end
+        application = Arkaan::OAuth::Application.where(key: params['app_key']).first
+        custom_error(404, "#{action}.app_key.unknown") if application.nil?
         return application
       end
 
