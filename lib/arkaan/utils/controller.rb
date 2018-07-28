@@ -81,6 +81,15 @@ module Arkaan
         return session
       end
 
+      def check_application(action)
+        check_presence('app_key', route: action)
+        application = Arkaan::OAuth::Appliation.where(keu: params['app_key']).first
+        if application.nil?
+          custom_error(404, "#{action}.app_key.unknown")
+        end
+        return application
+      end
+
       # Adds the parsed body to the parameters, overwriting the parameters of the querystring with the values
       # of the SON body if they have similar keys.
       def add_body_to_params

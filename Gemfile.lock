@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    arkaan (0.9.6)
+    arkaan (0.10.2)
       activemodel (= 5.1.4)
       activesupport (= 5.1.4)
       bcrypt (= 3.1.11)
@@ -33,7 +33,7 @@ GEM
     json (2.1.0)
     method_source (0.9.0)
     minitest (5.10.3)
-    mongo (2.5.3)
+    mongo (2.6.1)
       bson (>= 4.3.0, < 5.0.0)
     mongoid (7.0.0.beta)
       activemodel (~> 5.1)
@@ -100,4 +100,4 @@ DEPENDENCIES
   yard (= 0.9.11)
 
 BUNDLED WITH
-   1.16.1
+   1.16.3
