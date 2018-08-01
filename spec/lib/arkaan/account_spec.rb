@@ -119,7 +119,7 @@ RSpec.describe Arkaan::Account do
       expect(create(:account_with_websockets).websockets.count).to be 1
     end
     it 'returns the right websocket service for an account with a websocket service' do
-      expect(create(:account_with_websockets).websockets.first.url).to eq 'https://test-websocket.com/'
+      expect(create(:account_with_websockets).websockets.first.url).to eq 'ws://test-websocket.com/'
     end
   end
 

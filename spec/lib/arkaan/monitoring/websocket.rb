@@ -1,7 +1,7 @@
 RSpec.describe Arkaan::Monitoring::Instance do
   describe :url do
     it 'has a url set at creation' do
-      expect(build(:websocket).url).to eq 'https://test-websocket.com/'
+      expect(build(:websocket).url).to eq 'ws://test-websocket.com/'
     end
     it 'invalidates the service if no URL is given' do
       expect(build(:websocket, url: nil).valid?).to be false
