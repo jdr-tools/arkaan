@@ -19,7 +19,7 @@ module Arkaan
       
       validates :url,
         presence: {message: 'required'},
-        format: {with: /\A(https?:\/\/)([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?\z/, message: 'pattern', if: :url?}
+        format: {with: /\A(ws:\/\/)([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?\z/, message: 'pattern', if: :url?}
     end
   end
 end
