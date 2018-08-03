@@ -9,6 +9,9 @@ RSpec.describe Arkaan::Monitoring::Instance do
     it 'invalidates the service if the URL is given in a wrong format' do
       expect(build(:instance, url: 'test').valid?).to be false
     end
+    it 'validates localhost URLs' do
+      expect(build(:instance, url: 'http://localhost:3000/').valid?).to be true
+    end
   end
 
   describe :service do
