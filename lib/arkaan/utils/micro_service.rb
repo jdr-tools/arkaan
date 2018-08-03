@@ -14,6 +14,9 @@ module Arkaan
       # @!attribute [r] name
       #   @return [String] the name of the service, used later to instantiate it when the mongoid configuration is fully loaded.
       attr_reader :name
+      # @!attribute [r] instance
+      #   @return [Arkaan::Monitoring::Instance] the instance of the service currently deployed.
+      attr_reader :instance
 
       def initialize
         @location = false
@@ -72,6 +75,15 @@ module Arkaan
         return self
       end
 
+      # Deactivates the current instance and the associated service if no more instances are available.
+      def deactivate
+        instance.update_attribute(:running, false)
+        service.reload
+        if service.instances.where(running: true).count == 0
+          service.update_attribute(:active, false)
+        end
+      end
+
       private
 
       # Registers the service in the database if it has not been created already.
@@ -82,11 +94,11 @@ module Arkaan
       # Register the instance of the currently deployed service in the database.
       # @return [Arkaan::Monitoring::Instance] the instance of the micro service currently running.
       def register_instance
-        instance = @service.instances.where(url: ENV['SERVICE_URL']).first
+        @instance = @service.instances.where(url: ENV['SERVICE_URL']).first
         if instance.nil?
-          instance = Arkaan::Monitoring::Instance.create(service: @service, url: ENV['SERVICE_URL'])
+          @instance = Arkaan::Monitoring::Instance.create(service: @service, url: ENV['SERVICE_URL'])
         end
-        return instance
+        return @instance
       end
 
       # Loads the configuration for Mongoid, the files of the application, and registers the service and the instance in the database.
