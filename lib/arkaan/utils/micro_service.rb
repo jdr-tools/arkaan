@@ -76,12 +76,8 @@ module Arkaan
       end
 
       # Deactivates the current instance and the associated service if no more instances are available.
-      def deactivate
+      def deactivate!
         instance.update_attribute(:running, false)
-        service.reload
-        if service.instances.where(running: true).count == 0
-          service.update_attribute(:active, false)
-        end
       end
 
       private
