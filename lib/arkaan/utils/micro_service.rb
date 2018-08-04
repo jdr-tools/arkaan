@@ -97,12 +97,8 @@ module Arkaan
         @instance = @service.instances.where(url: ENV['SERVICE_URL']).first
         if instance.nil?
           @instance = Arkaan::Monitoring::Instance.create(service: @service, url: ENV['SERVICE_URL'])
-        elsif !instance.running
-          instance.update_attribute(:running, true)
-          if !service.active
-            service.update_attribute(:active, true)
-          end
         end
+        instance.update_attribute(:running, true)
         return @instance
       end
 
