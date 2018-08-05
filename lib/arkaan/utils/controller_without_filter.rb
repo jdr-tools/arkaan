@@ -26,7 +26,11 @@ module Arkaan
       def self.declare_route_with(verb, path, premium, &block)
         service = Arkaan::Utils::MicroService.instance.service
         unless service.nil? || !service.routes.where(path: path, verb: verb).first.nil?
-          Arkaan::Monitoring::Route.create(path: path, verb: verb, premium: premium, service: service)
+          route = Arkaan::Monitoring::Route.create(path: path, verb: verb, premium: premium, service: service)
+          Arkaan::Permissions::Group.where(is_superuser: true).each do |group|
+            groupe.routes << route
+            groupe.save
+          end
         end
         if premium
           self.public_send(verb, path) do

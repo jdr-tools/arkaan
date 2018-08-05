@@ -10,6 +10,9 @@ module Arkaan
       # @!attribute [rw] is_default
       #   @return [Boolean] a boolean indicating whether this group is given when a new user registered or not.
       field :is_default, type: Boolean, default: false
+      # @!attribute [rw] is_superuser
+      #   @return [Boolean] a boolean indicating whether this group should have access to all groups and rights or not.
+      field :is_superuser, type: Boolean, default: false
 
       # @!attribute [rw] accounts
       #   @return [Array<Arkaan::Account>] the accounts having the rights granted by this group.
