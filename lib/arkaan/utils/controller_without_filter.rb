@@ -8,28 +8,31 @@ module Arkaan
       # Creates a premium route whithin the Sinatra application, and registers it in the database if it does not already exists.
       # @param verb [String] the HTTP method used to create this route.
       # @param path [String] the path, beginning with a /, of the route to create.
-      def self.declare_route(verb, path, &block)
-        self.declare_route_with(verb, path, false, &block)
+      def self.declare_route(verb, path, options: {}, &block)
+        self.declare_route_with(verb, path, false, options, &block)
       end
 
       # Creates a non premium route whithin the Sinatra application, and registers it in the database if it does not already exists.
       # @param verb [String] the HTTP method used to create this route.
       # @param path [String] the path, beginning with a /, of the route to create.
-      def self.declare_premium_route(verb, path, &block)
-        self.declare_route_with(verb, path, true, &block)
+      def self.declare_premium_route(verb, path, options: {}, &block)
+        self.declare_route_with(verb, path, true, options, &block)
       end
 
       # Creates a route whithin the Sinatra application, and registers it in the database if it does not already exists.
       # @param verb [String] the HTTP method used to create this route.
       # @param path [String] the path, beginning with a /, of the route to create.
       # @param premium [Boolean] TRUE to make the route premium, FALSE otherwise.
-      def self.declare_route_with(verb, path, premium, &block)
+      def self.declare_route_with(verb, path, premium, options, &block)
         service = Arkaan::Utils::MicroService.instance.service
         unless service.nil? || !service.routes.where(path: path, verb: verb).first.nil?
           route = Arkaan::Monitoring::Route.create(path: path, verb: verb, premium: premium, service: service)
+          if !options.nil? && !options[:authenticated].nil?
+            route.update_attribute(:authenticated, false)
+          end
           Arkaan::Permissions::Group.where(is_superuser: true).each do |group|
-            groupe.routes << route
-            groupe.save
+            group.routes << route
+            group.save!
           end
         end
         if premium
