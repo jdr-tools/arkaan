@@ -6,6 +6,7 @@ module Arkaan
       include Mongoid::Document
       include Mongoid::Timestamps
       include Arkaan::Concerns::Activable
+      include Arkaan::Concerns::Enumerable
 
       # @!attribute [rw] url
       #   @return [String] the URL of the instance, where the requests will be issued.
@@ -13,6 +14,9 @@ module Arkaan
       # @!attribute [rw] running
       #   @return [Boolean] the running status of the instance, indicating if it can be used or not.
       field :running, type: Boolean, default: false
+      # @!attribute [rw] type
+      #   @return [Symbol] the type of the instance, determining its way of being deployed, restarted, etc.
+      enum_field :type, [:heroku], default: :heroku
 
       scope :running , ->{ where(running: true) }
 
