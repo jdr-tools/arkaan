@@ -16,7 +16,10 @@ module Arkaan
       field :running, type: Boolean, default: false
       # @!attribute [rw] type
       #   @return [Symbol] the type of the instance, determining its way of being deployed, restarted, etc.
-      enum_field :type, [:heroku], default: :heroku
+      enum_field :type, [:heroku, :local], default: :heroku
+      # @!attribute [rw] data
+      #   @return [Hash] the additional datas for this instance (for example for an Heroku instance it's all the data provided by the API)
+      field :data, type: Hash, default: {}
 
       scope :running , ->{ where(running: true) }
 

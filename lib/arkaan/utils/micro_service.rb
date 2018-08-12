@@ -17,11 +17,16 @@ module Arkaan
       # @!attribute [r] instance
       #   @return [Arkaan::Monitoring::Instance] the instance of the service currently deployed.
       attr_reader :instance
+      # @!attribute [r] type
+      #   @return [Symbol] the type of instance the application is declaring
+      attr_reader :type
 
       def initialize
         @location = false
         @service = false
+        @instance = false
         @name = false
+        @type = ENV['INSTANCE_TYPE'] || :heroku
       end
 
       # Determines if the application can be loaded (all the parameters have been correctly set)
@@ -107,9 +112,23 @@ module Arkaan
           @service = Arkaan::Monitoring::Service.where(key: @name).first
           register_service if @service.nil?
           register_instance
+          get_heroku_infos if type == :heroku && !test_mode
           if service
             load_standard_files
             load_test_files if test_mode
+          end
+        end
+        return self
+      end
+
+      def get_heroku_infos
+        if !ENV['OAUTH_TOKEN'].nil? && instance != false && instance.persisted?
+          heroku = PlatformAPI.connect_oauth(ENV['OAUTH_TOKEN'])
+          regex = /\Ahttps?:\/\/([a-z\-]+).herokuapp.com\/?\z/
+          if instance.url.match(regex)
+            app_name = instance.url.scan(regex).first.first
+            instance.update_attribute(:data, heroku.app.info(app_name))
+            puts instance.data
           end
         end
         return self
