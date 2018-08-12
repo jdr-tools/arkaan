@@ -128,7 +128,6 @@ module Arkaan
           if instance.url.match(regex)
             app_name = instance.url.scan(regex).first.first
             instance.update_attribute(:data, heroku.app.info(app_name))
-            puts instance.data
           end
         end
         return self
