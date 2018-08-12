@@ -3,6 +3,7 @@ require 'active_model'
 require 'active_support'
 require 'sinatra/base'
 require 'sinatra/config_file'
+require 'platform-api'
 
 # Main module of the application, holding all the subsequent classes.
 # @author Vincent Courtois <courtois.vincent@outlook.com>
