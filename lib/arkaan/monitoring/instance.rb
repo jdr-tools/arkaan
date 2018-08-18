@@ -26,6 +26,9 @@ module Arkaan
       # @!attribute [r] service
       #   @return [Arkaan::Monitoring::Service] the service this instance is linked to.
       embedded_in :service, class_name: 'Arkaan::Monitoring::Service', inverse_of: :instances
+      # @!attribute [rw] actions
+      #   @return [Arkaan::Monitoring::Action] the actions that has been performed on the service.
+      embeds_many :actions, class_name: 'Arkaan::Monitoring::Action', inverse_of: :instance
 
       validates :url,
         presence: {message: 'required'},
