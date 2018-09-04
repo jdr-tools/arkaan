@@ -18,6 +18,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'simplecov'              , '0.15.1'
   spec.add_development_dependency 'yard'                   , '0.9.11'
   spec.add_development_dependency 'pry'                    , '0.11.1'
+  spec.add_development_dependency 'draper'                 , '3.0.1'
 
   spec.add_runtime_dependency 'mongoid'        , '7.0.0.beta'
   spec.add_runtime_dependency 'activemodel'    , '5.1.4'
