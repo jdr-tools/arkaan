@@ -2,8 +2,17 @@ module Arkaan
   module Decorators
     # Decorator for a service, providing methods to make requests on it.
     # @author Vincent Courtois <courtois.vincent@outlook.com>
-    class Service < Draper::Decorator
+    class Gateway < Draper::Decorator
       delegate_all
+
+      # @!attribute [rw] action
+      #   @return [String] the action of the route using this API.
+      attr_accessor :action
+
+      def initialize(action, _object)
+        super(_object)
+        @action = action
+      end
 
       # Makes a POST request to the given service with the following steps :
       # 1. Gets an active and running instance of the service to make the request.
@@ -15,9 +24,11 @@ module Arkaan
       # @return [Hash, Boolean] FALSE if no instance are found, or an object with :status and :body keys correspding
       #                         to the status and body of the response to the request
       def post(route, parameters)
-        instance = object.instances.where(active: true, running: true).first
-        return false if instance.nil?
-        connection = Faraday.new(instance.url) do
+        if ENV['APP_KEY'].nil?
+          raise Arkaan::Decorators::Errors::EnvVariableMissing.new(action)
+        end
+        parameters[:app_key] = ENV['APP_KEY']
+        connection = Faraday.new(object.url) do
           faraday.request  :url_encoded
           faraday.response :logger
           faraday.adapter  Faraday.default_adapter

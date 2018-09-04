@@ -138,6 +138,14 @@ module Arkaan
       error Arkaan::Utils::Errors::NotFound do |exception|
         handle_arkaan_exception(exception)
       end
+
+      error Arkaan::Factories::Errors::GatewayNotFound do |exception|
+        handle_arkaan_exception(exception)
+      end
+
+      error StandardError do
+        custom_error(500, 'system_error.unknown_field.unknown_error')
+      end
     end
   end
 end
