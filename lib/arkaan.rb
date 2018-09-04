@@ -15,7 +15,6 @@ module Arkaan
   autoload :Campaigns     , 'arkaan/campaigns'
   autoload :Concerns      , 'arkaan/concerns'
   autoload :Decorators    , 'arkaan/decorators'
-  autoload :Decorators    , 'arkaan/decorators'
   autoload :Factories     , 'arkaan/factories'
   autoload :Monitoring    , 'arkaan/monitoring'
   autoload :OAuth         , 'arkaan/oauth'
