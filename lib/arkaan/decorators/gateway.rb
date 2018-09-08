@@ -14,29 +14,67 @@ module Arkaan
         @action = action
       end
 
+      # Shortcut to make a DELETE request on the API.
+      # @param session [Arkaan::Authentication::Session] the session of the user requesting the API.
+      # @param url [String] the URL you want to reach on the service.
+      # @param params [Hash] the additional parameters to pass in the JSON body.
+      def delete(session:, url:, params:)
+        return make_request(verb: 'delete', session: session, url: url, params: params)
+      end
+
+      # Shortcut to make a GET request on the API.
+      # @param session [Arkaan::Authentication::Session] the session of the user requesting the API.
+      # @param url [String] the URL you want to reach on the service.
+      # @param params [Hash] the additional parameters to pass in the JSON body.
+      def get(session:, url:, params:)
+        return make_request(verb: 'get', session: session, url: url, params: params)
+      end
+
+      # Shortcut to make a POST request on the API.
+      # @param session [Arkaan::Authentication::Session] the session of the user requesting the API.
+      # @param url [String] the URL you want to reach on the service.
+      # @param params [Hash] the additional parameters to pass in the JSON body.
+      def post(session:, url:, params:)
+        return make_request(verb: 'post', session: session, url: url, params: params)
+      end
+
+      # Shortcut to make a PUT request on the API.
+      # @param session [Arkaan::Authentication::Session] the session of the user requesting the API.
+      # @param url [String] the URL you want to reach on the service.
+      # @param params [Hash] the additional parameters to pass in the JSON body.
+      def put(session:, url:, params:)
+        return make_request(verb: 'put', session: session, url: url, params: params)
+      end
+
+      private
+
       # Makes a POST request to the given service with the following steps :
       # 1. Gets an active and running instance of the service to make the request.
       # 2. Creates a Faraday connection to use it as a pipeline for the request.
       # 3. Makes the actual request and returns an object with the status and body of the response.
       #
-      # @param route [String] the URL you want to reach on the service.
-      # @param parameters [Hash] the additional parameters to pass in the JSON body.
+      # @param verb [String] the HTTP verb to use for this request.
+      # @param session [Arkaan::Authentication::Session] the session of the user requesting the API.
+      # @param url [String] the URL you want to reach on the service.
+      # @param params [Hash] the additional parameters to pass in the JSON body.
+      #
       # @return [Hash, Boolean] FALSE if no instance are found, or an object with :status and :body keys correspding
       #                         to the status and body of the response to the request
-      def post(route, parameters)
+      def make_request(verb:, session:, url:, params:)
         if ENV['APP_KEY'].nil?
-          raise Arkaan::Decorators::Errors::EnvVariableMissing.new(action)
+          raise Arkaan::Decorators::Errors::EnvVariableMissing.new(action: action)
         end
-        parameters[:app_key] = ENV['APP_KEY']
+        params[:app_key] = ENV['APP_KEY']
+        params[:session_d] = session.token
         connection = Faraday.new(object.url) do
           faraday.request  :url_encoded
           faraday.response :logger
           faraday.adapter  Faraday.default_adapter
         end
-        responde = connection.post do |req|
-          req.url route
+        responde = connection.send(verb) do |req|
+          req.url url
           req.headers['Content-Type'] = 'application/json'
-          req.body = parameters.to_json
+          req.body = params.to_json
         end
         return {
           status: response.status,

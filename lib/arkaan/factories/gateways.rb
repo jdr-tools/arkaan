@@ -10,7 +10,7 @@ module Arkaan
       def self.random(action)
         gateway = Arkaan::Monitoring::Gateway.where(active: true, running: true).first
         if gateway.nil?
-          raise Arkaan::Factories::Errors::GatewayNotFound.new(action)
+          raise Arkaan::Factories::Errors::GatewayNotFound.new(action: action)
         end
         return Arkaan::Decorators::Gateway.new(action, gateway)
       end
