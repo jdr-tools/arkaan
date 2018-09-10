@@ -1,6 +1,6 @@
 Gem::Specification.new do |spec|
   spec.name        = 'arkaan'
-  spec.version     = '0.10.23'
+  spec.version     = '0.10.24'
   spec.date        = '2018-08-18'
   spec.summary     = 'The model layer for my table-RPG application'
   spec.description = 'This gem holds the model layer for my table-top RPG games application.'
@@ -27,4 +27,5 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency 'sinatra'        , '2.0.1'
   spec.add_runtime_dependency 'sinatra-contrib', '2.0.1'
   spec.add_runtime_dependency 'platform-api'   , '2.1.0'
+  spec.add_runtime_dependency 'faraday'
 end

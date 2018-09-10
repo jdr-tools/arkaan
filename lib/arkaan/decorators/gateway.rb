@@ -66,7 +66,7 @@ module Arkaan
         end
         params[:app_key] = ENV['APP_KEY']
         params[:session_d] = session.token
-        connection = Faraday.new(object.url) do
+        connection = Faraday.new(object.url) do |faraday|
           faraday.request  :url_encoded
           faraday.response :logger
           faraday.adapter  Faraday.default_adapter
