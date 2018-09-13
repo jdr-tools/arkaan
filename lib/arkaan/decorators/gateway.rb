@@ -71,7 +71,7 @@ module Arkaan
           faraday.response :logger
           faraday.adapter  Faraday.default_adapter
         end
-        responde = connection.send(verb) do |req|
+        response = connection.send(verb) do |req|
           req.url url
           req.headers['Content-Type'] = 'application/json'
           req.body = params.to_json
