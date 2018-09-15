@@ -134,7 +134,7 @@ module Arkaan
       end
 
       def load_mongoid_configuration
-        Mongoid.load!(File.join(location, 'config', 'mongoid.yml'))
+        Mongoid.load!(File.join(location, 'config', 'mongoid.yml'), ENV['RACK_ENV'] || :development)
       end
 
       def load_standard_files

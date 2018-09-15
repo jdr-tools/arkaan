@@ -69,6 +69,15 @@ RSpec.describe Arkaan::Monitoring::Service do
     end
   end
 
+  describe :test_mode do
+    it 'has a test mode indicator with a default value of false' do
+      expect(create(:service).test_mode).to be false
+    end
+    it 'can set the test mode indicator to true' do
+      expect(create(:service, test_mode: true).test_mode).to be true
+    end
+  end
+
   describe :scopes do
     describe :active do
       before(:each) do

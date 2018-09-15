@@ -5,17 +5,7 @@ module Arkaan
     class Controller < Arkaan::Utils::ControllerWithoutFilter
 
       before do
-        add_body_to_params
-        check_presence('token', 'app_key', route: 'common')
-
-        gateway = Arkaan::Monitoring::Gateway.where(token: params['token']).first
-        @application = Arkaan::OAuth::Application.where(key: params['app_key']).first
-        
-        if gateway.nil?
-          custom_error(404, 'common.token.unknown')
-        elsif @application.nil?
-          custom_error(404, 'common.app_key.unknown')
-        end
+        before_checks
       end
     end
   end

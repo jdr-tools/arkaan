@@ -15,6 +15,9 @@ module Arkaan
       # @!attribute [rw] path
       #   @return [String] the path the service will be mapped on in the API.
       field :path, type: String, default: '/'
+      # @!attribute [rw] test_mode
+      #   @return [Boolean] TRUE if the service is currently in test mode and thus the gateway shall only qurty local instances.
+      field :test_mode, type: Boolean, default: false
 
       # @!attribute [rw] creator
       #   @return [Arkaan::Account] the creator of this service.

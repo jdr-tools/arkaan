@@ -54,6 +54,20 @@ module Arkaan
         config_file File.join(File.dirname(file), '..', 'config', 'errors.yml')
       end
 
+      def before_checks
+        add_body_to_params
+        check_presence('token', 'app_key', route: 'common')
+
+        gateway = Arkaan::Monitoring::Gateway.where(token: params['token']).first
+        @application = Arkaan::OAuth::Application.where(key: params['app_key']).first
+        
+        if gateway.nil?
+          custom_error(404, 'common.token.unknown')
+        elsif @application.nil?
+          custom_error(404, 'common.app_key.unknown')
+        end
+      end
+
       # Checks the presence of several fields given as parameters and halts the execution if it's not present.
       # @param fields [Array<String>] an array of fields names to search in the parameters
       def check_presence(*fields, route:)
@@ -143,7 +157,7 @@ module Arkaan
         handle_arkaan_exception(exception)
       end
 
-      error StandardError do
+      error StandardError do |exception|
         custom_error(500, 'system_error.unknown_field.unknown_error')
       end
     end
