@@ -65,7 +65,7 @@ module Arkaan
           raise Arkaan::Decorators::Errors::EnvVariableMissing.new(action: action)
         end
         params[:app_key] = ENV['APP_KEY']
-        params[:session_d] = session.token
+        params[:session_id] = session.token
         connection = Faraday.new(object.url) do |faraday|
           faraday.request  :url_encoded
           faraday.response :logger
@@ -76,6 +76,7 @@ module Arkaan
           req.headers['Content-Type'] = 'application/json'
           req.body = params.to_json
         end
+
         return {
           status: response.status,
           body: JSON.parse(response.body)
