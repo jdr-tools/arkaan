@@ -97,7 +97,7 @@ module Arkaan
       def register_instance
         @instance = @service.instances.where(url: ENV['SERVICE_URL']).first
         if instance.nil?
-          type = ENV['INSTANCE_TYPE'] || :heroku
+          type = ENV['INSTANCE_TYPE'].to_sym || :heroku
           @instance = Arkaan::Monitoring::Instance.create(service: @service, url: ENV['SERVICE_URL'], type: type)
         end
         instance.update_attribute(:running, true)
