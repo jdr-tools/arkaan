@@ -83,6 +83,7 @@ module Arkaan
       # Deactivates the current instance and the associated service if no more instances are available.
       def deactivate!
         instance.update_attribute(:running, false)
+        service.update_attribute(:test_mode, false) if ENV['TEST_MODE']
       end
 
       private
@@ -97,7 +98,6 @@ module Arkaan
       def register_instance
         @instance = @service.instances.where(url: ENV['SERVICE_URL']).first
         if instance.nil?
-          type = ENV['INSTANCE_TYPE'].to_sym || :heroku
           @instance = Arkaan::Monitoring::Instance.create(service: @service, url: ENV['SERVICE_URL'], type: type)
         end
         instance.update_attribute(:running, true)
@@ -112,6 +112,9 @@ module Arkaan
         if !!(@name && location)
           @service = Arkaan::Monitoring::Service.where(key: @name).first
           register_service if @service.nil?
+          if ENV['TEST_MODE']
+            @service.update_attribute(:test_mode, true)
+          end
           register_instance
           get_heroku_infos if type == :heroku && !test_mode
           if service
