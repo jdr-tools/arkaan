@@ -59,7 +59,7 @@ RSpec.describe Arkaan::Campaign do
     end
   end
 
-  describe :messages do
+  describe 'errors.messages' do
     it 'returns the right message if the title is not given' do
       invalid_campaign = build(:campaign, title: nil, creator: account)
       invalid_campaign.validate
