@@ -9,7 +9,7 @@ module Arkaan
 
       # @!attribute [rw] status
       #   @return [Symbol] the current status of the invitation.
-      enum_field :status, [:accepted, :blocked, :expelled, :ignored, :left, :pending, :refused, :request], default: :pending
+      enum_field :status, [:accepted, :blocked, :expelled, :ignored, :left, :pending, :refused, :request, :creator], default: :pending
 
       # @!attribute [rw] account
       #   @return [Arkaan::Account] the account the invitation has been issued to.

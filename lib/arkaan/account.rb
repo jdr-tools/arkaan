@@ -44,9 +44,6 @@ module Arkaan
     # @!attribute [rw] sessions
     #   @return [Array<Arkaan::Authentication::Session>] the sessions on which this account is, or has been logged in.
     has_many :sessions, class_name: 'Arkaan::Authentication::Session', inverse_of: :account
-    # @!attribute [rw] campaigns
-    #   @return [Array<Arkaan::Campaign>] the campaigns this account has created.
-    has_many :campaigns, class_name: 'Arkaan::Campaign', inverse_of: :creator
     # @!attribute [rw] invitations
     #   @return [Array<Arkaan::Campaigns::Invitation>] the invitations in campaigns you have been issued.
     has_many :invitations, class_name: 'Arkaan::Campaigns::Invitation', inverse_of: :account

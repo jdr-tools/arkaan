@@ -21,10 +21,6 @@ module Arkaan
     #   @return [Integer] the maximum number of players allowed in this campaign.
     field :max_players, type: Integer, default: 5
 
-    # @!attribute [rw] creator
-    #   @return [Arkaan::Campaign] the account creating the campaign, and considered "game master".
-    belongs_to :creator, class_name: 'Arkaan::Account', inverse_of: :campaigns
-
     # @!attribute [rw] invitations
     #   @return [Array<Arkaan::Campaigns::Invitation>] the invitations to players that have been made for this campaign.
     has_many :invitations, class_name: 'Arkaan::Campaigns::Invitation', inverse_of: :campaign
@@ -39,9 +35,27 @@ module Arkaan
 
     validate :title_unicity
 
+    # Sets the creator of the campaign. This method is mainly used for backward-compatibility needs.
+    # @param account [Arkaan::Account] the account of the creator for this campaign.
+    def creator=(account)
+      if !invitations.where(account: account).exists?
+        Arkaan::Campaigns::Invitation.create(campaign: self, account: account, enum_status: :creator)
+      end
+    end
+
+    # Getter for the creator account of this campaign.
+    # @return [Arkaan::Account] the account of the player creating this campaign.
+    def creator
+      return invitations.where(enum_status: :creator).first.account
+    end
+
     # Adds an error message if the account creating this campaign already has a campaign with the very same name.
     def title_unicity
-      if creator? && title? && creator.campaigns.where(title: title, :id.ne => _id).exists?
+      # First we take all the other campaign ids of the user.
+      campaign_ids = creator.invitations.where(:campaign_id.ne => _id).pluck(:campaign_id)
+      # With this list of campaign IDs, we look for a campaign with the same title.
+      same_title_campaign = Arkaan::Campaign.where(:_id.in => campaign_ids, title: title)
+      if !creator.nil? && title? && same_title_campaign.exists?
         errors.add(:title, 'uniq')
       end
     end

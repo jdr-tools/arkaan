@@ -19,7 +19,7 @@ RSpec.describe Arkaan::Campaign do
       expect(build(:campaign, title: 'a', creator: account).valid?).to be false
     end
     it 'fails to build a campaign if the user already has a campaign with the same title' do
-      create(:campaign, creator: account)
+      campaign = create(:campaign, creator: account)
       expect(build(:campaign, creator: account).valid?).to be false
     end
   end
