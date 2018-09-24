@@ -15,7 +15,7 @@ module Arkaan
       embedded_in :campaign, class_name: 'Arkaan::Campaign', inverse_of: :messages
       # @!attribute [rw] player
       #   @return [Arkaan::Account] the account that has emitted the message in the campaign.
-      belongs_to :player, class_name: 'Arkaan::Campaign::Invitation'
+      belongs_to :player, class_name: 'Arkaan::Campaigns::Invitation'
     end
   end
 end
