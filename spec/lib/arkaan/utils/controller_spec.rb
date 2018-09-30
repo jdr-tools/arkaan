@@ -371,4 +371,105 @@ RSpec.describe Arkaan::Utils::Controller do
       end
     end
   end
+
+  describe :check_presence do
+    before do
+      class CheckPresenceTestController < Arkaan::Utils::Controller
+        config_file File.join(File.dirname(File.absolute_path(__FILE__)), '..', '..', '..', 'config', 'errors.yml')
+
+        declare_route('get', '/check_presence_test') do
+          check_presence('field', 'other_field', route: 'check_presence')
+        end
+      end
+      def app
+        CheckPresenceTestController.new
+      end
+    end
+    describe 'first field' do
+      before do
+        get '/check_presence_test', {app_key: 'test_key', token: 'test_token', other_field: 'value'}
+      end
+      it 'Returns a Bad Request (400) status' do
+        expect(last_response.status).to be 400
+      end
+      it 'Returns the correct body' do
+        expect(last_response.body).to include_json({
+          status: 400,
+          field: 'field',
+          error: 'required',
+          docs: 'url_field_required'
+        })
+      end
+    end
+    describe 'second field' do
+      before do
+        get '/check_presence_test', {app_key: 'test_key', token: 'test_token', field: 'value'}
+      end
+      it 'Returns a Bad Request (400) status' do
+        expect(last_response.status).to be 400
+      end
+      it 'Returns the correct body' do
+        expect(last_response.body).to include_json({
+          status: 400,
+          field: 'other_field',
+          error: 'required',
+          docs: 'url_other_field_required'
+        })
+      end
+    end
+  end
+
+  describe :check_either_presence do
+    before do
+      class CheckPresenceTestController < Arkaan::Utils::Controller
+        config_file File.join(File.dirname(File.absolute_path(__FILE__)), '..', '..', '..', 'config', 'errors.yml')
+
+        declare_route('get', '/check_either_presence_test') do
+          check_either_presence('field', 'other_field', route: 'check_either_presence', key: 'any_id')
+          halt 200, {message: 'done'}.to_json
+        end
+      end
+      def app
+        CheckPresenceTestController.new
+      end
+    end
+    describe 'first field' do
+      before do
+        get '/check_either_presence_test', {app_key: 'test_key', token: 'test_token', other_field: 'value'}
+      end
+      it 'Returns a Bad Request (400) status' do
+        expect(last_response.status).to be 200
+      end
+      it 'Returns the correct body' do
+        expect(last_response.body).to include_json({message: 'done'})
+      end
+    end
+    describe 'second field' do
+      before do
+        get '/check_either_presence_test', {app_key: 'test_key', token: 'test_token', field: 'value'}
+      end
+      it 'Returns a Bad Request (400) status' do
+        expect(last_response.status).to be 200
+      end
+      it 'Returns the correct body' do
+        expect(last_response.body).to include_json({message: 'done'})
+      end
+    end
+    describe 'No field given' do
+      before do
+        get '/check_either_presence_test', {app_key: 'test_key', token: 'test_token'}
+      end
+      it 'Returns a Bad Request (400) status' do
+        expect(last_response.status).to be 400
+      end
+      it 'Returns the correct body' do
+        expect(last_response.body).to include_json({
+          status: 400,
+          field: 'any_id',
+          error: 'required',
+          docs: 'any_id_required'
+        })
+      end
+    end
+  end
 end

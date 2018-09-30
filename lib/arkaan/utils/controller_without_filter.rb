@@ -70,10 +70,22 @@ module Arkaan
 
       # Checks the presence of several fields given as parameters and halts the execution if it's not present.
       # @param fields [Array<String>] an array of fields names to search in the parameters
+      # @param route [String] the name of the route you're requiring to put in the error message.
       def check_presence(*fields, route:)
         fields.each do |field|
           custom_error(400, "#{route}.#{field}.required") if params[field].nil? || params[field] == ''
         end
+      end
+
+      # Checks the presence of either fields given in parameters. It halts with an error only if ALL parameters are not given.
+      # @param fields [Array<String>] an array of fields names to search in the parameters
+      # @param route [String] the name of the route you're requiring to put in the error message.
+      # @param key [String] the key to search in the errors configuration file.
+      def check_either_presence(*fields, route:, key:)
+        fields.each do |field|
+          return true if !params[field].nil? && params[field] != ''
+        end
+        custom_error 400, "#{route}.#{key}.required"
       end
 
       # Checks if the session ID is given in the parameters and if the session exists.

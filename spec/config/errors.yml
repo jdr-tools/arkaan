@@ -10,3 +10,11 @@ errors:
   test_errors:
     test_field:
       test_error: 'anything'
+  check_presence:
+    field:
+      required: 'url_field_required'
+    other_field:
+      required: 'url_other_field_required'
+  check_either_presence:
+    any_id:
+      required: 'any_id_required'
