@@ -11,6 +11,9 @@ module Arkaan
       # @!attribute [rw] token
       #   @return [String] the unique token for this session, used to identify it and be sure the user is connected on this application.
       field :token, type: String
+      # @!attribute [rw] websocket_id
+      #   @return [String] the ID of the websocket on which the session is connected. It's not an association because instances are embedded.
+      field :websocket_id, type: String, default: ''
 
       # @!attribute [rw] account
       #   @return [Arkaan::Account] the account connected to the application.
