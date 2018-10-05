@@ -4,6 +4,11 @@ module Arkaan
     # @author Vincent Courtois <courtois.vincenet@outlook.com>
     class ControllerWithoutFilter < Sinatra::Base
       register Sinatra::ConfigFile
+      helpers Sinatra::CustomLogger
+
+      configure do
+        set :logger, Logger.new(STDOUT)
+      end
 
       # Creates a premium route whithin the Sinatra application, and registers it in the database if it does not already exists.
       # @param verb [String] the HTTP method used to create this route.
@@ -129,6 +134,7 @@ module Arkaan
       def custom_error(status, path)
         route, field, error = path.split('.')
         docs = settings.errors[route][field][error] rescue ''
+        logger.info("Http error raised | Status #{status} | Error #{path}")
         halt status, {status: status, field: field, error: error, docs: docs}.to_json
       end
 

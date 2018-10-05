@@ -6,6 +6,7 @@ require 'sinatra/config_file'
 require 'platform-api'
 require 'draper'
 require 'faraday'
+require 'sinatra/custom_logger'
 
 # Main module of the application, holding all the subsequent classes.
 # @author Vincent Courtois <courtois.vincent@outlook.com>
