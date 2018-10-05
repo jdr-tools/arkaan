@@ -128,7 +128,8 @@ module Arkaan
       # @param path [String] the path in the configuration file to access the URL.
       def custom_error(status, path)
         route, field, error = path.split('.')
-        halt status, {status: status, field: field, error: error, docs: settings.errors[route][field][error]}.to_json
+        docs = settings.errors[route][field][error] rescue ''
+        halt status, {status: status, field: field, error: error, docs: docs}.to_json
       end
 
       # Halts the application with a Bad Request error affecting a field of a model.
