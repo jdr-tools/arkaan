@@ -8,6 +8,7 @@ module Arkaan
 
       configure do
         set :logger, Logger.new(STDOUT)
+        logger.level = Logger::ERROR if ENV['RACK_ENV'] == 'test'
       end
 
       # Creates a premium route whithin the Sinatra application, and registers it in the database if it does not already exists.

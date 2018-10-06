@@ -19,7 +19,7 @@ module Arkaan
       # @param url [String] the URL you want to reach on the service.
       # @param params [Hash] the additional parameters to pass in the JSON body.
       def delete(session:, url:, params:)
-        return make_request(verb: 'delete', session: session, url: url, params: params)
+        return make_request_without_body(verb: 'delete', session: session, url: url, params: params)
       end
 
       # Shortcut to make a GET request on the API.
@@ -27,7 +27,7 @@ module Arkaan
       # @param url [String] the URL you want to reach on the service.
       # @param params [Hash] the additional parameters to pass in the JSON body.
       def get(session:, url:, params:)
-        return make_request(verb: 'get', session: session, url: url, params: params)
+        return make_request_without_body(verb: 'get', session: session, url: url, params: params)
       end
 
       # Shortcut to make a POST request on the API.
@@ -61,16 +61,8 @@ module Arkaan
       # @return [Hash, Boolean] FALSE if no instance are found, or an object with :status and :body keys correspding
       #                         to the status and body of the response to the request
       def make_request(verb:, session:, url:, params:)
-        if ENV['APP_KEY'].nil?
-          raise Arkaan::Decorators::Errors::EnvVariableMissing.new(action: action)
-        end
-        params[:app_key] = ENV['APP_KEY']
-        params[:session_id] = session.token
-        connection = Faraday.new(object.url) do |faraday|
-          faraday.request  :url_encoded
-          faraday.response :logger
-          faraday.adapter  Faraday.default_adapter
-        end
+        params = before_requests(params)
+        connection = get_connection
         response = connection.send(verb) do |req|
           req.url url
           req.headers['Content-Type'] = 'application/json'
@@ -81,6 +73,32 @@ module Arkaan
           status: response.status,
           body: JSON.parse(response.body)
         }
+      end
+
+      def make_request_without_body(verb:, session:, url:, params:)
+        params = before_requests(params)
+        connection = get_connection
+        response = connection.send(verb) do |req|
+          req.url url, params
+          req.headers['Content-Type'] = 'application/json'
+        end
+      end
+
+      def before_requests(params)
+        if ENV['APP_KEY'].nil?
+          raise Arkaan::Decorators::Errors::EnvVariableMissing.new(action: action)
+        end
+        params[:app_key] = ENV['APP_KEY']
+        params[:session_id] = session.token
+        return params
+      end
+
+      def get_connection
+        Faraday.new(object.url) do |faraday|
+          faraday.request  :url_encoded
+          faraday.response :logger
+          faraday.adapter  Faraday.default_adapter
+        end
       end
     end
   end
