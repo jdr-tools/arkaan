@@ -61,7 +61,7 @@ module Arkaan
       # @return [Hash, Boolean] FALSE if no instance are found, or an object with :status and :body keys correspding
       #                         to the status and body of the response to the request
       def make_request(verb:, session:, url:, params:)
-        params = before_requests(params)
+        params = before_requests(session, params)
         connection = get_connection
         response = connection.send(verb) do |req|
           req.url url
@@ -76,7 +76,7 @@ module Arkaan
       end
 
       def make_request_without_body(verb:, session:, url:, params:)
-        params = before_requests(params)
+        params = before_requests(session, params)
         connection = get_connection
         response = connection.send(verb) do |req|
           req.url url, params
@@ -84,7 +84,7 @@ module Arkaan
         end
       end
 
-      def before_requests(params)
+      def before_requests(session, params)
         if ENV['APP_KEY'].nil?
           raise Arkaan::Decorators::Errors::EnvVariableMissing.new(action: action)
         end
