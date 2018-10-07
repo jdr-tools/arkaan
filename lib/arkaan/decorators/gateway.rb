@@ -9,8 +9,11 @@ module Arkaan
       #   @return [String] the action of the route using this API.
       attr_accessor :action
 
+      attr_accessor :logger
+
       def initialize(action, _object)
         super(_object)
+        @logger = Logger.new(STDOUT)
         @action = action
       end
 
@@ -63,6 +66,15 @@ module Arkaan
       def make_request(verb:, session:, url:, params:)
         params = before_requests(session, params)
         connection = get_connection
+
+        logger.info('==================== REQUEST ====================')
+        logger.info("Verb : #{verb}")
+        logger.info("Session ID : #{session.id.to_s}")
+        logger.info("URL : #{url}")
+        logger.info("Parameters :")
+        logger.info(params.to_json)
+        logger.info('================== END REQUEST ==================')
+
         response = connection.send(verb) do |req|
           req.url url
           req.headers['Content-Type'] = 'application/json'
