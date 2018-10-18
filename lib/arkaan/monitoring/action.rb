@@ -10,6 +10,9 @@ module Arkaan
       # @!attribute [rw] type
       #   @return [Symbol] the type of action you're making on this instance
       enum_field :type, [:restart]
+      # @!attribute [rw] success
+      #   @return [Boolean] TRUE if the action succeeded (or at least was successfully launched), FALSE otherwise.
+      field :success, type: Boolean, default: false
 
       # @!attribute [rw] user
       #   @return [Arkaan::Account] the user performing the action on the instance.
