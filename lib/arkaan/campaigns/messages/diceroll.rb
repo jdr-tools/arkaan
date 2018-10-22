@@ -15,6 +15,18 @@ module Arkaan
         # @!attribute [rw] modifier
         #   @return [Integer] the value added to the sum of all dices to get the final result.
         field :modifier, type: Integer, default: 0
+        # @!attribute [rw] results
+        #   @return [Array<Integer>] an array of integers, each one of them representing the result for one of the dices.
+        field :results, type: Array, default: []
+
+        # Computes the results before saving the document, the first time it's saved.
+        before_save do |document|
+          if !document.persisted?
+            number_of_dices.times do
+              results << rand(document.number_of_faces) + 1
+            end
+          end
+        end
       end
     end
   end
