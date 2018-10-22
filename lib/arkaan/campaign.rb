@@ -26,8 +26,8 @@ module Arkaan
     has_many :invitations, class_name: 'Arkaan::Campaigns::Invitation', inverse_of: :campaign
 
     # @!attribute [rw] messages
-    #   @return [Array<Arkaan::Campaigns::Message>] the messages sent in the chatroom of the campaign.
-    embeds_many :messages, class_name: 'Arkaan::Campaigns::Message', inverse_of: :campaign
+    #   @return [Array<Arkaan::Campaigns::Messages::Base>] the messages sent in the chatroom of the campaign.
+    embeds_many :messages, class_name: 'Arkaan::Campaigns::Messages::Base', inverse_of: :campaign
 
     validates :title,
       presence: {message: 'required'},
