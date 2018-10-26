@@ -7,6 +7,7 @@ module Arkaan
       include Mongoid::Timestamps
       include Arkaan::Concerns::Activable
       include Arkaan::Concerns::Diagnosticable
+      include Arkaan::Concerns::Typable
 
       # @!attribute [rw] url
       #   @return [String] the URL of the gateway, where the requests will be issued.
