@@ -17,6 +17,10 @@ module Arkaan
       # @!attribute [rw] campaign
       #   @return [Arkaan::Campaign] the campaign the invitation has been made in.
       belongs_to :campaign, class_name: 'Arkaan::Campaign', inverse_of: :invitations
+
+      # @!attribute [rw] files
+      #   @return [Array<Arkaan::Campaigns::File>] the files uploaded in this campaign by the usere linked to this invitation.
+      embeds_many :files, class_name: 'Arkaan::Campaigns::File', inverse_of: :invitation
     end
   end
 end
