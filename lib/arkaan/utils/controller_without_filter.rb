@@ -31,6 +31,8 @@ module Arkaan
       # @param premium [Boolean] TRUE to make the route premium, FALSE otherwise.
       def self.declare_route_with(verb, path, premium, options, &block)
         service = Arkaan::Utils::MicroService.instance.service
+        complete_path = "#{Arkaan::Utils::MicroService.instance.path}#{path == '/' ? '' : path}"
+
         unless service.nil? || !service.routes.where(path: path, verb: verb).first.nil?
           route = Arkaan::Monitoring::Route.create(path: path, verb: verb, premium: premium, service: service)
           if !options.nil? && !options[:authenticated].nil?
@@ -42,7 +44,7 @@ module Arkaan
           end
         end
         if premium
-          self.public_send(verb, path) do
+          self.public_send(verb, complete_path) do
             @sinatra_route = parse_current_route
             if !@application.premium?
               custom_error(403, 'common.app_key.forbidden')
@@ -50,7 +52,7 @@ module Arkaan
             instance_eval(&block)
           end
         else
-          self.public_send(verb, path, &block)
+          self.public_send(verb, complete_path, &block)
         end
       end
 
@@ -133,6 +135,7 @@ module Arkaan
       # @param status [Integer] the HTTP status to halt the application with.
       # @param path [String] the path in the configuration file to access the URL.
       def custom_error(status, path)
+
         route, field, error = path.split('.')
         docs = settings.errors[route][field][error] rescue ''
         halt status, {status: status, field: field, error: error, docs: docs}.to_json

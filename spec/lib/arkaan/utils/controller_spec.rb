@@ -85,22 +85,22 @@ RSpec.describe Arkaan::Utils::Controller do
   end
 
   describe 'GET request' do
-    include_examples 'micro_service route', verb: 'get'
+    include_examples 'micro_service route', verb: 'get', basepath: '/example'
   end
   describe 'POST request' do
-    include_examples 'micro_service route', verb: 'post', expected_status: 201, expected_body: {'message' => 'created'}
+    include_examples 'micro_service route', verb: 'post', expected_status: 201, expected_body: {'message' => 'created'}, basepath: '/example'
   end
   describe 'PUT request' do
-    include_examples 'micro_service route', verb: 'put', expected_body: {'message' => 'updated'}
+    include_examples 'micro_service route', verb: 'put', expected_body: {'message' => 'updated'}, basepath: '/example'
   end
   describe 'DELETE request' do
-    include_examples 'micro_service route', verb: 'delete', expected_body: {'message' => 'deleted'}
+    include_examples 'micro_service route', verb: 'delete', expected_body: {'message' => 'deleted'}, basepath: '/example'
   end
 
   describe 'automatic exceptions' do
     describe 'bad request exception' do
       before do
-        get '/badrequest', {token: 'test_token', app_key: 'test_key'}
+        get '/example/badrequest', {token: 'test_token', app_key: 'test_key'}
       end
       it 'Returns a Bad Request (400) status' do
         expect(last_response.status).to be 400
@@ -116,7 +116,7 @@ RSpec.describe Arkaan::Utils::Controller do
     end
     describe 'forbidden exceptions' do
       before do
-        get '/forbidden', {token: 'test_token', app_key: 'test_key'}
+        get '/example/forbidden', {token: 'test_token', app_key: 'test_key'}
       end
       it 'Returns a Forbidden (403) status' do
         expect(last_response.status).to be 403
@@ -132,7 +132,7 @@ RSpec.describe Arkaan::Utils::Controller do
     end
     describe 'not found exceptions' do
       before do
-        get '/notfound', {token: 'test_token', app_key: 'test_key'}
+        get '/example/notfound', {token: 'test_token', app_key: 'test_key'}
       end
       it 'Returns a Not Found (404) status' do
         expect(last_response.status).to be 404
@@ -187,7 +187,7 @@ RSpec.describe Arkaan::Utils::Controller do
       end
       describe 'call to the route' do
         before do
-          get '/', {app_key: 'test_key', token: 'test_token'}
+          get '/example', {app_key: 'test_key', token: 'test_token'}
         end
         it 'correctly calls the route when all parameters are rightly given' do
           expect(last_response.status).to be 200
@@ -230,7 +230,7 @@ RSpec.describe Arkaan::Utils::Controller do
       end
       describe 'call to the route' do
         before do
-          post '/', {app_key: 'test_key', token: 'test_token'}.to_json
+          post '/example', {app_key: 'test_key', token: 'test_token'}.to_json
         end
         it 'correctly calls the route when all parameters are rightly given' do
           expect(last_response.status).to be 200
@@ -316,7 +316,7 @@ RSpec.describe Arkaan::Utils::Controller do
       end
       describe 'call to the route' do
         before do
-          get '/', {app_key: 'test_key', token: 'test_token'}
+          get '/example', {app_key: 'test_key', token: 'test_token'}
         end
         it 'correctly calls the route when all parameters are rightly given' do
           expect(last_response.status).to be 200
@@ -360,7 +360,7 @@ RSpec.describe Arkaan::Utils::Controller do
       end
       describe 'call to the route' do
         before do
-          post '/', {app_key: 'test_key', token: 'test_token'}.to_json
+          post '/example', {app_key: 'test_key', token: 'test_token'}.to_json
         end
         it 'correctly calls the route when all parameters are rightly given' do
           expect(last_response.status).to be 200
@@ -387,7 +387,7 @@ RSpec.describe Arkaan::Utils::Controller do
     end
     describe 'first field' do
       before do
-        get '/check_presence_test', {app_key: 'test_key', token: 'test_token', other_field: 'value'}
+        get '/example/check_presence_test', {app_key: 'test_key', token: 'test_token', other_field: 'value'}
       end
       it 'Returns a Bad Request (400) status' do
         expect(last_response.status).to be 400
@@ -403,7 +403,7 @@ RSpec.describe Arkaan::Utils::Controller do
     end
     describe 'second field' do
       before do
-        get '/check_presence_test', {app_key: 'test_key', token: 'test_token', field: 'value'}
+        get '/example/check_presence_test', {app_key: 'test_key', token: 'test_token', field: 'value'}
       end
       it 'Returns a Bad Request (400) status' do
         expect(last_response.status).to be 400
@@ -435,7 +435,7 @@ RSpec.describe Arkaan::Utils::Controller do
     end
     describe 'first field' do
       before do
-        get '/check_either_presence_test', {app_key: 'test_key', token: 'test_token', other_field: 'value'}
+        get '/example/check_either_presence_test', {app_key: 'test_key', token: 'test_token', other_field: 'value'}
       end
       it 'Returns a Bad Request (400) status' do
         expect(last_response.status).to be 200
@@ -446,7 +446,7 @@ RSpec.describe Arkaan::Utils::Controller do
     end
     describe 'second field' do
       before do
-        get '/check_either_presence_test', {app_key: 'test_key', token: 'test_token', field: 'value'}
+        get '/example/check_either_presence_test', {app_key: 'test_key', token: 'test_token', field: 'value'}
       end
       it 'Returns a Bad Request (400) status' do
         expect(last_response.status).to be 200
@@ -457,7 +457,7 @@ RSpec.describe Arkaan::Utils::Controller do
     end
     describe 'No field given' do
       before do
-        get '/check_either_presence_test', {app_key: 'test_key', token: 'test_token'}
+        get '/example/check_either_presence_test', {app_key: 'test_key', token: 'test_token'}
       end
       it 'Returns a Bad Request (400) status' do
         expect(last_response.status).to be 400

@@ -27,6 +27,17 @@ module Arkaan
         @instance = false
         @name = false
         @type = ENV['INSTANCE_TYPE'] || :heroku
+        @controller_classes = []
+      end
+
+      def get_controllers
+        return [] if defined?(Controllers).nil?
+        classes = Controllers.constants.map { |symbol| get_const(symbol) }
+        return classes.select { |symbol| symbol.is_a? Class }
+      end
+
+      def get_const(symbol)
+        return Object.const_get("Controllers::#{symbol.to_s}")
       end
 
       # Determines if the application can be loaded (all the parameters have been correctly set)
