@@ -18,12 +18,18 @@ RSpec.describe Arkaan::Campaigns::File do
     end
   end
 
-  describe :mim_type do
+  describe :mime_type do
     it 'has a size MIME type at creation' do
       expect(file.mime_type).to eq 'text/plain'
     end
-    it 'fails to validate if the name is not given' do
+    it 'validates the MIME type if it\'s only respecting a RegExp and not the exact type' do
+      expect(build(:file, invitation: campaign.invitations.first, mime_type: 'image/png').valid?).to be true
+    end
+    it 'fails to validate if the MIME type is not given' do
       expect(build(:file, invitation: campaign.invitations.first, mime_type: nil).valid?).to be false
+    end
+    it 'fails to validate if the MIME type is invalid' do
+      expect(build(:file, invitation: campaign.invitations.first, mime_type: 'anything').valid?).to be false
     end
   end
 
@@ -37,6 +43,11 @@ RSpec.describe Arkaan::Campaigns::File do
       invalid_file = build(:file, invitation: campaign.invitations.first, mime_type: nil)
       invalid_file.validate
       expect(invalid_file.errors.messages[:mime_type]).to eq(['required'])
+    end
+    it 'returns the right message if the MIME type is invalid' do
+      invalid_file = build(:file, invitation: campaign.invitations.first, mime_type: 'anything')
+      invalid_file.validate
+      expect(invalid_file.errors.messages[:mime_type]).to eq(['pattern'])
     end
   end
 end
