@@ -14,6 +14,8 @@ module Arkaan
       #   @return [Integer] the size of the file in bytes.
       field :size, type: Integer, default: 0
 
+      mime_type ['image/*', 'text/plain']
+
       # @!attribute [rw] invitation
       #   @return [Arkaan::Campaigns::Invitation] the link to the user creator of the file and the campaign it's created in.
       embedded_in :invitation, class_name: 'Arkaan::Campaigns::Invitation', inverse_of: :files
