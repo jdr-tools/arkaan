@@ -65,6 +65,7 @@ module Arkaan
 
       def before_checks
         add_body_to_params
+
         check_presence('token', 'app_key', route: 'common')
 
         gateway = Arkaan::Monitoring::Gateway.where(token: params['token']).first
@@ -119,9 +120,12 @@ module Arkaan
       # Adds the parsed body to the parameters, overwriting the parameters of the querystring with the values
       # of the SON body if they have similar keys.
       def add_body_to_params
-        parsed_body = JSON.parse(request.body.read.to_s) rescue {}
-        parsed_body.keys.each do |key|
-          params[key] = parsed_body[key]
+        if request.body.respond_to?(:rewind) && request.body.respond_to?(:read)
+          request.body.rewind 
+          parsed_body = JSON.parse(request.body.read.to_s) rescue {}
+          parsed_body.keys.each do |key|
+            params[key] = parsed_body[key]
+          end
         end
       end
 
@@ -136,7 +140,6 @@ module Arkaan
       # @param status [Integer] the HTTP status to halt the application with.
       # @param path [String] the path in the configuration file to access the URL.
       def custom_error(status, path)
-
         route, field, error = path.split('.')
         docs = settings.errors[route][field][error] rescue ''
         halt status, {status: status, field: field, error: error, docs: docs}.to_json
