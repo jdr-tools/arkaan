@@ -20,6 +20,16 @@ RSpec.describe Arkaan::Campaigns::Message do
           expect(parsed_message.player.account.username).to eq account.username
         end
       end
+
+      describe :deleted do
+        it 'has the correct default value when creating a message' do
+          expect(parsed_message.deleted).to be false
+        end
+        it 'has the correct value when given to true' do
+          deleted_message = create(:text_message, player: campaign.invitations.first, campaign: campaign, deleted: true)
+          expect(deleted_message.deleted).to be true
+        end
+      end
     end
   end
 
