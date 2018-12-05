@@ -5,6 +5,7 @@ module Arkaan
     include Mongoid::Document
     include Mongoid::Timestamps
     include ActiveModel::SecurePassword
+    include Arkaan::Concerns::Enumerable
 
     # @!attribute [rw] username
     #   @return [String] the nickname the user chose at subscription, must be given, unique, and 6 or more characters long.
@@ -21,6 +22,12 @@ module Arkaan
     # @!attribute [rw] email
     #   @return [String] the email address of the user, useful to contact them ; it must be given, unique, and have an email format.
     field :email, type: String
+    # @!attribute [rw] language
+    #   @return [Symbol] the language preferred by this user.
+    enum_field :language, [:english, :french], default: :french
+    # @!attribute [rw] gender
+    #   @return [Symbol] the way you prefer the application to gender you.
+    enum_field :gender, [:female, :male, :neutral], default: :neutral
 
     # @!attribute [w] password
     #   @return [String] password, in clear, of the user ; do not attempt to get the value, just set it when changing the password.

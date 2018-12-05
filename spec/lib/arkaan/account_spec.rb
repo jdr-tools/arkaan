@@ -78,6 +78,27 @@ RSpec.describe Arkaan::Account do
     end
   end
 
+  describe :language do
+    it 'has a default language being the french language' do
+      expect(build(:account).language).to be :french
+    end
+    it 'has a language set at creation' do
+      expect(build(:account, language: :english).language).to be :english
+    end
+  end
+
+  describe :gender do
+    it 'has a default value for the gender being the inclusive one' do
+      expect(build(:account).gender).to be :neutral
+    end
+    it 'has a gender set at creation if "male" is chosen' do
+      expect(build(:account, gender: :male).gender).to be :male
+    end
+    it 'has a gender set at creation if "female" is chosen' do
+      expect(build(:account, gender: :female).gender).to be :female
+    end
+  end
+
   describe :groups do
     it 'returns the right number of groups for a given account' do
       expect(create(:account_with_groups).groups.count).to be 1
