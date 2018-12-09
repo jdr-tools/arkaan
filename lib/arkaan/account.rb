@@ -24,7 +24,7 @@ module Arkaan
     field :email, type: String
     # @!attribute [rw] language
     #   @return [Symbol] the language preferred by this user.
-    enum_field :language, [:english, :french], default: :french
+    enum_field :language, [:en_GB, :fr_FR], default: :fr_FR
     # @!attribute [rw] gender
     #   @return [Symbol] the way you prefer the application to gender you.
     enum_field :gender, [:female, :male, :neutral], default: :neutral

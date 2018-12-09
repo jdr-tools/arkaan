@@ -80,10 +80,10 @@ RSpec.describe Arkaan::Account do
 
   describe :language do
     it 'has a default language being the french language' do
-      expect(build(:account).language).to be :french
+      expect(build(:account).language).to be :fr_FR
     end
     it 'has a language set at creation' do
-      expect(build(:account, language: :english).language).to be :english
+      expect(build(:account, language: :en_GB).language).to be :en_GB
     end
   end
 
