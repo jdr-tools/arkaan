@@ -184,7 +184,6 @@ module Arkaan
       end
 
       error StandardError do |exception|
-        require 'pry'; binding.pry
         custom_error(500, 'system_error.unknown_field.unknown_error')
       end
     end

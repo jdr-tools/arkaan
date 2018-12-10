@@ -119,7 +119,7 @@ module Arkaan
       # @param test_mode [Boolean] TRUE to run in test mode (from /spec), FALSE otherwise.
       # @return [Arkaan::Utils::MicroService] the current instance of the micro service to chain other calls.
       def load_application(test_mode: false)
-        load_mongoid_configuration
+        load_mongoid_configuration(test_mode: test_mode)
         if !!(@name && location)
           @service = Arkaan::Monitoring::Service.where(key: @name).first
           register_service if @service.nil?
@@ -148,8 +148,9 @@ module Arkaan
         return self
       end
 
-      def load_mongoid_configuration
-        Mongoid.load!(File.join(location, 'config', 'mongoid.yml'), ENV['RACK_ENV'] || :development)
+      def load_mongoid_configuration(test_mode: false)
+        environment = test_mode ? 'test' : (ENV['RACK_ENV'] || 'development')
+        Mongoid.load!(File.join(location, 'config', 'mongoid.yml'), environment)
       end
 
       def load_standard_files
