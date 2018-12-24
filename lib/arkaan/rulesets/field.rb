@@ -13,7 +13,10 @@ module Arkaan
       field :name, type: String
       # @!attribute [rw] type
       #   @return [Symbol] the type of the field, in a pre-defined list of available types.
-      enum_field :type, [:DateTime, :Integer, :String], default: :Integer
+      enum_field :type, [:DateTime, :Gauge, :Integer, :String], default: :Integer
+      # @!attribute [rw] data
+      #   @return [Hash] the additional data, mainly constraints and needed values, for the field.
+      field :data, type: Hash, default: {}
 
       # @!attribute [rw] blueprint
       #   @return [Arkaan::Rulesets::Blueprint] the blueprint in which the field belongs.
@@ -26,11 +29,39 @@ module Arkaan
 
       validate :name_unicity
 
+      validate :options_validity
+
+      def data=(new_data)
+        default_options = send :"default_#{type.downcase}_options" rescue {}
+        self[:data] = default_options.merge(new_data)
+      end
+
       def name_unicity
         has_duplicate = blueprint._fields.where(:_id.ne => _id, name: name).exists?
         if name? && blueprint && has_duplicate
           errors.add(:name, 'uniq')
         end
+      end
+
+      def options_validity
+        method_name = :"validate_#{type.downcase}_options"
+        send method_name if respond_to? method_name
+      end
+
+      def validate_gauge_options
+        if data[:max] && !data[:max].is_a?(Integer)
+          errors.add(:data, 'max|type')
+        end
+        if data[:initial] && !data[:initial].is_a?(Integer)
+          errors.add(:data, 'initial|type')
+        end
+        if data[:show] && !data[:show].is_a?(Boolean)
+          errors.add(:data, 'show|type')
+        end
+      end
+
+      def default_gauge_options
+        return {max: 100, initial: 0, show: true}
       end
     end
   end

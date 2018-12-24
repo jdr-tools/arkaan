@@ -29,13 +29,79 @@ RSpec.describe Arkaan::Rulesets::Field do
     it 'sets the type with the default value if it does not exist' do
       expect(build(:field, type: :anything, blueprint: blueprint).type).to eq :Integer
     end
-    it 'validates the field if the field type is a String' do
-      expect(build(:field, type: :String, blueprint: blueprint).valid?).to be true
+    it 'returns the right type if the field type is a String' do
+      expect(build(:field, type: :String, blueprint: blueprint).type).to eq :String
     end
-    it 'validates the field if the field type is a Datetime' do
-      expect(build(:field, type: :DateTime, blueprint: blueprint).valid?).to be true
+    it 'returns the right type if the field type is a Datetime' do
+      expect(build(:field, type: :DateTime, blueprint: blueprint).type).to eq :DateTime
     end
   end
+
+  describe 'Gauge field' do
+    let!(:data) {
+      return {
+        max: 200,
+        initial: 100,
+        show: false
+      }
+    }
+
+    describe 'attributes' do
+      let!(:field) { build(:gauge_field, type: :Gauge, blueprint: blueprint, data: data) }
+      it 'returns the right type if the field type is a Gauge' do
+        expect(field.type).to eq :Gauge
+      end
+      it 'returns the right max when it is given' do
+        expect(field.data[:max]).to eq 200
+      end
+      it 'returns the right initial if it is given' do
+        expect(field.data[:initial]).to eq 100
+      end
+      it 'returns the right show value if it is given' do
+        expect(field.data[:show]).to eq false
+      end
+    end
+    describe 'default values' do
+      it 'sets the correct default value if the max is not given' do
+        expect(build(:gauge_field, blueprint: blueprint, data: {initial: 100, show: false}).data[:max]).to be 100
+      end
+      it 'sets the correct default value is the initial is not given' do
+        expect(build(:gauge_field, blueprint: blueprint, data: {max: 100, show: false}).data[:initial]).to be 0
+      end
+      it 'sets the correct default value if the show option is not given' do
+        expect(build(:gauge_field, blueprint: blueprint, data: {max: 200, initial: 100}).data[:show]).to be true
+      end
+    end
+    describe 'errors' do
+      it 'invalidates the gauge if the max is not an integer' do
+        expect(build(:gauge_field, blueprint: blueprint, data: {max: 'test'}).valid?).to be false
+      end
+      it 'invalidates the gauge if the initial is not an integer' do
+        expect(build(:gauge_field, blueprint: blueprint, data: {initial: 'test'}).valid?).to be false
+      end
+      it 'invalidates the gauge if the show option is not a boolean' do
+        expect(build(:gauge_field, blueprint: blueprint, data: {show: 'test'}).valid?).to be false
+      end
+    end
+    describe 'errors.messages' do
+      it 'returns the right message if the max value is not an integer' do
+        gauge = build(:gauge_field, blueprint: blueprint, data: {max: 'test'})
+        gauge.validate
+        expect(gauge.errors.messages[:data]).to eq(['max|type'])
+      end
+      it 'returns the right message if the initial value is not an integer' do
+        gauge = build(:gauge_field, blueprint: blueprint, data: {initial: 'test'})
+        gauge.validate
+        expect(gauge.errors.messages[:data]).to eq(['initial|type'])
+      end
+      it 'returns the right message if the show option is not a boolean' do
+        gauge = build(:gauge_field, blueprint: blueprint, data: {show: 'test'})
+        gauge.validate
+        expect(gauge.errors.messages[:data]).to eq(['show|type'])
+      end
+    end
+  end
+
   describe 'errors.messages' do
     it 'returns the right message if the name is not given' do
       field = build(:field, blueprint: blueprint, name: nil)
