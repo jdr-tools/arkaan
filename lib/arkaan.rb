@@ -23,5 +23,6 @@ module Arkaan
   autoload :Permissions   , 'arkaan/permissions'
   autoload :Phone         , 'arkaan/phone'
   autoload :Ruleset       , 'arkaan/ruleset'
+  autoload :Rulesets      , 'arkaan/rulesets'
   autoload :Utils         , 'arkaan/utils'
 end
