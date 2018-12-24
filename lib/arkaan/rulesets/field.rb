@@ -49,19 +49,20 @@ module Arkaan
       end
 
       def validate_gauge_options
-        if data[:max] && !data[:max].is_a?(Integer)
-          errors.add(:data, 'max|type')
-        end
-        if data[:initial] && !data[:initial].is_a?(Integer)
-          errors.add(:data, 'initial|type')
-        end
-        if data[:show] && !data[:show].is_a?(Boolean)
-          errors.add(:data, 'show|type')
+        check_type(:initial, Integer)
+        check_type(:max, Integer)
+        check_type(:min, Integer)
+        check_type(:show, Boolean)
+      end
+
+      def check_type(key, required_type)
+        if data[key.to_sym] && !data[key.to_sym].is_a?(required_type)
+          errors.add(:data, "#{key.to_s}|type")
         end
       end
 
       def default_gauge_options
-        return {max: 100, initial: 0, show: true}
+        return {initial: 0, max: 100, min: 0, show: true}
       end
     end
   end

@@ -40,6 +40,7 @@ RSpec.describe Arkaan::Rulesets::Field do
   describe 'Gauge field' do
     let!(:data) {
       return {
+        min: 50,
         max: 200,
         initial: 100,
         show: false
@@ -50,6 +51,9 @@ RSpec.describe Arkaan::Rulesets::Field do
       let!(:field) { build(:gauge_field, type: :Gauge, blueprint: blueprint, data: data) }
       it 'returns the right type if the field type is a Gauge' do
         expect(field.type).to eq :Gauge
+      end
+      it 'returns the right min value if it is given' do
+        expect(field.data[:min]).to eq 50
       end
       it 'returns the right max when it is given' do
         expect(field.data[:max]).to eq 200
@@ -63,18 +67,24 @@ RSpec.describe Arkaan::Rulesets::Field do
     end
     describe 'default values' do
       it 'sets the correct default value if the max is not given' do
-        expect(build(:gauge_field, blueprint: blueprint, data: {initial: 100, show: false}).data[:max]).to be 100
+        expect(build(:gauge_field, blueprint: blueprint, data: {initial: 100, show: false, min: 50}).data[:max]).to be 100
+      end
+      it 'sets the correct default value if the min is not given' do
+        expect(build(:gauge_field, blueprint: blueprint, data: {initial: 100, show: false, max: 200}).data[:min]).to be 0
       end
       it 'sets the correct default value is the initial is not given' do
-        expect(build(:gauge_field, blueprint: blueprint, data: {max: 100, show: false}).data[:initial]).to be 0
+        expect(build(:gauge_field, blueprint: blueprint, data: {max: 100, show: false, min: 50}).data[:initial]).to be 0
       end
       it 'sets the correct default value if the show option is not given' do
-        expect(build(:gauge_field, blueprint: blueprint, data: {max: 200, initial: 100}).data[:show]).to be true
+        expect(build(:gauge_field, blueprint: blueprint, data: {max: 200, initial: 100, min: 50}).data[:show]).to be true
       end
     end
     describe 'errors' do
       it 'invalidates the gauge if the max is not an integer' do
         expect(build(:gauge_field, blueprint: blueprint, data: {max: 'test'}).valid?).to be false
+      end
+      it 'invalidates the gauge if the min value is not an integer' do
+        expect(build(:gauge_field, blueprint: blueprint, data: {min: 'test'}).valid?).to be false
       end
       it 'invalidates the gauge if the initial is not an integer' do
         expect(build(:gauge_field, blueprint: blueprint, data: {initial: 'test'}).valid?).to be false
