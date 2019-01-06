@@ -4,5 +4,8 @@ module Arkaan
   module Rulesets
     autoload :Blueprint, 'arkaan/rulesets/blueprint'
     autoload :Field    , 'arkaan/rulesets/field'
+    autoload :Fields   , 'arkaan/rulesets/fields'
+    autoload :Gauge    , 'arkaan/rulesets/gauge'
+    autoload :Integer  , 'arkaan/rulesets/integer'
   end
 end
