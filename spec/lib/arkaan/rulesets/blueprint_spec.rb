@@ -31,7 +31,7 @@ RSpec.describe Arkaan::Rulesets::Blueprint do
   end
   describe :fields do
     let!(:blueprint) { create(:blueprint, ruleset: ruleset) }
-    let!(:field) { create(:field, blueprint: blueprint) }
+    let!(:field) { create(:integer_field, blueprint: blueprint) }
 
     it 'has a list of fields set at creation' do
       expect(blueprint._fields.count).to be 1
