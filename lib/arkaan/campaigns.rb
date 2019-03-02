@@ -3,6 +3,7 @@ module Arkaan
   # @author Vincent Courtois <courtois.vincent@outlook.com>
   module Campaigns
     autoload :File      , 'arkaan/campaigns/file'
+    autoload :Files     , 'arkaan/campaigns/files'
     autoload :Invitation, 'arkaan/campaigns/invitation'
     autoload :Message   , 'arkaan/campaigns/message'
     autoload :Tag       , 'arkaan/campaigns/tag'

@@ -20,7 +20,7 @@ module Arkaan
 
       # @!attribute [rw] files
       #   @return [Array<Arkaan::Campaigns::File>] the files uploaded in this campaign by the usere linked to this invitation.
-      embeds_many :files, class_name: 'Arkaan::Campaigns::File', inverse_of: :invitation
+      has_many :permissions, class_name: 'Arkaan::Campaigns::File', inverse_of: :invitation
     end
   end
 end
