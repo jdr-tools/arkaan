@@ -64,6 +64,19 @@ module Arkaan
     # @!attribute [rw] phones
     #   @return [Array<Arkaan::Phone>] the phone numbers given by the user.
     embeds_many :phones, class_name: 'Arkaan::Phone', inverse_of: :account
+    # @!attribute [rw] notifications
+    #  @return [Array<Arkaan::Notification>] the notifications linked to this user.
+    embeds_many :notifications, class_name: 'Arkaan::Notification', inverse_of: :account
+
+    # @return [Array<Arkaan::Notification>] the unread notifications that should be displayed first for the user.
+    def unread_notifications
+      notifications.where(read: false)
+    end
+
+    # @return [Array<Arkaan::Notification>] the notifications already read, less important to display than the unread ones.
+    def read_notifications
+      notifications.where(read: true)
+    end
 
     validates :username,
       presence: {message: 'required'},

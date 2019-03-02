@@ -19,6 +19,7 @@ module Arkaan
   autoload :Decorators    , 'arkaan/decorators'
   autoload :Factories     , 'arkaan/factories'
   autoload :Monitoring    , 'arkaan/monitoring'
+  autoload :Notification  , 'arkaan/notification'
   autoload :OAuth         , 'arkaan/oauth'
   autoload :Permissions   , 'arkaan/permissions'
   autoload :Phone         , 'arkaan/phone'

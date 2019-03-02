@@ -27,7 +27,7 @@ RSpec.describe Arkaan::Account do
       expect(build(:account, password: nil).valid?).to be false
     end
     describe 'Update of the password' do
-      let(:account) { create(:account) }
+      let!(:account) { create(:account) }
       it 'correctly updates the password of an already existing user' do
         account.update_attributes(password: 'other_password')
         expect(account.authenticate('other_password')).to be_truthy
@@ -153,10 +153,58 @@ RSpec.describe Arkaan::Account do
     end
   end
 
+  describe :notifications do
+    let!(:account) { build(:account) }
+    let!(:read_notification) { create(:notification, account: account, type: 'NOTIFICATIONS.READ', read: true) }
+    let!(:unread_notification) { create(:notification, account: account, type: 'NOTIFICATIONS.UNREAD', read: false) }
+
+    it 'returns the right notifications count for an account' do
+      expect(account.notifications.count).to be 2
+    end
+    it 'returns the right number of unread notifications' do
+      expect(account.unread_notifications.count).to be 1
+    end
+    it 'returns the right unread notifications for an account' do
+      expect(account.unread_notifications.first.type).to eq 'NOTIFICATIONS.UNREAD'
+    end
+    it 'returns the right number of read notifications' do
+      expect(account.read_notifications.count).to be 1
+    end
+    it 'returns the right read notifications for an account' do
+      expect(account.read_notifications.first.type).to eq 'NOTIFICATIONS.READ'
+    end
+    describe 'Notification attributes' do
+      let!(:notification) { create(:notification, account: account, type: 'NOTIFICATIONS.TEST', read: true, data: {key: 'value'}) }
+
+      it 'returns the correct type for a notification' do
+        expect(notification.type).to eq 'NOTIFICATIONS.TEST'
+      end
+      it 'returns the correct read status for a notification' do
+        expect(notification.read).to be true
+      end
+      it 'returns the correct data for a notification' do
+        expect(notification.data).to include_json({key: 'value'})
+      end
+    end
+    describe 'Notification default attributes' do
+      let!(:notification) { create(:notification, account: account) }
+
+      it 'returns the correct default type for a notification' do
+        expect(notification.type).to eq 'NOTIFICATIONS.DEFAULT'
+      end
+      it 'returns the correct default read status for a notification' do
+        expect(notification.read).to be false
+      end
+      it 'returns the correct default data for a notification' do
+        expect(notification.data).to eq({})
+      end
+    end
+  end
+
   describe :messages do
 
-    let(:invalid_account) { build(:empty_account) }
-    let(:account) { build(:account) }
+    let!(:invalid_account) { build(:empty_account) }
+    let!(:account) { build(:account) }
 
     before do
       invalid_account.validate
