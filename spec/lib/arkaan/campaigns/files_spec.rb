@@ -9,7 +9,16 @@ RSpec.describe Arkaan::Campaigns::File do
       expect(file.name).to eq 'file.txt'
     end
     it 'fails to validate if the name is not given' do
-      expect(build(:file, creator: invitation, name: nil).valid?).to be false
+      expect(build(:file, creator: invitation, campaign: campaign, name: nil).valid?).to be false
+    end
+    it 'modifies the name to add a counter if the file already exists' do
+      other_file = create(:file, creator: invitation, campaign: campaign, name: file.name)
+      expect(other_file.name).to eq 'file (1).txt'
+    end
+    it 'can modify the name twice if necessary, by incrementing the suffix' do
+      create(:file, creator: invitation, campaign: campaign, name: file.name)
+      other_file = create(:file, creator: invitation, campaign: campaign, name: file.name, size: 42)
+      expect(other_file.name).to eq 'file (2).txt'
     end
   end
 
