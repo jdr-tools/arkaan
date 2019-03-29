@@ -39,10 +39,9 @@ module Arkaan
     validates :max_players,
       numericality: {less_than: 21, message: 'maximum'}
 
-    validates :max_players,
-      numericality: {greater_than: 0, message: 'minimum'}
-
     validate :title_unicity
+
+    validate :max_players_minimum
 
     # Sets the creator of the campaign. This method is mainly used for backward-compatibility needs.
     # @param account [Arkaan::Account] the account of the creator for this campaign.
@@ -67,6 +66,16 @@ module Arkaan
       if !creator.nil? && title? && same_title_campaign.exists?
         errors.add(:title, 'uniq')
       end
+    end
+
+    def max_players_minimum
+      if max_players? && (max_players < players_count || max_players < 1)
+        errors.add(:max_players, 'minimum')
+      end
+    end
+
+    def players_count
+      invitations.where(enum_status: :accepted).count
     end
   end
 end
