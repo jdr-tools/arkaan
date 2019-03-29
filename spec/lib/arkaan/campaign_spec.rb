@@ -57,6 +57,12 @@ RSpec.describe Arkaan::Campaign do
     it 'has a default max number of players' do
       expect(build(:campaign).max_players).to be 5
     end
+    it 'cannot have a max number of players below 1' do
+      expect(build(:campaign, creator: account, max_players: 0).valid?).to be false
+    end
+    it 'cannot have a max number of players above 20' do
+      expect(build(:campaign, creator: account, max_players: 21).valid?).to be false
+    end
   end
 
   describe 'errors.messages' do
@@ -75,6 +81,16 @@ RSpec.describe Arkaan::Campaign do
       invalid_campaign = build(:campaign, creator: account)
       invalid_campaign.validate
       expect(invalid_campaign.errors.messages[:title]).to eq(['uniq'])
+    end
+    it 'returns the right message if the max_players is below 1' do
+      invalid_campaign = build(:campaign, creator: account, max_players: 0)
+      invalid_campaign.validate
+      expect(invalid_campaign.errors.messages[:max_players]).to eq(['minimum'])
+    end
+    it 'returns the right message if the max_players is above 20' do
+      invalid_campaign = build(:campaign, creator: account, max_players: 21)
+      invalid_campaign.validate
+      expect(invalid_campaign.errors.messages[:max_players]).to eq(['maximum'])
     end
   end
 end

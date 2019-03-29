@@ -1,10 +1,10 @@
-ENV['RACK_ENV'] = 'test'
-ENV['MONGOID_ENV'] = 'test'
-
 require 'simplecov'
 SimpleCov.start do
   add_filter File.join('spec', '*')
 end
+
+ENV['RACK_ENV'] = 'test'
+ENV['MONGOID_ENV'] = 'test'
 
 require 'bundler/setup'
 Bundler.setup

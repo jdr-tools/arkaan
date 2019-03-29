@@ -36,6 +36,12 @@ module Arkaan
       presence: {message: 'required'},
       length: {minimum: 4, message: 'minlength', if: :title?}
 
+    validates :max_players,
+      numericality: {less_than: 21, message: 'maximum'}
+
+    validates :max_players,
+      numericality: {greater_than: 0, message: 'minimum'}
+
     validate :title_unicity
 
     # Sets the creator of the campaign. This method is mainly used for backward-compatibility needs.
