@@ -150,7 +150,7 @@ module Arkaan
 
       def load_mongoid_configuration(test_mode: false)
         environment = test_mode ? 'test' : (ENV['RACK_ENV'] || 'development')
-        Mongoid.load!(File.join(location, 'config', 'mongoid.yml'), environment)
+        Mongoid.load!('config/mongoid.yml', environment)
       end
 
       def load_standard_files
