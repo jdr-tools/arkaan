@@ -7,6 +7,7 @@ require 'platform-api'
 require 'draper'
 require 'faraday'
 require 'sinatra/custom_logger'
+require 'dotenv/load'
 
 # Main module of the application, holding all the subsequent classes.
 # @author Vincent Courtois <courtois.vincent@outlook.com>

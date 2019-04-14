@@ -119,6 +119,7 @@ module Arkaan
       # @param test_mode [Boolean] TRUE to run in test mode (from /spec), FALSE otherwise.
       # @return [Arkaan::Utils::MicroService] the current instance of the micro service to chain other calls.
       def load_application(test_mode: false)
+        Dotenv.load
         load_mongoid_configuration(test_mode: test_mode)
         if !!(@name && location)
           @service = Arkaan::Monitoring::Service.where(key: @name).first

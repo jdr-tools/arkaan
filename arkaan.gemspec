@@ -1,7 +1,7 @@
 Gem::Specification.new do |spec|
   spec.name        = 'arkaan'
-  spec.version     = '1.4.4'
-  spec.date        = '2019-04-04'
+  spec.version     = '1.4.5'
+  spec.date        = '2019-04-14'
   spec.summary     = 'The model layer for my table-RPG application'
   spec.description = 'This gem holds the model layer for my table-top RPG games application.'
   spec.authors     = ['Vincent Courtois']
@@ -28,4 +28,5 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency 'platform-api'   , '2.1.0'
   spec.add_runtime_dependency 'faraday'        , '0.15.2'
   spec.add_runtime_dependency 'draper'         , '3.0.1'
+  spec.add_runtime_dependency 'dotenv'         , '2.7.2'
 end
