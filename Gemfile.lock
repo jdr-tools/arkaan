@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    arkaan (1.4.5)
+    arkaan (1.4.6)
       activemodel (= 5.1.4)
       activesupport (= 5.1.4)
       bcrypt (= 3.1.11)

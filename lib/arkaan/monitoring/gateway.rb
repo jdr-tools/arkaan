@@ -23,7 +23,11 @@ module Arkaan
 
       validates :url,
         presence: {message: 'required'},
-        format: {with: /\A(https?:\/\/)((localhost:[0-9]+)|(([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*))\/?\z/, message: 'pattern', if: :url?}
+        format: {
+          with: /\A(https?:\/\/)((localhost:[0-9]+)|(([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*)|(\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b):([0-9]{2,6}))\/?\z/,
+          message: 'pattern',
+          if: :url?
+        }
 
       validates :token,
         presence: {message: 'required'},
@@ -31,6 +35,3 @@ module Arkaan
     end
   end
 end
-
-
-
