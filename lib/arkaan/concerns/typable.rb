@@ -10,7 +10,7 @@ module Arkaan
         
         # @!attribute [rw] type
         #   @return [Symbol] the type of the instance, determining its way of being deployed, restarted, etc.
-        enum_field :type, [:heroku, :local], default: :heroku
+        enum_field :type, [:heroku, :local, :unix], default: :heroku
       end
     end
   end
