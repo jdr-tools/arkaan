@@ -1,4 +1,4 @@
-RSpec.describe Arkaan::Utils::Controller do
+RSpec.describe Arkaan::Utils::Controllers::Checked do
 
   let!(:account) { create(:account) }
   let!(:gateway) { create(:gateway) }
@@ -12,7 +12,7 @@ RSpec.describe Arkaan::Utils::Controller do
   before do
     allow(Arkaan::Utils::MicroService.instance).to receive(:service).and_return(service)
 
-    class TestController < Arkaan::Utils::Controller
+    class TestController < Arkaan::Utils::Controllers::Checked
       config_file File.join(File.dirname(File.absolute_path(__FILE__)), '..', '..', '..', 'config', 'errors.yml')
 
       declare_premium_route('get', '/') do
@@ -158,7 +158,7 @@ RSpec.describe Arkaan::Utils::Controller do
       before do
         allow(Arkaan::Utils::MicroService.instance).to receive(:service).and_return(service)
 
-        class NonPremiumTestController < Arkaan::Utils::Controller
+        class NonPremiumTestController < Arkaan::Utils::Controllers::Checked
           declare_route('get', '/') do
             halt 200, {message: 'test_message'}.to_json
           end
@@ -202,7 +202,7 @@ RSpec.describe Arkaan::Utils::Controller do
         allow(Arkaan::Utils::MicroService.instance).to receive(:service).and_return(service)
         create(:route, verb: 'post', path: '/', premium: false, service: service)
 
-        class NonPremiumTestController < Arkaan::Utils::Controller
+        class NonPremiumTestController < Arkaan::Utils::Controllers::Checked
           declare_route('post', '/') do
             halt 200, {message: 'test_message'}.to_json
           end
@@ -244,7 +244,7 @@ RSpec.describe Arkaan::Utils::Controller do
       before do
         allow(Arkaan::Utils::MicroService.instance).to receive(:service).and_return(service)
 
-        class NotAuthenticatedTestController < Arkaan::Utils::Controller
+        class NotAuthenticatedTestController < Arkaan::Utils::Controllers::Checked
           declare_route('get', '/', options: {authenticated: false}) do
             halt 200, {message: 'test_message'}.to_json
           end
@@ -287,7 +287,7 @@ RSpec.describe Arkaan::Utils::Controller do
       before do
         allow(Arkaan::Utils::MicroService.instance).to receive(:service).and_return(service)
 
-        class PremiumTestController < Arkaan::Utils::Controller
+        class PremiumTestController < Arkaan::Utils::Controllers::Checked
           declare_premium_route('get', '/') do
             halt 200, {message: 'test_message'}.to_json
           end
@@ -331,7 +331,7 @@ RSpec.describe Arkaan::Utils::Controller do
         allow(Arkaan::Utils::MicroService.instance).to receive(:service).and_return(service)
         create(:route, verb: 'post', path: '/', premium: true, service: service)
 
-        class PremiumTestController < Arkaan::Utils::Controller
+        class PremiumTestController < Arkaan::Utils::Controllers::Checked
           declare_premium_route('post', '/') do
             halt 200, {message: 'test_message'}.to_json
           end
@@ -374,7 +374,7 @@ RSpec.describe Arkaan::Utils::Controller do
 
   describe :check_presence do
     before do
-      class CheckPresenceTestController < Arkaan::Utils::Controller
+      class CheckPresenceTestController < Arkaan::Utils::Controllers::Checked
         config_file File.join(File.dirname(File.absolute_path(__FILE__)), '..', '..', '..', 'config', 'errors.yml')
 
         declare_route('get', '/check_presence_test') do
@@ -421,7 +421,7 @@ RSpec.describe Arkaan::Utils::Controller do
 
   describe :check_either_presence do
     before do
-      class CheckPresenceTestController < Arkaan::Utils::Controller
+      class CheckPresenceTestController < Arkaan::Utils::Controllers::Checked
         config_file File.join(File.dirname(File.absolute_path(__FILE__)), '..', '..', '..', 'config', 'errors.yml')
 
         declare_route('get', '/check_either_presence_test') do

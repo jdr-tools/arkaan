@@ -108,10 +108,10 @@ module Arkaan
       # @return [Arkaan::Monitoring::Instance] the instance of the micro service currently running.
       def register_instance
         @instance = @service.instances.where(url: ENV['SERVICE_URL']).first
-        if instance.nil?
+        if @instance.nil?
           @instance = Arkaan::Monitoring::Instance.create(service: @service, url: ENV['SERVICE_URL'], type: type)
         end
-        instance.update_attribute(:running, true)
+        @instance.update_attribute(:running, true)
         return @instance
       end
 
@@ -128,7 +128,7 @@ module Arkaan
             @service.update_attribute(:test_mode, true)
           end
           register_instance
-          get_heroku_infos if type == :heroku && !test_mode
+          load_plugin!
           if service
             load_standard_files
             load_test_files if test_mode
@@ -137,16 +137,11 @@ module Arkaan
         return self
       end
 
-      def get_heroku_infos
-        if !ENV['OAUTH_TOKEN'].nil? && instance != false && instance.persisted?
-          heroku = PlatformAPI.connect_oauth(ENV['OAUTH_TOKEN'])
-          regex = /\Ahttps?:\/\/([a-z\-]+).herokuapp.com\/?\z/
-          if instance.url.match(regex)
-            app_name = instance.url.scan(regex).first.first
-            instance.update_attribute(:data, heroku.app.info(app_name))
-          end
+      def load_plugin!
+        plugin = ENV['ADDITIONAL_PLUGIN']
+        if !plugin.nil? && Arkaan::Utils::Plugins.constants.include?(plugin)
+          Arkaan::Utils::Plugins.const_get(plugin).load!(@instance)
         end
-        return self
       end
 
       def load_mongoid_configuration(test_mode: false)
