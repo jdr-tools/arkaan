@@ -13,7 +13,7 @@ RSpec.describe Arkaan::Utils::Controllers::Checked do
     allow(Arkaan::Utils::MicroService.instance).to receive(:service).and_return(service)
 
     class TestController < Arkaan::Utils::Controllers::Checked
-      config_file File.join(File.dirname(File.absolute_path(__FILE__)), '..', '..', '..', 'config', 'errors.yml')
+      config_file File.join(File.dirname(File.absolute_path(__FILE__)), '..', '..', '..', '..', 'config', 'errors.yml')
 
       declare_premium_route('get', '/') do
         halt 200, {message: 'test_message'}.to_json
@@ -375,7 +375,7 @@ RSpec.describe Arkaan::Utils::Controllers::Checked do
   describe :check_presence do
     before do
       class CheckPresenceTestController < Arkaan::Utils::Controllers::Checked
-        config_file File.join(File.dirname(File.absolute_path(__FILE__)), '..', '..', '..', 'config', 'errors.yml')
+        config_file File.join(File.dirname(File.absolute_path(__FILE__)), '..', '..', '..', '..', 'config', 'errors.yml')
 
         declare_route('get', '/check_presence_test') do
           check_presence('field', 'other_field', route: 'check_presence')
@@ -422,7 +422,7 @@ RSpec.describe Arkaan::Utils::Controllers::Checked do
   describe :check_either_presence do
     before do
       class CheckPresenceTestController < Arkaan::Utils::Controllers::Checked
-        config_file File.join(File.dirname(File.absolute_path(__FILE__)), '..', '..', '..', 'config', 'errors.yml')
+        config_file File.join(File.dirname(File.absolute_path(__FILE__)), '..', '..', '..', '..', 'config', 'errors.yml')
 
         declare_route('get', '/check_either_presence_test') do
           check_either_presence('field', 'other_field', route: 'check_either_presence', key: 'any_id')
