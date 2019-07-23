@@ -53,7 +53,6 @@ module Arkaan
               instance_eval(&block)
             end
           else
-            logger.info "#{verb} #{complete_path}"
             self.public_send(verb, complete_path, &block)
           end
         end

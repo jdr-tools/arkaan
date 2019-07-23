@@ -1,7 +1,6 @@
 RSpec.shared_examples 'micro_service route' do |basepath:, verb:, expected_status: 200, expected_body: {'message' => 'test_message'}|
 
   def make_request(verb, url, parameters)
-    parameters = parameters.to_json if ['put', 'post'].include?(verb)
     public_send(verb, url, parameters)
   end
 

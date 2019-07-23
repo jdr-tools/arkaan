@@ -230,7 +230,7 @@ RSpec.describe Arkaan::Utils::Controllers::Checked do
       end
       describe 'call to the route' do
         before do
-          post '/example', {app_key: 'test_key', token: 'test_token'}.to_json
+          post '/example', {app_key: 'test_key', token: 'test_token'}
         end
         it 'correctly calls the route when all parameters are rightly given' do
           expect(last_response.status).to be 200
@@ -360,7 +360,7 @@ RSpec.describe Arkaan::Utils::Controllers::Checked do
       end
       describe 'call to the route' do
         before do
-          post '/example', {app_key: 'test_key', token: 'test_token'}.to_json
+          post '/example', {app_key: 'test_key', token: 'test_token'}
         end
         it 'correctly calls the route when all parameters are rightly given' do
           expect(last_response.status).to be 200
