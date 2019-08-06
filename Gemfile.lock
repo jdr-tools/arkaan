@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    arkaan (1.5.1)
+    arkaan (1.5.2)
       actionview (= 5.2.3)
       activemodel (= 5.2.3)
       activesupport (= 5.2.3)
@@ -104,7 +104,7 @@ GEM
     rails-dom-testing (2.0.3)
       activesupport (>= 4.2.0)
       nokogiri (>= 1.6)
-    rails-html-sanitizer (1.0.4)
+    rails-html-sanitizer (1.1.0)
       loofah (~> 2.2, >= 2.2.2)
     request_store (1.4.1)
       rack (>= 1.4)

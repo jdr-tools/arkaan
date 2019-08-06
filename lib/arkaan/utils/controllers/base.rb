@@ -26,6 +26,26 @@ module Arkaan
           self.declare_route_with(verb, path, true, options, &block)
         end
 
+        # Declares the status route of the service, used by the Vigilante to check its status
+        # @param path [String] the path used to map the route on.
+        def self.declare_status_route(path = '/status')
+          self.declare_route_with('get', path, false, { authanticated: false }) do
+            if params['token'].nil?
+              custom_error 400, 'vigilante.token.required'
+            elsif Arkaan::Monitoring::Vigilante.where(token: params[:token]).first.nil?
+              custom_error 404, 'vigilante.token.unknown'
+            end
+            service = Arkaan::Utils::MicroService.instance.service
+            informations = {
+              key: service.key,
+              path: service.path,
+              health: 'ok'
+            }
+            halt 200, informations.to_json
+          end
+          Arkaan::Utils::MicroService.instance.service.update_attribute(:diagnostic, path)
+        end
+
         # Creates a route whithin the Sinatra application, and registers it in the database if it does not already exists.
         # @param verb [String] the HTTP method used to create this route.
         # @param path [String] the path, beginning with a /, of the route to create.
@@ -55,6 +75,7 @@ module Arkaan
           else
             self.public_send(verb, complete_path, &block)
           end
+          complete_path
         end
 
         # Loads the errors configuration file from the config folder.

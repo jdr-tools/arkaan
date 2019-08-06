@@ -7,6 +7,7 @@ module Arkaan
     autoload :Instance , 'arkaan/monitoring/instance'
     autoload :Route    , 'arkaan/monitoring/route'
     autoload :Service  , 'arkaan/monitoring/service'
+    autoload :Vigilante, 'arkaan/monitoring/vigilante'
     autoload :Websocket, 'arkaan/monitoring/websocket'
   end
 end

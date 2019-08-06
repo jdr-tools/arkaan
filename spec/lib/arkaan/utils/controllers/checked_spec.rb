@@ -36,6 +36,7 @@ RSpec.describe Arkaan::Utils::Controllers::Checked do
       declare_route('get', '/notfound') do
         raise Arkaan::Utils::Errors::NotFound.new(action: 'test_errors', field: 'test_field', error: 'test_error')
       end
+      declare_status_route('/status')
     end
 
     def app
@@ -48,7 +49,7 @@ RSpec.describe Arkaan::Utils::Controllers::Checked do
       group.reload
     end
     it 'has the correct number of routes declared after controller creation' do
-      expect(group.routes.count).to be 7
+      expect(group.routes.count).to be 8
     end
     describe 'GET route' do
       it 'has a GET route' do
@@ -84,17 +85,74 @@ RSpec.describe Arkaan::Utils::Controllers::Checked do
     end
   end
 
-  describe 'GET request' do
-    include_examples 'micro_service route', verb: 'get', basepath: '/example'
-  end
-  describe 'POST request' do
-    include_examples 'micro_service route', verb: 'post', expected_status: 201, expected_body: {'message' => 'created'}, basepath: '/example'
-  end
-  describe 'PUT request' do
-    include_examples 'micro_service route', verb: 'put', expected_body: {'message' => 'updated'}, basepath: '/example'
-  end
-  describe 'DELETE request' do
-    include_examples 'micro_service route', verb: 'delete', expected_body: {'message' => 'deleted'}, basepath: '/example'
+  describe 'Requests' do
+    describe 'GET request' do
+      include_examples 'micro_service route', verb: 'get', basepath: '/example'
+    end
+    describe 'POST request' do
+      include_examples 'micro_service route', verb: 'post', expected_status: 201, expected_body: {'message' => 'created'}, basepath: '/example'
+    end
+    describe 'PUT request' do
+      include_examples 'micro_service route', verb: 'put', expected_body: {'message' => 'updated'}, basepath: '/example'
+    end
+    describe 'DELETE request' do
+      include_examples 'micro_service route', verb: 'delete', expected_body: {'message' => 'deleted'}, basepath: '/example'
+    end
+    describe 'status route' do
+      let!(:vigilante) { create(:vigilante) }
+
+      describe 'Nominal case' do
+        before do
+          get '/example/status', {token: vigilante.token}
+        end
+        it 'Returns a 200 (OK) status code' do
+          expect(last_response.status).to be 200
+        end
+        it 'Returns the correct body' do
+          expect(last_response.body).to include_json({
+            health: 'ok',
+            key: 'test.service',
+            path: '/example'
+          })
+        end
+      end
+      describe 'Errors' do
+        describe 'Bad Request errors' do
+          describe 'When the vigilante token is not given' do
+            before do
+              get '/example/status'
+            end
+            it 'Returns a Bad Request (400) status code' do
+              expect(last_response.status).to be 400
+            end
+            it 'Returns the correct body' do
+              expect(last_response.body).to include_json({
+                status: 400,
+                field: 'token',
+                error: 'required'
+              })
+            end
+          end
+        end
+        describe 'Not Found errors' do
+          describe 'When the vigilante token is not found' do
+            before do
+              get '/example/status', {token: 'false_token'}
+            end
+            it 'Returns a Not Found (404) status code' do
+              expect(last_response.status).to be 404
+            end
+            it 'Returns the correct body' do
+              expect(last_response.body).to include_json({
+                status: 404,
+                field: 'token',
+                error: 'unknown'
+              })
+            end
+          end
+        end
+      end
+    end
   end
 
   describe 'automatic exceptions' do
