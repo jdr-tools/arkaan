@@ -3,7 +3,9 @@ module Arkaan
     # A vigilante is a specific type of service that watches over the
     # infrastructure and give a clear look at its global state.
     # @author Vincent Courtois <courtois.vincent@outlook.com>
-    class Vigilante < Arkaan::Monitoring::Service
+    class Vigilante
+      include Mongoid::Document
+      include Mongoid::Timestamps
 
       # @!attribute [rw] token
       #   @return [String] the token the vigilante uses to identify himself in the services
