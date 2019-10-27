@@ -27,6 +27,8 @@ module Arkaan
       #   @return [Arkaan::Monitoring::Action] the actions that has been performed on the service.
       embeds_many :actions, class_name: 'Arkaan::Monitoring::Action', inverse_of: :instance
 
+      has_many :heartbeats, class_name: 'Arkaan::Monitoring::Results::Heartbeat', inverse_of: :instance
+
       validates :url,
         presence: {message: 'required'},
         format: {with: /\A(https?:\/\/)((([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*)|(localhost:[0-9]{2,4})\/?)\z/, message: 'pattern', if: :url?}
