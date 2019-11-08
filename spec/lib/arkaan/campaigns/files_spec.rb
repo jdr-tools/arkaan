@@ -1,4 +1,4 @@
-RSpec.describe Arkaan::Campaigns::File do
+RSpec.describe Arkaan::Campaigns::Files::Document do
   let!(:account) { create(:account) }
   let!(:campaign) { create(:campaign, creator: account) }
   let!(:invitation) { campaign.invitations.first }

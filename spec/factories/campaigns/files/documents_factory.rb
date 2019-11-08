@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :empty_file, class: Arkaan::Campaigns::File do
+  factory :empty_file, class: Arkaan::Campaigns::Files::Document do
     factory :file do
       name 'file.txt'
       mime_type 'text/plain'

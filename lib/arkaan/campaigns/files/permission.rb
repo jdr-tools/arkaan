@@ -18,8 +18,8 @@ module Arkaan
         #   @return [Arkaan::Campaigns::Invitation] the invitation of the player in the campaign where this file was uploaded.
         belongs_to :invitation, class_name: 'Arkaan::Campaigns::Invitation', inverse_of: :permissions
         # @!attribute [rw] file
-        #   @return [Arkaan::Campaigns::File] the file on which the permissions are granted.
-        belongs_to :file, class_name: 'Arkaan::Campaigns::File', inverse_of: :permissions
+        #   @return [Arkaan::Campaigns::Files::Document] the file on which the permissions are granted.
+        belongs_to :file, class_name: 'Arkaan::Campaigns::Files::Document', inverse_of: :permissions
       end
     end
   end
