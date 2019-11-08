@@ -19,7 +19,7 @@ RSpec.describe Arkaan::Campaign do
       expect(build(:campaign, title: 'a', creator: account).valid?).to be false
     end
     it 'fails to build a campaign if the user already has a campaign with the same title' do
-      create(:campaign, creator: account)
+      campaign = create(:campaign, creator: account)
       expect(build(:campaign, creator: account).valid?).to be false
     end
   end
@@ -50,7 +50,30 @@ RSpec.describe Arkaan::Campaign do
     end
   end
 
-  describe :messages do
+  describe :max_players do
+    it 'has a max number of players set at creation' do
+      expect(build(:campaign, max_players: 10).max_players).to be 10
+    end
+    it 'has a default max number of players' do
+      expect(build(:campaign).max_players).to be 5
+    end
+    it 'cannot have a max number of players below 1' do
+      expect(build(:campaign, creator: account, max_players: 0).valid?).to be false
+    end
+    it 'cannot have a max number of players above 20' do
+      expect(build(:campaign, creator: account, max_players: 21).valid?).to be false
+    end
+    it 'cannot have a max_players attribute below the current number of invitations' do
+      campaign = build(:campaign, creator: account, max_players: 1)
+      acc_1 = create(:account, username: 'account1', email: 'acc1@test.fr')
+      acc_2 = create(:account, username: 'account2', email: 'acc2@test.fr')
+      inv_1 = create(:accepted_invitation, campaign: campaign, account: acc_1)
+      inv_2 = create(:accepted_invitation, campaign: campaign, account: acc_2)
+      expect(campaign.valid?).to be false
+    end
+  end
+
+  describe 'errors.messages' do
     it 'returns the right message if the title is not given' do
       invalid_campaign = build(:campaign, title: nil, creator: account)
       invalid_campaign.validate
@@ -66,6 +89,25 @@ RSpec.describe Arkaan::Campaign do
       invalid_campaign = build(:campaign, creator: account)
       invalid_campaign.validate
       expect(invalid_campaign.errors.messages[:title]).to eq(['uniq'])
+    end
+    it 'returns the right message if the max_players is below 1' do
+      invalid_campaign = build(:campaign, creator: account, max_players: 0)
+      invalid_campaign.validate
+      expect(invalid_campaign.errors.messages[:max_players]).to eq(['minimum'])
+    end
+    it 'returns the right message if the max_players is above 20' do
+      invalid_campaign = build(:campaign, creator: account, max_players: 21)
+      invalid_campaign.validate
+      expect(invalid_campaign.errors.messages[:max_players]).to eq(['maximum'])
+    end
+    it 'returns the right message if the max_players is below the current players count' do
+      invalid_campaign = build(:campaign, creator: account, max_players: 1)
+      acc_1 = create(:account, username: 'account1', email: 'acc1@test.fr')
+      acc_2 = create(:account, username: 'account2', email: 'acc2@test.fr')
+      inv_1 = create(:accepted_invitation, campaign: invalid_campaign, account: acc_1)
+      inv_2 = create(:accepted_invitation, campaign: invalid_campaign, account: acc_2)
+      invalid_campaign.validate
+      expect(invalid_campaign.errors.messages[:max_players]).to eq(['minimum'])
     end
   end
 end

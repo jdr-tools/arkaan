@@ -7,6 +7,7 @@ module Arkaan
       include Mongoid::Timestamps
       include Arkaan::Concerns::Activable
       include Arkaan::Concerns::Diagnosticable
+      include Arkaan::Concerns::Typable
 
       # @!attribute [rw] url
       #   @return [String] the URL of the gateway, where the requests will be issued.
@@ -20,11 +21,13 @@ module Arkaan
 
       scope :running , ->{ where(running: true) }
 
-      make_diagnosticable 'gateway'
-
       validates :url,
         presence: {message: 'required'},
-        format: {with: /\A(https?:\/\/)((localhost:[0-9]+)|(([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*))\/?\z/, message: 'pattern', if: :url?}
+        format: {
+          with: /\A(https?:\/\/)((localhost:[0-9]+)|(([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*)|(\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b):([0-9]{2,6}))\/?\z/,
+          message: 'pattern',
+          if: :url?
+        }
 
       validates :token,
         presence: {message: 'required'},
@@ -32,6 +35,3 @@ module Arkaan
     end
   end
 end
-
-
-

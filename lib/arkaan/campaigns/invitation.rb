@@ -9,7 +9,7 @@ module Arkaan
 
       # @!attribute [rw] status
       #   @return [Symbol] the current status of the invitation.
-      enum_field :status, [:accepted, :expelled, :ignored, :pending, :refused], default: :pending
+      enum_field :status, [:accepted, :blocked, :expelled, :ignored, :left, :pending, :refused, :request, :creator], default: :pending
 
       # @!attribute [rw] account
       #   @return [Arkaan::Account] the account the invitation has been issued to.
@@ -17,9 +17,10 @@ module Arkaan
       # @!attribute [rw] campaign
       #   @return [Arkaan::Campaign] the campaign the invitation has been made in.
       belongs_to :campaign, class_name: 'Arkaan::Campaign', inverse_of: :invitations
-      # @!attribute [rw] creator
-      #   @return [Arkaan::Account] the account creating the invitation.
-      belongs_to :creator, class_name: 'Arkaan::Account', inverse_of: :created_invitations
+
+      # @!attribute [rw] files
+      #   @return [Array<Arkaan::Campaigns::File>] the files uploaded in this campaign by the usere linked to this invitation.
+      has_many :permissions, class_name: 'Arkaan::Campaigns::File', inverse_of: :invitation
     end
   end
 end

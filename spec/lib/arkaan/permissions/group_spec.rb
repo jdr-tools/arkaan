@@ -25,4 +25,16 @@ RSpec.describe Arkaan::Permissions::Group do
       expect(create(:group_with_rights).rights.first.slug).to eq 'test_right'
     end
   end
+
+  describe :is_default do
+    it 'is not the default group if no value was given to is_default' do
+      expect(build(:group).is_default).to be false
+    end
+    it 'is not default if is_default was given to false' do
+      expect(build(:group, is_default: false).is_default).to be false
+    end
+    it 'is default if the value to is_default was given to true' do
+      expect(build(:group, is_default: true).is_default).to be true
+    end
+  end
 end

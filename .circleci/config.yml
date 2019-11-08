@@ -1,0 +1,17 @@
+version: 2.1
+
+orbs:
+  virtuaexecutors: virtuaorbs/executors@0.1.0
+  virtuacommands: virtuaorbs/commands@0.3.0
+
+jobs:
+  tests-job:
+    executor: virtuaexecutors/mongoruby_2-6-2
+    steps:
+      - virtuacommands/run-test-suites
+
+workflows:
+  version: 2.1
+  build:
+    jobs:
+      - tests-job

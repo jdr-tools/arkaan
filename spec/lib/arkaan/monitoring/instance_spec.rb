@@ -9,6 +9,9 @@ RSpec.describe Arkaan::Monitoring::Instance do
     it 'invalidates the service if the URL is given in a wrong format' do
       expect(build(:instance, url: 'test').valid?).to be false
     end
+    it 'validates localhost URLs' do
+      expect(build(:instance, url: 'http://localhost:3000/').valid?).to be true
+    end
   end
 
   describe :service do
@@ -75,6 +78,26 @@ RSpec.describe Arkaan::Monitoring::Instance do
       instance = build(:instance, url: 'test')
       instance.validate
       expect(instance.errors.messages[:url]).to eq ['pattern']
+    end
+  end
+
+  describe :actions do
+    let!(:service) { create(:service) }
+    let!(:instance) { create(:instance, service: service) }
+    let!(:account) { create(:account) }
+    let!(:action) { create(:action, instance: instance, user: account, type: :restart) }
+
+    it 'has an action' do
+      expect(instance.actions.count).to be 1
+    end
+    it 'has an action of the correct type' do
+      expect(action.type).to be :restart
+    end
+    it 'has an action from the correct user' do
+      expect(action.user.username).to eq 'Babausse'
+    end
+    it 'has an action on the correct instance' do
+      expect(action.instance.url).to eq 'https://test-service.com/'
     end
   end
 end

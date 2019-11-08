@@ -7,19 +7,15 @@ module Arkaan
 
       # Module holding the class methods for the classes including this concern.
       # @author Vincent Courtois <courtois.vincent@outlook.com>
-      module ClassMethods
-        # Add the field and its validations in the model including it.
-        # @param entity_type [String,Symbol] the name of the model including it, to be included in the error messages.
-        def make_diagnosticable(entity_type)
-          # @!attribute [rw] diagnostic
-          #   @return [String] the diagnostic URL to know the status of an entity (usually a gateway, or an instance of a service).
-          field :diagnostic, type: String, default: '/status'
+      included do
+        # @!attribute [rw] diagnostic
+        #   @return [String] the diagnostic URL to know the status of an entity (usually a gateway, or an instance of a service).
+        field :diagnostic, type: String, default: '/status'
 
-          validates :diagnostic,
-            presence: {message: "required"},
-            length: {minimum: 4, message: "minlength"},
-            format: {with: /\A(\/[a-z]+)+\z/, message: "pattern"}
-        end
+        validates :diagnostic,
+          presence: {message: "required"},
+          length: {minimum: 4, message: "minlength"},
+          format: {with: /\A(\/[a-z]+)+\z/, message: "pattern"}
       end
     end
   end

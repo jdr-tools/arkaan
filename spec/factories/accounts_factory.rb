@@ -6,7 +6,6 @@ FactoryGirl.define do
       firstname 'Vincent'
       lastname  'Courtois'
       email     'courtois.vincent@outlook.com'
-      birthdate DateTime.new(2000, 1, 1)
       password_confirmation 'password'
 
       factory :conflicting_email_account do
@@ -44,6 +43,12 @@ FactoryGirl.define do
       factory :account_with_sessions do
         after :create do |account, evaluator|
           create_list(:session, 1, account: account)
+        end
+      end
+
+      factory :account_with_websockets do
+        after :create do |account, evaluator|
+          create_list(:websocket, 1, creator: account)
         end
       end
     end

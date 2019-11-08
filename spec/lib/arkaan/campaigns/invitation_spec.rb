@@ -5,45 +5,51 @@ RSpec.describe Arkaan::Campaigns::Invitation do
 
   describe :campaign do
     it 'has a campaign set at creation' do
-      expect(build(:invitation, campaign: campaign, account: account, creator: other_account).campaign.title).to eq 'Test campaign'
+      expect(build(:invitation, campaign: campaign, account: account).campaign.title).to eq 'Test campaign'
     end
   end
 
   describe :status do
     describe 'accepted invitation' do
-      let!(:invitation) { create(:invitation, campaign: campaign, account: account, creator: other_account, status: :accepted) }
+      let!(:invitation) { create(:invitation, campaign: campaign, account: account, status: :accepted) }
       it 'Has the correct accepted status' do
         expect(invitation.status).to eq(:accepted)
       end
     end
     describe 'expelled invitation' do
-      let!(:invitation) { create(:invitation, campaign: campaign, account: account, creator: other_account, status: :expelled) }
+      let!(:invitation) { create(:invitation, campaign: campaign, account: account, status: :expelled) }
       it 'Has the correct expelled status' do
         expect(invitation.status).to eq(:expelled)
       end
     end
     describe 'ignored invitation' do
-      let!(:invitation) { create(:invitation, campaign: campaign, account: account, creator: other_account, status: :ignored) }
+      let!(:invitation) { create(:invitation, campaign: campaign, account: account, status: :ignored) }
       it 'Has the correct ignored status' do
         expect(invitation.status).to eq(:ignored)
       end
     end
     describe 'pending invitation' do
-      let!(:invitation) { create(:invitation, campaign: campaign, account: account, creator: other_account, status: :pending) }
+      let!(:invitation) { create(:invitation, campaign: campaign, account: account, status: :pending) }
       it 'Has the correct pending status' do
         expect(invitation.status).to eq(:pending)
       end
     end
     describe 'refused invitation' do
-      let!(:invitation) { create(:invitation, campaign: campaign, account: account, creator: other_account, status: :refused) }
+      let!(:invitation) { create(:invitation, campaign: campaign, account: account, status: :refused) }
       it 'Has the correct refused status' do
         expect(invitation.status).to eq(:refused)
+      end
+    end
+    describe 'unknown value' do
+      let!(:invitation) { create(:invitation, campaign: campaign, account: account, status: :anything_else) }
+      it 'Has the correct refused status' do
+        expect(invitation.status).to eq(:pending)
       end
     end
   end
 
   describe :status_accepted do
-    let!(:invitation) { create(:invitation, campaign: campaign, account: account, creator: other_account, status: :pending) }
+    let!(:invitation) { create(:invitation, campaign: campaign, account: account, status: :pending) }
 
     it 'Sets the status' do
       invitation.status_accepted!
@@ -56,7 +62,7 @@ RSpec.describe Arkaan::Campaigns::Invitation do
   end
 
   describe :status_expelled do
-    let!(:invitation) { create(:invitation, campaign: campaign, account: account, creator: other_account, status: :pending) }
+    let!(:invitation) { create(:invitation, campaign: campaign, account: account, status: :pending) }
 
     it 'Sets the status' do
       invitation.status_expelled!
@@ -69,7 +75,7 @@ RSpec.describe Arkaan::Campaigns::Invitation do
   end
 
   describe :status_ignored do
-    let!(:invitation) { create(:invitation, campaign: campaign, account: account, creator: other_account, status: :pending) }
+    let!(:invitation) { create(:invitation, campaign: campaign, account: account, status: :pending) }
 
     it 'Sets the status' do
       invitation.status_ignored!
@@ -82,7 +88,7 @@ RSpec.describe Arkaan::Campaigns::Invitation do
   end
 
   describe :status_pending do
-    let!(:invitation) { create(:invitation, campaign: campaign, account: account, creator: other_account, status: :accepted) }
+    let!(:invitation) { create(:invitation, campaign: campaign, account: account, status: :accepted) }
 
     it 'Sets the status' do
       invitation.status_pending!
@@ -95,7 +101,7 @@ RSpec.describe Arkaan::Campaigns::Invitation do
   end
 
   describe :status_refused do
-    let!(:invitation) { create(:invitation, campaign: campaign, account: account, creator: other_account, status: :pending) }
+    let!(:invitation) { create(:invitation, campaign: campaign, account: account, status: :pending) }
 
     it 'Sets the status' do
       invitation.status_refused!
@@ -109,7 +115,7 @@ RSpec.describe Arkaan::Campaigns::Invitation do
 
   describe :account do
     it 'has an account set at creation' do
-      expect(build(:invitation, campaign: campaign, account: account, creator: other_account).account.username).to eq 'Babausse'
+      expect(build(:invitation, campaign: campaign, account: account).account.username).to eq 'Babausse'
     end
   end
 end

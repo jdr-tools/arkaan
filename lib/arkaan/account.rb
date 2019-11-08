@@ -5,6 +5,7 @@ module Arkaan
     include Mongoid::Document
     include Mongoid::Timestamps
     include ActiveModel::SecurePassword
+    include Arkaan::Concerns::Enumerable
 
     # @!attribute [rw] username
     #   @return [String] the nickname the user chose at subscription, must be given, unique, and 6 or more characters long.
@@ -18,12 +19,15 @@ module Arkaan
     # @!attribute [rw] firstname
     #   @return [String] the first name of the user.
     field :firstname, type: String, default: ''
-    # @!attribute [rw] birthdate
-    #   @return [DateTime] the day of birth of the user, as an ISO-8601.
-    field :birthdate, type: DateTime
     # @!attribute [rw] email
     #   @return [String] the email address of the user, useful to contact them ; it must be given, unique, and have an email format.
     field :email, type: String
+    # @!attribute [rw] language
+    #   @return [Symbol] the language preferred by this user.
+    enum_field :language, [:en_GB, :fr_FR], default: :fr_FR
+    # @!attribute [rw] gender
+    #   @return [Symbol] the way you prefer the application to gender you.
+    enum_field :gender, [:female, :male, :neutral], default: :neutral
 
     # @!attribute [w] password
     #   @return [String] password, in clear, of the user ; do not attempt to get the value, just set it when changing the password.
@@ -47,15 +51,32 @@ module Arkaan
     # @!attribute [rw] sessions
     #   @return [Array<Arkaan::Authentication::Session>] the sessions on which this account is, or has been logged in.
     has_many :sessions, class_name: 'Arkaan::Authentication::Session', inverse_of: :account
-    # @!attribute [rw] campaigns
-    #   @return [Array<Arkaan::Campaign>] the campaigns this account has created.
-    has_many :campaigns, class_name: 'Arkaan::Campaign', inverse_of: :creator
     # @!attribute [rw] invitations
     #   @return [Array<Arkaan::Campaigns::Invitation>] the invitations in campaigns you have been issued.
     has_many :invitations, class_name: 'Arkaan::Campaigns::Invitation', inverse_of: :account
     # @!attribute [rw] invitations
     #   @return [Array<Arkaan::Campaigns::Invitation>] the invitations you've issued yourself to other players.
     has_many :created_invitations, class_name: 'Arkaan::Campaigns::Invitation', inverse_of: :creator
+    # @!attribute [rw] websockets
+    #   @return [Array<Arkaan::Monitoring::Websocket>] the websockets created by the owner of this account.
+    has_many :websockets, class_name: 'Arkaan::Monitoring::Websocket', inverse_of: :creator
+
+    # @!attribute [rw] phones
+    #   @return [Array<Arkaan::Phone>] the phone numbers given by the user.
+    embeds_many :phones, class_name: 'Arkaan::Phone', inverse_of: :account
+    # @!attribute [rw] notifications
+    #  @return [Array<Arkaan::Notification>] the notifications linked to this user.
+    embeds_many :notifications, class_name: 'Arkaan::Notification', inverse_of: :account
+
+    # @return [Array<Arkaan::Notification>] the unread notifications that should be displayed first for the user.
+    def unread_notifications
+      notifications.where(read: false)
+    end
+
+    # @return [Array<Arkaan::Notification>] the notifications already read, less important to display than the unread ones.
+    def read_notifications
+      notifications.where(read: true)
+    end
 
     validates :username,
       presence: {message: 'required'},

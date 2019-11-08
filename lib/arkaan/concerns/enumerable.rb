@@ -10,20 +10,22 @@ module Arkaan
       module ClassMethods
         
         # Creates the field with the given name, set of possible values, and options.
-        # @param name [String] the name of the enumerated field.
+        # @param field_name [String] the name of the enumerated field.
         # @param values [Array<Symbol>] the possible values of the enumerated field.
         # @param options [Hash<Symbol, Any>] the possible options for the field.
         def enum_field(field_name, values, options = {})
           field :"enum_#{field_name}", type: Symbol, default: options[:default]
 
-          validates :"enum_#{field_name}", inclusion: {in: values.map(&:to_sym), message: 'inclussion'}
+          validates :"enum_#{field_name}", inclusion: {in: values.map(&:to_sym), message: 'inclusion'}
 
           define_method field_name do
             return self["enum_#{field_name}"]
           end
 
           define_method "#{field_name}=" do |value|
-            self["enum_#{field_name}"] = value.to_sym
+            if values.include? value.to_sym
+              self["enum_#{field_name}"] = value.to_sym
+            end
           end
 
           values.map(&:to_sym).each do |value|
