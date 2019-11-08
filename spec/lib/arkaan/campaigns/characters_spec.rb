@@ -24,4 +24,18 @@ RSpec.describe Arkaan::Campaigns::Files::Character do
       expect(Arkaan::Campaigns::Files::Character.where(name: 'character.dnd4e').first.selected).to be false
     end
   end
+  describe :mime_type do
+    let!(:ruleset) { create(:ruleset, creator: account, mime_types: ['application/xml']) }
+    let!(:campaign) { create(:campaign, title: 'test campagne ruleset', ruleset: ruleset, creator: account) }
+    let!(:third_character) { build(:character, campaign: campaign, invitation: invitation, name: 'test.dnd4e') }
+
+    it 'does not validate the sheet if the MIME type is not the correct one' do
+      third_character.mime_type = 'text/plain'
+      expect(third_character.valid?).to be false
+    end
+    it 'validates the sheet if the MIME type is correctly set' do
+      third_character.mime_type = 'application/xml'
+      expect(third_character.valid?).to be true
+    end
+  end
 end

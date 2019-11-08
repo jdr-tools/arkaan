@@ -32,6 +32,10 @@ module Arkaan
     #   @return [Array<Arkaan::Campaigns::Messages::Base>] the messages sent in the chatroom of the campaign.
     embeds_many :messages, class_name: 'Arkaan::Campaigns::Message', inverse_of: :campaign
 
+    # @!attribute [rw] ruleset
+    #   @return [Arkaan::Ruleset] the set of rules this campaign is based upon.
+    belongs_to :ruleset, class_name: 'Arkaan::Ruleset', inverse_of: :campaigns, optional: true
+
     validates :title,
       presence: {message: 'required'},
       length: {minimum: 4, message: 'minlength', if: :title?}

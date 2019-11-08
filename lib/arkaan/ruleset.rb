@@ -11,9 +11,9 @@ module Arkaan
     # @!attribute [rw] description
     #   @return [String] the complete description of the rule set to quickly have informations on its content.
     field :description, type: String
-    # @!attributes [rw] extensions
-    #   @return [Array<String>] a list of extensions accepted as character sheets extensions.
-    field :extensions, type: Array, default: []
+    # @!attribute [rw] mime_types
+    #   @return [Array<String>] a list of MIME types accepted as character sheets MIME types.
+    field :mime_types, type: Array, default: []
 
     # @!attribute [rw] creator
     #   @return [Arkaan::Account] the account of the user creating this ruleset.
@@ -21,6 +21,9 @@ module Arkaan
     # @!attribute [rw] blueprints
     #   @return [Arr  ay<Arkaan::Rulesets::Blueprint>] the blueprints created inside this ruleset, see the class itself to know what it is.
     has_many :blueprints, class_name: 'Arkaan::Rulesets::Blueprint', inverse_of: :ruleset
+    # @!attribute [rw] campaigns
+    #   @return [Array<Arkaan::Campaign>] the campaigns using this set of rules.
+    has_many :campaigns, class_name: 'Arkaan::Campaign', inverse_of: :ruleset
 
     validates :name,
       presence: {message: 'required'},

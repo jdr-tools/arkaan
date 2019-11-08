@@ -1,5 +1,6 @@
 FactoryGirl.define do
   factory :empty_character, class: Arkaan::Campaigns::Files::Character do
+    mime_type 'application/xml'
     factory :character do
       name 'character.dnd4e'
     end
