@@ -11,12 +11,15 @@ module Arkaan
     # @!attribute [rw] description
     #   @return [String] the complete description of the rule set to quickly have informations on its content.
     field :description, type: String
+    # @!attributes [rw] extensions
+    #   @return [Array<String>] a list of extensions accepted as character sheets extensions.
+    field :extensions, type: Array, default: []
 
     # @!attribute [rw] creator
     #   @return [Arkaan::Account] the account of the user creating this ruleset.
     belongs_to :creator, class_name: 'Arkaan::Account', inverse_of: :rulesets
     # @!attribute [rw] blueprints
-    #   @return [Array<Arkaan::Rulesets::Blueprint>] the blueprints created inside this ruleset, see the class itself to know what it is.
+    #   @return [Arr  ay<Arkaan::Rulesets::Blueprint>] the blueprints created inside this ruleset, see the class itself to know what it is.
     has_many :blueprints, class_name: 'Arkaan::Rulesets::Blueprint', inverse_of: :ruleset
 
     validates :name,
