@@ -88,7 +88,7 @@ GEM
     multi_json (1.13.1)
     multipart-post (2.1.1)
     mustermann (1.0.3)
-    nokogiri (1.10.3)
+    nokogiri (1.10.4)
       mini_portile2 (~> 2.4.0)
     platform-api (2.1.0)
       heroics (~> 0.0.23)
