@@ -19,8 +19,17 @@ module Arkaan
       belongs_to :campaign, class_name: 'Arkaan::Campaign', inverse_of: :invitations
 
       # @!attribute [rw] files
-      #   @return [Array<Arkaan::Campaigns::File>] the files uploaded in this campaign by the usere linked to this invitation.
-      has_many :permissions, class_name: 'Arkaan::Campaigns::File', inverse_of: :invitation
+      #   @return [Array<Arkaan::Campaigns::Files::Document>] the files uploaded in this campaign by the user linked to this invitation.
+      has_many :permissions, class_name: 'Arkaan::Campaigns::Files::Document', inverse_of: :invitation
+      # @!attribute [rw] characters
+      #   @return [Array<Arkaan::Campaigns::Files::Character>] the character sheets for this player.
+      has_many :characters, class_name: 'Arkaan::Campaigns::Files::Character', inverse_of: :invitation
+
+      # Gets the currently selected character in a convenient way.
+      # @return [Arkaan::Campaigns::Files::Character] the character currently selected by the player.
+      def character
+        characters.where(selected: true).first
+      end
     end
   end
 end
