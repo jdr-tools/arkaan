@@ -12,9 +12,13 @@ module Arkaan
         #   @return [String] the name of the category you're creating.
         field :name, type: String, default: ''
 
+        # @!attribute [rw] sheet
+        #   @return [Arkaan::Rulesets::Sheet] the sheet template the category is embedded in; 
+        embedded_in :sheet, class_name: 'Arkaan::Rulesets::Sheet', inverse_of: :categories
+
         # @!attribute [rw] attributes
         #   @return [Array<Arkaan::Rulesets::Sheets::Attribute>] the attributes linked to this category.
-        embeds_many :attributes, class_name: 'Arkaan::Rulesets::Sheets::Attribute', inverse_of: :category
+        embeds_many :attrs, class_name: 'Arkaan::Rulesets::Sheets::Attribute', inverse_of: :category
       end
     end
   end

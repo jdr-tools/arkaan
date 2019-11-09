@@ -4,6 +4,7 @@ module Arkaan
       class Attribute
         include Mongoid::Document
         include Mongoid::Timestamps
+        include Arkaan::Concerns::Enumerable
 
         # @!attribute [rw] name
         #   @return [String] the name of the attribute in the character sheet.
@@ -19,7 +20,20 @@ module Arkaan
 
         # @!attribute [rw] category
         #   @return [Arkaan::Rulesets::Sheets::Category] the category the attribute is in.
-        embedded_in :category, class_name: 'Arkaan::Rulesets::Sheets::Category', inverse_of: :attributes
+        embedded_in :category, class_name: 'Arkaan::Rulesets::Sheets::Category', inverse_of: :attrs
+
+        validates :name,
+          presence: {message: 'required'},
+          format: {with: /\A[a-zA-Z_]*\z/, message: 'pattern', if: :name?}
+
+        validate :name_unicity
+        
+        def name_unicity
+          has_duplicate = category.attrs.where(:_id.ne => _id, name: name).exists?
+          if name? && category && has_duplicate
+            errors.add(:name, 'uniq')
+          end
+        end
       end
     end
   end
