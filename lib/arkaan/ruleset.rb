@@ -24,6 +24,9 @@ module Arkaan
     # @!attribute [rw] campaigns
     #   @return [Array<Arkaan::Campaign>] the campaigns using this set of rules.
     has_many :campaigns, class_name: 'Arkaan::Campaign', inverse_of: :ruleset
+    # @!attribute [rw] sheet
+    #   @return [Arkaan::Rulesets::Sheet] the character sheet template for this set of rules.
+    has_one :sheet, class_name: 'Arkaan::Rulesets::Sheet', inverse_of: :ruleset
 
     validates :name,
       presence: {message: 'required'},

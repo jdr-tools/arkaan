@@ -7,5 +7,7 @@ module Arkaan
     autoload :Fields   , 'arkaan/rulesets/fields'
     autoload :Gauge    , 'arkaan/rulesets/gauge'
     autoload :Integer  , 'arkaan/rulesets/integer'
+    autoload :Sheet    , 'arkaan/rulesets/sheet'
+    autoload :Sheets   , 'arkaan/rulesets/sheets'
   end
 end
