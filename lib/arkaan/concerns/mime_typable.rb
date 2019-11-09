@@ -23,7 +23,13 @@ module Arkaan
           # Validates the validity of the MIME type by checking if it respects any of the given mime types.
           # If it does not respect any MIME types possible, it adds an error to the mime_type field and invalidates.
           define_method :mime_type_validity do
-            values.each do |type|
+            checked_types = if values.is_a? Symbol
+              self.send(values) rescue []
+            else
+              values
+            end
+            return true if checked_types.empty?
+            checked_types.each do |type|
               type_regex = ::Regexp.new("^#{type.sub(/\*/, '(.+)')}$")
               return true if !type_regex.match(mime_type).nil?
             end

@@ -1,4 +1,4 @@
-RSpec.describe Arkaan::Campaigns::Note do
+RSpec.describe Arkaan::Campaigns::Files::Note do
   let!(:account) { create(:account) }
   let!(:campaign) { create(:campaign, creator: account) }
 

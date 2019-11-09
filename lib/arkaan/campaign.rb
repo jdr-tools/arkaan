@@ -25,12 +25,16 @@ module Arkaan
     #   @return [Array<Arkaan::Campaigns::Invitation>] the invitations to players that have been made for this campaign.
     has_many :invitations, class_name: 'Arkaan::Campaigns::Invitation', inverse_of: :campaign
     # @!attribute [rw] files
-    #   @return [Array<Arkaan::Campaigns::File>] the list of files that were uploaded in this campaign.
-    has_many :files, class_name: 'Arkaan::Campaigns::File', inverse_of: :campaign
+    #   @return [Array<Arkaan::Campaigns::Files::Document>] the list of files that were uploaded in this campaign.
+    has_many :files, class_name: 'Arkaan::Campaigns::Files::Document', inverse_of: :campaign
 
     # @!attribute [rw] messages
     #   @return [Array<Arkaan::Campaigns::Messages::Base>] the messages sent in the chatroom of the campaign.
     embeds_many :messages, class_name: 'Arkaan::Campaigns::Message', inverse_of: :campaign
+
+    # @!attribute [rw] ruleset
+    #   @return [Arkaan::Ruleset] the set of rules this campaign is based upon.
+    belongs_to :ruleset, class_name: 'Arkaan::Ruleset', inverse_of: :campaigns, optional: true
 
     validates :title,
       presence: {message: 'required'},
