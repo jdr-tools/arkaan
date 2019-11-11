@@ -204,8 +204,10 @@ module Arkaan
           handle_arkaan_exception(exception)
         end
 
-        error StandardError do |exception|
-          custom_error(500, 'system_error.unknown_field.unknown_error')
+        if ENV['RACK_ENV'] != 'test'
+          error StandardError do |exception|
+            custom_error(500, 'system_error.unknown_field.unknown_error')
+          end
         end
       end
     end
