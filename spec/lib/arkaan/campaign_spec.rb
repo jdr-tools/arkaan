@@ -73,6 +73,39 @@ RSpec.describe Arkaan::Campaign do
     end
   end
 
+  describe 'pseudo relations' do
+    let!(:campaign) { create(:campaign, creator: account) }
+    let!(:michel) { create(:account, username: 'Michel', email: 'michel@mail.com') }
+    let!(:invitation) { create(:invitation, enum_status: :accepted, campaign: campaign, account: michel)}
+
+    describe :characters do
+      let!(:character) { create(:character, invitation: invitation) }
+      it 'Returns the correct number of characters' do
+        expect(campaign.characters.count).to be 1
+      end
+      it 'Returns the correct characters' do
+        expect(campaign.characters.first.name).to eq 'character.dnd4e'
+      end
+      it 'Returns an empty list if there are no characters' do
+        expect(build(:campaign, creator: account).characters).to eq []
+      end
+    end
+
+    describe :documents do
+      let!(:document) { create(:document) }
+      let!(:permission) { create(:file_permission, document: document, invitation: invitation) }
+      it 'Returns the correct number of documents' do
+        expect(campaign.documents.count).to be 1
+      end
+      it 'Returns the correct documents' do
+        expect(campaign.documents.first.name).to eq 'file.txt'
+      end
+      it 'Returns an empty list if there are no documents' do
+        expect(build(:campaign, creator: account).documents).to eq []
+      end
+    end
+  end
+
   describe 'errors.messages' do
     it 'returns the right message if the title is not given' do
       invalid_campaign = build(:campaign, title: nil, creator: account)

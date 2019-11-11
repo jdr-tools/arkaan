@@ -72,14 +72,33 @@ module Arkaan
       end
     end
 
+    # Validation for the max number of players for a campaign.
+    # If there is a max number of players, and the current number of
+    # players is above it, or the max number of players is 0, raises an error.
     def max_players_minimum
       if max_players? && (max_players < players_count || max_players < 1)
         errors.add(:max_players, 'minimum')
       end
     end
 
+    # @return [Array<Arkaan::Campaigns::Invitation>] the players in this campaign.
+    def players
+      invitations.where(enum_status: :accepted)
+    end
+
+    # @return [Integer] the number of players in this campaign.
     def players_count
-      invitations.where(enum_status: :accepted).count
+      players.count
+    end
+
+    # @return [Array<Arkaan::Campaigns::Character>] a flattened list of characters for this campaign.
+    def characters
+      players.map(&:characters).flatten
+    end
+
+    # @return [Array<Arkaan::Campaigns::Files::Document>] the document of this campaign as a flattened array.
+    def documents
+      invitations.map(&:documents).flatten
     end
   end
 end
