@@ -5,16 +5,16 @@ module Arkaan
     class Character
       include Mongoid::Document
       include Mongoid::Timestamps
-      include Arkaan::Concerns::MimeTypable
-      include Arkaan::Campaigns::Files::Concerns::Nameable
 
       # @!attribute [rw] selected
       #   @return [Boolean] TRUE if the sheet is currently selected by the player, FALSE otherwise.
       field :selected, type: Boolean, default: false
-      # @!attribute [rw] mime_type
-      #   @return [String] the mime_type of the character sheet, MUST be an authorized MIME type for
-      #     the ruleset the campaign is set to be in.
-      mime_type :available_mime_types
+      
+      # @!attribute [rw] data
+      #   @return [Hash] the heart of the Arkaan::Campaigns::Character class, the polymorphic
+      #     data representing all the fields of a character sheet are validated using the validator
+      #     of the associated plugin, and created/updated with the corresponding form.
+      field :data, type: Hash, default: {}
 
       # @!attribute [rw] invitation
       #   @return [Arkaan::Campaigns::Invitation] the invitation of the player playing this character.
@@ -24,13 +24,6 @@ module Arkaan
       # @return [Arkaan::Account] the account of the player incarnating this character.
       def player
         invitation.account
-      end
-
-      # Method used to dinamically determine what MIME types are allowed for this character sheet
-      # If the campaign this character is in has no ruleset, every MIME type is allowed.
-      # @return [Array<String>] the available MIME type for the campaign linked to this character.
-      def available_mime_types
-        invitation.campaign.ruleset.mime_types
       end
 
       def campaign

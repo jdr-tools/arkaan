@@ -84,7 +84,7 @@ RSpec.describe Arkaan::Campaign do
         expect(campaign.characters.count).to be 1
       end
       it 'Returns the correct characters' do
-        expect(campaign.characters.first.name).to eq 'character.dnd4e'
+        expect(campaign.characters.first.id).to eq character.id
       end
       it 'Returns an empty list if there are no characters' do
         expect(build(:campaign, creator: account).characters).to eq []
