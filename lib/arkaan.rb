@@ -17,7 +17,6 @@ module Arkaan
   autoload :Campaign      , 'arkaan/campaign'
   autoload :Campaigns     , 'arkaan/campaigns'
   autoload :Concerns      , 'arkaan/concerns'
-  autoload :Decorators    , 'arkaan/decorators'
   autoload :Factories     , 'arkaan/factories'
   autoload :Monitoring    , 'arkaan/monitoring'
   autoload :Notification  , 'arkaan/notification'
@@ -25,5 +24,4 @@ module Arkaan
   autoload :Permissions   , 'arkaan/permissions'
   autoload :Phone         , 'arkaan/phone'
   autoload :Ruleset       , 'arkaan/ruleset'
-  autoload :Utils         , 'arkaan/utils'
 end
