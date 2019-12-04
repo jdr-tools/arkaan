@@ -18,15 +18,9 @@ module Arkaan
     # @!attribute [rw] creator
     #   @return [Arkaan::Account] the account of the user creating this ruleset.
     belongs_to :creator, class_name: 'Arkaan::Account', inverse_of: :rulesets
-    # @!attribute [rw] blueprints
-    #   @return [Arr  ay<Arkaan::Rulesets::Blueprint>] the blueprints created inside this ruleset, see the class itself to know what it is.
-    has_many :blueprints, class_name: 'Arkaan::Rulesets::Blueprint', inverse_of: :ruleset
     # @!attribute [rw] campaigns
     #   @return [Array<Arkaan::Campaign>] the campaigns using this set of rules.
     has_many :campaigns, class_name: 'Arkaan::Campaign', inverse_of: :ruleset
-    # @!attribute [rw] sheet
-    #   @return [Arkaan::Rulesets::Sheet] the character sheet template for this set of rules.
-    has_one :sheet, class_name: 'Arkaan::Rulesets::Sheet', inverse_of: :ruleset
 
     validates :name,
       presence: {message: 'required'},
