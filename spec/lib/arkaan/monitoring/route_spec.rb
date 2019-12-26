@@ -17,6 +17,16 @@ RSpec.describe Arkaan::Monitoring::Route do
     end
   end
 
+  describe :complete_path do
+    let!(:service) { build(:service, path: '/test', key: 'test') }
+    it 'has a complete path taking the service path in consideration' do
+      expect(build(:route, path: '/truc', service: service).complete_path).to eq '/test/truc'
+    end
+    it 'returns the correct complete path for the root path' do
+      expect(build(:route, path: '/', service: service).complete_path).to eq '/test'
+    end
+  end
+
   describe :premium do
     it 'gives a default value to the premium flag' do
       expect(build(:empty_route).premium).to be false

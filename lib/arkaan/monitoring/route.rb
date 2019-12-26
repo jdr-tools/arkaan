@@ -31,6 +31,12 @@ module Arkaan
 
       validates :verb,
         inclusion: {message: 'unknown', in: ['get', 'post', 'put', 'delete', 'patch', 'option']}
+
+      # Returns the complete path, enriched with the path of the service.
+      # @return [String] the complete path to access this route from the outside.
+      def complete_path
+        path == '/' ? service.path : "#{service.path}#{path}"
+      end
     end
   end
 end
