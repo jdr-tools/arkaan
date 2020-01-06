@@ -18,6 +18,7 @@ module Arkaan
   autoload :Campaigns     , 'arkaan/campaigns'
   autoload :Concerns      , 'arkaan/concerns'
   autoload :Factories     , 'arkaan/factories'
+  autoload :Files         , 'arkaan/files'
   autoload :Monitoring    , 'arkaan/monitoring'
   autoload :Notification  , 'arkaan/notification'
   autoload :OAuth         , 'arkaan/oauth'

@@ -11,6 +11,7 @@ Bundler.setup
 
 require "rspec/json_expectations"
 require 'factory_girl'
+require 'faker'
 require 'rack/test'
 require 'database_cleaner'
 require 'arkaan'
