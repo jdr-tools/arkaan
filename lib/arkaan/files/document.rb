@@ -26,6 +26,10 @@ module Arkaan
       #   @return [Arkaan::Account] the account of the person that uploaded the file.
       belongs_to :creator, class_name: 'Arkaan::Account', inverse_of: :files
 
+      # @!attribute [rw] permissions
+      #   @return [Array<Arkaan::Files::Permission>] the permissions granted to access this file.
+      has_many :permissions, class_name: 'Arkaan::Files::Permission', inverse_of: :file
+
       validates :name, uniqueness: {message: 'uniq'}
 
       validates :name, :extension, :folder, :mime_type, presence: {message: 'required'}

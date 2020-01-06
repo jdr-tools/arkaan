@@ -24,6 +24,9 @@ module Arkaan
     # @!attribute [rw] invitations
     #   @return [Array<Arkaan::Campaigns::Invitation>] the invitations to players that have been made for this campaign.
     has_many :invitations, class_name: 'Arkaan::Campaigns::Invitation', inverse_of: :campaign
+    # @!attribute [rw] files
+    #   @return [Array<Arkaan::Files::Document>] the files uploaded in this campaign.
+    has_many :files, class_name: 'Arkaan::Files::Document'
 
     # @!attribute [rw] messages
     #   @return [Array<Arkaan::Campaigns::Messages::Base>] the messages sent in the chatroom of the campaign.
