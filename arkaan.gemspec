@@ -22,7 +22,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'simplecov'              , '0.15.1'
   spec.add_development_dependency 'yard'                   , '0.9.20'
   spec.add_development_dependency 'pry'                    , '0.11.1'
-  spec.add_development_dependency 'rack'                   , '2.0.7'
+  spec.add_development_dependency 'rack'                   , '2.0.8'
   spec.add_development_dependency 'faker'                  , '2.10.0'
 
   spec.add_runtime_dependency 'mongoid'        , '7.0.1'
