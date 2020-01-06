@@ -60,6 +60,9 @@ module Arkaan
     # @!attribute [rw] websockets
     #   @return [Array<Arkaan::Monitoring::Websocket>] the websockets created by the owner of this account.
     has_many :websockets, class_name: 'Arkaan::Monitoring::Websocket', inverse_of: :creator
+    # @!attribute [rw] permissions
+    #   @return [Array<Arkaan::Files::Permission>] the file access permissions granted to this account.
+    has_many :permissions, class_name: 'Arkaan::Files::Permission', inverse_of: :account
 
     # @!attribute [rw] notifications
     #  @return [Array<Arkaan::Notification>] the notifications linked to this user.

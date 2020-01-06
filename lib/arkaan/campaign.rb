@@ -25,8 +25,8 @@ module Arkaan
     #   @return [Array<Arkaan::Campaigns::Invitation>] the invitations to players that have been made for this campaign.
     has_many :invitations, class_name: 'Arkaan::Campaigns::Invitation', inverse_of: :campaign
     # @!attribute [rw] files
-    #   @return [Array<Arkaan::Campaigns::Files::Document>] the list of files that were uploaded in this campaign.
-    has_many :files, class_name: 'Arkaan::Campaigns::Files::Document', inverse_of: :campaign
+    #   @return [Array<Arkaan::Files::Document>] the files uploaded in this campaign.
+    has_many :files, class_name: 'Arkaan::Files::Document'
 
     # @!attribute [rw] messages
     #   @return [Array<Arkaan::Campaigns::Messages::Base>] the messages sent in the chatroom of the campaign.
@@ -89,16 +89,6 @@ module Arkaan
     # @return [Integer] the number of players in this campaign.
     def players_count
       players.count
-    end
-
-    # @return [Array<Arkaan::Campaigns::Character>] a flattened list of characters for this campaign.
-    def characters
-      players.map(&:characters).flatten
-    end
-
-    # @return [Array<Arkaan::Campaigns::Files::Document>] the document of this campaign as a flattened array.
-    def documents
-      invitations.map(&:documents).flatten
     end
   end
 end
