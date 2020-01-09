@@ -30,11 +30,21 @@ module Arkaan
       #   @return [Array<Arkaan::Files::Permission>] the permissions granted to access this file.
       has_many :permissions, class_name: 'Arkaan::Files::Permission', inverse_of: :file
 
-      validates :name, uniqueness: {message: 'uniq'}
-
       validates :name, :extension, :folder, :mime_type, presence: {message: 'required'}
 
       validates :folder, format: {without: /\/\//, message: 'format'}
+
+      validate :filename_unicity
+
+      def filename_unicity
+        existing = Arkaan::Files::Document.where(
+          name: name,
+          folder: folder,
+          extension: extension,
+          :id.ne => id
+        )
+        errors.add(:name, 'uniq') unless existing.first.nil?
+      end
     end
   end
 end
