@@ -12,9 +12,21 @@ RSpec.describe Arkaan::Files::Document do
     it 'invalidates the file if the name is not given' do
       expect(build(:file, creator: babausse, name: nil).valid?).to be false
     end
-    it 'invalidates the file if the name is already taken' do
-      create(:file, name: 'test_name', creator: babausse)
-      expect(build(:file, creator: babausse, name: 'test_name').valid?).to be false
+    it 'invalidates the file if the name is already taken with base folder' do
+      create(:file, name: 'test_name', extension: 'txt', creator: babausse)
+      expect(build(:file, creator: babausse, name: 'test_name', extension: 'txt').valid?).to be false
+    end
+    it 'invalidates the file if name, folder, and extension are taken' do
+      create(:file, name: 'test_name', extension: 'txt', folder: '/test', creator: babausse)
+      expect(build(:file, creator: babausse, name: 'test_name', extension: 'txt', folder: '/test').valid?).to be false
+    end
+    it 'validates the same filename if the folder is différent' do
+      create(:file, name: 'test_name', extension: 'txt', folder: '/test', creator: babausse)
+      expect(build(:file, creator: babausse, name: 'test_name', extension: 'txt', folder: '/other').valid?).to be true
+    end
+    it 'validates the same filename if the extension is different' do
+      create(:file, name: 'test_name', extension: 'txt', folder: '/test', creator: babausse)
+      expect(build(:file, creator: babausse, name: 'test_name', extension: 'png', folder: '/test').valid?).to be true
     end
   end
 
@@ -78,8 +90,8 @@ RSpec.describe Arkaan::Files::Document do
       expect(file.errors.messages[:name]).to eq ['required']
     end
     it 'name already taken' do
-      create(:file, creator: babausse, name: 'test_name')
-      (file = build(:file, creator: babausse, name: 'test_name')).validate
+      create(:file, creator: babausse, name: 'test_name', extension: 'txt')
+      (file = build(:file, creator: babausse, name: 'test_name', extension: 'txt')).validate
       expect(file.errors.messages[:name]).to eq ['uniq']
     end
     it 'extension not given' do
