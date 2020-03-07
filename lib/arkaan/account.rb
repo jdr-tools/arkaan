@@ -63,7 +63,8 @@ module Arkaan
     # @!attribute [rw] permissions
     #   @return [Array<Arkaan::Files::Permission>] the file access permissions granted to this account.
     has_many :permissions, class_name: 'Arkaan::Files::Permission', inverse_of: :account
-
+    # @!attribute [rw] messages
+    #   @return [Array<Arkaan::Chatrooms::Messages>] all the messages ever sent by the user.
     has_many :messages, class_name: 'Arkaan::Chatrooms::Message', inverse_of: :account
 
     # @!attribute [rw] notifications
