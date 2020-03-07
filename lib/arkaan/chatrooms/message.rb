@@ -1,5 +1,5 @@
 module Arkaan
-  module Campaigns
+  module Chatrooms
     # This model represents an in-game tchat message sent in the tchat of a campaign.
     # @author Vincent Courtois <courtois.vincent@outlook.com>
     class Message
@@ -18,11 +18,11 @@ module Arkaan
       field :deleted, type: Boolean, default: false
 
       # @!attribute [rw] campaign
-      #   @return [Arkaan::Campaign] the campaign in which the message has been emitted.
-      embedded_in :campaign, class_name: 'Arkaan::Campaign', inverse_of: :messages
+      #   @return [Arkaan::Chatrooms::Campaign] the chatroom in which the message has been emitted.
+      belongs_to :chatroom, class_name: 'Arkaan::Chatrooms::Campaign', inverse_of: :messages
       # @!attribute [rw] player
       #   @return [Arkaan::Account] the account that has emitted the message in the campaign.
-      belongs_to :player, class_name: 'Arkaan::Campaigns::Invitation'
+      belongs_to :account, class_name: 'Arkaan::Account', inverse_of: :messages
     end
   end
 end

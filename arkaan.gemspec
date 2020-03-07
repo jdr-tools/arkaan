@@ -29,11 +29,5 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency 'activemodel'    , '5.2.3'
   spec.add_runtime_dependency 'activesupport'  , '5.2.3'
   spec.add_runtime_dependency 'bcrypt'         , '3.1.11'
-  spec.add_runtime_dependency 'sinatra'        , '2.0.5'
-  spec.add_runtime_dependency 'sinatra-contrib', '2.0.5'
-  spec.add_runtime_dependency 'platform-api'   , '2.1.0'
-  spec.add_runtime_dependency 'faraday'        , '0.15.2'
-  spec.add_runtime_dependency 'draper'         , '3.1.0'
-  spec.add_runtime_dependency 'actionview'     , '5.2.3'
   spec.add_runtime_dependency 'dotenv'         , '2.7.2'
 end
