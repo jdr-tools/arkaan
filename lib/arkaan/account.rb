@@ -67,6 +67,8 @@ module Arkaan
     #   @return [Array<Arkaan::Chatrooms::Messages>] all the messages ever sent by the user.
     has_many :messages, class_name: 'Arkaan::Chatrooms::Message', inverse_of: :account
 
+    has_many :memberships, class_name: 'Arkaan::Chatrooms::Membership', inverse_of: :account
+
     # @!attribute [rw] notifications
     #  @return [Array<Arkaan::Notification>] the notifications linked to this user.
     embeds_many :notifications, class_name: 'Arkaan::Notification', inverse_of: :account

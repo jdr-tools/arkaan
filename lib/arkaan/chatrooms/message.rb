@@ -13,6 +13,9 @@ module Arkaan
       # @!attribute [rw] data
       #   @return [Hash] the additional data passed to the message (arguments of the command, or content of the text)
       field :data, type: Hash, default: {}
+      # @!attribute {rw} raw
+      #   @return [String] the content as typed by the user, without any parsing or transformation.
+      field :raw, type: String, default: ''
       # @!attribute [rw] deleted
       #   @return [Boolean] TRUE if the message has been marked as deleted by its user, FALSE otherwise.
       field :deleted, type: Boolean, default: false
