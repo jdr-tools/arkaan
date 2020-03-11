@@ -1,10 +1,11 @@
-RSpec.describe Arkaan::Campaigns::Message do
+RSpec.describe Arkaan::Chatrooms::Message do
 
   let!(:account) { create(:account) }
   let!(:campaign) { create(:campaign, creator: account) }
+  let!(:chatroom) { campaign.chatroom }
 
   describe 'text message' do
-    let!(:message) { create(:text_message, player: campaign.invitations.first, campaign: campaign) }
+    let!(:message) { create(:text_message, account: account, chatroom: chatroom) }
 
     describe 'message attributes' do
       let!(:parsed_message) { campaign.messages.first }
@@ -15,9 +16,9 @@ RSpec.describe Arkaan::Campaigns::Message do
         end
       end
 
-      describe :player do
-        it 'has the correct player' do
-          expect(parsed_message.player.account.username).to eq account.username
+      describe :account do
+        it 'has the correct account' do
+          expect(parsed_message.account.username).to eq account.username
         end
       end
 
@@ -26,7 +27,7 @@ RSpec.describe Arkaan::Campaigns::Message do
           expect(parsed_message.deleted).to be false
         end
         it 'has the correct value when given to true' do
-          deleted_message = create(:text_message, player: campaign.invitations.first, campaign: campaign, deleted: true)
+          deleted_message = create(:text_message, account: account, chatroom: chatroom, deleted: true)
           expect(deleted_message.deleted).to be true
         end
       end
@@ -35,7 +36,7 @@ RSpec.describe Arkaan::Campaigns::Message do
 
   describe 'command message' do
     describe 'dice roll command' do
-      let!(:message) { create(:diceroll, player: campaign.invitations.first, campaign: campaign) }
+      let!(:message) { create(:diceroll, account: account, chatroom: chatroom) }
 
       describe 'message attributes' do
         let!(:parsed_message) { campaign.messages.first }
@@ -64,9 +65,9 @@ RSpec.describe Arkaan::Campaigns::Message do
           end
         end
 
-        describe :player do
-          it 'has the correct player' do
-            expect(parsed_message.player.account.username).to eq account.username
+        describe :account do
+          it 'has the correct account' do
+            expect(parsed_message.account.username).to eq account.username
           end
         end
       end

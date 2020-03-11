@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :empty_text_message, class: Arkaan::Campaigns::Message do
+  factory :empty_text_message, class: Arkaan::Chatrooms::Message do
     factory :text_message do
       type :text
       data({content: 'test'})
