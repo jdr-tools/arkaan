@@ -1,5 +1,4 @@
 .yardoc/
 coverage/
 Gemfile.lock
-docs/
 *.gem
