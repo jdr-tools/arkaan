@@ -28,9 +28,9 @@ module Arkaan
     #   @return [Array<Arkaan::Files::Document>] the files uploaded in this campaign.
     has_many :files, class_name: 'Arkaan::Files::Document'
 
-    # @!attribute [rw] messages
-    #   @return [Array<Arkaan::Campaigns::Messages::Base>] the messages sent in the chatroom of the campaign.
-    embeds_many :messages, class_name: 'Arkaan::Campaigns::Message', inverse_of: :campaign
+    # @!attribute [rw] chatroom
+    #   @return [Arkaan::Chatrooms::Campaign] the chatroom linked to this campaign.
+    embeds_one :chatroom, class_name: 'Arkaan::Chatrooms::Campaign', inverse_of: :campaign
 
     # @!attribute [rw] ruleset
     #   @return [Arkaan::Ruleset] the set of rules this campaign is based upon.
@@ -89,6 +89,14 @@ module Arkaan
     # @return [Integer] the number of players in this campaign.
     def players_count
       players.count
+    end
+
+    def messages
+      chatroom.messages
+    end
+
+    after_initialize do
+      self.chatroom = Arkaan::Chatrooms::Campaign.new(campaign: self)
     end
   end
 end
