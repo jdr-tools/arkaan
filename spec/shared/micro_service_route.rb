@@ -6,7 +6,7 @@ RSpec.shared_examples 'micro_service route' do |basepath:, verb:, expected_statu
 
   describe 'Nominal case' do
     before do
-      make_request(verb, basepath, {app_key: 'test_key', token: 'test_token'})
+      make_request(verb, basepath, {app_key: 'test_key'})
     end
     it 'correctly calls the route when all parameters are rightly given' do
       expect(last_response.status).to be expected_status
@@ -16,22 +16,6 @@ RSpec.shared_examples 'micro_service route' do |basepath:, verb:, expected_statu
     end
   end
   describe 'Bad request errors' do
-    describe 'No gateway token error' do
-      before do
-        make_request(verb, basepath, {app_key: 'test_key'})
-      end
-      it 'Returns a Bad Request (400) error if the gateway token is not given' do
-        expect(last_response.status).to be 400
-      end
-      it 'Returns the right error message if the gateway token is not given' do
-        expect(JSON.parse(last_response.body)).to eq({
-          'status' => 400,
-          'field' => 'token',
-          'error' => 'required',
-          'docs' => 'https://github.com/jdr-tools/wiki/wiki/Common-errors#gateway-token-not-given'
-        })
-      end
-    end
     describe 'No application key error' do
       before do
         make_request(verb, basepath, {token: 'test_token'})
@@ -69,22 +53,6 @@ RSpec.shared_examples 'micro_service route' do |basepath:, verb:, expected_statu
     end
   end
   describe 'Not found errors' do
-    describe 'Gateway not found error' do
-      before do
-        make_request(verb, basepath, {app_key: 'other_key', token: 'wrong_token'})
-      end
-      it 'Returns a Not Found (404) error if the gateway does not exist' do
-        expect(last_response.status).to be 404
-      end
-      it 'Returns the right error message if the gateway does not exist' do
-        expect(JSON.parse(last_response.body)).to eq({
-          'status' => 404,
-          'field' => 'token',
-          'error' => 'unknown',
-          'docs' => 'https://github.com/jdr-tools/wiki/wiki/Common-errors#gateway-token-not-found'
-        })
-      end
-    end
     describe 'Application not found error' do
       before do
         make_request(verb, basepath, {app_key: 'wrong_key', token: 'test_token'})
