@@ -3,7 +3,6 @@ module Arkaan
   # @author Vincent Courtois <courtois.vincent@outlook.com>
   module Monitoring
     autoload :Action   , 'arkaan/monitoring/action'
-    autoload :Gateway  , 'arkaan/monitoring/gateway'
     autoload :Instance , 'arkaan/monitoring/instance'
     autoload :Results  , 'arkaan/monitoring/results'
     autoload :Route    , 'arkaan/monitoring/route'
