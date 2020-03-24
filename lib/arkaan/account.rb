@@ -57,9 +57,6 @@ module Arkaan
     # @!attribute [rw] invitations
     #   @return [Array<Arkaan::Campaigns::Invitation>] the invitations you've issued yourself to other players.
     has_many :created_invitations, class_name: 'Arkaan::Campaigns::Invitation', inverse_of: :creator
-    # @!attribute [rw] websockets
-    #   @return [Array<Arkaan::Monitoring::Websocket>] the websockets created by the owner of this account.
-    has_many :websockets, class_name: 'Arkaan::Monitoring::Websocket', inverse_of: :creator
     # @!attribute [rw] permissions
     #   @return [Array<Arkaan::Files::Permission>] the file access permissions granted to this account.
     has_many :permissions, class_name: 'Arkaan::Files::Permission', inverse_of: :account
