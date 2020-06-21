@@ -67,8 +67,8 @@ RSpec.describe Arkaan::Campaign do
       campaign = build(:campaign, creator: account, max_players: 1)
       acc_1 = create(:account, username: 'account1', email: 'acc1@test.fr')
       acc_2 = create(:account, username: 'account2', email: 'acc2@test.fr')
-      inv_1 = create(:accepted_invitation, campaign: campaign, account: acc_1)
-      inv_2 = create(:accepted_invitation, campaign: campaign, account: acc_2)
+      inv_1 = create(:invitation, campaign: campaign, account: acc_1, enum_status: :accepted)
+      inv_2 = create(:invitation, campaign: campaign, account: acc_2, enum_status: :accepted)
       expect(campaign.valid?).to be false
     end
   end
@@ -104,8 +104,8 @@ RSpec.describe Arkaan::Campaign do
       invalid_campaign = build(:campaign, creator: account, max_players: 1)
       acc_1 = create(:account, username: 'account1', email: 'acc1@test.fr')
       acc_2 = create(:account, username: 'account2', email: 'acc2@test.fr')
-      inv_1 = create(:accepted_invitation, campaign: invalid_campaign, account: acc_1)
-      inv_2 = create(:accepted_invitation, campaign: invalid_campaign, account: acc_2)
+      inv_1 = create(:invitation, campaign: invalid_campaign, account: acc_1, enum_status: :accepted)
+      inv_2 = create(:invitation, campaign: invalid_campaign, account: acc_2, enum_status: :accepted)
       invalid_campaign.validate
       expect(invalid_campaign.errors.messages[:max_players]).to eq(['minimum'])
     end

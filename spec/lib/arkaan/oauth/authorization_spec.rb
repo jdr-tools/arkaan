@@ -41,11 +41,11 @@ RSpec.describe Arkaan::OAuth::Authorization do
   end
 
   describe :access_token do
-    it 'returns the right token for an already built authorization' do
-      expect(create(:authorization, token: create(:access_token)).token.value).to eq 'test_access_token'
+    it 'returns the right tokens for an already built authorization' do
+      expect(create(:authorization, tokens: [create(:access_token)]).tokens.first.value).to eq 'test_access_token'
     end
-    it 'validates the authorization if the token is not given' do
-      expect(build(:authorization, token: nil).valid?).to be true
+    it 'validates the authorization if the tokens are not given' do
+      expect(build(:authorization, tokens: nil).valid?).to be true
     end
   end
 end

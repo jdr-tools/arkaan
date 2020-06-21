@@ -51,14 +51,15 @@ module Arkaan
     # @param account [Arkaan::Account] the account of the creator for this campaign.
     def creator=(account)
       if !invitations.where(account: account).exists?
-        Arkaan::Campaigns::Invitation.create(campaign: self, account: account, enum_status: :creator)
+        invitation = Arkaan::Campaigns::Invitation.create(campaign: self, account: account)
+        invitation.status = :creator
       end
     end
 
     # Getter for the creator account of this campaign.
     # @return [Arkaan::Account] the account of the player creating this campaign.
     def creator
-      return invitations.where(enum_status: :creator).first.account
+      invitations.to_a.find(&:status_creator?).account
     end
 
     # Adds an error message if the account creating this campaign already has a campaign with the very same name.
@@ -83,7 +84,9 @@ module Arkaan
 
     # @return [Array<Arkaan::Campaigns::Invitation>] the players in this campaign.
     def players
-      invitations.where(enum_status: :accepted)
+      invitations.to_a.select do |invitation|
+        [:creator, :accepted].include? invitation.enum_status
+      end
     end
 
     # @return [Integer] the number of players in this campaign.

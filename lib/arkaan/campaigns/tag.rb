@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Arkaan
   module Campaigns
     # A campaign tag is a string describing a characteristic of the campaign it's in.
@@ -13,9 +15,7 @@ module Arkaan
       #   @return [Integer] the number of campaigns this tag is in, avoiding a join.
       field :count, type: Integer, default: 1
 
-      validates :content,
-        presence: {message: 'required'},
-        uniqueness: {message: 'uniq'}
+      validates :content, presence: { message: 'required' }, uniqueness: { message: 'uniq' }
     end
   end
 end

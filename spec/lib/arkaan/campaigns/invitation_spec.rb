@@ -2,120 +2,81 @@ RSpec.describe Arkaan::Campaigns::Invitation do
   let!(:account) { create(:account) }
   let!(:other_account) { create(:account, username: 'Anything', email: 'test@test.com') }
   let!(:campaign) { create(:campaign, creator: other_account) }
+  let!(:invitation) { create(:invitation, campaign: campaign, account: account, status: :pending) }
 
   describe :campaign do
     it 'has a campaign set at creation' do
-      expect(build(:invitation, campaign: campaign, account: account).campaign.title).to eq 'Test campaign'
+      expect(invitation.campaign.title).to eq 'Test campaign'
     end
   end
 
-  describe :status do
-    describe 'accepted invitation' do
-      let!(:invitation) { create(:invitation, campaign: campaign, account: account, status: :accepted) }
-      it 'Has the correct accepted status' do
-        expect(invitation.status).to eq(:accepted)
+  describe :history do
+    describe 'When creating an invitation' do
+      let!(:event) { invitation.history.first }
+
+      it 'has an array with one element when creating the invitation' do
+        expect(invitation.history.count).to be 1
+      end
+      it 'has created an history entry with the correct field' do
+        expect(event.field).to eq 'enum_status'
+      end
+      it 'has created an history entry with the correct old value' do
+        expect(event.from).to be_nil
+      end
+      it 'has created an history entry with the correct new value' do
+        expect(event.to).to be :pending
       end
     end
-    describe 'expelled invitation' do
-      let!(:invitation) { create(:invitation, campaign: campaign, account: account, status: :expelled) }
-      it 'Has the correct expelled status' do
-        expect(invitation.status).to eq(:expelled)
+    describe 'When updating the status' do
+      let(:event) { invitation.history.last }
+      before do
+        invitation.update(enum_status: :accepted)
+      end
+      it 'adds an element to the history when modifying the status' do
+        expect(invitation.history.count).to be 2
+      end
+      it 'adds the element with the correct field' do
+        expect(event.field).to eq 'enum_status'
+      end
+      it 'adds the element with the correct old value' do
+        expect(event.from).to eq :pending
+      end
+      it 'adds the element with the correct new value' do
+        expect(event.to).to eq :accepted
       end
     end
-    describe 'ignored invitation' do
-      let!(:invitation) { create(:invitation, campaign: campaign, account: account, status: :ignored) }
-      it 'Has the correct ignored status' do
-        expect(invitation.status).to eq(:ignored)
+    describe 'When updating the status twice' do
+      let(:event) { invitation.history.last }
+      before do
+        invitation.update(enum_status: :accepted)
+        invitation.update(enum_status: :expelled)
+      end
+      it 'adds an element to the history when modifying the status' do
+        expect(invitation.history.count).to be 3
+      end
+      it 'adds the element with the correct field' do
+        expect(event.field).to eq 'enum_status'
+      end
+      it 'adds the element with the correct old value' do
+        expect(event.from).to eq :accepted
+      end
+      it 'adds the element with the correct new value' do
+        expect(event.to).to eq :expelled
       end
     end
-    describe 'pending invitation' do
-      let!(:invitation) { create(:invitation, campaign: campaign, account: account, status: :pending) }
-      it 'Has the correct pending status' do
-        expect(invitation.status).to eq(:pending)
+    describe 'When not changing the status at update' do
+      before do
+        invitation.update(enum_status: :pending)
       end
-    end
-    describe 'refused invitation' do
-      let!(:invitation) { create(:invitation, campaign: campaign, account: account, status: :refused) }
-      it 'Has the correct refused status' do
-        expect(invitation.status).to eq(:refused)
+      it 'has not created a new element in the history' do
+        expect(invitation.history.count).to be 1
       end
-    end
-    describe 'unknown value' do
-      let!(:invitation) { create(:invitation, campaign: campaign, account: account, status: :anything_else) }
-      it 'Has the correct refused status' do
-        expect(invitation.status).to eq(:pending)
-      end
-    end
-  end
-
-  describe :status_accepted do
-    let!(:invitation) { create(:invitation, campaign: campaign, account: account, status: :pending) }
-
-    it 'Sets the status' do
-      invitation.status_accepted!
-      expect(invitation.status).to be :accepted
-    end
-    it 'Returns true with the given accessor' do
-      invitation.status_accepted!
-      expect(invitation.status_accepted?).to be true
-    end
-  end
-
-  describe :status_expelled do
-    let!(:invitation) { create(:invitation, campaign: campaign, account: account, status: :pending) }
-
-    it 'Sets the status' do
-      invitation.status_expelled!
-      expect(invitation.status).to be :expelled
-    end
-    it 'Returns true with the given accessor' do
-      invitation.status_expelled!
-      expect(invitation.status_expelled?).to be true
-    end
-  end
-
-  describe :status_ignored do
-    let!(:invitation) { create(:invitation, campaign: campaign, account: account, status: :pending) }
-
-    it 'Sets the status' do
-      invitation.status_ignored!
-      expect(invitation.status).to be :ignored
-    end
-    it 'Returns true with the given accessor' do
-      invitation.status_ignored!
-      expect(invitation.status_ignored?).to be true
-    end
-  end
-
-  describe :status_pending do
-    let!(:invitation) { create(:invitation, campaign: campaign, account: account, status: :accepted) }
-
-    it 'Sets the status' do
-      invitation.status_pending!
-      expect(invitation.status).to be :pending
-    end
-    it 'Returns true with the given accessor' do
-      invitation.status_pending!
-      expect(invitation.status_pending?).to be true
-    end
-  end
-
-  describe :status_refused do
-    let!(:invitation) { create(:invitation, campaign: campaign, account: account, status: :pending) }
-
-    it 'Sets the status' do
-      invitation.status_refused!
-      expect(invitation.status).to be :refused
-    end
-    it 'Returns true with the given accessor' do
-      invitation.status_refused!
-      expect(invitation.status_refused?).to be true
     end
   end
 
   describe :account do
     it 'has an account set at creation' do
-      expect(build(:invitation, campaign: campaign, account: account).account.username).to eq 'Babausse'
+      expect(invitation.account.username).to eq 'Babausse'
     end
   end
 end
