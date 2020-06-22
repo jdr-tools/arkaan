@@ -24,6 +24,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'pry'                    , '0.11.1'
   spec.add_development_dependency 'rack'                   , '2.0.8'
   spec.add_development_dependency 'faker'                  , '2.10.0'
+  spec.add_development_dependency 'rubocop'                , '0.85.1'
 
   spec.add_runtime_dependency 'mongoid'        , '7.0.1'
   spec.add_runtime_dependency 'activemodel'    , '5.2.3'

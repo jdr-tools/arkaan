@@ -13,6 +13,7 @@ module Arkaan
   autoload :Chatroom      , 'arkaan/chatroom'
   autoload :Chatrooms     , 'arkaan/chatrooms'
   autoload :Concerns      , 'arkaan/concerns'
+  autoload :Event         , 'arkaan/event'
   autoload :Factories     , 'arkaan/factories'
   autoload :Files         , 'arkaan/files'
   autoload :Monitoring    , 'arkaan/monitoring'

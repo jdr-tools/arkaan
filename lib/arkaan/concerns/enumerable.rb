@@ -14,7 +14,7 @@ module Arkaan
         # @param values [Array<Symbol>] the possible values of the enumerated field.
         # @param options [Hash<Symbol, Any>] the possible options for the field.
         def enum_field(field_name, values, options = {})
-          field :"enum_#{field_name}", type: Symbol, default: options[:default]
+          returned = field :"enum_#{field_name}", type: Symbol, default: options[:default]
 
           validates :"enum_#{field_name}", inclusion: {in: values.map(&:to_sym), message: 'inclusion'}
 
@@ -37,6 +37,10 @@ module Arkaan
               self["enum_#{field_name}"] == value
             end
           end
+
+          # This is to make enumerations historizable by
+          # returning the field object created by Mongoid.
+          returned
         end
       end
     end

@@ -1,6 +1,9 @@
 module Arkaan
   module OAuth
     # An OAuth authorization is granted by a user to an application to access its personal data.
+    # The application then transforms it into an access token to be able to send it with
+    # further requests, so that we know the user has authorized the application to access its data.
+    #
     # @author Vincent Courtois <courtois.vincent@outlook.com>
     class Authorization
       include Mongoid::Document
@@ -18,7 +21,7 @@ module Arkaan
       belongs_to :application, class_name: 'Arkaan::OAuth::Application', inverse_of: :authorizations
       # @!attribute [rw] token
       #   @return [Arkaan::OAuth::AccessToken] the access token used further in the application process to access private data of the account.
-      has_one :token, class_name: 'Arkaan::OAuth::AccessToken', inverse_of: :authorization
+      has_many :tokens, class_name: 'Arkaan::OAuth::AccessToken', inverse_of: :authorization
 
       validates :code,
         presence: {message: 'required'},

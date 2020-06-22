@@ -1,6 +1,7 @@
 module Arkaan
   module OAuth
-    # An access token is the value assigned to the application to access the private data of an account.
+    # An access token is the value assigned to the application
+    # to access the data the user is allowed to access.
     # @author Vincent Courtois <courtois.vincent@outlook.com>
     class AccessToken
       include Mongoid::Document
@@ -15,11 +16,17 @@ module Arkaan
 
       # @!attribute [rw] authorization
       #   @return [Arkaan::OAuth::Authorization] the authorization code that issued this token to the application for this user.
-      belongs_to :authorization, class_name: 'Arkaan::OAuth::Authorization', inverse_of: :access_token
+      belongs_to :authorization, class_name: 'Arkaan::OAuth::Authorization', inverse_of: :tokens
 
       validates :value, 
         presence: {message: 'required'},
         uniqueness: {message: 'uniq'}
+
+      # Checks if the current date is inferior to the creation date + expiration period
+      # @return [Boolean] TRUE if the token is expired, FALSE otherwise.
+      def expired?
+        created_at.to_time.to_i + expiration < Time.now.to_i
+      end
     end
   end
 end
