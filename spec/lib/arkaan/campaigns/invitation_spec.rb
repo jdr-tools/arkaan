@@ -72,6 +72,19 @@ RSpec.describe Arkaan::Campaigns::Invitation do
         expect(invitation.history.count).to be 1
       end
     end
+    describe 'When the invitation is the creator' do
+      let!(:invitation) { campaign.invitations.first }
+
+      it 'Has the correct size of history' do
+        expect(invitation.history.count).to be 1
+      end
+      it 'Comes from the correct status' do
+        expect(invitation.history.first.from).to be_nil
+      end
+      it 'Goes to the correct status' do
+        expect(invitation.history.first.to).to eq :creator
+      end
+    end
   end
 
   describe :account do

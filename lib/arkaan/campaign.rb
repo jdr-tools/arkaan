@@ -51,8 +51,11 @@ module Arkaan
     # @param account [Arkaan::Account] the account of the creator for this campaign.
     def creator=(account)
       if !invitations.where(account: account).exists?
-        invitation = Arkaan::Campaigns::Invitation.create(campaign: self, account: account)
-        invitation.status = :creator
+        invitation = Arkaan::Campaigns::Invitation.create(
+          campaign: self,
+          account: account,
+          status: :creator
+        )
       end
     end
 
