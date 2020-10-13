@@ -15,19 +15,19 @@ RSpec.describe Arkaan::OAuth::Application do
     end
   end
 
-  describe :key do
-    it 'returns the right key for a built application' do
-      expect(build(:application, key: 'test_key').key).to eq 'test_key'
+  describe :app_key do
+    it 'returns the right app_key for a built application' do
+      expect(build(:application, app_key: 'test_key').app_key).to eq 'test_key'
     end
-    it 'invalidates the application if the key is not given' do
-      expect(build(:application, key: nil).valid?).to be false
+    it 'invalidates the application if the app_key is not given' do
+      expect(build(:application, app_key: nil).valid?).to be false
     end
-    it 'invalidates the application if the key is already taken' do
-      create(:application, key: 'test_key')
-      expect(build(:application, key: 'test_key').valid?).to be false
+    it 'invalidates the application if the app_key is already taken' do
+      create(:application, app_key: 'test_key')
+      expect(build(:application, app_key: 'test_key').valid?).to be false
     end
-    it 'gives the key a default random value to the key' do
-      expect(build(:application).key.size).to be 32
+    it 'gives the app_key a default random value to the app_key' do
+      expect(build(:application).app_key.size).to be 32
     end
   end
 
@@ -89,14 +89,14 @@ RSpec.describe Arkaan::OAuth::Application do
         (app = build(:application)).validate
         expect(app.errors.messages[:name]).to include('uniq')
       end
-      it 'the key is not given' do
-        (app = build(:application, key: nil)).validate
-        expect(app.errors.messages[:key]).to include('required')
+      it 'the app_key is not given' do
+        (app = build(:application, app_key: nil)).validate
+        expect(app.errors.messages[:app_key]).to include('required')
       end
-      it 'the key is already taken' do
-        create(:application, key: 'test_key')
-        (app = build(:application, key: 'test_key')).validate
-        expect(app.errors.messages[:key]).to include('uniq')
+      it 'the app_key is already taken' do
+        create(:application, app_key: 'test_key')
+        (app = build(:application, app_key: 'test_key')).validate
+        expect(app.errors.messages[:app_key]).to include('uniq')
       end
       it 'one URI is not a string' do
         (app = build(:application, redirect_uris: [0])).validate

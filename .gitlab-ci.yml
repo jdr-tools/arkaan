@@ -1,0 +1,25 @@
+include:
+  # This template is included to straighten the behaviour of pull requests
+  - template: 'Workflows/MergeRequest-Pipelines.gitlab-ci.yml'
+
+stages:
+  - checks
+
+default:
+  before_script:
+    # Installs the Bundler dependencies to later get gems
+    - gem install bundler --no-document
+    # Sets the path used for caching purposes, and install dependencies
+    - bundle config set path vendor/ruby
+    # Install all dependencies and cache them
+    - bundle install
+
+# Executes the RSpec tests.
+# TODO : store the results in an artefact.
+rspec:
+  stage: checks
+  script:
+    - bundle exec rspec --format RspecJunitFormatter --out rspec.xml
+  artifacts:
+    reports:
+      junit: rspec.xml
