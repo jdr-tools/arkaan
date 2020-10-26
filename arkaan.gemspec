@@ -3,7 +3,7 @@ require './lib/arkaan/version'
 
 Gem::Specification.new do |spec|
   spec.name        = 'arkaan'
-  spec.version     = Arkaan::VERSION
+  spec.version     = File.open('VERSION', 'r+').read
   spec.date        = Date.today.strftime('%Y-%m-%d')
   spec.summary     = 'The model layer for my table-RPG application'
   spec.description = 'This gem holds the model layer for my table-top RPG games application.'
@@ -25,6 +25,9 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rubocop', '0.90.0'
   spec.add_development_dependency 'simplecov', '0.19.0'
   spec.add_development_dependency 'yard', '0.9.25'
+  spec.add_development_dependency 'gems', '1.2.0'
+  spec.add_development_dependency 'gitlab', '4.16.1'
+  spec.add_development_dependency 'semantic', '1.6.1'
 
   spec.add_runtime_dependency 'mongoid', '7.1.0'
   spec.add_runtime_dependency 'activemodel', '6.0.3.2'

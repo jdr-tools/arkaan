@@ -1,0 +1,42 @@
+include:
+  - template: 'Workflows/MergeRequest-Pipelines.gitlab-ci.yml'
+
+stages:
+  - checks
+  - gem build
+
+default:
+  before_script:
+    # Install the ruby version if by any way it was removed
+    - rvm install 2.7.2
+    # Creates the gemset of the project on the machine and uses it
+    - rvm use ruby-2.7.2@arkaan --create
+    # Installs the Bundler dependencies to later get gems
+    - gem install bundler --no-document
+    # Sets the path used for caching purposes, and install dependencies
+    - bundle config set path vendor/ruby
+    # Install all dependencies and cache them
+    - bundle install
+    # Stores the next version in a corresponding file
+    - bundle exec ruby ./integration/version.rb next > ./VERSION
+
+
+# Executes the RSpec tests.
+# TODO : store the results in an artefact.
+rspec:
+  stage: checks
+  script:
+    - bundle exec rspec --format RspecJunitFormatter --out rspec.xml
+  artifacts:
+    reports:
+      junit: rspec.xml
+
+rubygems:
+  stage: gem build
+  script:
+    # Builds the gem from the version built in the before actions
+    - gem build arkaan.gemspec
+    # Pushes the gem to the rubygems repository
+    - gem push arkaan-`cat VERSION`.gem
+    # Delete the version file and the auto-generated gem file
+    - rm arkaan-`cat VERSION`.gem VERSION
