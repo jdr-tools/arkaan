@@ -15,8 +15,8 @@ default:
     - gem install bundler --no-document
     # Sets the path used for caching purposes, and install dependencies
     - bundle config set path vendor/ruby
-    # Stores the next version in a corresponding file
-    - bundle exec ruby ./integration/version.rb next > ./VERSION
+    # First we tag the current version to be able to install it
+    - bundle exec ruby ./integration/version.rb current > ./VERSION
     # Install all dependencies and cache them
     - bundle install
 
@@ -34,6 +34,8 @@ rspec:
 rubygems:
   stage: gem build
   script:
+    # Now we can tag the next version to be able to build it
+    - bundle exec ruby ./integration/version.rb next > ./VERSION
     # Builds the gem from the version built in the before actions
     - gem build arkaan.gemspec
     # Pushes the gem to the rubygems repository

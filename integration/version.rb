@@ -5,12 +5,6 @@ require 'gitlab'
 Gitlab.endpoint = 'https://gitlab.com/api/v4'
 Gitlab.private_token = ENV['GITLAB_API_TOKEN']
 
-puts "================================================================================"
-puts "================================================================================"
-puts ENV['GITLAB_API_TOKEN']
-puts "================================================================================"
-puts "================================================================================"
-
 def docker_url
   'https://registry.hub.docker.com/v2/repositories/virtuatable/accounts/tags'
 end
@@ -24,7 +18,6 @@ def last_commit
 end
 
 def current_version
-  puts Gem.info('arkaan')
   Semantic::Version.new(Gems.info('arkaan')['version'])
 end
 
