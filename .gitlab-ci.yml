@@ -16,7 +16,7 @@ default:
     # Sets the path used for caching purposes, and install dependencies
     - bundle config set path vendor/ruby
     # Install only the gems needed to execute the versions script
-    - bundle install --gemfile integration/Gemfile
+    - gem install gems semantic gitlab
     # First we tag the current version to be able to install it
     - ruby ./integration/version.rb current > ./VERSION
     # Install all dependencies and cache them
