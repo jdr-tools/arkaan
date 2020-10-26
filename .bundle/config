@@ -1,0 +1,3 @@
+---
+BUNDLE_WITHOUT: ":build"
+BUNDLE_WITH: "integration"
