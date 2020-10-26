@@ -15,10 +15,10 @@ default:
     - gem install bundler --no-document
     # Sets the path used for caching purposes, and install dependencies
     - bundle config set path vendor/ruby
-    # Install all dependencies and cache them
-    - bundle install
     # Stores the next version in a corresponding file
     - bundle exec ruby ./integration/version.rb next > ./VERSION
+    # Install all dependencies and cache them
+    - bundle install
 
 
 # Executes the RSpec tests.
@@ -40,3 +40,5 @@ rubygems:
     - gem push arkaan-`cat VERSION`.gem
     # Delete the version file and the auto-generated gem file
     - rm arkaan-`cat VERSION`.gem VERSION
+  only:
+    - master
