@@ -11,7 +11,7 @@ module Arkaan
       field :name, type: String
       # @!attribute [rw] key
       #   @return [String] the unique key for the application, identifying it when requesting a token for the API.
-      field :key, type: String, default: ->{ SecureRandom.hex }
+      field :application_key, type: String, default: ->{ SecureRandom.hex }
       # @!attribute [rw] premium
       #   @return [Boolean] a value indicating whether the application should automatically receive a token when an account is created, or not.
       field :premium, type: Boolean, default: false
@@ -31,7 +31,7 @@ module Arkaan
         length: {minimum: 6, message: 'minlength'},
         uniqueness: {message: 'uniq'}
 
-      validates :key,
+      validates :application_key,
         presence: {message: 'required'},
         uniqueness: {message: 'uniq'}
 
